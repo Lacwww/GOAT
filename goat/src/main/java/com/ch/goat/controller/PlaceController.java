@@ -72,6 +72,7 @@ public class PlaceController {
 			e.getMessage();
 		}
 		
+		
 		int CurNum = ps.getPlaceNum();
 		
 		model.addAttribute("CurNum", CurNum);
