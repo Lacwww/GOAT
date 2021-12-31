@@ -15,4 +15,6 @@ public class Place {
 	private String lat;
 	private String lng;
 	private Date reg_date;
+	private String place_content;
+	private String place_area;
 }
