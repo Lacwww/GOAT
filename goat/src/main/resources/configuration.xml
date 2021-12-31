@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="place" type="com.ch.goat.model.Place" />
+		<typeAlias alias="placereview"
+			type="com.ch.goat.model.PlaceReview" />
+		<typeAlias alias="bookmark"
+			type="com.ch.goat.model.Bookmark" />
+		<typeAlias alias="member" type="com.ch.goat.model.Member" />
+		
+		<typeAlias alias="trip" type="com.ch.goat.model.Trip" />
+		<typeAlias alias="tp" type="com.ch.goat.model.TripPhoto" />
+		<typeAlias alias="tl" type="com.ch.goat.model.TripLike" />
+		<typeAlias alias="tr" type="com.ch.goat.model.TripReply" />
+
+		<typeAlias alias="notice" type="com.ch.goat.model.Notice" />
+		<typeAlias alias="nr" type="com.ch.goat.model.NoticeReply" />
+		
+		<typeAlias alias="cs" type="com.ch.goat.model.Cs" />
+		
+		<typeAlias alias="sc" type="com.ch.goat.model.Schedule" />
+		<typeAlias alias="scd"
+			type="com.ch.goat.model.ScheduleDetail" />
+
+
+	</typeAliases>
+	<mappers>
+		<mapper resource="place.xml" />
+		<mapper resource="schedule.xml" />
+		<mapper resource="member.xml" />
+		<mapper resource="trip.xml" />
+		<mapper resource="notice.xml" />
+		<mapper resource="cs.xml" />
+	</mappers>
+</configuration>
