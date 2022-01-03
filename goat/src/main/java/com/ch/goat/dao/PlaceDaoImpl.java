@@ -29,6 +29,7 @@ public class PlaceDaoImpl implements PlaceDao{
 		map.put("place_area", place.getPlace_area());
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
+		map.put("keyword", place.getKeyword());
 		return sst.selectList("placens.list", map);
 	}
 }
