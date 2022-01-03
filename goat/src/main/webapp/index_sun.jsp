@@ -9,7 +9,6 @@
 <body>
 <script type="text/javascript">
 	location.href="csList.do";
-	/* 어떻게 해야 돌아갈까요    */
 </script>
 </body>
 </html>

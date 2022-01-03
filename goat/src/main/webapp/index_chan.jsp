@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-성공
+<script type="text/javascript">
+	location.href="main/main.do";
+</script>
 </body>
 </html>
