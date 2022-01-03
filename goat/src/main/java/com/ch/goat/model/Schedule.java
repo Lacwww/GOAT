@@ -1,5 +1,14 @@
 package com.ch.goat.model;
 
-public class Schedule {
+import java.sql.Date;
 
+import lombok.Data;
+
+@Data
+public class Schedule {
+	private int sch_num;
+	private String sch_name;
+	private Date s_date;
+	private Data e_date;
+	private int m_num;
 }
