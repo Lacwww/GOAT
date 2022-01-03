@@ -9,7 +9,6 @@
 <body>
 <script type="text/javascript">
 	location.href="csList.do";
-	
 </script>
 </body>
 </html>
