@@ -13,8 +13,20 @@ public class MemberController {
 	// 비밀번호 암호화
 	@Autowired
 	private BCryptPasswordEncoder bpPass;
-	@RequestMapping("main.do")
+	@RequestMapping("main/main")
 	public String main() {
-		return "main";
+		return "main/main";
+	}
+	@RequestMapping("main/home")
+	public String home() {
+		return "main/home";
+	}
+	@RequestMapping("member/joinForm")
+	public String joinForm() {
+		return "member/joinForm";
+	}
+	@RequestMapping("member/loginForm")
+	public String loginForm() {
+		return "member/loginForm";
 	}
 }
