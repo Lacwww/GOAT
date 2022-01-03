@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="csns">
 	<select id="list" parameterType="cs" resultType="cs">
-		select * from cs order by num
+		select * from cs order by num desc
 	</select>
 	
 	<select id="getTotal" parameterType="cs" resultType="integer">

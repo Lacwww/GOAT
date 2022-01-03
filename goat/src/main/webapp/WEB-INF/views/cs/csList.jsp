@@ -7,11 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	table,tr,th,td { border: 1px solid; }
+	#l1 { border: 1px solid; }
 </style>
 </head>
 <body>
-	<div align="center">
+	<div class="container" align="center">
 		<h2>고객문의</h2>
 		<table>
 			<tr>
