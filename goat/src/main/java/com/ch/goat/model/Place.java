@@ -11,8 +11,10 @@ public class Place {
 	private String place_cate;
 	private String place_addr;
 	private String place_addrd;
-	private String filename;
+	private String place_photo;
 	private String lat;
 	private String lng;
 	private Date reg_date;
+	private String place_content;
+	private String place_area;
 }
