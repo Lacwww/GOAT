@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../tool.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container" align="center" style="height: 100%;">
-	 	로그인 폼
+	<div style="background-color: gray; opacity: 0.3; height: 150px;">
+		<div style="background: none; color: black; margin-top: 30px;">
+			Go On A Trip
+		</div>
 	</div>
 </body>
 </html>

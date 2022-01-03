@@ -8,7 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="main.do";
+	location.href="main/main.do";
 </script>
 </body>
 </html>
