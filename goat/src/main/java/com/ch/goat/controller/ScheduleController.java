@@ -18,6 +18,7 @@ public class ScheduleController {
 	@RequestMapping("selectArea")
 	public String selectArea(Model model) {
 		return "schedule/selectArea";
+	
 	}
 
 }
