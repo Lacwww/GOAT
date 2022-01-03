@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="placens">
-
+	<!-- place_num 얻기 -->
+	<select id="getPlaceNum" resultType="integer">
+		select count(*) + 1 from place
+	</select>
+	
+	<!-- 지역에 해당하는 장소 총 갯수 -->
+	<select id="getTotal" parameterType="place" resultType="integer">
+		select count(*) from place where place_area = #{place_area}
+	</select>
+	
+	<!-- 지역에 해당하는 장소의 리스트 -->
+	<select id="list" parameterType="map" resultType="place">
+		select * from (select a.*,rowNum rn from( 
+			select * from place where place_area = #{place_area} order by place_name)a)
+				where rn between #{startRow} and #{endRow}	
+	</select>
+	
+	<!-- 관광지 API 정보 입력 -->
+	<insert id="insertAPI" parameterType="place">
+		insert into place values(#{place_num}, #{place_name}, #{place_cate}, #{place_addr}, #{place_addrd},
+								#{place_photo}, #{lat}, #{lng}, sysdate, #{place_content}, '제주도')
+	</insert>
 </mapper>
