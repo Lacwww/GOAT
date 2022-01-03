@@ -21,6 +21,7 @@
 		<typeAlias alias="cs" type="com.ch.goat.model.Cs" />
 		
 		<typeAlias alias="sc" type="com.ch.goat.model.Schedule" />
+		<typeAlias alias="area" type="com.ch.goat.model.Area" />
 		<typeAlias alias="scd"
 			type="com.ch.goat.model.ScheduleDetail" />
 
