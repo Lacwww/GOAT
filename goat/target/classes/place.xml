@@ -41,6 +41,11 @@
 		select nvl(avg(score), 0) from place_review where place_num = #{num}
 	</select>
 	
+	<!-- 장소 댓글 리스트 -->
+	<select id="prevList" parameterType="integer" resultType="placereview">
+		select * from place_review where place_num = #{num} order by prev_num
+	</select>
+	
 	<!-- 관광지 API 정보 입력 -->
 	<insert id="insertAPI" parameterType="place">
 		insert into place values(#{place_num}, #{place_name}, #{place_cate}, #{place_addr}, #{place_addrd},

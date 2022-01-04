@@ -26,12 +26,23 @@ public class PlaceController {
 	@Autowired
 	private ScheduleService ss;
 	
+	@RequestMapping("place/prevList")
+	public String prevList(String place_num, Model model) {
+		int num = Integer.parseInt(place_num);	
+		List<PlaceReview> list = ps.prevList(num);
+		model.addAttribute("list", list);
+		return "place/prevList";
+	}
+	
 	@RequestMapping("place/prevDetailView")
 	public String prevDetailView(String place_num, Model model) {
 		int num = Integer.parseInt(place_num);
 		Place place = ps.placeModal(num);
 		float avgScore = ps.avgScore(num);
+		String bookMarkImg ="/resources/bookMarkImg/nobookmark.png";
 		
+		
+		model.addAttribute("bookMarkImg", bookMarkImg);
 		model.addAttribute("avgScore", avgScore);
 		model.addAttribute("place", place);
 		return "place/prevDetailView";
