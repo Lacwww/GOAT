@@ -33,6 +33,10 @@
 			}
 		});
 	});
+	
+	$(document).ready(function() {
+		$('#list').load("placeList.do?place_area=${place_area}");
+	});
 </script>
 <style type="text/css">
 	div #map {text-align: center;}
@@ -43,9 +47,9 @@
 </head>
 <body>
 <h2 class="text text-primary" align="center">여행할 장소를 선택해주세요</h2>
-	<form action="makeSchedule.do" name="frm" method="post">
 	<!-- 여행 일자 선택 -->
-	<div class="container" id="outer">
+	<div class="container" id="outer" style="width: 70%; ">
+	<form action="makeSchedule.do" name="frm" method="post">
 		<div>
 			<img alt="calendar" src="${path }/resources/images/calendar.png"
 				 style="width: 60px; height: 70px; padding-bottom : 5px;">
@@ -54,7 +58,7 @@
 			</span><input type="text" name="e_date" id="end">
 		</div>
 		<!-- 지도 -->
-			<div id="map" style="width:700px;height:500px;"></div>
+			<div id="map" style="width:100%;height:60%;"></div>
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0"></script>
 			<script>
 				var container = document.getElementById('map');
@@ -64,10 +68,10 @@
 				};
 				var map = new kakao.maps.Map(container, options);
 			</script>
+		</form>
 		</div>
 		<!-- 플레이스 목록 -->
-		<div id="list">
-		</div>
-		</form>
+			<div id="list">
+			</div>
 </body>
 </html>

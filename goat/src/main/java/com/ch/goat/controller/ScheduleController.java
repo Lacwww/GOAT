@@ -30,7 +30,16 @@ public class ScheduleController {
 	}
 	@RequestMapping("makeScheduleForm")
 	public String makeSchedule(Model model, String place_area) {
+		model.addAttribute("place_area",place_area);
+		System.out.println("place_area controller: "+place_area);
 		return "schedule/makeScheduleForm";
+	}
+	@RequestMapping("placeList")
+	public String placeList(Model model, String place_area) {
+		List<Place> plist = ss.plist(place_area);
+		model.addAttribute("plist",plist);
+		System.out.println(plist.size());
+		return "schedule/placeList";
 	}
 
 }

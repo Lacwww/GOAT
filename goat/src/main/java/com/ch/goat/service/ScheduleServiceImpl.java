@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.ScheduleDao;
 import com.ch.goat.model.Area;
+import com.ch.goat.model.Place;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService{
@@ -20,5 +21,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	public Area select(String place_area) {
 		return sd.select(place_area);
+	}
+
+	public List<Place> plist(String place_area) {
+		return sd.plist(place_area);
 	}
 }
