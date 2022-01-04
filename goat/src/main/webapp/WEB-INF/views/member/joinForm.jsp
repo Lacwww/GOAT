@@ -68,8 +68,8 @@
 			return false;
 		}
 		// id 중복체크 ajax
-		$.post('chkId.do', "m_id=" + frm.m_id.value, function(msg) {
-			alert(msg)
+		$.post('chkId.do', "m_id=" + frm.m_id.value, function(data) {
+			alert(data);
  		 	if(data == 1) {
                 $('#idChk_result').html("이미 사용 중인 아이디입니다");
                 $('#idChk_result').css("color","red");
@@ -79,7 +79,7 @@
  				$('#idChk_result').html("사용 가능한 아이디입니다");
              	$('#idChk_result').css("color","blue");
              	frm.idchk.value="chk";
-              }
+            }
 		});
 	}
 	

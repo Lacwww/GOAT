@@ -40,8 +40,8 @@ public class MemberController {
 		Member member = ms.select(m_id);
 		System.out.println(m_id);
 		System.out.println(member);
-		if(!member.getM_id().equals("null")) msg = "1";
-		else msg = "0";
+		if(member == null) msg = "0";
+		else msg = "1";
 		System.out.println(msg);
 		model.addAttribute("msg", msg);
 		return "member/chkId";
