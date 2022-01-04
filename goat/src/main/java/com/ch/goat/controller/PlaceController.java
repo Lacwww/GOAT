@@ -13,32 +13,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
 import com.ch.goat.service.PlaceService;
-import com.ch.goat.service.ScheduleService;
 
 @Controller
 public class PlaceController {
 	@Autowired
 	private PlaceService ps;
-	@Autowired
-	private ScheduleService ss;
 	
 	@RequestMapping("place/placeList")
-	public String placeList(Model model) {
-		List<Area> list = ss.list();
-		model.addAttribute("list",list);
+	public String placeList() {
+		
 		return "place/placeList";
 	}
 	@RequestMapping("place/areaPlaceList")
 	public String areaPlaceList(Place place, String pageNum, Model model) {
-		int rowPerPage = 12;
+		int rowPerPage = 10;
 		int pagePerBlock = 10;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = ps.getTotal(place);
-		System.out.println(total);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		List<Place> list = ps.list(place, startRow, endRow);

@@ -2,6 +2,8 @@ package com.ch.goat.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 @Data
 public class Member {
@@ -11,7 +13,7 @@ public class Member {
 	private String m_nick;
 	private String m_email;
 	private String m_name;
-	private int m_tel;
+	private String m_tel;
 	private Date m_birth;
 	private String m_addr;
 	private String m_addrd;
@@ -19,4 +21,6 @@ public class Member {
 	private String m_photo;
 	private String del;
 	private String admin;
+	// upload용
+	private MultipartFile file;
 }
