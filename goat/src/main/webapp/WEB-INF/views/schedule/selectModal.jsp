@@ -8,6 +8,7 @@
 	img {width: 100%; height: 100%; padding-right: 2px;}
 	.area_photo { float: left; width: 30%; height: 30%;}
 	.area_text { width: 80%; padding: 5px; }
+	#inner_content { width: }
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
