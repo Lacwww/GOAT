@@ -24,7 +24,7 @@
 					Schedule
 				</td>
 				<td style="border-right: 2px solid;" align="center"
-					onclick="location.href='/goat/main/home.do'">
+					onclick="location.href='/goat/place/placeList.do'">
 					Place
 				</td>
 				<td style="border-right: 2px solid;" align="center"
@@ -46,7 +46,8 @@
 					</td>
 				</c:if>
 				<c:if test="${not empty id }">
-					<td style="border-right: 2px solid;" align="center" onclick="del(${id})">
+					<td style="border-right: 2px solid;" align="center"
+						onclick="location.href='/goat/member/logout.do'">
 						Logout
 					</td>
 					<td style="border-right: 2px solid;" align="center"

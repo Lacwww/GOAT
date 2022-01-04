@@ -299,6 +299,8 @@ ALTER TABLE CS
 		REFERENCES MEMBER (
 			M_NUM
 		);
+alter table cs rename column num to cs_num;
+
 /* 플레이스 */
 CREATE TABLE PLACE (
 	PLACE_NUM NUMBER NOT NULL, /* 플레이스 번호 */
