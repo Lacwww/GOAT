@@ -23,6 +23,7 @@ ALTER TABLE MEMBER
 		);
 alter table member modify(m_tel varchar2(40));
 alter table member modify(m_pass varchar2(1000));
+select * from member;
 
 /* 여행 게시판 */
 CREATE TABLE TRIP (
@@ -299,6 +300,8 @@ ALTER TABLE CS
 		REFERENCES MEMBER (
 			M_NUM
 		);
+alter table cs rename column num to cs_num;
+
 /* 플레이스 */
 CREATE TABLE PLACE (
 	PLACE_NUM NUMBER NOT NULL, /* 플레이스 번호 */
@@ -330,6 +333,7 @@ ALTER TABLE PLACE
       REFERENCES AREA (
          PLACE_AREA
       );
+alter table place add place_tag varchar2(200);
 
 /* 플레이스 후기 */
 CREATE TABLE PLACE_REVIEW (
