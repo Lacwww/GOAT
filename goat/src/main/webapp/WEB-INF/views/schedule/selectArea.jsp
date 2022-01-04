@@ -6,10 +6,11 @@
 <head>
 <script type="text/javascript">
 	function modal(area) {
-		$('#Modal .modal_content').load("selectModal.do?place_area="+area);
-		$('#Modal').modal();
+		$('#MoaModal .modal-content').load("selectModal.do?place_area=" + area);
+		$('#MoaModal').modal();
 	}
 </script>
+
 <style type="text/css">
 #sch {
 	margin-bottom: 80px;
@@ -59,18 +60,22 @@
 		</form>
 		<div class="container" align="center">
 			<c:forEach var="area" items="${list }">
-			<div class="area" onclick="modal('${area.place_area}')">
-				<div class="areaPhoto">
-					<img alt="${area.place_area }" src="${path}/resources/areaImages/${area.area_photo }">
-				</div>
+				<div class="area" onclick="modal('${area.place_area}')">
+					<div class="areaPhoto">
+						<img alt="${area.place_area }"
+							src="${path}/resources/areaImages/${area.area_photo }">
+					</div>
 					<div class="desc">${area.place_area }</div>
-			</div>
+				</div>
 			</c:forEach>
 		</div>
 	</div>
 	<!-- 지역 모달 -->
-	<div class="container" id="Modal">
-		<div class="modal_content"></div>
+	<div class="modal fade" id="MoaModal" tabindex="-1" role="dialog"
+		aria-labelledby="historyModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content"></div>
+		</div>
 	</div>
 </body>
 </html>
