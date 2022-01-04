@@ -47,13 +47,13 @@ public class CsController {
 	}
 	
 	@RequestMapping("csInsertForm")
-	public String csInsertForm(int num, String pageNum, Model model) {
+	public String csInsertForm(int cs_num, String pageNum, Model model) {
 			// ref 답변글끼리 뭉칠때, re_level 들여쓰기, re_step 답변글 순서
 			int ref = 0, re_level = 0, re_step = 0;
 			int m_num;
 			
-			if(num != 0) {
-				Cs cs = css.select(num);
+			if(cs_num != 0) {
+				Cs cs = css.select(cs_num);
 				ref = cs.getCs_ref();
 				re_step = cs.getCs_re_step();
 				re_level = cs.getCs_re_level();
@@ -62,8 +62,12 @@ public class CsController {
 			m_num = 1;
 			Member member = css.selectM(m_num);
 			
+			System.out.println("ref:"+ref);
+			System.out.println("re_level:"+re_level);
+			System.out.println("re_step:"+re_step);
+			
 			model.addAttribute("member",member);
-			model.addAttribute("num", num);
+			model.addAttribute("cs_num", cs_num);
 			model.addAttribute("pageNum", pageNum);
 			model.addAttribute("ref", ref);
 			model.addAttribute("re_level", re_level);
@@ -83,6 +87,7 @@ public class CsController {
 			} else cs.setCs_ref(number); // 답변글이 아닐때는 num과 ref는 둘다 number
 			cs.setCs_num(number);
 			int result = css.insert(cs);
+			
 			model.addAttribute("pageNum", pageNum);
 			model.addAttribute("result", result);
 
