@@ -19,12 +19,10 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	}
 
 	public Area select(String place_area) {
-		System.out.println("place_area1 : "+place_area);
 		return sst.selectOne("schedulens.areaSelect",place_area);
 	}
 
 	public List<Place> plist(String place_area) {
-		System.out.println("place_area2 : "+place_area);
 		return sst.selectList("schedulens.placeList",place_area);
 	}
 }
