@@ -31,4 +31,11 @@ public class PlaceDaoImpl implements PlaceDao{
 		map.put("endRow", endRow);
 		return sst.selectList("placens.list", map);
 	}
+	public Place placeModal(int num) {
+		return sst.selectOne("placens.placeModal", num);
+	}
+	public float avgScore(int num) {
+		return sst.selectOne("placens.avgScore",num);
+	}
+
 }

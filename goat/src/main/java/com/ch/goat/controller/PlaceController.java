@@ -13,22 +13,51 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.PlaceReview;
 import com.ch.goat.service.PlaceService;
+import com.ch.goat.service.ScheduleService;
 
 @Controller
 public class PlaceController {
 	@Autowired
 	private PlaceService ps;
+	@Autowired
+	private ScheduleService ss;
+	
+	@RequestMapping("place/prevDetailView")
+	public String prevDetailView(String place_num, Model model) {
+		int num = Integer.parseInt(place_num);
+		Place place = ps.placeModal(num);
+		float avgScore = ps.avgScore(num);
+		
+		model.addAttribute("avgScore", avgScore);
+		model.addAttribute("place", place);
+		return "place/prevDetailView";
+	}
+	
+	@RequestMapping("place/placeModal")
+	public String placeModal(String place_num, Model model) {
+		int num = Integer.parseInt(place_num);
+		Place place = ps.placeModal(num);
+		float avgScore = ps.avgScore(num);
+		
+		
+		model.addAttribute("avgScore", avgScore);
+		model.addAttribute("place", place);
+		return "place/placeModal";
+	}
 	
 	@RequestMapping("place/placeList")
-	public String placeList() {
-		
+	public String placeList(Model model) {
+		List<Area> list = ss.list();
+		model.addAttribute("list",list);
 		return "place/placeList";
 	}
 	@RequestMapping("place/areaPlaceList")
 	public String areaPlaceList(Place place, String pageNum, Model model) {
-		int rowPerPage = 10;
+		int rowPerPage = 12;
 		int pagePerBlock = 10;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -127,6 +156,10 @@ public class PlaceController {
 					String introduction = (String)itemsNum.get("introduction");
 					System.out.println("설명 : " + introduction);
 					place.setPlace_content(introduction);
+					
+					String tag = (String)itemsNum.get("tag");
+					System.out.println("태그 : " + tag);
+					place.setPlace_tag(tag);
 					
 					ps.insertAPI(place);
 
