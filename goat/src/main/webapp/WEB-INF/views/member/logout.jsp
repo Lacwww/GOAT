@@ -10,7 +10,7 @@
 <body>
 	<script type="text/javascript">
 		alert("로그아웃 되었습니다");
-		location.href="home.do"
+		location.href="/goat/main/home.do"
 	</script>
 </body>
 </html>

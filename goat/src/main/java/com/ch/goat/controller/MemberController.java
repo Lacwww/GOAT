@@ -1,7 +1,5 @@
 package com.ch.goat.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,16 +35,19 @@ public class MemberController {
 		return "member/joinForm";
 	}
 	@RequestMapping("member/chkId")
-	public String idChk(String m_id, Model model) {
+	public String chkId(String m_id, Model model) {
 		String msg = "";
 		Member member = ms.select(m_id);
-		if(member == null) msg = "0";
-		else msg = "1";
+		System.out.println(m_id);
+		System.out.println(member);
+		if(!member.getM_id().equals("null")) msg = "1";
+		else msg = "0";
+		System.out.println(msg);
 		model.addAttribute("msg", msg);
 		return "member/chkId";
 	}
 	@RequestMapping("member/chkNick")
-	public String nickChk(String m_nick, Model model) {
+	public String chkNick(String m_nick, Model model) {
 		String msg = "";
 		Member member = ms.nickChk(m_nick);
 		if(member == null) msg = "0";
@@ -55,7 +56,7 @@ public class MemberController {
 		return "member/chkNick";
 	}
 	@RequestMapping("member/chkEmail")
-	public String emailChk(String m_email, Model model) {
+	public String chkEmail(String m_email, Model model) {
 		String msg = "";
 		Member member = ms.emailChk(m_email);
 		if(member == null) msg = "0";

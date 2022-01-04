@@ -68,7 +68,8 @@
 			return false;
 		}
 		// id 중복체크 ajax
-		$.post('chkId.do', "m_id=" + frm.m_id.value, function(data) {
+		$.post('chkId.do', "m_id=" + frm.m_id.value, function(msg) {
+			alert(msg)
  		 	if(data == 1) {
                 $('#idChk_result').html("이미 사용 중인 아이디입니다");
                 $('#idChk_result').css("color","red");
