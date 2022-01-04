@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.goat.model.Area;
+import com.ch.goat.model.Place;
 import com.ch.goat.service.ScheduleService;
 
 @Controller
@@ -27,10 +28,9 @@ public class ScheduleController {
 		model.addAttribute("area",area);
 		return "schedule/selectModal";
 	}
-	@RequestMapping("makeSchedule")
+	@RequestMapping("makeScheduleForm")
 	public String makeSchedule(Model model, String place_area) {
-		
-		return "schedule/makeSchedule";
+		return "schedule/makeScheduleForm";
 	}
 
 }
