@@ -68,7 +68,8 @@
 			return false;
 		}
 		// id 중복체크 ajax
-		$.post('idChk.do', "m_id=" + frm.m_id.value, function(data) {
+		$.post('chkId.do', "m_id=" + frm.m_id.value, function(data) {
+			alert(data);
  		 	if(data == 1) {
                 $('#idChk_result').html("이미 사용 중인 아이디입니다");
                 $('#idChk_result').css("color","red");
@@ -78,7 +79,7 @@
  				$('#idChk_result').html("사용 가능한 아이디입니다");
              	$('#idChk_result').css("color","blue");
              	frm.idchk.value="chk";
-              }
+            }
 		});
 	}
 	
@@ -104,9 +105,7 @@
 			frm.m_nick.focus();
 			return false;
 		}
-		if (frm.m_nick.value.match(/관리자/gi)
-			||frm.m_nick.value.match(/admin/gi)
-			||frm.m_nick.value.match(/master/gi)) {
+		if (frm.m_nick.value.match(/관리자/gi)||frm.m_nick.value.match(/admin/gi)||frm.m_nick.value.match(/master/gi)) {
 			alert("닉네임에 관리자,admin,master 단어를 포함할 수 없습니다");
 			frm.m_nick.value = "";
 			frm.m_nick.focus();
@@ -116,7 +115,7 @@
 		}
 		// 변수 id에 입력한 id를 담아서 post방식으로 confirmNick.sun을 실행하고, 그 결과를 받아서
 		// id가 err_nick인 곳에 html 형식으로 보여줘라
-		$.post('nickChk.do', "m_nick=" + frm.m_nick.value, function(data) {
+		$.post('chkNick.do', "m_nick=" + frm.m_nick.value, function(data) {
 			 if(data == 1) {
                 $('#nickChk_result').html("사용 중인 닉네임입니다");
                 $('#nickChk_result').css("color","red");
@@ -148,7 +147,7 @@
 
 		// 변수 id에 입력한 id를 담아서 post방식으로 confirmId.sun을 실행하고, 그 결과를 받아서
 		// id가 err_id인 곳에 html 형식으로 보여줘라
-		$.post('emailChk.do', "m_email=" + frm.m_email.value, function(data) {
+		$.post('chkEmail.do', "m_email=" + frm.m_email.value, function(data) {
  		 	if(data == 1) {
                 $('#emailChk_result').html("이메일 중복");
                 $('#emailChk_result').css("color","red");

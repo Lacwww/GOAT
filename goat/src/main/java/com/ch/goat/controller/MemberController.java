@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.goat.model.Member;
 import com.ch.goat.service.MemberService;
@@ -35,32 +34,35 @@ public class MemberController {
 	public String joinForm() {
 		return "member/joinForm";
 	}
-	@RequestMapping("member/idChk")
-	public String idChk(String m_id, Model model) {
+	@RequestMapping("member/chkId")
+	public String chkId(String m_id, Model model) {
 		String msg = "";
 		Member member = ms.select(m_id);
+		System.out.println(m_id);
+		System.out.println(member);
 		if(member == null) msg = "0";
 		else msg = "1";
+		System.out.println(msg);
 		model.addAttribute("msg", msg);
-		return "member/idChk";
+		return "member/chkId";
 	}
-	@RequestMapping("member/nickChk")
-	public String nickChk(String m_nick, Model model) {
+	@RequestMapping("member/chkNick")
+	public String chkNick(String m_nick, Model model) {
 		String msg = "";
 		Member member = ms.nickChk(m_nick);
 		if(member == null) msg = "0";
 		else msg = "1";
 		model.addAttribute("msg", msg);
-		return "member/nickChk";
+		return "member/chkNick";
 	}
-	@RequestMapping("member/emailChk")
-	public String emailChk(String m_email, Model model) {
+	@RequestMapping("member/chkEmail")
+	public String chkEmail(String m_email, Model model) {
 		String msg = "";
 		Member member = ms.emailChk(m_email);
 		if(member == null) msg = "0";
 		else msg = "1";
 		model.addAttribute("msg", msg);
-		return "member/emailChk";
+		return "member/chkEmail";
 	}
 	@RequestMapping("member/join")
 	public String join(Member member, Model model, HttpSession session) throws IOException {
@@ -91,5 +93,26 @@ public class MemberController {
 	@RequestMapping("member/loginForm")
 	public String loginForm() {
 		return "member/loginForm";
+	}
+	@RequestMapping("member/login")
+	public String login(Member member, Model model, HttpSession session) {
+		int result = 0; // 암호가 다름
+		Member member2 = ms.select(member.getM_id());
+		if (member2 == null || member2.getDel().equals("y")) {
+			result = -1; // 없는 아이디
+		} else {
+//			if (member.getPassword().equals(member2.getPassword())) 암호화 되어있기 때문에 불가능
+			if (bpPass.matches(member.getM_pass(), member2.getM_pass())) {
+				result = 1; // 성공 id와 암호가 일치
+				session.setAttribute("id", member.getM_id());
+			}
+		}
+		model.addAttribute("result", result);
+		return "member/login";
+	}
+	@RequestMapping("member/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "member/logout";
 	}
 }
