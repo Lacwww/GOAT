@@ -39,7 +39,7 @@
 										width="${cs2.cs_re_level * 10 }">
 									<img alt="" src="resources/images/re.gif">
 								</c:if> <a
-								href="csView.do?num=${cs2.cs_num}&pageNum=${pb.currentPage}"
+								href="csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}"
 								class="btn btn-info btn-sm">${cs2.cs_title}</a> <!-- 조회수가 50이 넘으면 hot표시 -->
 								<c:if test="${cs2.cs_view > 50}">
 									<img alt="" src="resources/images/hot.gif">
@@ -88,7 +88,7 @@
 			</ul>
 		</div>
 		<div align="center">
-			<a href="csInsertForm.do?num=0&pageNum=1" class="btn btn-success">게시글
+			<a href="csInsertForm.do?cs_num=0&pageNum=1" class="btn btn-success">게시글
 				입력</a>
 		</div>
 	</div>

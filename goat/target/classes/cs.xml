@@ -26,7 +26,7 @@
 	</select>
 	
 	<update id="updateStep" parameterType="cs">
-		update cs set cs_re_step = cs_re_step + 1 where cs_ref=#{cs_ref} and cs_re_step > #{cs_re_step}
+		update cs set cs_re_step = #{cs_re_step} + 1 where cs_ref=#{cs_ref} and cs_re_step > #{cs_re_step}
 	</update>
 	
 	<insert id="insert" parameterType="cs">

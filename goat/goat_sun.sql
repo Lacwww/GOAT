@@ -5,9 +5,9 @@ alter table place add place_tag varchar2(200);
 
 alter table cs rename column num to cs_num;
 
-select * from cs;
+select * from place;
 delete from member where m_num='1';
-delete from cs where m_num='1';
+delete from cs where cs_num='9';
 
 alter table member modify(m_tel varchar2(40));
 alter table member modify(m_pass varchar2(1000));
