@@ -3,6 +3,7 @@ package com.ch.goat.dao;
 import java.util.List;
 
 import com.ch.goat.model.Place;
+import com.ch.goat.model.PlaceReview;
 
 public interface PlaceDao {
 
@@ -17,6 +18,8 @@ public interface PlaceDao {
 	Place placeModal(int num);
 
 	float avgScore(int num);
+
+	List<PlaceReview> prevList(int num);
 
 
 }

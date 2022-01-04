@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.PlaceDao;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.PlaceReview;
 
 @Service
 public class PlaceServiceImpl implements PlaceService{
@@ -30,6 +31,9 @@ public class PlaceServiceImpl implements PlaceService{
 	}
 	public float avgScore(int num) {
 		return pd.avgScore(num);
+	}
+	public List<PlaceReview> prevList(int num) {
+		return pd.prevList(num);
 	}
 
 }

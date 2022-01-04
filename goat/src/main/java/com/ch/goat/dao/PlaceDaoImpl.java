@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ch.goat.model.Place;
+import com.ch.goat.model.PlaceReview;
 
 @Repository
 public class PlaceDaoImpl implements PlaceDao{
@@ -29,13 +30,17 @@ public class PlaceDaoImpl implements PlaceDao{
 		map.put("place_area", place.getPlace_area());
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
+		map.put("keyword", place.getKeyword());
 		return sst.selectList("placens.list", map);
 	}
 	public Place placeModal(int num) {
 		return sst.selectOne("placens.placeModal", num);
 	}
 	public float avgScore(int num) {
-		return sst.selectOne("placens.avgScore",num);
+		return sst.selectOne("placens.avgScore", num);
+	}
+	public List<PlaceReview> prevList(int num) {
+		return sst.selectList("placens.prevList", num);
 	}
 
 }
