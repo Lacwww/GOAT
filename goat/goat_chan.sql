@@ -21,6 +21,8 @@ ALTER TABLE MEMBER
 		PRIMARY KEY (
 			M_NUM
 		);
+alter table member modify(m_tel varchar2(40));
+alter table member modify(m_pass varchar2(1000));
 
 /* 여행 게시판 */
 CREATE TABLE TRIP (

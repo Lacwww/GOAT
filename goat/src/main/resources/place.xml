@@ -8,26 +8,13 @@
 	
 	<!-- 지역에 해당하는 장소 총 갯수 -->
 	<select id="getTotal" parameterType="place" resultType="integer">
-		select count(*) from place
-		<where>
-			place_area = #{place_area}
-			<if test="keyword!=null and keyword!=''">
-				and place_name like '%'||#{keyword}||'%'
-			</if>
-		</where>
+		select count(*) from place where place_area = #{place_area}
 	</select>
 	
 	<!-- 지역에 해당하는 장소의 리스트 -->
 	<select id="list" parameterType="map" resultType="place">
 		select * from (select a.*,rowNum rn from( 
-			select * from place
-		<where>
-			place_area = #{place_area}
-			<if test="keyword != null and keyword !='' ">
-				and place_name like '%'||#{keyword}||'%'
-			</if>
-		</where>
-			 order by place_name)a)
+			select * from place where place_area = #{place_area} order by place_name)a)
 				where rn between #{startRow} and #{endRow}	
 	</select>
 	

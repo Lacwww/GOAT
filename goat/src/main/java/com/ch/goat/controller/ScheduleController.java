@@ -14,14 +14,13 @@ import com.ch.goat.service.ScheduleService;
 public class ScheduleController {
 	@Autowired
 	private ScheduleService ss;
-	// 지역 리스트 조회
+
 	@RequestMapping("selectArea")
 	public String selectArea(Model model) {
 		List<Area> list = ss.list();
 		model.addAttribute("list",list);
 		return "schedule/selectArea";
 	}
-	// 지역 상세설명 모달
 	@RequestMapping("selectModal")
 	public String selectModal(Model model,String place_area) {
 		Area area = ss.select(place_area);

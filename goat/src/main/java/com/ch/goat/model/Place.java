@@ -17,6 +17,4 @@ public class Place {
 	private Date reg_date;
 	private String place_content;
 	private String place_area;
-	
-	private String keyword;
 }

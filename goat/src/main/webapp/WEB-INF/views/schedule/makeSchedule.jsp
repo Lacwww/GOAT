@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-	location.href="admin/admin.do";
-</script>
+
 </body>
 </html>
