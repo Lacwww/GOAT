@@ -23,10 +23,15 @@ public class ScheduleController {
 	}
 	// 지역 상세설명 모달
 	@RequestMapping("selectModal")
-	public String makeSchedule(Model model,String place_area) {
+	public String selectModal(Model model,String place_area) {
 		Area area = ss.select(place_area);
 		model.addAttribute("area",area);
 		return "schedule/selectModal";
+	}
+	@RequestMapping("makeSchedule")
+	public String makeSchedule(Model model, String place_area) {
+		
+		return "schedule/makeSchedule";
 	}
 
 }
