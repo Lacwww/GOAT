@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="csns">
 	<select id="list" parameterType="cs" resultType="cs">
-		select * from cs order by num
+		select * from (select a.*, rowNum rn from(
+			select * from cs 
+				order by cs_ref desc, cs_re_step)a)
+					where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="getTotal" parameterType="cs" resultType="integer">
@@ -10,7 +13,7 @@
 	</select>
 	
 	<select id="select" parameterType="integer" resultType="cs">
-		select * from cs where num=#{num}
+		select * from cs where cs_num=#{cs_num}
 	</select>
 	
 	<select id="selectM" parameterType="integer" resultType="member">
@@ -19,7 +22,7 @@
 	
 	<select id="maxNum" resultType="integer">
 		<!-- ref와 num을 구분하기 위해서 -->
-		select nvl(max(num), 0) + 1 from cs
+		select nvl(max(cs_num), 0) + 1 from cs
 	</select>
 	
 	<update id="updateStep" parameterType="cs">
@@ -27,8 +30,12 @@
 	</update>
 	
 	<insert id="insert" parameterType="cs">
-		insert into cs values (#{num},#{cs_title},sysdate,#{cs_content},
+		insert into cs values (#{cs_num},#{cs_title},sysdate,#{cs_content},
 			0,#{cs_ref},#{cs_re_step},#{cs_re_level},#{m_num})
 	</insert>
+	
+	<update id="updateViewcount" parameterType="integer">
+		update cs set cs_view = cs_view + 1 where cs_num=#{cs_num}
+	</update>
 	
 </mapper>

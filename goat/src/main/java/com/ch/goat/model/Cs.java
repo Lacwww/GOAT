@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 @Data
 public class Cs {
-	private int num;
+	private int cs_num;
 	private String cs_title;
 	private Date reg_date;
 	private String cs_content;
@@ -14,4 +14,8 @@ public class Cs {
 	private int cs_re_step;
 	private int cs_re_level;
 	private int m_num;
+	
+	// 페이징용
+	private int startRow;
+	private int endRow;
 }

@@ -20,17 +20,17 @@ public class CsController {
 	@RequestMapping("csList")
 	public String csList(Cs cs, String pageNum, Model model) {
 		int m_num;
-		int  rowPerPage = 10;
+		int rowPerPage = 10;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = css.getTotal(cs);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-//		css.setStartRow(startRow);
-//		css.setEndRow(endRow);
-		// List<Board> list = bs.list(startRow, endRow);
-		List<Cs> list = css.list(cs);
+		cs.setStartRow(startRow);
+		cs.setEndRow(endRow);
+		List<Cs> list = css.list(startRow, endRow);
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
+
 		// 답변글로 인한 번호를 보기좋게 다시 설정
 		int no = total - startRow + 1;
 		
@@ -74,18 +74,34 @@ public class CsController {
 	@RequestMapping("csInsert")
 	public String csInsert(Cs cs, String pageNum, Model model) {
 			int number = css.maxNum(); // 새 게시글 번호 생성
-			if(cs.getNum() != 0) { // 답변글
+			if(cs.getCs_num() != 0) { // 답변글
 				// 글을 읽고 ref가 같고, re_step이 읽은 글의 re_step보다 크면 그 글의 re_step+1
 				css.updateStep(cs);
 				// re_step과 re_level은 읽은 값 더하기 1
 				cs.setCs_re_level(cs.getCs_re_level() + 1);
 				cs.setCs_re_step(cs.getCs_re_step() + 1);
 			} else cs.setCs_ref(number); // 답변글이 아닐때는 num과 ref는 둘다 number
-			cs.setNum(number);
+			cs.setCs_num(number);
 			int result = css.insert(cs);
 			model.addAttribute("pageNum", pageNum);
 			model.addAttribute("result", result);
 
 		return "cs/csInsert";
 	}
+	
+	@RequestMapping("csView")
+	public String csView(Cs cs, String pageNum, Model model) {
+		css.updateViewcount(cs.getCs_num());  // 조회수 증가
+		Cs cs2 = css.select(cs.getCs_num()); // 조회
+		
+		int m_num = 1;
+		Member member = css.selectM(m_num);
+		
+		model.addAttribute("member",member);
+		model.addAttribute("pageNum", pageNum);		
+		model.addAttribute("cs", cs2);
+		
+		return "cs/csView";
+	}
+
 }

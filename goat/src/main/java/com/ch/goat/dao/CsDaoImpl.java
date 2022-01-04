@@ -1,6 +1,8 @@
 package com.ch.goat.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,6 @@ import com.ch.goat.model.Member;
 public class CsDaoImpl implements CsDao{
 	@Autowired
 	private SqlSessionTemplate sst;
-
-	public List<Cs> list(Cs cs) {
-		return sst.selectList("csns.list", cs);
-	}
 	
 	public int getTotal(Cs cs) {
 		return sst.selectOne("csns.getTotal", cs);
@@ -41,4 +39,16 @@ public class CsDaoImpl implements CsDao{
 	public Member selectM(int m_num) {
 		return sst.selectOne("csns.selectM", m_num);
 	}
+	
+	public List<Cs> list(int startRow, int endRow) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		return sst.selectList("csns.list", map);
+	}
+
+	public void updateViewcount(int cs_num) {
+		sst.update("csns.updateViewcount", cs_num);
+	}
+
 }
