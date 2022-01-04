@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div align="center">
-		<h3>고객문의</h3>
+		<h3>고객문의 등록</h3>
 		<form action="csInsert.do" method="post" name="frm">
 			<input type="hidden" name="num" value="${num }"> 
 			<input type="hidden" name="pageNum" value="${pageNum}"> 
