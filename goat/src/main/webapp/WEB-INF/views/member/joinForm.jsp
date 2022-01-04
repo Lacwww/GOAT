@@ -69,9 +69,8 @@
 		}
 		// id 중복체크 ajax
 		$.post('chkId.do', "m_id=" + frm.m_id.value, function(data) {
-			alert(data);
  		 	if(data == 1) {
-                $('#idChk_result').html("이미 사용 중인 아이디입니다");
+                $('#idChk_result').html("사용 중인 아이디입니다"); d
                 $('#idChk_result').css("color","red");
                 frm.idchk.value="unChk";
              }
@@ -149,12 +148,12 @@
 		// id가 err_id인 곳에 html 형식으로 보여줘라
 		$.post('chkEmail.do', "m_email=" + frm.m_email.value, function(data) {
  		 	if(data == 1) {
-                $('#emailChk_result').html("이메일 중복");
+                $('#emailChk_result').html("사용 중인 이메일입니다");
                 $('#emailChk_result').css("color","red");
                 frm.emailchk.value="unChk";
              }
  		 	else {
- 				$('#emailChk_result').html("사용가능한 이메일");
+ 				$('#emailChk_result').html("사용 가능한 이메일입니다");
              	$('#emailChk_result').css("color","blue");
              	frm.emailchk.value="chk";
               	}
