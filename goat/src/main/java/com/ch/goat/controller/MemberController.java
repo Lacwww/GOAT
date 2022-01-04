@@ -1,10 +1,20 @@
 package com.ch.goat.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ch.goat.model.Member;
 import com.ch.goat.service.MemberService;
 @Controller
 public class MemberController {
@@ -24,6 +34,59 @@ public class MemberController {
 	@RequestMapping("member/joinForm")
 	public String joinForm() {
 		return "member/joinForm";
+	}
+	@RequestMapping("member/idChk")
+	public String idChk(String m_id, Model model) {
+		String msg = "";
+		Member member = ms.select(m_id);
+		if(member == null) msg = "0";
+		else msg = "1";
+		model.addAttribute("msg", msg);
+		return "member/idChk";
+	}
+	@RequestMapping("member/nickChk")
+	public String nickChk(String m_nick, Model model) {
+		String msg = "";
+		Member member = ms.nickChk(m_nick);
+		if(member == null) msg = "0";
+		else msg = "1";
+		model.addAttribute("msg", msg);
+		return "member/nickChk";
+	}
+	@RequestMapping("member/emailChk")
+	public String emailChk(String m_email, Model model) {
+		String msg = "";
+		Member member = ms.emailChk(m_email);
+		if(member == null) msg = "0";
+		else msg = "1";
+		model.addAttribute("msg", msg);
+		return "member/emailChk";
+	}
+	@RequestMapping("member/join")
+	public String join(Member member, Model model, HttpSession session) throws IOException {
+		int result = 0;
+		// 화면에서 입력한 데이터가 있는지 확인 member = 화면에서 입력한 데이터 member2 = db에서 읽어온 데이터
+		Member member2 = ms.select(member.getM_id());
+		if (member2 == null) {
+			// 실제 파일명
+			String fileName1 = member.getFile().getOriginalFilename();
+			// 실제 파일 저장 경로
+			String real = session.getServletContext().getRealPath("/resources/m_photo");
+			// 파일명을 변경해야 할 때 : UUID 임의의 문자열로 변경 Mac은 파일명이 한글이면 깨짐
+			UUID uuid = UUID.randomUUID();
+			String fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
+			// 파일 저장			
+			FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
+			fos.write(member.getFile().getBytes());
+			fos.close();
+			// 입력한 암호를 암호화 한 후 다시 db에 저장
+			String pass = bpPass.encode(member.getM_pass());
+			member.setM_pass(pass);
+			member.setM_photo(fileName);
+			result = ms.insert(member);
+		} else result = -1; // 이미 있는 데이터
+		model.addAttribute("result", result);
+		return "member/join";
 	}
 	@RequestMapping("member/loginForm")
 	public String loginForm() {

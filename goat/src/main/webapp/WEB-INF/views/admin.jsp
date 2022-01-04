@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-	location.href="admin/admin.do";
-</script>
+<h1>관리자 페이지</h1>
+<h2>플레이스 목록</h2>
+<h2>스케줄 목록</h2>
+<h2>회원 목록</h2>
 </body>
 </html>
