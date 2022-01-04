@@ -38,7 +38,6 @@ public class ScheduleController {
 	public String placeList(Model model, String place_area) {
 		List<Place> plist = ss.plist(place_area);
 		model.addAttribute("plist",plist);
-		System.out.println(plist.size());
 		return "schedule/placeList";
 	}
 
