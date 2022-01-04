@@ -25,6 +25,15 @@ public class PlaceController {
 	@Autowired
 	private ScheduleService ss;
 	
+	@RequestMapping("place/placeModal")
+	public String placeModal(String place_num, Model model) {
+		int num = Integer.parseInt(place_num);
+		Place place = ps.placeModal(num);
+		
+		model.addAttribute("place", place);
+		return "place/placeModal";
+	}
+	
 	@RequestMapping("place/placeList")
 	public String placeList(Model model) {
 		List<Area> list = ss.list();
@@ -38,7 +47,6 @@ public class PlaceController {
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = ps.getTotal(place);
-		System.out.println(total);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		List<Place> list = ps.list(place, startRow, endRow);

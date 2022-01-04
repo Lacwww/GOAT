@@ -45,10 +45,6 @@
 	<div class="container" align="center">
 		<h2 id="sch">플레이스 지역 선택</h2>
 		<h3>어디로 가볼까요?</h3>
-		<form action="" name="frm">
-			<input type="text" name="keyword" value="">
-			<button type="submit">검색</button>
-		</form>
 		<div align="center"> <input type="button" value="플레이스 등록"> <input type="button" value="플레이스 건의"> </div>
 		<div class="container" align="center">
 			<c:forEach var="area" items="${list }">

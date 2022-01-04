@@ -31,6 +31,11 @@
 				where rn between #{startRow} and #{endRow}	
 	</select>
 	
+	<!-- 장소 모달 -->
+	<select id="placeModal" parameterType="integer" resultType="place">
+		select * from place where place_num = #{num}
+	</select>
+	
 	<!-- 관광지 API 정보 입력 -->
 	<insert id="insertAPI" parameterType="place">
 		insert into place values(#{place_num}, #{place_name}, #{place_cate}, #{place_addr}, #{place_addrd},

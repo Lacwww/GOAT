@@ -14,4 +14,7 @@ public interface PlaceService {
 
 	List<Place> list(Place place, int startRow, int endRow);
 
+	Place placeModal(int num);
+
+
 }

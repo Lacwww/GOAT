@@ -14,4 +14,6 @@ public interface PlaceDao {
 
 	List<Place> list(Place place, int startRow, int endRow);
 
+	Place placeModal(int num);
+
 }

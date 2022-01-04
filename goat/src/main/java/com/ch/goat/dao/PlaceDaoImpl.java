@@ -32,4 +32,7 @@ public class PlaceDaoImpl implements PlaceDao{
 		map.put("keyword", place.getKeyword());
 		return sst.selectList("placens.list", map);
 	}
+	public Place placeModal(int num) {
+		return sst.selectOne("placens.placeModal", num);
+	}
 }

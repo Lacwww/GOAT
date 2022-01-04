@@ -39,6 +39,12 @@
 	border-radius: 7px;
 }
 </style>
+<script type="text/javascript">
+	function modal(place_num) {
+		$('#MoaModal .modal-content').load("placeModal.do?place_num=" + place_num);
+		$('#MoaModal').modal();
+	}
+</script>
 </head>
 <body>
 
@@ -62,9 +68,9 @@
 <c:if test="${not empty list }">
 		<div class="container" align="center">
 			<c:forEach var="place" items="${list }">
-			<div class="area">
+			<div class="area" onclick="modal('${place.place_num}')">
 				<div class="areaPhoto">
-						<img alt="${area.place_area }" src="${place.place_photo }">	
+						<img alt="${place.place_name }" src="${place.place_photo }">	
 				</div>
 					<div class="desc">${place.place_name }</div>
 			</div>
@@ -99,5 +105,13 @@
 		</c:if>
 	</ul>
 </div>
+
+	<!-- 장소모달 -->
+	<div class="modal" id="MoaModal" tabindex="-1" role="dialog"
+		aria-labelledby="historyModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content"></div>
+		</div>
+	</div>
 </body>
 </html>
