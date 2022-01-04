@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.goat.model.Member;
 import com.ch.goat.service.MemberService;
@@ -34,35 +35,32 @@ public class MemberController {
 	public String joinForm() {
 		return "member/joinForm";
 	}
-	@RequestMapping("member/chkId")
+	@RequestMapping(value = "member/chkId", produces = "text/html;charset=utf-8")
+	@ResponseBody // jsp로 가지않고 바로 바디로 전달
 	public String chkId(String m_id, Model model) {
 		String msg = "";
 		Member member = ms.select(m_id);
-		System.out.println(m_id);
-		System.out.println(member);
 		if(member == null) msg = "0";
 		else msg = "1";
-		System.out.println(msg);
-		model.addAttribute("msg", msg);
-		return "member/chkId";
+		return msg;
 	}
-	@RequestMapping("member/chkNick")
+	@RequestMapping(value = "member/chkNick", produces = "text/html;charset=utf-8")
+	@ResponseBody // jsp로 가지않고 바로 바디로 전달
 	public String chkNick(String m_nick, Model model) {
 		String msg = "";
 		Member member = ms.nickChk(m_nick);
 		if(member == null) msg = "0";
 		else msg = "1";
-		model.addAttribute("msg", msg);
-		return "member/chkNick";
+		return msg;
 	}
-	@RequestMapping("member/chkEmail")
+	@RequestMapping(value = "member/chkEmail", produces = "text/html;charset=utf-8")
+	@ResponseBody // jsp로 가지않고 바로 바디로 전달
 	public String chkEmail(String m_email, Model model) {
 		String msg = "";
 		Member member = ms.emailChk(m_email);
 		if(member == null) msg = "0";
 		else msg = "1";
-		model.addAttribute("msg", msg);
-		return "member/chkEmail";
+		return msg;
 	}
 	@RequestMapping("member/join")
 	public String join(Member member, Model model, HttpSession session) throws IOException {
