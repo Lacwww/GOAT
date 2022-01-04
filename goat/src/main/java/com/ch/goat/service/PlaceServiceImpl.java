@@ -25,4 +25,11 @@ public class PlaceServiceImpl implements PlaceService{
 	public List<Place> list(Place place, int startRow, int endRow) {
 		return pd.list(place, startRow, endRow);
 	}
+	public Place placeModal(int num) {
+		return pd.placeModal(num);
+	}
+	public float avgScore(int num) {
+		return pd.avgScore(num);
+	}
+
 }
