@@ -31,6 +31,9 @@
    <definition name="place/prevList" extends="nolayout">
     	<put-attribute name="body"   value="/WEB-INF/views/place/prevList.jsp" /> 
    </definition>		
+   <definition name="schedule/placeList" extends="nolayout">
+    	<put-attribute name="body"   value="/WEB-INF/views/schedule/placeList.jsp" /> 
+   </definition>		
 	<!-- 폴더{1}/프로그램{2}는 jsp  -->
 	<definition name="*/*" extends="tilesbase">
 		<put-attribute name="body"	value="/WEB-INF/views/{1}/{2}.jsp" />
