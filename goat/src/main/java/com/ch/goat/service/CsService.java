@@ -5,8 +5,7 @@ import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 
 public interface CsService {
-	List<Cs> list(Cs cs);
-
+	
 	int getTotal(Cs cs);
 
 	Cs select(int num);
@@ -18,4 +17,8 @@ public interface CsService {
 	int insert(Cs cs);
 
 	Member selectM(int m_num);
+
+	List<Cs> list(int startRow, int endRow);
+
+	void updateViewcount(int cs_num);
 }

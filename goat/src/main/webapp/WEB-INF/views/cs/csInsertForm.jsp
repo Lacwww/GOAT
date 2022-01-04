@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea rows="5" cols="40" name="cs_content"
+					<td><textarea rows="10" cols="80" name="cs_content"
 							required="required"></textarea></td>
 				</tr>
 				<tr>

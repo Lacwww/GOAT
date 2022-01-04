@@ -14,9 +14,6 @@ public class CsServiceImpl implements CsService{
 	@Autowired
 	private CsDao cd;
 	
-	public List<Cs> list(Cs cs) {
-		return cd.list(cs);
-	}
 	public int getTotal(Cs cs) {
 		return cd.getTotal(cs);
 	}
@@ -34,5 +31,11 @@ public class CsServiceImpl implements CsService{
 	}
 	public Member selectM(int m_num) {
 		return cd.selectM(m_num);
+	}
+	public List<Cs> list(int startRow, int endRow) {
+		return cd.list(startRow, endRow);
+	}
+	public void updateViewcount(int cs_num) {
+		cd.updateViewcount(cs_num);
 	}
 }
