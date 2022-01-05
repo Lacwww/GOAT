@@ -41,9 +41,9 @@
 <style type="text/css">
 	div #map {text-align: center;}
 	input {	border-radius: 5px; text-align: center;}
-	#list { margin-left: 10px; height: 65%;}
+	#list { margin-left: 3px; height: 65%;}
 	#wrapper {
-		width: 100%; 
+		width: 100%; height: 100%;; 
 	}
 </style>
 <meta charset="UTF-8">
@@ -55,7 +55,7 @@
 	<div id="wrapper">
 		<div id="outer" style="width: 65%; float: left;">
 		<form action="makeSchedule.do" name="frm" method="post">
-			<div>
+			<div style="width: 100%;">
 				<img alt="calendar" src="${path }/resources/images/calendar.png"
 					 style="width: 60px; height: 70px; padding-bottom : 5px;">
 				<input type="text" name="s_date" id="start">
@@ -74,9 +74,21 @@
 					var map = new kakao.maps.Map(container, options);
 				</script>
 			</form>
-			</div>
+				</div>
+
 				<!-- 플레이스 목록 -->
-				<div id="list">
+				<div id="list"></div>
+				
+				<!-- 플레이스 고른 목록 -->
+				<div id="pick_place" style="align-items: center;">
+					<table class="table table-bordered"><caption>내가 고른 플레이스 목록</caption>
+						<tr><th>사진</th><th>장소</th><th>주소</th><th>태그</th></tr>
+					</table>
+				</div>
+				
+				<div id="btn">
+					<input type="submit" value="상세일정 작성">
+					<input type="button" value="취소" onclick="location.href='selectArea.do'">
 				</div>
 		</div>
 </body>
