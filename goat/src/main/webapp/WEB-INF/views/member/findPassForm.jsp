@@ -13,19 +13,19 @@
 </head>
 <body>
 	<div class="container" align="center" style="height: 100%;">
-	 	<form action="findIdResult.do" method="post">
+	 	<form action="findPassResult.do?" method="post">
 	 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
 	 		<div align="center">
-	 			<input type="text" name="m_name" placeholder="Name" required="required" autofocus="autofocus">
+	 			<input type="text" name="m_id" placeholder="ID" required="required" autofocus="autofocus">
 	 		</div>
 	 		<div align="center">
 	 			<input type="email" name="m_email" placeholder="Email" required="required">
 	 		</div>
 	 		<div align="center">
-	 			<input type="submit" value="Find ID" class="btn btn-success">
+	 			<input type="submit" value="Find Pass" class="btn btn-success">
 	 		</div>
 	 		<div align="center" class="divtext">
-           		 <a href="findPassForm.do">비밀번호 찾기</a> | <a href="loginForm.do">로그인</a> | <a href="joinForm.do">회원가입</a>
+           		 <a href="findIdForm.do">아이디 찾기</a> | <a href="loginForm.do">로그인</a> | <a href="joinForm.do">회원가입</a>
         	</div>
 	 	</form>
 	</div>

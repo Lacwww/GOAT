@@ -23,10 +23,10 @@
 	}
 	/* 비밀번호 일치 여부 & 중복체크 여부 검사 */
 	function chk() {
-		if (frm.password.value != frm.password2.value) {
+		if (frm.pass.value != frm.pass2.value) {
 			alert("암호와 암호 확인이 다릅니다");
-			frm.password2.focus();
-			frm.password2.value = "";
+			frm.pass2.focus();
+			frm.pass2.value = "";
 			return false;
 		}
 		if (frm.idchk.value == "unChk") {
