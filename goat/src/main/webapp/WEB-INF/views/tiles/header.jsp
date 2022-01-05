@@ -28,7 +28,7 @@
 					Place
 				</td>
 				<td style="border-right: 2px solid;" align="center"
-					onclick="location.href='/goat/main/home.do'">
+					onclick="location.href='/goat/cs/csList.do'">
 					Board
 				</td>
 				<td style="border-right: 2px solid;" align="center"

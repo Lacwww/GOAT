@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container" align="center" style="height: 100%;">
-	 	<form action="login.do" method="post">
+	 	<form action="login.do?prevUrl=${prevUrl }" method="post">
 	 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
 	 		<div align="center">
 	 			<input type="text" name="m_id" placeholder="ID" required="required" autofocus="autofocus">
