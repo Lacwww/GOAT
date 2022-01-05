@@ -32,6 +32,8 @@ public interface PlaceDao {
 
 	void deletePrev(PlaceReview prev);
 
+	void updatePrev(PlaceReview prev);
+
 
 
 

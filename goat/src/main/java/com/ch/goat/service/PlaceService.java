@@ -32,6 +32,8 @@ public interface PlaceService {
 
 	void deletePrev(PlaceReview prev);
 
+	void updatePrev(PlaceReview prev);
+
 
 
 

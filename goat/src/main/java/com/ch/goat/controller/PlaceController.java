@@ -34,10 +34,15 @@ public class PlaceController {
 	@Autowired
 	private MemberService ms;
 	
+	@RequestMapping("place/updatePrev")
+	public String updatePrev(PlaceReview prev) {		
+		ps.updatePrev(prev);
+		return "redirect:/place/prevList.do?place_num="+prev.getPlace_num();
+	}
+	
 	@RequestMapping("place/deletePrev")
 	public String deletePrev(PlaceReview prev) {
-		ps.deletePrev(prev);
-		
+		ps.deletePrev(prev);	
 		return "redirect:/place/prevList.do?place_num="+prev.getPlace_num();
 	}
 	
@@ -154,16 +159,6 @@ public class PlaceController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("place/insertAPI")
 	public String placeAPI() {
 		
@@ -188,6 +183,7 @@ public class PlaceController {
 					JSONObject itemsNum = (JSONObject)items.get(i);
 					
 					JSONObject contentscd = (JSONObject)itemsNum.get("contentscd");
+					JSONObject region1cd = (JSONObject)itemsNum.get("region1cd");
 					JSONObject repPhoto = (JSONObject)itemsNum.get("repPhoto");
 					JSONObject photoid = (JSONObject)repPhoto.get("photoid");
 					
@@ -226,6 +222,9 @@ public class PlaceController {
 					String tag = (String)itemsNum.get("tag");
 					System.out.println("태그 : " + tag);
 					place.setPlace_tag(tag);
+					
+					String areaDetail = (String) region1cd.get("label");
+					System.out.println("상세 지역 : " + areaDetail);
 					
 					ps.insertAPI(place);
 
