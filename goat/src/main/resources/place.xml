@@ -43,7 +43,7 @@
 	
 	<!-- 장소 댓글 리스트 -->
 	<select id="prevList" parameterType="integer" resultType="placereview">
-		select * from place_review where place_num = #{num} order by prev_num
+		select p.*, m.m_name name from place_review p, member m where p.m_num = m.m_num and place_num = #{num} order by prev_num
 	</select>
 	
 	<!-- 북마크 목록 확인 -->
@@ -82,5 +82,11 @@
 	<!-- 댓글 삭제 -->
 	<update id="deletePrev" parameterType="placereview">
 		update place_review set del = 'y' where prev_num = #{prev_num} and place_num = #{place_num}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="updatePrev" parameterType="placereview">
+		update place_review set prev_title = #{prev_title}, prev_content = #{prev_content}, score = #{score}
+					where prev_num = #{prev_num}
 	</update>
 </mapper>

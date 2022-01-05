@@ -14,4 +14,6 @@ public class PlaceReview {
 	private Date reg_date;
 	private int m_num;
 	private int place_num;
+	
+	private String name;
 }

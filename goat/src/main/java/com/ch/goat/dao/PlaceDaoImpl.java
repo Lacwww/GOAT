@@ -74,4 +74,7 @@ public class PlaceDaoImpl implements PlaceDao{
 	public void deletePrev(PlaceReview prev) {
 		sst.update("placens.deletePrev", prev);
 	}
+	public void updatePrev(PlaceReview prev) {
+		sst.update("placens.updatePrev", prev);
+	}
 }

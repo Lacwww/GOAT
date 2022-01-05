@@ -51,5 +51,8 @@ public class PlaceServiceImpl implements PlaceService{
 	public void deletePrev(PlaceReview prev) {
 		pd.deletePrev(prev);
 	}
+	public void updatePrev(PlaceReview prev) {
+		pd.updatePrev(prev);
+	}
 
 }
