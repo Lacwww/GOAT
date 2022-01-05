@@ -6,10 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	// 고객문의 삭제
+	function delCs() {
+		var con = confirm("고객문의 삭제하시겠습니까?");
+		if(con) {
+			location.href="csDelete.do?cs_ref=${cs.cs_ref}&pageNum=${pageNum}";
+		}
+	}
+</script>
 </head>
 <body>
 	<div align="center">
-		<h2 class="text-primary">게시글 상세 조회</h2>
+		<h2 class="text-primary">고객 문의 상세 조회</h2>
 		<table>
 			<tr>
 				<th>제목</th>
@@ -29,8 +38,9 @@
 			</tr>
 			<tr align="center">
 				<td colspan="2">
-					<a href="csList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a> 
+					<a href="csList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
 					<a href="csInsertForm.do?cs_num=${cs.cs_num}&pageNum=${pageNum }" class="btn btn-success">답변등록</a>
+					<input type="button" onclick="delCs()" class="btn btn-danger" value="삭제">
 				</td>
 			</tr>
 		</table>

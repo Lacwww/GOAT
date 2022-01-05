@@ -51,4 +51,8 @@ public class CsDaoImpl implements CsDao{
 		sst.update("csns.updateViewcount", cs_num);
 	}
 
+	public int delete(int cs_ref) {
+		return sst.update("csns.delete", cs_ref);
+	}
+
 }

@@ -38,4 +38,8 @@ public class CsServiceImpl implements CsService{
 	public void updateViewcount(int cs_num) {
 		cd.updateViewcount(cs_num);
 	}
+
+	public int delete(int cs_ref) {
+		return cd.delete(cs_ref);
+	}
 }
