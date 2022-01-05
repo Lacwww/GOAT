@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,11 +90,16 @@ public class MemberController {
 		return "member/join";
 	}
 	@RequestMapping("member/loginForm")
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request, Model model) {
+		String prevUrl = request.getHeader("Referer");
+		System.out.println(prevUrl);
+		prevUrl = prevUrl.substring(21);
+		System.out.println("prev:"+prevUrl);
+		model.addAttribute("prevUrl", prevUrl);
 		return "member/loginForm";
 	}
 	@RequestMapping("member/login")
-	public String login(Member member, Model model, HttpSession session) {
+	public String login(Member member, Model model, String prevUrl, HttpSession session) {
 		int result = 0; // 암호가 다름
 		Member member2 = ms.select(member.getM_id());
 		if (member2 == null || member2.getDel().equals("y")) {
@@ -106,6 +112,7 @@ public class MemberController {
 			}
 		}
 		model.addAttribute("result", result);
+		model.addAttribute("prevUrl", prevUrl);
 		return "member/login";
 	}
 	@RequestMapping("member/logout")

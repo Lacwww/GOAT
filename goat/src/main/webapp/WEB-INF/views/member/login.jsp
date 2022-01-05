@@ -10,8 +10,11 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("로그인 성공");
-			history.go(-2);
+			if("${prevUrl}" == "joinForm.do") {
+				location.href="main.do"
+			} else {
+				location.href="${prevUrl}";
+			}
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
