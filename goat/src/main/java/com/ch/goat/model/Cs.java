@@ -18,4 +18,7 @@ public class Cs {
 	// 페이징용
 	private int startRow;
 	private int endRow;
+	
+	// 고객문의 작성자띄우기
+	private String m_name;
 }

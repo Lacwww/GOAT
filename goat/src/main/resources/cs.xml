@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="csns">
 	<select id="list" parameterType="cs" resultType="cs">
-		select * from (select a.*, rowNum rn from(
-			select * from cs 
-				order by cs_ref desc, cs_re_step)a)
-					where rn between #{startRow} and #{endRow}
+		select b.*, m.m_name m_name from  
+    		(select a.*, rowNum rn from  
+        		(select * from cs order by cs_ref desc, cs_re_step)a)b,
+           			member m where b.m_num=m.m_num and rn between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="getTotal" parameterType="cs" resultType="integer">
@@ -31,11 +31,15 @@
 	
 	<insert id="insert" parameterType="cs">
 		insert into cs values (#{cs_num},#{cs_title},sysdate,#{cs_content},
-			0,#{cs_ref},#{cs_re_step},#{cs_re_level},#{m_num})
+			0,#{cs_ref},#{cs_re_step},#{cs_re_level},#{m_num},'n')
 	</insert>
 	
 	<update id="updateViewcount" parameterType="integer">
 		update cs set cs_view = cs_view + 1 where cs_num=#{cs_num}
+	</update>
+	
+	<update id="delete" parameterType="integer">
+		update cs set del = 'y' where cs_ref = #{cs_ref}
 	</update>
 	
 </mapper>

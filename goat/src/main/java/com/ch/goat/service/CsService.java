@@ -21,4 +21,6 @@ public interface CsService {
 	List<Cs> list(int startRow, int endRow);
 
 	void updateViewcount(int cs_num);
+
+	int delete(int cs_ref);
 }

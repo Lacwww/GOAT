@@ -9,6 +9,16 @@
 <style type="text/css">
 	.tl { border-bottom: 1px solid black;}
 </style>
+<script type="text/javascript">
+	function sessionChk() {
+		if (${empty id}) {
+			alert("고객문의는 로그인후 이용할 수 있습니다");
+			location.href="${path}/member/loginForm.do";		
+		} else {
+			location.href="csInsertForm.do?cs_num=0&pageNum=1";
+		} 
+	}
+</script>
 </head>
 <body>
 	<div align="center">
@@ -26,28 +36,28 @@
 					<td colspan="5">처리할 고객문의가 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:if test="${not empty list}">
+			<c:if test="${not empty list } ">
 				<c:forEach var="cs2" items="${list }">
-					<tr>
-						<td>${cs2.cs_num}<c:set var="no" value="${no - 1}"></c:set>
-							<%-- ${board.num } --%></td>
-
-							<td title="${cs2.cs_title }">
-							<c:if test="${cs2.cs_re_level > 0 }">
-									<!-- 답변글 레벨당 10px들여 쓰기 -->
-									<img alt="" src="resources/images/level.gif" height="5"
-										width="${cs2.cs_re_level * 10 }">
-									<img alt="" src="resources/images/re.gif">
-								</c:if> <a
-								href="csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}"
-								class="btn btn-info btn-sm">${cs2.cs_title}</a> <!-- 조회수가 50이 넘으면 hot표시 -->
-								<c:if test="${cs2.cs_view > 50}">
-									<img alt="" src="resources/images/hot.gif">
-								</c:if></td>
-							<td>${member.m_name }</td>
-							<td>${cs2.cs_view }</td>
-							<td>${cs2.reg_date }</td>
-					</tr>
+					<c:if test="${cs2.del != 'y' }">
+						<tr>
+							<td>${cs2.cs_num}<c:set var="no" value="${no - 1}"></c:set>
+								<%-- ${board.num } --%></td>
+	
+								<td>
+								<c:if test="${cs2.cs_re_level > 0 }">
+										<!-- 답변글 레벨당 10px들여 쓰기 -->
+										<img alt="" src="${path}/resources/csImages/level.gif" height="5"
+											width="${cs2.cs_re_level * 10 }">
+									<img alt="" src="${path}/resources/csImages/reply.png"
+										height="12" width="15">
+								</c:if> 
+								<a href="csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}">${cs2.cs_title}</a> 
+								</td>
+								<td>${cs2.m_name }</td>
+								<td>${cs2.cs_view }</td>
+								<td>${cs2.reg_date }</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</c:if>
 		</table>
@@ -88,8 +98,7 @@
 			</ul>
 		</div>
 		<div align="center">
-			<a href="csInsertForm.do?cs_num=0&pageNum=1" class="btn btn-success">게시글
-				입력</a>
+			<input type="button" onclick="sessionChk()" value="게시글 입력">
 		</div>
 	</div>
 </body>

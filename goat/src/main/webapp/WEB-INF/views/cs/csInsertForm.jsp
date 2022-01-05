@@ -16,7 +16,6 @@
 			<input type="hidden" name="cs_ref" value="${ref}"> 
 			<input type="hidden" name="cs_re_level" value="${re_level}"> 
 			<input type="hidden" name="cs_re_step" value="${re_step}">
-			<input type="hidden" name="m_name" value="${member.m_name }">
 			<input type="hidden" name="m_num" value="${member.m_num }">
 			<table>
 				<c:if test="${cs_num == 0 }">
@@ -35,7 +34,7 @@
 				</c:if>
 				<tr>
 					<th>작성자</th>
-					<td>${member.m_name }</td>
+					<td><c:if test="${not empty id }">${member.m_name }</c:if></td>
 				</tr>
 				<tr>
 					<th>내용</th>

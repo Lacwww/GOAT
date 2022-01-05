@@ -8,7 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="csList.do";
+	location.href="cs/csList.do";
 </script>
 </body>
 </html>
