@@ -2,6 +2,7 @@ package com.ch.goat.dao;
 
 import java.util.List;
 
+import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
 
@@ -20,6 +21,20 @@ public interface PlaceDao {
 	float avgScore(int num);
 
 	List<PlaceReview> prevList(int num);
+
+	Bookmark bookMarkChk(String id, int num);
+
+	void deleteBM(String id, int num);
+
+	void insertBM(String id, int num);
+
+	void insertPrev(PlaceReview prev);
+
+	void deletePrev(PlaceReview prev);
+
+
+
+
 
 
 }

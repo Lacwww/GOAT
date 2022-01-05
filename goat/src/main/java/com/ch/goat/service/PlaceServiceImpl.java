@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.PlaceDao;
+import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
 
@@ -34,6 +35,21 @@ public class PlaceServiceImpl implements PlaceService{
 	}
 	public List<PlaceReview> prevList(int num) {
 		return pd.prevList(num);
+	}
+	public Bookmark bookMarkChk(String id, int num) {
+		return pd.bookMarkChk(id, num);
+	}
+	public void deleteBM(String id, int num) {
+		pd.deleteBM(id, num);
+	}
+	public void insertBM(String id, int num) {
+		pd.insertBM(id, num);
+	}
+	public void insertPrev(PlaceReview prev) {
+		pd.insertPrev(prev);
+	}
+	public void deletePrev(PlaceReview prev) {
+		pd.deletePrev(prev);
 	}
 
 }

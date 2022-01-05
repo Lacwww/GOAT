@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,10 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.goat.model.Area;
+import com.ch.goat.model.Bookmark;
+import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
+import com.ch.goat.service.MemberService;
 import com.ch.goat.service.PlaceService;
 import com.ch.goat.service.ScheduleService;
 
@@ -25,6 +31,44 @@ public class PlaceController {
 	private PlaceService ps;
 	@Autowired
 	private ScheduleService ss;
+	@Autowired
+	private MemberService ms;
+	
+	@RequestMapping("place/deletePrev")
+	public String deletePrev(PlaceReview prev) {
+		ps.deletePrev(prev);
+		
+		return "redirect:/place/prevList.do?place_num="+prev.getPlace_num();
+	}
+	
+	@RequestMapping("place/insertPrev")
+	public String insertPrev(PlaceReview prev, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		Member member = ms.select(id);
+		prev.setM_num(member.getM_num());
+		ps.insertPrev(prev);
+		return "redirect:/place/prevList.do?place_num="+prev.getPlace_num();
+	}
+	
+	@RequestMapping(value = "place/bookMark", produces = "text/html;charset=utf-8")
+	@ResponseBody // jsp로 가지말고 바로 본문으로 전달
+	public String bookMark(String place_num, HttpSession session) {
+		
+		String id = (String) session.getAttribute("id");
+		int num = Integer.parseInt(place_num);
+		String bookMarkImgSrc = "";
+		
+		Bookmark bookMark = ps.bookMarkChk(id, num);
+		
+		if(bookMark != null ) { // 마이픽 테이블에 있으면
+			ps.deleteBM(id, num); // 마이픽 삭제
+			bookMarkImgSrc = "/goat/resources/bookMarkImg/nobookmark.png";
+		}else {
+			ps.insertBM(id, num);
+			bookMarkImgSrc = "/goat/resources/bookMarkImg/bookmark.png";
+		}	
+		return bookMarkImgSrc;
+	}
 	
 	@RequestMapping("place/prevList")
 	public String prevList(String place_num, Model model) {
@@ -35,14 +79,25 @@ public class PlaceController {
 	}
 	
 	@RequestMapping("place/prevDetailView")
-	public String prevDetailView(String place_num, Model model) {
+	public String prevDetailView(String place_num,HttpSession session, Model model) {
 		int num = Integer.parseInt(place_num);
 		Place place = ps.placeModal(num);
-		float avgScore = ps.avgScore(num);
-		String bookMarkImg ="/resources/bookMarkImg/nobookmark.png";
+		float avgScore = ps.avgScore(num);		
+		String id = (String) session.getAttribute("id");
+		String bookMarkImgSrc ="";
 		
-		
-		model.addAttribute("bookMarkImg", bookMarkImg);
+		if(id != null) {
+			Bookmark bookMark = ps.bookMarkChk(id, num);
+			if(bookMark != null) {
+				bookMarkImgSrc = "/goat/resources/bookMarkImg/bookmark.png";
+			}else {
+				bookMarkImgSrc = "/goat/resources/bookMarkImg/nobookmark.png";
+			}
+		}else {
+			bookMarkImgSrc = "/goat/resources/bookMarkImg/nobookmark.png";
+		}
+
+		model.addAttribute("bookMarkImgSrc", bookMarkImgSrc);
 		model.addAttribute("avgScore", avgScore);
 		model.addAttribute("place", place);
 		return "place/prevDetailView";

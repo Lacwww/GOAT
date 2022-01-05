@@ -8,7 +8,7 @@
 	
 	<!-- 지역에 해당하는 장소 총 갯수 -->
 	<select id="getTotal" parameterType="place" resultType="integer">
-		select count(*) from place
+		select nvl(count(*), 0) from place
 		<where>
 			place_area = #{place_area}
 			<if test="keyword!=null and keyword!=''">
@@ -46,9 +46,41 @@
 		select * from place_review where place_num = #{num} order by prev_num
 	</select>
 	
+	<!-- 북마크 목록 확인 -->
+	<select id="bookMarkChk" parameterType="map" resultType="bookmark">
+		select * from bookmark where m_num = #{m_num} and place_num = #{place_num}	
+	</select>
+
 	<!-- 관광지 API 정보 입력 -->
 	<insert id="insertAPI" parameterType="place">
 		insert into place values(#{place_num}, #{place_name}, #{place_cate}, #{place_addr}, #{place_addrd},
 								#{place_photo}, #{lat}, #{lng}, sysdate, #{place_content}, '제주도', #{place_tag})
 	</insert>
+	
+	<!-- 북마크 삭제 -->
+	<delete id="deleteBM" parameterType="map">
+		delete from bookmark where m_num = #{m_num} and place_num = #{place_num}
+	</delete>
+	
+	<!-- 북마크 생성 -->
+	<insert id="insertBM" parameterType="map">
+		<selectKey keyProperty="book_num" order="BEFORE" resultType="integer">
+			select nvl(count(*), 0) + 1 from bookmark
+		</selectKey>
+		insert into bookmark values(#{book_num},#{m_num},#{place_num})
+	</insert>
+	
+	<!-- 댓글 입력 -->
+	<insert id="insertPrev" parameterType="placereview">
+		<selectKey keyProperty="prev_num" order="BEFORE" resultType="integer">
+			select nvl(count(*), 0) + 1 from place_review
+		</selectKey>
+		insert into place_review values(#{prev_num},#{prev_title},#{score},#{prev_content},
+											'n',sysdate,#{m_num},#{place_num})
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<update id="deletePrev" parameterType="placereview">
+		update place_review set del = 'y' where prev_num = #{prev_num} and place_num = #{place_num}
+	</update>
 </mapper>
