@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ include file="../tool.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -162,59 +161,63 @@
 </script>
 </head>
 <body>
-	<div class="container" align="center">
-		<h2 style="margin-bottom: 30px;">Join Us</h2>
-		<div id="thumbnails"></div>
-		<form action="join.do" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
-			<input type="hidden" name="idchk" value="unChk">
-	    	<input type="hidden" name="nickchk" value="unChk">
-	    	<input type="hidden" name="emailchk" value="unChk">
+	<div class="container" align="center" style="height: 50%;">
+		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
 			<div>
-				<input type="text" name="m_id" id="m_id" placeholder="ID" required="required" autofocus="autofocus">
-				<input type="button" class="btn btn-info btn-sm" onclick="idChk()" value="중복체크">
-				<div id="idChk_result" class="err"></div>
+				<h2 style="margin-bottom: 30px;">Join Us</h2>
+				<div id="thumbnails"></div>
+				<form action="join.do" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+					<input type="hidden" name="idchk" value="unChk">
+			    	<input type="hidden" name="nickchk" value="unChk">
+			    	<input type="hidden" name="emailchk" value="unChk">
+					<div>
+						<input type="text" name="m_id" id="m_id" placeholder="ID" required="required" autofocus="autofocus">
+						<input type="button" class="btn btn-info btn-sm" onclick="idChk()" value="중복체크">
+						<div id="idChk_result" class="err"></div>
+					</div>
+					<div>
+						<input type="password" name="m_pass" placeholder="Password" required="required">
+					</div>
+					<div>
+						<input type="password" name="m_pass2" placeholder="Password Confirm" required="required" onchange="passChk()">
+						<div id="same"></div>
+					</div>
+					<div>
+						<input type="text" name="m_nick" placeholder="Nickname" required="required">
+						<input type="button" class="btn btn-info btn-sm" onclick="nickChk()" value="중복체크">
+						<div id="nickChk_result" class="err"></div>
+					</div>
+					<div>
+						<input type="email" name="m_email" id="m_email" placeholder="Email" required="required">
+						<input type="button" class="btn btn-info btn-sm" onclick="emailChk()" value="중복체크">
+						<div id="emailChk_result" class="err"></div>
+					</div>
+					<div>
+						<input type="text" name="m_name" placeholder="Name" required="required">
+					</div>
+					<div>
+						<input type="tel" name="m_tel" pattern="010-\d{3,4}-\d{4}" title="010-0000-0000"
+							placeholder="Tel" required="required">
+					</div>
+					<div>
+						<input type="date" name="m_birth" placeholder="Birth" required="required">
+					</div>
+					<div>
+						<input type="text" name="m_addr" id="address_kakao" placeholder="Address" required="required">
+					</div>
+					<div>
+						<input type="text" name="m_addrd" placeholder="Address Detail" required="required">
+					</div>
+					<div>
+						<input type="file" name="file" required="required">
+					</div>
+					<div>
+						<input type="submit" value="확인" class="btn btn-success">
+						<input type="button" value="취소" onclick="history.back()" class="btn btn-warning">
+					</div>
+				</form>
 			</div>
-			<div>
-				<input type="password" name="m_pass" placeholder="Password" required="required">
-			</div>
-			<div>
-				<input type="password" name="m_pass2" placeholder="Password Confirm" required="required" onchange="passChk()">
-				<div id="same"></div>
-			</div>
-			<div>
-				<input type="text" name="m_nick" placeholder="Nickname" required="required">
-				<input type="button" class="btn btn-info btn-sm" onclick="nickChk()" value="중복체크">
-				<div id="nickChk_result" class="err"></div>
-			</div>
-			<div>
-				<input type="email" name="m_email" id="m_email" placeholder="Email" required="required">
-				<input type="button" class="btn btn-info btn-sm" onclick="emailChk()" value="중복체크">
-				<div id="emailChk_result" class="err"></div>
-			</div>
-			<div>
-				<input type="text" name="m_name" placeholder="Name" required="required">
-			</div>
-			<div>
-				<input type="tel" name="m_tel" pattern="010-\d{3,4}-\d{4}" title="010-0000-0000"
-					placeholder="Tel" required="required">
-			</div>
-			<div>
-				<input type="date" name="m_birth" placeholder="Birth" required="required">
-			</div>
-			<div>
-				<input type="text" name="m_addr" id="address_kakao" placeholder="Address" required="required">
-			</div>
-			<div>
-				<input type="text" name="m_addrd" placeholder="Address Detail" required="required">
-			</div>
-			<div>
-				<input type="file" name="file" required="required">
-			</div>
-			<div>
-				<input type="submit" value="확인" class="btn btn-success">
-				<input type="button" value="취소" onclick="history.back()" class="btn btn-warning">
-			</div>
-		</form>
+		</div>
 	</div>
 </body>
 </html>

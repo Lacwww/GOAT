@@ -40,6 +40,11 @@ public class MemberController {
 	public String home() {
 		return "main/home";
 	}
+	@RequestMapping("main/homeModal")
+	public String homeModal(String area, Model model) {
+		model.addAttribute("area", area);
+		return "main/homeModal";
+	}
 	@RequestMapping("member/joinForm")
 	public String joinForm() {
 		return "member/joinForm";
@@ -200,5 +205,9 @@ public class MemberController {
 		int result = ms.updatePass(member);
 		model.addAttribute("result", result);
 		return "member/updatePassResult";
+	}
+	@RequestMapping("member/myPage")
+	public String myPage() {
+		return "member/myPage";
 	}
 }

@@ -19,6 +19,9 @@
 	<definition name="main/main" extends="nolayout">
 		<put-attribute name="body"	value="/WEB-INF/views/main/main.jsp" />
 	</definition>
+	<definition name="main/homeModal" extends="nolayout">
+		<put-attribute name="body"	value="/WEB-INF/views/main/homeModal.jsp" />
+	</definition>
 	<definition name="schedule/selectModal" extends="nolayout">
     	<put-attribute name="body"   value="/WEB-INF/views/schedule/selectModal.jsp" /> 
    </definition>

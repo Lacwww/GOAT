@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table { margin: 30px; }
-	td { width: 12.5%; height: 30px; font-size: 15px; cursor: pointer; }
+	td { width: 12.5%; height: 70px; font-size: 15px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -20,7 +20,7 @@
 					Logo
 				</td>
 				<td style="border-right: 2px solid;" align="center"
-					onclick="location.href='/goat/main/home.do'">
+					onclick="location.href='/goat/selectArea.do'">
 					Schedule
 				</td>
 				<td style="border-right: 2px solid;" align="center"
@@ -61,8 +61,9 @@
 						Logout
 					</td>
 					<td style="border-right: 2px solid;" align="center"
-						onclick="location.href='/goat/member/mypage.do'">
-						Mypage
+						onclick="location.href='/goat/member/myPage.do'">
+						<img title="MyPage" style = "border-radius:50%;"
+							 src="/goat/resources/m_photo/${img }" width="70px" height="70px" />
 					</td>
 				</c:if>
 				<td style="border-right: 2px solid;" align="center">Weather</td>
