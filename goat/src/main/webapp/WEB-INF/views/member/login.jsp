@@ -10,9 +10,16 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			if("${prevUrl}" == "joinForm.do") {
-				location.href="main.do"
-			} else {
+			if("${prevUrl}" == "/goat/member/joinForm.do") {
+				location.href="/goat/main/home.do"
+			} else if("${prevUrl}" == "/goat/member/join.do") {
+				location.href="/goat/main/home.do"
+			} else if("${prevUrl}" == "/goat/member/findIdResult.do") {
+				location.href="/goat/main/home.do"
+			} else if("${prevUrl}" == "/goat/member/updatePassResult.do") {
+				location.href="/goat/main/home.do"
+			}	
+			else {
 				location.href="${prevUrl}";
 			}
 		</script>

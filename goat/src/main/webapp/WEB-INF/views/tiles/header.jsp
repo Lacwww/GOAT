@@ -35,7 +35,7 @@
 					onclick="location.href='/goat/main/home.do'">
 					Trip
 				</td>
-				<c:if test="${empty id }">
+				<c:if test="${empty id && empty admin }">
 					<td style="border-right: 2px solid;" align="center"
 						onclick="location.href='/goat/member/loginForm.do'">
 						Login
@@ -45,7 +45,17 @@
 						Join
 					</td>
 				</c:if>
-				<c:if test="${not empty id }">
+				<c:if test="${empty id && not empty admin }">
+					<td style="border-right: 2px solid;" align="center"
+						onclick="location.href='/goat/member/logout.do'">
+						Logout
+					</td>
+					<td style="border-right: 2px solid;" align="center"
+						onclick="location.href='/goat/admin/admin.do'">
+						Adminpage
+					</td>
+				</c:if>
+				<c:if test="${not empty id && empty admin }">
 					<td style="border-right: 2px solid;" align="center"
 						onclick="location.href='/goat/member/logout.do'">
 						Logout

@@ -11,4 +11,10 @@ public interface MemberDao {
 	Member emailChk(String m_email);
 
 	int insert(Member member);
+
+	Member findId(Member member);
+
+	Member findPass(Member member);
+
+	int updatePass(Member member);
 }

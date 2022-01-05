@@ -31,4 +31,19 @@ public class MemberServiceImpl implements MemberService {
 		return md.insert(member);
 	}
 
+	@Override
+	public Member findId(Member member) {
+		return md.findId(member);
+	}
+
+	@Override
+	public Member findPass(Member member) {
+		return md.findPass(member);
+	}
+
+	@Override
+	public int updatePass(Member member) {
+		return md.updatePass(member);
+	}
+
 }

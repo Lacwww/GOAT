@@ -30,4 +30,19 @@ public class MemberDaoImpl implements MemberDao {
 	public Member select(String m_id) {
 		return sst.selectOne("memberns.select", m_id);
 	}
+
+	@Override
+	public Member findId(Member member) {
+		return sst.selectOne("memberns.findId", member);
+	}
+
+	@Override
+	public Member findPass(Member member) {
+		return sst.selectOne("memberns.findPass", member);
+	}
+
+	@Override
+	public int updatePass(Member member) {
+		return sst.update("memberns.updatePass", member);
+	}
 }

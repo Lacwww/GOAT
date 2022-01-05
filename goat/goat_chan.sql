@@ -25,6 +25,8 @@ alter table member modify(m_tel varchar2(40));
 alter table member modify(m_pass varchar2(1000));
 select * from member;
 
+update member set m_id='admin', m_nick='admin', m_name='admin', m_addr='admin', m_addrd='admin', admin='y' where m_num=3;
+
 /* 여행 게시판 */
 CREATE TABLE TRIP (
 	T_NUM NUMBER NOT NULL, /* 글번호 */
@@ -301,6 +303,7 @@ ALTER TABLE CS
 			M_NUM
 		);
 alter table cs rename column num to cs_num;
+alter table cs add del char(1) default 'n' not null;
 
 /* 플레이스 */
 CREATE TABLE PLACE (
