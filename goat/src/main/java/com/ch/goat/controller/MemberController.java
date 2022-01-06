@@ -134,8 +134,11 @@ public class MemberController {
 		return "member/login";
 	}
 	@RequestMapping("member/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, HttpServletRequest request, Model model) {
 		session.invalidate();
+		String prevUrl = request.getHeader("Referer");
+		prevUrl = prevUrl.substring(21);
+		model.addAttribute("prevUrl", prevUrl);
 		return "member/logout";
 	}
 	@RequestMapping("member/findIdForm")

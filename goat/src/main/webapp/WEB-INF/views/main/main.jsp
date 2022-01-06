@@ -12,8 +12,8 @@
 </style>
 </head>
 <body>
-<div class="container" align="center" style="height: 100%;">
-	<div style="display: flex; height: 100px; align-items: center; float: right;">
+<div>
+	<div style="display: flex; height: 100px; align-items: center; float: right; margin-right: 100px;">
 		<c:if test="${empty id && empty admin}">
 			<button style="height: 50px; width: 100px; margin: 20px;" class="btn btn-success" onclick="location.href='/goat/member/loginForm.do'">
 				Login
@@ -28,12 +28,14 @@
 			</button>
 		</c:if>
 	</div>
-	<div align="center" style="display: flex; justify-content: center; height: 100%; align-items: center;">
-		<h3 onclick="location.href='home.do'">
-			<img alt="" src="${path }/resources/images/car1.png" width="40px" height="40px">
-			Go On A Trip
-			<img alt="" src="${path }/resources/images/car2.png" width="40px" height="40px">
-		</h3>
+	<div class="container" align="center" style="height: 100%;">
+		<div align="center" style="display: flex; justify-content: center; height: 73%; align-items: center; width: 100%;">
+			<h3 onclick="location.href='home.do'">
+				<img alt="" src="${path }/resources/images/car1.png" width="40px" height="40px">
+				Go On A Trip
+				<img alt="" src="${path }/resources/images/car2.png" width="40px" height="40px">
+			</h3>
+		</div>
 	</div>
 </div>
 </body>

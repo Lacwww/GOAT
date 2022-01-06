@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="background-color: gray; opacity: 0.3; height: 150px;">
+	<div style="background-color: #D8D8D8; height: 150px;">
 		<div style="background: none; color: black; margin-top: 30px;">
 			Go On A Trip
 		</div>
