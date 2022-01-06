@@ -12,22 +12,27 @@
 </style>
 </head>
 <body>
-	<div class="container" align="center" style="height: 100%;">
-	 	<form action="login.do?prevUrl=${prevUrl }" method="post">
-	 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
-	 		<div align="center">
-	 			<input type="text" name="m_id" placeholder="ID" required="required" autofocus="autofocus">
-	 		</div>
-	 		<div align="center">
-	 			<input type="password" name="m_pass" placeholder="Password" required="required">
-	 		</div>
-	 		<div align="center">
-	 			<input type="submit" value="Login" class="btn btn-success">
-	 		</div>
-	 		<div align="center" class="divtext">
-           		 <a href="findIdForm.do">아이디 찾기</a> | <a href="findPassForm.do">비밀번호 찾기</a> | <a href="joinForm.do">회원가입</a>
-        	</div>
-	 	</form>
+	<div class="container" align="center" style="height: 50%;">
+		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
+			<div>
+				<h2 style="margin-bottom: 30px;">Login</h2>
+			 	<form action="login.do?prevUrl=${prevUrl }" method="post">
+			 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
+			 		<div align="center">
+			 			<input type="text" name="m_id" placeholder="ID" required="required" autofocus="autofocus">
+			 		</div>
+			 		<div align="center">
+			 			<input type="password" name="m_pass" placeholder="Password" required="required">
+			 		</div>
+			 		<div align="center">
+			 			<input type="submit" value="Login" class="btn btn-success">
+			 		</div>
+			 		<div align="center" class="divtext">
+		           		 <a href="findIdForm.do">아이디 찾기</a> | <a href="findPassForm.do">비밀번호 찾기</a> | <a href="joinForm.do">회원가입</a>
+		        	</div>
+			 	</form>
+		 	</div>
+	 	</div>
 	</div>
 </body>
 </html>

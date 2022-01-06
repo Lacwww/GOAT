@@ -20,32 +20,37 @@
 </script>
 </head>
 <body>
-	<div class="container" align="center" style="height: 100%;">
- 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
-	 	<c:if test="${result == 1 }">
-			<div align="center">
-				<form action="updatePassForm.do" method="post" name="frm" onsubmit="return chk()">
-				 	<input type="hidden" name="m_id" value="${member.m_id}">
-					<div class="divtext" align="center"> <!-- 인증번호 -->
-						<input type="text" name="confirmNum" placeholder="인증번호를 입력해주세요" required="required" autofocus="autofocus">
+	<div class="container" align="center" style="height: 50%;">
+		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
+			<div>
+				<h2 style="margin-bottom: 30px;">Find Password</h2>
+		 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
+			 	<c:if test="${result == 1 }">
+					<div align="center">
+						<form action="updatePassForm.do" method="post" name="frm" onsubmit="return chk()">
+						 	<input type="hidden" name="m_id" value="${member.m_id}">
+							<div class="divtext" align="center"> <!-- 인증번호 -->
+								<input type="text" name="confirmNum" placeholder="인증번호를 입력해주세요" required="required" autofocus="autofocus">
+							</div>
+							<div class="divtext" align="center"> <!-- 인증번호 입력 -->
+					            <input type="submit" value="Find Pass" class="btn btn-success">
+					        </div>
+		        		</form>
 					</div>
-					<div class="divtext" align="center"> <!-- 인증번호 입력 -->
-			            <input type="submit" value="Find Pass" class="btn btn-success">
-			        </div>
-        		</form>
+					<div class="divtext" align="center" style="margin-top: 20px;">
+						<a href="findIdForm.do">아이디 찾기</a> | <a href="loginForm.do">로그인</a> | <a href="joinForm.do">회원가입</a>
+					</div>
+				</c:if>
+				<c:if test="${result == -1 }">
+					<div align="center">
+						<h2>등록된 정보가 없습니다</h2>
+					</div>
+					<div class="divtext" align="center" style="margin-top: 20px;">
+			           	<a href="findPassForm.do">다시 찾기</a> | <a href="findIdForm.do">아이디 찾기</a> | <a href="joinForm.do">회원가입</a>
+			       	</div>
+				</c:if>
 			</div>
-			<div class="divtext" align="center" style="margin-top: 20px;">
-				<a href="findIdForm.do">아이디 찾기</a> | <a href="loginForm.do">로그인</a> | <a href="joinForm.do">회원가입</a>
-			</div>
-		</c:if>
-		<c:if test="${result == -1 }">
-			<div align="center">
-				<h2>등록된 정보가 없습니다</h2>
-			</div>
-			<div class="divtext" align="center" style="margin-top: 20px;">
-	           	<a href="findPassForm.do">다시 찾기</a> | <a href="findIdForm.do">아이디 찾기</a> | <a href="joinForm.do">회원가입</a>
-	       	</div>
-		</c:if>
+		</div>
 	</div>
 </body>
 </html>
