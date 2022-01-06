@@ -18,8 +18,7 @@
 				location.href="/goat/main/home.do"
 			} else if("${prevUrl}" == "/goat/member/updatePassResult.do") {
 				location.href="/goat/main/home.do"
-			}	
-			else {
+			} else {
 				location.href="${prevUrl}";
 			}
 		</script>

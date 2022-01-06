@@ -10,7 +10,11 @@
 <body>
 	<script type="text/javascript">
 		alert("로그아웃 되었습니다");
-		location.href="/goat/main/home.do"
+		if("${prevUrl}" == "/goat/main/main.do") {
+			location.href="/goat/main/main.do"
+		} else {
+			location.href="/goat/main/home.do"
+		}
 	</script>
 </body>
 </html>
