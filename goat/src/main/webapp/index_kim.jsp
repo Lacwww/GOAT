@@ -9,10 +9,10 @@
 <body>
 <script type="text/javascript">
 	//관광지 장소 정보 입력
-// 	location.href="place/insertAPI.do";
+	location.href="place/insertAPI.do";
 	
 	//관광지 지역 목록
-	location.href="place/placeList.do";
+// 	location.href="place/placeList.do";
 	
 	//메인
 // 	location.href="main/main.do";

@@ -54,7 +54,7 @@
 	<!-- 관광지 API 정보 입력 -->
 	<insert id="insertAPI" parameterType="place">
 		insert into place values(#{place_num}, #{place_name}, #{place_cate}, #{place_addr}, #{place_addrd},
-								#{place_photo}, #{lat}, #{lng}, sysdate, #{place_content}, '제주도', #{place_tag})
+								#{place_photo}, #{lat}, #{lng}, sysdate, #{place_content}, '제주도', #{place_tag}, #{place_areadetail})
 	</insert>
 	
 	<!-- 북마크 삭제 -->

@@ -34,6 +34,12 @@ public class PlaceController {
 	@Autowired
 	private MemberService ms;
 	
+	@RequestMapping("place/insertPlace")
+	public String insertPlace() {
+		
+		return "place/insertPlace";
+	}
+	
 	@RequestMapping("place/updatePrev")
 	public String updatePrev(PlaceReview prev) {		
 		ps.updatePrev(prev);
@@ -167,7 +173,8 @@ public class PlaceController {
 		for(int pageNum = 1; pageNum <=12; pageNum++) {
 			for(int i = 0; i < 100; i++) {
 				try {
-					URL url = new URL("http://api.visitjeju.net/vsjApi/contents/searchList?apiKey="+key+"&locale=kr&page="+pageNum);				
+					URL url = new URL("http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=" + key
+							+ "&locale=kr&page="+pageNum);				
 					BufferedReader bf;
 					
 					bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));					
@@ -183,7 +190,6 @@ public class PlaceController {
 					JSONObject itemsNum = (JSONObject)items.get(i);
 					
 					JSONObject contentscd = (JSONObject)itemsNum.get("contentscd");
-					JSONObject region1cd = (JSONObject)itemsNum.get("region1cd");
 					JSONObject repPhoto = (JSONObject)itemsNum.get("repPhoto");
 					JSONObject photoid = (JSONObject)repPhoto.get("photoid");
 					
@@ -223,8 +229,16 @@ public class PlaceController {
 					System.out.println("태그 : " + tag);
 					place.setPlace_tag(tag);
 					
-					String areaDetail = (String) region1cd.get("label");
-					System.out.println("상세 지역 : " + areaDetail);
+					if(roadaddress.indexOf("제주시") >= 0 || address.indexOf("제주시") >= 0) {
+						System.out.println("제주시");
+						place.setPlace_areadetail("제주시");
+					}else if(roadaddress.indexOf("서귀포시") >= 0 || address.indexOf("서귀포시") >= 0) {
+						System.out.println("서귀포시");
+						place.setPlace_areadetail("서귀포시");
+					}else {
+						System.out.println("정보없음");
+						place.setPlace_areadetail("정보없음");
+					}
 					
 					ps.insertAPI(place);
 
