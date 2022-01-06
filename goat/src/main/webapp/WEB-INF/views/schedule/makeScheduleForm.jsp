@@ -35,8 +35,17 @@
 	});
 	
 	$(document).ready(function() {
-		$('#list').load("placeList.do?place_area=${place_area}");
+		var keyword = $('#keyword').val();
+		var search = $('#search option:selected').val()
+		if(keyword==null || keyword==''){
+			$('#list').load("placeList.do?place_area=${place_area}");
+		}
 	});
+	function searchPlace() {
+		var keyword = $('#keyword').val();
+		var search = $('#search option:selected').val()
+		$('#list').load('placeList.do?search='+search+'&keyword='+keyword+'&place_area=${place_area}');
+	}
 </script>
 <style type="text/css">
 	div #map {text-align: center;}
@@ -62,7 +71,26 @@
 				<input type="text" name="s_date" id="start" class="date">
 				<span class="glyphicon glyphicon-minus" style="padding-left: 15px; padding-right: 15px;">
 				</span><input type="text" name="e_date" id="end" class="date">
+
+				<!-- 플레이스 검색 -->
+				<div style="float: left;">
+				<select name="search" id="search">
+					<c:forTokens var="sh" items="place_name,place_tag" delims="," varStatus="i">
+						<c:if test="${sh==place.search }">
+							<option value="${sh }" selected="selected">${t[i.index ]}</option>
+						</c:if>
+						<c:if test="${sh!=place.search }">
+							<option value="${sh }">${t[i.index ]}</option>
+						</c:if>
+					</c:forTokens>
+				</select>
+				<input type="text" name="keyword" id="keyword"
+					placeholder="검색어를 입력해주세요" value="">
+				<input type="button" class="btn btn-light" onclick="searchPlace()" value="검색">
+				</div>
 			</div>
+			
+			
 			<!-- 지도 -->
 				<div id="map" style="width:100%;height:60%;"></div>
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0"></script>
@@ -82,7 +110,7 @@
 				
 				<!-- 플레이스 고른 목록 -->
 				<div id="pick_place" style="align-items: center;">
-					<table class="table table-bordered"><caption>내가 고른 플레이스 목록</caption>
+					<table class="table table-bordered" id="Ppick" style="align-content: center;"><caption>내가 고른 플레이스 목록</caption>
 						<tr><th>사진</th><th>장소</th><th>주소</th><th>태그</th></tr>
 					</table>
 				</div>
