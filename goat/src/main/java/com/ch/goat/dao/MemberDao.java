@@ -6,9 +6,9 @@ public interface MemberDao {
 
 	Member select(String m_id);
 
-	Member nickChk(String m_nick);
+	Member nickChk(Member member);
 
-	Member emailChk(String m_email);
+	Member emailChk(Member member);
 
 	int insert(Member member);
 
@@ -17,4 +17,6 @@ public interface MemberDao {
 	Member findPass(Member member);
 
 	int updatePass(Member member);
+
+	int update(Member member);
 }

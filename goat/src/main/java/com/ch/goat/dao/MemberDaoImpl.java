@@ -17,13 +17,13 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Member nickChk(String m_nick) {
-		return sst.selectOne("memberns.nickChk", m_nick);
+	public Member nickChk(Member member) {
+		return sst.selectOne("memberns.nickChk", member);
 	}
 
 	@Override
-	public Member emailChk(String m_email) {
-		return sst.selectOne("memberns.emailChk", m_email);
+	public Member emailChk(Member member) {
+		return sst.selectOne("memberns.emailChk", member);
 	}
 
 	@Override
@@ -44,5 +44,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int updatePass(Member member) {
 		return sst.update("memberns.updatePass", member);
+	}
+
+	@Override
+	public int update(Member member) {
+		return sst.update("memberns.update", member);
 	}
 }

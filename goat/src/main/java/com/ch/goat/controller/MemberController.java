@@ -60,20 +60,20 @@ public class MemberController {
 	}
 	@RequestMapping(value = "member/chkNick", produces = "text/html;charset=utf-8")
 	@ResponseBody // jsp로 가지않고 바로 바디로 전달
-	public String chkNick(String m_nick, Model model) {
+	public String chkNick(Member member, Model model) {
 		String msg = "";
-		Member member = ms.nickChk(m_nick);
-		if(member == null) msg = "0";
-		else msg = "1";
+		Member member2 = ms.nickChk(member);
+		if(member2 == null) msg = "0";
+		else msg = "-1";
 		return msg;
 	}
 	@RequestMapping(value = "member/chkEmail", produces = "text/html;charset=utf-8")
 	@ResponseBody // jsp로 가지않고 바로 바디로 전달
-	public String chkEmail(String m_email, Model model) {
+	public String chkEmail(Member member, Model model) {
 		String msg = "";
-		Member member = ms.emailChk(m_email);
-		if(member == null) msg = "0";
-		else msg = "1";
+		Member member2 = ms.emailChk(member);
+		if(member2 == null) msg = "0";
+		else msg = "-1";
 		return msg;
 	}
 	@RequestMapping("member/join")
@@ -210,7 +210,62 @@ public class MemberController {
 		return "member/updatePassResult";
 	}
 	@RequestMapping("member/myPage")
-	public String myPage() {
+	public String myPage(HttpSession session, Model model) {
+		String m_id = (String) session.getAttribute("id");
+		Member member = ms.select(m_id);
+		model.addAttribute("member", member);
 		return "member/myPage";
+	}
+	@RequestMapping(value = "member/chkUpdateNick", produces = "text/html;charset=utf-8")
+	@ResponseBody // jsp로 가지않고 바로 바디로 전달
+	public String chkUpdateNick(Member member, Model model) {
+		String msg = "";
+		Member member2 = ms.nickChk(member);
+		if(member2 == null) {
+			msg = "0";
+		} else if (member.getM_id().equals(member2.getM_id())) {
+			msg = "1";
+		} else {
+			msg = "-1";
+		};
+		return msg;
+	}
+	@RequestMapping(value = "member/chkUpdateEmail", produces = "text/html;charset=utf-8")
+	@ResponseBody // jsp로 가지않고 바로 바디로 전달
+	public String chkUpdateEmail(Member member, Model model) {
+		String msg = "";
+		Member member2 = ms.emailChk(member);
+		if(member == null) {
+			msg = "0";
+		} else if (member.getM_id().equals(member2.getM_id())) {
+			msg = "1";
+		} else {
+			msg = "-1";
+		};
+		return msg;
+	}
+	@RequestMapping("member/update")
+	public String update(Member member, Model model, HttpSession session) throws IOException {
+		int result = 0;
+		// 실제 파일명
+		String fileName1 = member.getFile().getOriginalFilename();
+		if (fileName1 != null && !fileName1.equals("")) {
+			// 실제 파일 저장 경로
+			String real = session.getServletContext().getRealPath("/resources/m_photo");
+			// 파일명을 변경해야 할 때 : UUID 임의의 문자열로 변경 Mac은 파일명이 한글이면 깨짐
+			UUID uuid = UUID.randomUUID();
+			String fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
+			// 파일 저장			
+			FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
+			fos.write(member.getFile().getBytes());
+			fos.close();
+			// 입력한 암호를 암호화 한 후 다시 db에 저장
+			String pass = bpPass.encode(member.getM_pass());
+			member.setM_pass(pass);
+			member.setM_photo(fileName);
+			result = ms.update(member);
+		}
+		model.addAttribute("result", result);
+		return "member/update";
 	}
 }
