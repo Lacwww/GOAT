@@ -14,7 +14,7 @@
 	.p_image { width: 100%; height: 100%;}
 	#pimage { width: 160px; height: 140px; float: left;}
 	#plist { margin: 10px;} 
-</style>
+</style> 
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

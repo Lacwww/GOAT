@@ -20,5 +20,5 @@ public class Place {
 	private String place_tag;
 	 
 	private String keyword;
-	private String search;
+	private String search; 
 }

@@ -9,7 +9,7 @@ public interface ScheduleService {
 
 	List<Area> list(); 
 
-	Area select(String place_area);
+	Area select(String place_area);  
 
 	List<Place> plist(Place place);
 

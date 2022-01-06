@@ -24,7 +24,7 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return sst.selectOne("schedulens.areaSelect",place_area);
 	}
 
-	public List<Place> plist(Place place) { 
+	public List<Place> plist(Place place) {  
 		return sst.selectList("schedulens.placeList",place);
 	}
 

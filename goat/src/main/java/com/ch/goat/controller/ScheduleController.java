@@ -28,7 +28,7 @@ public class ScheduleController {
 		Area area = ss.select(place_area);
 		model.addAttribute("area",area);
 		return "schedule/selectModal";
-	}
+	} 
 	@RequestMapping("makeScheduleForm")
 	public String makeSchedule(Model model, String place_area) {
 		model.addAttribute("place_area",place_area);
