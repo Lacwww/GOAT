@@ -54,5 +54,8 @@ public class PlaceServiceImpl implements PlaceService{
 	public void updatePrev(PlaceReview prev) {
 		pd.updatePrev(prev);
 	}
+	public List<Place> areaDetailList(String place_area) {
+		return pd.areaDetailList(place_area);
+	}
 
 }

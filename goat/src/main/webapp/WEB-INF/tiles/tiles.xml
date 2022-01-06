@@ -34,6 +34,9 @@
    <definition name="place/prevList" extends="nolayout">
     	<put-attribute name="body"   value="/WEB-INF/views/place/prevList.jsp" /> 
    </definition>		
+   <definition name="place/placeAreaModal" extends="nolayout">
+    	<put-attribute name="body"   value="/WEB-INF/views/place/placeAreaModal.jsp" /> 
+   </definition>		
    <definition name="schedule/placeList" extends="nolayout">
     	<put-attribute name="body"   value="/WEB-INF/views/schedule/placeList.jsp" /> 
    </definition>		

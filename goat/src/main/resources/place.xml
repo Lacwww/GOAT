@@ -11,6 +11,9 @@
 		select nvl(count(*), 0) from place
 		<where>
 			place_area = #{place_area}
+			<if test="place_areadetail!= null and place_areadetail!='' ">
+				and place_areadetail = #{place_areadetail}
+			</if>
 			<if test="keyword!=null and keyword!=''">
 				and place_name like '%'||#{keyword}||'%'
 			</if>
@@ -19,10 +22,14 @@
 	
 	<!-- 지역에 해당하는 장소의 리스트 -->
 	<select id="list" parameterType="map" resultType="place">
-		select * from (select a.*,rowNum rn from( 
+		select * from (
+			select a.*,rowNum rn from( 
 			select * from place
 		<where>
 			place_area = #{place_area}
+			<if test="place_areadetail!= null and place_areadetail!='' ">
+				and place_areadetail = #{place_areadetail}
+			</if>
 			<if test="keyword != null and keyword !='' ">
 				and place_name like '%'||#{keyword}||'%'
 			</if>
@@ -51,6 +58,11 @@
 		select * from bookmark where m_num = #{m_num} and place_num = #{place_num}	
 	</select>
 
+	<!-- 상세지역 가져오기 -->
+	<select id="areaDetailList" parameterType="string" resultType="place">
+		select distinct place_areadetail from place where place_area = #{place_area}
+	</select>
+	
 	<!-- 관광지 API 정보 입력 -->
 	<insert id="insertAPI" parameterType="place">
 		insert into place values(#{place_num}, #{place_name}, #{place_cate}, #{place_addr}, #{place_addrd},

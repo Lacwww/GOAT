@@ -34,6 +34,9 @@ public interface PlaceService {
 
 	void updatePrev(PlaceReview prev);
 
+	List<Place> areaDetailList(String place_area);
+
+
 
 
 

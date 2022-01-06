@@ -36,6 +36,7 @@ public class PlaceDaoImpl implements PlaceDao{
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		map.put("keyword", place.getKeyword());
+		map.put("place_areadetail", place.getPlace_areadetail());
 		return sst.selectList("placens.list", map);
 	}
 	public Place placeModal(int num) {
@@ -77,4 +78,8 @@ public class PlaceDaoImpl implements PlaceDao{
 	public void updatePrev(PlaceReview prev) {
 		sst.update("placens.updatePrev", prev);
 	}
+	public List<Place> areaDetailList(String place_area) {
+		return sst.selectList("placens.areaDetailList", place_area);
+	}
+
 }
