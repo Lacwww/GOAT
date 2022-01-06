@@ -16,14 +16,14 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	@Override
 	public List<Area> list() {
-		return sd.list();
-	}
+		return sd.list();   
+	} 
 
 	public Area select(String place_area) {
 		return sd.select(place_area);
 	}
 
-	public List<Place> plist(String place_area) {
-		return sd.plist(place_area);
+	public List<Place> plist(Place place) {
+		return sd.plist(place);
 	}
 }

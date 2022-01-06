@@ -9,7 +9,7 @@
 	.area_photo { float: left; width: 30%; height: 30%;}
 	.area_text { width: 80%; padding: 5px; }
 </style>
-<meta charset="UTF-8">
+<meta charset="UTF-8">  
 <title>Insert title here</title>
 </head>
 <body>
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal-footer">
+		<div class="modal-footer"> 
 			<div class="modal-footer">
 				<input type="button" class="btn btn-sm btn-success" id="select" value="Go on a Trip"
 					onclick="location.href='makeScheduleForm.do?place_area=${area.place_area}'">

@@ -1,6 +1,8 @@
 package com.ch.goat.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,8 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return sst.selectOne("schedulens.areaSelect",place_area);
 	}
 
-	public List<Place> plist(String place_area) {
-		return sst.selectList("schedulens.placeList",place_area);
+	public List<Place> plist(Place place) {  
+		return sst.selectList("schedulens.placeList",place);
 	}
+
 }

@@ -40,7 +40,8 @@
 </script>
 <style type="text/css">
 	div #map {text-align: center;}
-	input {	border-radius: 5px; text-align: center;}
+	input {	border-radius: 5px;}
+	.date { text-align: center;}
 	#list { margin-left: 3px; height: 65%;}
 	#wrapper {
 		width: 100%; height: 100%;; 
@@ -58,9 +59,9 @@
 			<div style="width: 100%;">
 				<img alt="calendar" src="${path }/resources/images/calendar.png"
 					 style="width: 60px; height: 70px; padding-bottom : 5px;">
-				<input type="text" name="s_date" id="start">
+				<input type="text" name="s_date" id="start" class="date">
 				<span class="glyphicon glyphicon-minus" style="padding-left: 15px; padding-right: 15px;">
-				</span><input type="text" name="e_date" id="end">
+				</span><input type="text" name="e_date" id="end" class="date">
 			</div>
 			<!-- 지도 -->
 				<div id="map" style="width:100%;height:60%;"></div>
@@ -75,7 +76,7 @@
 				</script>
 			</form>
 				</div>
-
+	
 				<!-- 플레이스 목록 -->
 				<div id="list"></div>
 				
