@@ -18,7 +18,7 @@
 			<h3>${place.place_area }</h3>
 		</div>
 		<div class="modal-body">
-			<div class="container" id="inner_content">
+			<div class="container" id="inner_content" style="width: 100%;">
 				<div class="area_photo">
 					<img alt=""	src="${place.place_photo }">
 				</div>

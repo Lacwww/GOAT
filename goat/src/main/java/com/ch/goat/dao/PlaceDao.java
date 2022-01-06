@@ -34,6 +34,9 @@ public interface PlaceDao {
 
 	void updatePrev(PlaceReview prev);
 
+	List<Place> areaDetailList(String place_area);
+
+
 
 
 

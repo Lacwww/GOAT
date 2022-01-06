@@ -39,6 +39,12 @@
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function modal(place_area) {
+		$('#MoaModal .modal-content').load("placeAreaModal.do?place_area=" + place_area);
+		$('#MoaModal').modal();
+	}
+</script>
 </head>
 <body>
 	<!-- 지역 리스트 -->
@@ -53,7 +59,7 @@
 			<c:forEach var="area" items="${list }">
 			<div class="area">
 				<div class="areaPhoto">
-					<a href="areaPlaceList.do?place_area=${area.place_area }">
+					<a onclick="modal('${area.place_area }')">
 						<img alt="${area.place_area }" src="${path}/resources/areaImages/${area.area_photo }">	
 					</a>
 				</div>
@@ -62,5 +68,13 @@
 			</c:forEach>
 		</div>
 	</div>
+	
+	<!-- 장소모달 -->
+	<div class="modal" id="MoaModal" tabindex="-1" role="dialog"
+		aria-labelledby="historyModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document" style="margin-top: 20%;">
+			<div class="modal-content"></div>
+		</div>
+	</div>	
 </body>
 </html>
