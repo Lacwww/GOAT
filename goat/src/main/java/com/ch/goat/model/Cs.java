@@ -14,6 +14,7 @@ public class Cs {
 	private int cs_re_step;
 	private int cs_re_level;
 	private int m_num;
+	private String del;
 	
 	// 페이징용
 	private int startRow;

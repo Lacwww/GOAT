@@ -39,8 +39,10 @@
 			<tr align="center">
 				<td colspan="2">
 					<a href="csList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
+				<c:if test="${not empty admin}">
 					<a href="csInsertForm.do?cs_num=${cs.cs_num}&pageNum=${pageNum }" class="btn btn-success">답변등록</a>
 					<input type="button" onclick="delCs()" class="btn btn-danger" value="삭제">
+				</c:if>
 				</td>
 			</tr>
 		</table>
