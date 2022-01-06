@@ -7,11 +7,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	.tl { border-bottom: 1px solid black;}
+.tl {
+	border-bottom: 1px solid black;
+}
+
+.td1, .td2, .td3, .td4, .td5 {
+	height: 30px;
+}
 </style>
 <script type="text/javascript">
 	function sessionChk() {
-		if (${empty id}) {
+		if (${empty id && empty admin}) {
 			alert("고객문의는 로그인후 이용할 수 있습니다");
 			location.href="${path}/member/loginForm.do";		
 		} else {
@@ -36,28 +42,27 @@
 					<td colspan="5">처리할 고객문의가 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:if test="${not empty list } ">
+
+			<c:if test="${not empty list}">
 				<c:forEach var="cs2" items="${list }">
-					<c:if test="${cs2.del != 'y' }">
-						<tr>
-							<td>${cs2.cs_num}<c:set var="no" value="${no - 1}"></c:set>
-								<%-- ${board.num } --%></td>
-	
-								<td>
-								<c:if test="${cs2.cs_re_level > 0 }">
-										<!-- 답변글 레벨당 10px들여 쓰기 -->
-										<img alt="" src="${path}/resources/csImages/level.gif" height="5"
-											width="${cs2.cs_re_level * 10 }">
+					<tr><td class="td1">${no}<c:set var="no" value="${no - 1}"></c:set></td>
+						<c:if test="${cs2.del != 'y' }">
+							<td class="td2"><c:if test="${cs2.cs_re_level > 0 }">
+									<!-- 답변글 레벨당 10px들여 쓰기 -->
+									<img alt="" src="${path}/resources/csImages/level.gif"
+										height="5" width="${cs2.cs_re_level * 10 }">
 									<img alt="" src="${path}/resources/csImages/reply.png"
 										height="12" width="15">
-								</c:if> 
-								<a href="csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}">${cs2.cs_title}</a> 
-								</td>
-								<td>${cs2.m_name }</td>
-								<td>${cs2.cs_view }</td>
-								<td>${cs2.reg_date }</td>
-						</tr>
-					</c:if>
+						</c:if> 
+							<a href="csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}">${cs2.cs_title}</a>
+							</td>
+							<td class="td3">${cs2.m_name }</td>
+							<td class="td4">${cs2.cs_view }</td>
+							<td class="td5">${cs2.reg_date }</td>
+						</c:if>
+						<c:if test="${cs2.del == 'y' }">
+							<td colspan="4" class="td2">관리자에 의해 삭제된 게시글입니다.</td>
+						</c:if>
 				</c:forEach>
 			</c:if>
 		</table>
@@ -65,34 +70,28 @@
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
-					<li><a
-						href="csList.do?pageNum=1">
-							<span class="glyphicon glyphicon-backward"></span>
+					<li><a href="csList.do?pageNum=1"> <span
+							class="glyphicon glyphicon-backward"></span>
 					</a></li>
-					<li><a
-						href="csList.do?pageNum=${pb.startPage-1}">
-							<span class="glyphicon glyphicon-triangle-left"></span>
+					<li><a href="csList.do?pageNum=${pb.startPage-1}"> <span
+							class="glyphicon glyphicon-triangle-left"></span>
 					</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 					<c:if test="${pb.currentPage==i }">
-						<li class="active"><a
-							href="csList.do?pageNum=${i}">${i}</a></li>
+						<li class="active"><a href="csList.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${pb.currentPage!=i }">
-						<li><a
-							href="csList.do?pageNum=${i}">${i}</a></li>
+						<li><a href="csList.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 것이 남아있는 경우에는 endPage보다 totalPage가 큰경우 -->
 				<c:if test="${pb.endPage < pb.totalPage }">
-					<li><a
-						href="csList.do?pageNum=${pb.endPage+1}">
-							<span class="glyphicon glyphicon-triangle-right"></span>
+					<li><a href="csList.do?pageNum=${pb.endPage+1}"> <span
+							class="glyphicon glyphicon-triangle-right"></span>
 					</a></li>
-					<li><a
-						href="csList.do?pageNum=${pb.totalPage}">
-							<span class="glyphicon glyphicon-forward"></span>
+					<li><a href="csList.do?pageNum=${pb.totalPage}"> <span
+							class="glyphicon glyphicon-forward"></span>
 					</a></li>
 				</c:if>
 			</ul>
