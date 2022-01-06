@@ -9,7 +9,6 @@
 		<typeAlias alias="bookmark"
 			type="com.ch.goat.model.Bookmark" />
 		<typeAlias alias="member" type="com.ch.goat.model.Member" />
-		
 		<typeAlias alias="trip" type="com.ch.goat.model.Trip" />
 		<typeAlias alias="tp" type="com.ch.goat.model.TripPhoto" />
 		<typeAlias alias="tl" type="com.ch.goat.model.TripLike" />
@@ -34,5 +33,6 @@
 		<mapper resource="trip.xml" />
 		<mapper resource="notice.xml" />
 		<mapper resource="cs.xml" />
+		<mapper resource="admin.xml" /> 
 	</mappers>
 </configuration>

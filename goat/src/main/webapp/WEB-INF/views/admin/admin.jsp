@@ -9,8 +9,9 @@
 </head>
 <body>
 <h1>관리자 페이지</h1>
-<h2><a href="/goat/views/admin/adminPlace.do">플레이스 목록</a></h2>
-<h2><a href="/goat/views/admin/adminSchedule.do">스케줄 목록</a></h2>
-<h2><a href="/goat/views/admin/adminMember.do">회원 목록</a></h2>
+<br><br><br>
+<h2><a href="adminPlace.do">플레이스 목록</a></h2>
+<h2><a href="adminSchedule.do">스케줄 목록</a></h2>
+<h2><a href="adminMember.do">회원 목록</a></h2>
 </body>
 </html>
