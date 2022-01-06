@@ -18,7 +18,9 @@ public class Place {
 	private String place_content;
 	private String place_area;
 	private String place_tag;
+	private String place_areadetail;
 	 
+	
 	private String keyword;
 	private String search; 
 }

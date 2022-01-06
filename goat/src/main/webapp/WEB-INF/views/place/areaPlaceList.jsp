@@ -59,8 +59,10 @@
 	</div>
 </form>
 
-<div align="center"> <input type="button" value="플레이스 등록"> <input type="button" value="플레이스 건의"> </div>
-
+<div align="center">
+	<input type="button" value="플레이스 등록" onclick="location.href='insertPlace.do'">
+	<input type="button" value="플레이스 건의">
+</div>
 
 <c:if test="${empty list }">
 	<h2 align="center">지역에 해당하는 장소가 없습니다.</h2>
