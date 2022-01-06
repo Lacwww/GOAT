@@ -30,42 +30,41 @@
 				</c:forEach>
 			</table>
 		</div>
-		<div>
-			<!-- 이전 -->
-			<c:if test="${startPage > pagePerBlock }">
-				<button class="btn btn-secondary"
-					onclick="location.href='adminSchedule.do?pageNum=1'">처음으로</button>
-			</c:if>
-			<c:if test="${pageNum > 1}">
-				<button class="btn btn-primary"
-					onclick="location.href='adminSchedule.do?pageNum=${currentPage-1}'">이전</button>
-			</c:if>
-			<!-- 페이지 -->
-			<c:if test="${endPage == 0}">
-				<button class="btn btn-secondary" disabled="disabled">1</button>
-			</c:if>
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<c:if test="${currentPage== i}">
-					<button class="btn btn-secondary"
-						onclick="location.href='adminSchedule.do?pageNum=${i}'"
-						disabled="disabled">${i}</button>
+		<div align="center" style="clear: both;">
+			<ul class="pagination">
+				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
+				<c:if test="${startPage > pagePerBlock }">
+					<li><a
+						href="adminSchedule.do?pageNum=1">
+							<span class="glyphicon glyphicon-backward"></span>
+					</a></li>
+					<li><a
+						href="adminSchedule.do?pageNum=${startPage-1}">
+							<span class="glyphicon glyphicon-triangle-left"></span>
+					</a></li>
 				</c:if>
-				<c:if test="${currentPage!= i }">
-					<button class="btn btn-secondary"
-						onclick="location.href='adminSchedule.do?pageNum=${i}'">${i}</button>
+				<c:forEach var="i" begin="${startPage }" end="${endPage }">
+					<c:if test="${currentPage==i }">
+						<li class="active"><a
+							href="adminSchedule.do?pageNum=${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${currentPage!=i }">
+						<li><a
+							href="adminSchedule.do?pageNum=${i}">${i}</a></li>
+					</c:if>
+				</c:forEach>
+				<!-- 보여줄 것이 남아있는 경우에는 endPage보다 totalPage가 큰경우 -->
+				<c:if test="${endPage < totalPage }">
+					<li><a
+						href="adminSchedule.do?pageNum=${endPage+1}">
+							<span class="glyphicon glyphicon-triangle-right"></span>
+					</a></li>
+					<li><a
+						href="adminSchedule.do?pageNum=${totalPage}">
+							<span class="glyphicon glyphicon-forward"></span>
+					</a></li>
 				</c:if>
-			</c:forEach>
-			<!-- 다음 -->
-			<c:if test="${currentPage < totalPage}">
-				<button class="btn btn-primary"
-					onclick="location.href='adminSchedule.do?pageNum=${currentPage + 1}'">다음</button>
-			</c:if>
-			<!-- 보여줄 것이 남아있다 -->
-			<c:if test="${endPage < totalPage }">
-				<button class="btn btn-primary"
-					onclick="location.href='adminSchedule.do?pageNum=${endPage+1}'">다음
-					목록</button>
-			</c:if>
+			</ul>
 		</div>
 	</div>
 </body>

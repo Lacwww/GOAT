@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminns">
 	<!-- 장소의 리스트 -->
-	<select id="placelist" parameterType="map" resultType="place">
+	<select id="placeList" parameterType="map" resultType="place">
 		select * from (select a.*,rowNum rn from( 
 			select * from place order by place_num desc)a)
 				where rn between #{startRow} and #{endRow}	
@@ -10,11 +10,11 @@
 	
 	<!-- 장소 총 갯수 -->
 	<select id="getTotalPlace" resultType="integer">
-		select count(*) from place
+		select nvl(count(*), 0) from place
 	</select>
 	
 	<!-- 스케쥴의 리스트 -->
-	<select id="schedulelist" parameterType="map" resultType="schedule">
+	<select id="scheduleList" parameterType="map" resultType="sc">
 		select * from (select a.*,rowNum rn from( 
 			select sch_num, sch_name, s_date, e_date, m_name from schedule s, member m where s.m_num = m.m_num order by sch_num desc)a)
 				where rn between #{startRow} and #{endRow}	
@@ -22,11 +22,11 @@
 	
 	<!-- 스케쥴 총 갯수 -->
 	<select id="getTotalSchedule" resultType="integer">
-		select count(*) from schedule; 
+		select nvl(count(*), 0) from schedule; 
 	</select>
 	
 	<!-- 회원의 리스트 -->
-	<select id="memberlist" parameterType="map" resultType="schedule">
+	<select id="memberList" parameterType="map" resultType="member">
 		select * from (select a.*,rowNum rn from( 
 			select * from member order by m_num desc)a)
 				where rn between #{startRow} and #{endRow}	
@@ -34,6 +34,6 @@
 	
 	<!-- 회원 총 갯수 -->
 	<select id="getTotalMember" resultType="integer">
-		select count(*) from member;
+		select nvl(count(*), 0) from member;
 	</select>
 </mapper>

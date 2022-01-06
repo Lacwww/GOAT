@@ -18,12 +18,12 @@ public class AdminController {
 	@Autowired
 	private AdminService as;
 	
-	@RequestMapping("admin")
+	@RequestMapping("admin/admin")
 	public String admin() {
 		return "admin/admin";
 	}
 	
-	@RequestMapping("adminPlace")
+	@RequestMapping("admin/adminPlace")
 	public String adminPlace(String pageNum, Model model) {
 		int rowPerPage = 20;
 		int pagePerBlock = 5;
@@ -37,9 +37,9 @@ public class AdminController {
 		int startPage = currentPage - (currentPage - 1) % pagePerBlock;
 		int endPage = startPage + pagePerBlock - 1;
 		if (endPage > totalPage) {
-			endPage = totalPage;
+			endPage = totalPage;	
 		}
-		
+
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("currentPage", currentPage);
@@ -49,7 +49,7 @@ public class AdminController {
 		return "admin/adminPlace";
 	}
 	
-	@RequestMapping("adminSchedule")
+	@RequestMapping("admin/adminSchedule")
 	public String adminSchedule(String pageNum, Model model) {
 		int rowPerPage = 20;
 		int pagePerBlock = 5;
@@ -75,7 +75,7 @@ public class AdminController {
 		return "admin/adminSchedule";
 	}
 	
-	@RequestMapping("adminMember")
+	@RequestMapping("admin/adminMember")
 	public String adminMember(String pageNum, Model model) {
 		int rowPerPage = 20;
 		int pagePerBlock = 5;
