@@ -11,6 +11,6 @@ public interface ScheduleDao {
 
 	Area select(String place_area);
 
-	List<Place> plist(String place_area);
+	List<Place> plist(Place place);
 
 }

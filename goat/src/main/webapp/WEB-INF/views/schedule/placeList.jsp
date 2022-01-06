@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+	function searchPlace() {
+		$.post('searchPlace.do','search='+frm.search.value)
+	}
+</script>
 <style type="text/css">
 	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
 	.p_image { width: 100%; height: 100%;}
@@ -16,14 +21,21 @@
 <body>
 <div class="p_container" id="p_list" style="margin-top: 20px;">
 	<!-- 플레이스 검색 -->
-	<form action="placeList.do" method="get" name="frm">
-		<select>
-			<option>장소명</option>
-			<option>테마</option>
+	<form action="" name="frm">
+	<input type="hidden" name="place_area" value="${place.place_area }">
+		<select name="search">
+			<c:forTokens var="sh" items="place_name,place_tag" delims="," varStatus="i">
+				<c:if test="${sh==place.search }">
+					<option value="${sh }" selected="selected">${t[i.index ]}</option>
+				</c:if>
+				<c:if test="${sh!=place.search }">
+					<option value="${sh }">${t[i.index ]}</option>
+				</c:if>
+			</c:forTokens>
 		</select>
 		<input type="text" name="keyword" id="keyword"
 			placeholder="검색어를 입력해주세요" value="${keyword }">
-		<button type="submit" class="btn btn-light">검색</button>
+		<button type="button" class="btn btn-light" onclick="searchPlace()">검색</button>
 	</form>
 	
 	<c:if test="${empty plist }">

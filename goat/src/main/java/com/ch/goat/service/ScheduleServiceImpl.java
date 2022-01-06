@@ -23,7 +23,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		return sd.select(place_area);
 	}
 
-	public List<Place> plist(String place_area) {
-		return sd.plist(place_area);
+	public List<Place> plist(Place place) {
+		return sd.plist(place);
 	}
 }

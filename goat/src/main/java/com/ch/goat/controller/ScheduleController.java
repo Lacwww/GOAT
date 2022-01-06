@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
@@ -34,8 +35,11 @@ public class ScheduleController {
 		return "schedule/makeScheduleForm";
 	}
 	@RequestMapping("placeList")
-	public String placeList(Model model, String place_area) {
-		List<Place> plist = ss.plist(place_area);
+	public String placeList(Model model, Place place) {
+		List<Place> plist = ss.plist(place);
+		String[] t = {"장소명","테마"};
+		model.addAttribute("place",place);
+		model.addAttribute("t",t);
 		model.addAttribute("plist",plist);
 		return "schedule/placeList"; 
 	}
