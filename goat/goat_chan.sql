@@ -338,6 +338,8 @@ ALTER TABLE PLACE
       );
 alter table place add place_tag varchar2(200);
 
+alter table place add place_areaDetail varchar2(20);
+
 /* 플레이스 후기 */
 CREATE TABLE PLACE_REVIEW (
 	PREV_NUM NUMBER NOT NULL, /* 후기 번호 */

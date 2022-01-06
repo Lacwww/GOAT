@@ -17,13 +17,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member nickChk(String m_nick) {
-		return md.nickChk(m_nick);
+	public Member nickChk(Member member) {
+		return md.nickChk(member);
 	}
 
 	@Override
-	public Member emailChk(String m_email) {
-		return md.emailChk(m_email);
+	public Member emailChk(Member member) {
+		return md.emailChk(member);
 	}
 
 	@Override
@@ -44,6 +44,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updatePass(Member member) {
 		return md.updatePass(member);
+	}
+
+	@Override
+	public int update(Member member) {
+		return md.update(member);
 	}
 
 }
