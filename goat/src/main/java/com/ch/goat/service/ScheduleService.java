@@ -7,7 +7,7 @@ import com.ch.goat.model.Place;
 
 public interface ScheduleService {
 
-	List<Area> list();
+	List<Area> list(); 
 
 	Area select(String place_area);
 

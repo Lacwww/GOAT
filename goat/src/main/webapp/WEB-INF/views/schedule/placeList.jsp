@@ -13,7 +13,7 @@
 	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
 	.p_image { width: 100%; height: 100%;}
 	#pimage { width: 160px; height: 140px; float: left;}
-	#plist { margin: 10px;}
+	#plist { margin: 10px;} 
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>

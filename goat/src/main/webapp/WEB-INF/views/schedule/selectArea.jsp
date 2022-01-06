@@ -50,7 +50,7 @@
 <body>
 	<!-- 지역 리스트 -->
 	<div class="container" align="center">
-		<h2 id="sch">스케줄 생성</h2>
+		<h2 id="sch">스케줄 생성</h2> 
 		<h3 class="text-primary" style="margin-bottom: 40px;">어디로 가볼까요?</h3>
 		<form action="selectArea.do" method="get" name="frm">
 			<input type="text" name="keyword" id="keyword"

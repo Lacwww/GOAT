@@ -14,3 +14,4 @@ public interface ScheduleDao {
 	List<Place> plist(Place place);
 
 }
+ 

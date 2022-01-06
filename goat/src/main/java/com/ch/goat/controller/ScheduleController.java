@@ -34,7 +34,7 @@ public class ScheduleController {
 		model.addAttribute("place_area",place_area);
 		return "schedule/makeScheduleForm";
 	}
-	@RequestMapping("placeList")
+	@RequestMapping("placeList") 
 	public String placeList(Model model, Place place) {
 		List<Place> plist = ss.plist(place);
 		String[] t = {"장소명","테마"};

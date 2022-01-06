@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal-footer">
+		<div class="modal-footer"> 
 			<div class="modal-footer">
 				<input type="button" class="btn btn-sm btn-success" id="select" value="Go on a Trip"
 					onclick="location.href='makeScheduleForm.do?place_area=${area.place_area}'">
