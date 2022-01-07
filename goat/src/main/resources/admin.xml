@@ -22,7 +22,7 @@
 	
 	<!-- 스케쥴 총 갯수 -->
 	<select id="getTotalSchedule" resultType="integer">
-		select nvl(count(*), 0) from schedule; 
+		select nvl(count(*), 0) from schedule
 	</select>
 	
 	<!-- 회원의 리스트 -->
@@ -34,6 +34,6 @@
 	
 	<!-- 회원 총 갯수 -->
 	<select id="getTotalMember" resultType="integer">
-		select nvl(count(*), 0) from member;
+		select nvl(count(*), 0) from member
 	</select>
 </mapper>
