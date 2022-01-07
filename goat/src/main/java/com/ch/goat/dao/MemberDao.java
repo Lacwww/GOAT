@@ -21,4 +21,6 @@ public interface MemberDao {
 	int update(Member member);
 
 	int delete(String m_id);
+
+	String photo(String m_id);
 }

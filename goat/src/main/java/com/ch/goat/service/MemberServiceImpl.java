@@ -56,4 +56,9 @@ public class MemberServiceImpl implements MemberService {
 		return md.delete(m_id);
 	}
 
+	@Override
+	public String photo(String m_id) {
+		return md.photo(m_id);
+	}
+
 }

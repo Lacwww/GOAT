@@ -55,4 +55,9 @@ public class MemberDaoImpl implements MemberDao {
 	public int delete(String m_id) {
 		return sst.update("memberns.delete", m_id);
 	}
+
+	@Override
+	public String photo(String m_id) {
+		return sst.selectOne("memberns.photo", m_id);
+	}
 }

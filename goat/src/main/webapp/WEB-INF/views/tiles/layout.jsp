@@ -9,7 +9,7 @@
 <title>layout</title>
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-	<div class="container">
+	<div class="container" style="height: 100%;">
 		<div><tiles:insertAttribute name="header"></tiles:insertAttribute></div>
 		<div><tiles:insertAttribute name="body"></tiles:insertAttribute></div>
 		<div><tiles:insertAttribute name="footer"></tiles:insertAttribute></div>

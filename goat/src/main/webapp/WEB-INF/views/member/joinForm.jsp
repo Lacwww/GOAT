@@ -158,16 +158,53 @@
               	}
 			});
 	}
+	
+// 	프로필 이미지 미리보기
+	var sel_flie;
+	var img;
+	$(function() {
+		img = $('#preview').attr('src');
+		$('#chooseFile').on('change', handleImgFileSelect);
+		$('#cancel').click(function() {
+			$('#preview').attr('src', img);
+		});
+	});
+	function handleImgFileSelect(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		filesArr.forEach(function(f) {
+			if(!f.type.match('image.*')) {
+				alert('이미지 파일만 등록 가능합니다');
+				return;	
+			}
+			sel_file = f;
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#preview').attr("src", e.target.result);
+				}
+			reader.readAsDataURL(f);
+		});
+	}
+	
+// 	뒤로가기 방지
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
 </script>
+<style type="text/css">
+	#chooseFile { display: none; }
+</style>
 </head>
 <body>
-	<div class="container" align="center" style="height: 50%;">
-		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
+	<div class="container" align="center">
+		<div align="center" style="display: flex; justify-content:center;">
 			<div>
 				<h2 style="margin-bottom: 30px;">Join Us</h2>
 				<label for="chooseFile">
-					<img alt="" src="${path }/resources/m_photo/${member.m_photo }" id="preview"
-						style = "border-radius:50%;" width="200px;" height="200px;">
+					<img alt="" src="${path }/resources/images/goat6.png" id="preview"
+						style = "border-radius:50%; border: 1px solid black;" width="200px;" height="200px;">
+					<p>프로필 수정</p>
 				</label>
 				<div id="thumbnails"></div>
 				<form action="join.do" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
@@ -213,8 +250,8 @@
 						<input type="text" name="m_addrd" placeholder="Address Detail" required="required">
 					</div>
 					<div>
-						<input type="file" name="file" required="required">
-					</div>
+					<input type="file" name="file" id="chooseFile" class="data">
+				</div>
 					<div>
 						<input type="submit" value="확인" class="btn btn-success">
 						<input type="button" value="취소" onclick="history.back()" class="btn btn-warning">

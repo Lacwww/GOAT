@@ -14,8 +14,7 @@
 </style>
 </head>
 <body>
-<div>
-	<div style="display: flex; height: 100px; align-items: center; float: right; margin-right: 100px;">
+	<div style="display: flex; width: 100%; height: 100px; align-items: center; justify-content: flex-end;">
 		<c:if test="${empty id && empty admin}">
 			<img id="key" title="login" style = "margin: 20px;" src="/goat/resources/images/key.png"
 				onclick="location.href='/goat/member/loginForm.do'" width="50px" height="50px"/>
@@ -31,15 +30,16 @@
 			</p>
 		</c:if>
 	</div>
-	<div class="container" align="center" style="height: 100%;">
-		<div align="center" style="display: flex; justify-content: center; height: 90%; align-items: center; width: 100%;">
-			<h3 onclick="location.href='home.do'">
-				<img alt="" src="${path }/resources/images/car1.png" width="40px" height="40px">
-				Go On A Trip
-				<img alt="" src="${path }/resources/images/car2.png" width="40px" height="40px">
-			</h3>
+	<div>
+		<div class="container" align="center" style="height: 100%;">
+			<div align="center" style="display: flex; justify-content: center; height: 73%; align-items: center; width: 100%;">
+				<h3 onclick="location.href='home.do'">
+					<img alt="" src="${path }/resources/images/car1.png" width="40px" height="40px">
+					Go On A Trip
+					<img alt="" src="${path }/resources/images/car2.png" width="40px" height="40px">
+				</h3>
+			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>
