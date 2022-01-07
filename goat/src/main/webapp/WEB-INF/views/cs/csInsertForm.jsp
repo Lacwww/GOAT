@@ -35,13 +35,13 @@
 						<tr>
 							<th>제목</th>
 							<td><input type="text" name="cs_title" required="required"
-								autofocus="autofocus" value="답변등록 ) "></td>
+								autofocus="autofocus" value="✔ ) "></td>
 						</tr>
 				</c:if>
 				<tr>
 					<th>작성자</th>
-					<td><c:if test="${not empty id}">${member.m_name }</c:if>
-						<c:if test="${not empty admin}">${adminInfo.m_nick }</c:if></td>
+					<td><c:if test="${not empty id && empty admin}">${member.m_name }</c:if>
+						<c:if test="${not empty admin && empty id}">${adminInfo.m_nick }</c:if></td>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -51,8 +51,7 @@
 							required="required" id="cs_content"></textarea></c:if>
 					<c:if test="${not empty content }">
 					<textarea rows="10" cols="80" name="cs_content"
-							required="required" id="cs_content">${content }
-							&#10;----------------------------------&#10;😃답변내용😃&#10;</textarea>
+							required="required" id="cs_content">${content }&#10;----------------------------------&#10;😃답변내용😃&#10;&#10;&#10;&#10;추가 문의사항은 새로운 게시글을 통해 해주세요^^</textarea>
 					</c:if>		
 					</td>
 				</tr>
