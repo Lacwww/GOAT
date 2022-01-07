@@ -98,7 +98,6 @@ public class MemberController {
 			member.setM_pass(pass);
 			member.setM_photo(fileName);
 			result = ms.insert(member);
-			System.out.println(real);
 		} else result = -1; // 이미 있는 데이터
 		model.addAttribute("result", result);
 		return "member/join";
@@ -267,5 +266,14 @@ public class MemberController {
 		}
 		model.addAttribute("result", result);
 		return "member/update";
+	}
+	@RequestMapping("member/delete")
+	public String delete(String m_id, Model model, HttpSession session) {
+		int result = ms.delete(m_id);
+		if (result > 0) {
+			session.invalidate();
+		}
+		model.addAttribute("result", result);
+		return "member/delete";
 	}
 }

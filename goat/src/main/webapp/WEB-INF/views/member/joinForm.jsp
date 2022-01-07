@@ -69,7 +69,7 @@
 		// id 중복체크 ajax
 		$.post('chkId.do', "m_id=" + frm.m_id.value, function(data) {
  		 	if(data == 1) {
-                $('#idChk_result').html("사용 중인 아이디입니다"); d
+                $('#idChk_result').html("사용 중인 아이디입니다");
                 $('#idChk_result').css("color","red");
                 frm.idchk.value="unChk";
              }
@@ -165,6 +165,10 @@
 		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
 			<div>
 				<h2 style="margin-bottom: 30px;">Join Us</h2>
+				<label for="chooseFile">
+					<img alt="" src="${path }/resources/m_photo/${member.m_photo }" id="preview"
+						style = "border-radius:50%;" width="200px;" height="200px;">
+				</label>
 				<div id="thumbnails"></div>
 				<form action="join.do" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 					<input type="hidden" name="idchk" value="unChk">

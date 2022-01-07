@@ -10,6 +10,7 @@
 	#chooseFile { display: none; }
 </style>
 <script type="text/javascript">
+	/* 수정 */
 	$(function() {
 		$('.data').attr('disabled', true);
 		$('#success').hide();
@@ -19,14 +20,27 @@
 			$('#success').show();
 			$('#cancel').show();
 			$('#update').hide();
+			$('#delete').hide();
 		});
 		$('#cancel').click(function() {
 			$('.data').attr('disabled', true);
 			$('#success').hide();
 			$('#cancel').hide();
 			$('#update').show();
+			$('#delete').show();
 		});
 	});
+	
+	/* 삭제 */
+	function del(m_id) {
+		var con = confirm("정말로 탈퇴하시겠습니까?");
+		if (con) {
+			location.href="delete.do?m_id=" + m_id;
+		} else {
+			alert("탈퇴가 취소되었습니다");
+			return;
+		}
+	}
 	
 	// 카카오 지도 API
 	window.onload = function(){
@@ -168,6 +182,10 @@
 			reader.readAsDataURL(f);
 		});
 	}
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
 </script>
 </head>
 <body>
@@ -221,6 +239,7 @@
 				</div>
 				<div>
 					<input type="button" value="수정" class="btn btn-info" id="update">
+					<input type="button" value="탈퇴" class="btn btn-warning" id="delete" onclick="del('${member.m_id }')">
 					<input type="submit" value="완료" class="btn btn-info" id="success">
 					<input type="reset" value="취소" class="btn btn-warning" id="cancel">
 				</div>

@@ -5,10 +5,10 @@
 		select * from member where m_id=#{m_id}
 	</select>
 	<select id="nickChk" parameterType="member" resultType="member">
-		select * from member where m_nick=#{m_nick}
+		select * from member where m_nick=#{m_nick} and del='n'
 	</select>
 	<select id="emailChk" parameterType="member" resultType="member">
-		select * from member where m_email=#{m_email}
+		select * from member where m_email=#{m_email} and del='n'
 	</select>
 	<insert id="insert" parameterType="member">
 		insert into member values ((SELECT NVL(MAX(m_num),0)+1 FROM member), #{m_id}, #{m_pass}, #{m_nick},
@@ -30,5 +30,8 @@
 				, m_photo=#{m_photo}
 			</if>
 			where m_id=#{m_id}
+	</update>
+	<update id="delete" parameterType="string">
+		update member set del='y' where m_id=#{m_id}
 	</update>
 </mapper>

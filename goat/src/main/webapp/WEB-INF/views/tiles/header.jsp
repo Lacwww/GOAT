@@ -29,7 +29,11 @@
 				</td>
 				<td style="border-right: 2px solid;" align="center"
 					onclick="location.href='/goat/cs/csList.do'">
-					Board
+					Service
+				</td>
+				<td style="border-right: 2px solid;" align="center"
+					onclick="location.href='/goat/cs/csList.do'">
+					Notice
 				</td>
 				<td style="border-right: 2px solid;" align="center"
 					onclick="location.href='/goat/main/home.do'">
@@ -66,7 +70,6 @@
 							 src="/goat/resources/m_photo/${img }" width="70px" height="70px" />
 					</td>
 				</c:if>
-				<td style="border-right: 2px solid;" align="center">Weather</td>
 			</tr>
 		</table>
 	</div>
