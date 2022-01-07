@@ -9,7 +9,7 @@ public interface CsDao {
 
 	int getTotal(Cs cs);
 
-	Cs select(int num);
+	Cs select(int cs_num);
 
 	int maxNum();
 

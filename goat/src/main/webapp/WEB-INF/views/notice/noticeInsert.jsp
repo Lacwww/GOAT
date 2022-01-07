@@ -6,8 +6,8 @@
 </head><body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("게시글 입력 성공");
-		location.href="csList.do?pageNum=${pageNum}";
+		alert("공지사항 입력 성공");
+		location.href="noticeList.do?pageNum=${pageNum}";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
