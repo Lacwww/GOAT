@@ -25,7 +25,7 @@ alter table member modify(m_tel varchar2(40));
 alter table member modify(m_pass varchar2(1000));
 select * from member;
 
-update member set m_id='admin', m_nick='admin', m_name='admin', m_addr='admin', m_addrd='admin', admin='y' where m_num=3;
+update member set m_id='admin', m_nick='admin', m_name='admin', m_addr='admin', m_addrd='admin', admin='y' where m_num=1;
 
 /* 여행 게시판 */
 CREATE TABLE TRIP (

@@ -12,8 +12,8 @@
 </style>
 </head>
 <body>
-	<div class="container" align="center">
-		<table style="width: 100%">
+	<div class="container" align="center" style="display: flex; justify-content: center; width: 100%;">
+		<table style="width: 100%;">
 			<tr>
 				<td style="border-left: 2px solid; border-right: 2px solid;" align="center" 
 					onclick="location.href='/goat/main/home.do'">
@@ -32,7 +32,7 @@
 					Service
 				</td>
 				<td style="border-right: 2px solid;" align="center"
-					onclick="location.href='/goat/cs/csList.do'">
+					onclick="location.href='/goat/notice/noticeList.do'">
 					Notice
 				</td>
 				<td style="border-right: 2px solid;" align="center"
@@ -60,15 +60,29 @@
 					</td>
 				</c:if>
 				<c:if test="${not empty id && empty admin }">
-					<td style="border-right: 2px solid;" align="center"
-						onclick="location.href='/goat/member/logout.do'">
-						Logout
-					</td>
-					<td style="border-right: 2px solid;" align="center"
-						onclick="location.href='/goat/member/myPage.do'">
-						<img title="MyPage" style = "border-radius:50%;"
-							 src="/goat/resources/m_photo/${img }" width="70px" height="70px" />
-					</td>
+					<c:if test="${requestScope['javax.servlet.forward.request_uri'] == '/goat/member/myPage.do'||
+						requestScope['javax.servlet.forward.request_uri'] == '/goat/member/updateForm.do'}">
+						<td style="border-right: 2px solid;" align="center"
+							onclick="location.href='/goat/member/logout.do'">
+							Logout
+						</td>
+						<td style="border-right: 2px solid;" align="center"
+							onclick="location.href='/goat/member/myPage.do'">
+							MyPage
+						</td>
+					</c:if>
+					<c:if test="${requestScope['javax.servlet.forward.request_uri'] != '/goat/member/myPage.do'&&
+						requestScope['javax.servlet.forward.request_uri'] != '/goat/member/updateForm.do'}">
+						<td style="border-right: 2px solid;" align="center"
+							onclick="location.href='/goat/member/logout.do'">
+							Logout
+						</td>
+						<td style="border-right: 2px solid;" align="center"
+							onclick="location.href='/goat/member/myPage.do'">
+							<img title="MyPage" style = "border-radius:50%;"
+								 src="/goat/resources/m_photo/${img }" width="70px" height="70px" />
+						</td>
+					</c:if>
 				</c:if>
 			</tr>
 		</table>

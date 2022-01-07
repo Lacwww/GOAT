@@ -34,4 +34,7 @@
 	<update id="delete" parameterType="string">
 		update member set del='y' where m_id=#{m_id}
 	</update>
+	<select id="photo" parameterType="string" resultType="string">
+		select m_photo from member where m_id=#{m_id}
+	</select>
 </mapper>
