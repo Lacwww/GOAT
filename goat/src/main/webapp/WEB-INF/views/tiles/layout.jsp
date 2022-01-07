@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>layout</title>
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div class="container">
 		<div><tiles:insertAttribute name="header"></tiles:insertAttribute></div>
 		<div><tiles:insertAttribute name="body"></tiles:insertAttribute></div>

@@ -51,4 +51,9 @@ public class MemberServiceImpl implements MemberService {
 		return md.update(member);
 	}
 
+	@Override
+	public int delete(String m_id) {
+		return md.delete(m_id);
+	}
+
 }

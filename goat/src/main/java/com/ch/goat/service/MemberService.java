@@ -19,5 +19,7 @@ public interface MemberService {
 	int updatePass(Member member);
 
 	int update(Member member);
+
+	int delete(String m_id);
 	
 }

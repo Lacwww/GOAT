@@ -50,4 +50,9 @@ public class MemberDaoImpl implements MemberDao {
 	public int update(Member member) {
 		return sst.update("memberns.update", member);
 	}
+
+	@Override
+	public int delete(String m_id) {
+		return sst.update("memberns.delete", m_id);
+	}
 }
