@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("수정 성공");
-			location.href="main/mypage.do";
+			location.href="myPage.do";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
