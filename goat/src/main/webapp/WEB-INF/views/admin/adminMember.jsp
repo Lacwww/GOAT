@@ -18,6 +18,9 @@
 					<th>닉네임</th>
 					<th>이메일</th>
 					<th>등록일</th>
+					<th>관리자</th>
+					<th>탈퇴여부</th>
+					<th>탈퇴</th>
 				</tr>
 				<c:forEach var="member" items="${list }">
 					<tr>
@@ -26,6 +29,9 @@
 						<td>${member.m_nick }</td>
 						<td>${member.m_email }</td>
 						<td>${member.reg_date }</td>
+						<th>${member.admin }
+						<td>${member.del }</td>
+						<td onclick="location.href='adminMemberDelete.do?m_id=${member.m_id }&pageNum=${pageNum }'">탈퇴</td>
 					</tr>
 				</c:forEach>
 			</table>

@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function k1(place_num) {
+		 window.open('../place/prevDetailView.do?place_num='+place_num,"","");
+	}
+</script>
 </head>
 <body>
 	<div>
@@ -23,7 +28,7 @@
 				<c:forEach var="place" items="${list }">
 					<tr>
 						<td>${place.place_num }</td>
-						<td>${place.place_name }</td>
+						<td><span onclick="k1(${place.place_num})">${place.place_name }</span></td>
 						<td>${place.place_cate }</td>
 						<td>${place.place_addr }</td>
 						<td>${place.reg_date }</td>

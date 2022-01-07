@@ -2,6 +2,7 @@ package com.ch.goat.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +12,15 @@ import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
 import com.ch.goat.service.AdminService;
-import com.ch.goat.service.PlaceService;
+import com.ch.goat.service.MemberService;
+
 
 @Controller
 public class AdminController {
 	@Autowired
 	private AdminService as;
+	@Autowired
+	private MemberService ms;
 	
 	@RequestMapping("admin/admin")
 	public String admin() {
@@ -85,6 +89,7 @@ public class AdminController {
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		List<Member> list = as.memberList(startRow, endRow);
+		System.out.println(list+"sdfsdf");
 		int totalPage = (int)(Math.ceil((double)total/rowPerPage));
 		int startPage = currentPage - (currentPage - 1) % pagePerBlock;
 		int endPage = startPage + pagePerBlock - 1;
@@ -99,5 +104,13 @@ public class AdminController {
 		model.addAttribute("pagePerBlock", pagePerBlock);
 		model.addAttribute("list", list);
 		return "admin/adminMember";
+	}
+
+	@RequestMapping("admin/adminMemberDelete")
+	public String delete(String m_id, String pageNum, Model model) {
+		int result = ms.delete(m_id);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("result", result);
+		return "admin/adminMemberDelete";
 	}
 }
