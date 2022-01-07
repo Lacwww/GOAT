@@ -17,8 +17,8 @@ public class CsServiceImpl implements CsService{
 	public int getTotal(Cs cs) {
 		return cd.getTotal(cs);
 	}
-	public Cs select(int num) {
-		return cd.select(num);
+	public Cs select(int cs_num) {
+		return cd.select(cs_num);
 	}
 	public int maxNum() {
 		return cd.maxNum();

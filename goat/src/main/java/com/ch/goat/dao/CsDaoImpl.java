@@ -20,8 +20,8 @@ public class CsDaoImpl implements CsDao{
 		return sst.selectOne("csns.getTotal", cs);
 	}
 
-	public Cs select(int num) {
-		return sst.selectOne("csns.select", num);
+	public Cs select(int cs_num) {
+		return sst.selectOne("csns.select", cs_num);
 	}
 
 	public int maxNum() {

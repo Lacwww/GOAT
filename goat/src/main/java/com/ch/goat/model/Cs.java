@@ -22,4 +22,5 @@ public class Cs {
 	
 	// 고객문의 작성자띄우기
 	private String m_name;
+	private String m_nick;
 }

@@ -56,7 +56,7 @@
 						</c:if> 
 							<a href="csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}">${cs2.cs_title}</a>
 							</td>
-							<td class="td3">${cs2.m_name }</td>
+							<td class="td3">${cs2.m_nick }</td>
 							<td class="td4">${cs2.cs_view }</td>
 							<td class="td5">${cs2.reg_date }</td>
 						</c:if>

@@ -65,16 +65,19 @@ public class CsController {
 		int cs_num = cs.getCs_num();
 		Cs cs1 = null;
 		String content = null;
+		String title = null;
 			
 		if(cs_num != 0) {
 			cs1 = css.select(cs_num);
+			title = cs1.getCs_title();
 			content = cs1.getCs_content();
 			ref = cs1.getCs_ref();
 			re_step = cs1.getCs_re_step();
 			re_level = cs1.getCs_re_level();
 		}	
 		
-		model.addAttribute("content",content);
+		model.addAttribute("content", content);
+		model.addAttribute("title", title);
 		model.addAttribute("cs_num", cs_num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("ref", ref);
