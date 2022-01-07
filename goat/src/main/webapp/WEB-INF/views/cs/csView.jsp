@@ -24,7 +24,7 @@
 				<th>제목</th>
 				<td>${cs.cs_title}</td>
 				<th>작성자</th>
-				<td>${member.m_name}</td>
+				<td>${member.m_nick}</td>
 			</tr>
 			<tr>
 				<th>조회수</th>
