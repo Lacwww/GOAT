@@ -34,8 +34,6 @@ public class PlaceController {
 	@Autowired
 	private MemberService ms;
 	
-	
-	
 	@RequestMapping("place/insertPlace")
 	public String insertPlace() {
 		
