@@ -30,9 +30,9 @@ public class ScheduleController {
 	} 
 	@RequestMapping("makeScheduleForm")
 	public String makeSchedule(Model model, String place_area) {
-		model.addAttribute("place_area",place_area);
 		String[] t = {"장소명","테마"};
 		model.addAttribute("t",t);
+		model.addAttribute("place_area",place_area);
 		return "schedule/makeScheduleForm";
 	}
 	@RequestMapping("placeList") 
