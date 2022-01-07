@@ -23,4 +23,5 @@ public class Place {
 	
 	private String keyword;
 	private String search; 
+	
 }

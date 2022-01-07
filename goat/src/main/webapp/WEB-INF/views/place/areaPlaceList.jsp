@@ -65,7 +65,7 @@
 </form>
 
 <div align="center">
-	<input type="button" value="플레이스 등록" onclick="location.href='insertPlace.do'">
+	<input type="button" value="플레이스 등록" onclick="location.href='insertFormTempPlace.do'">
 	<input type="button" value="플레이스 건의">
 </div>
 

@@ -2,6 +2,8 @@ package com.ch.goat.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -23,4 +25,7 @@ public class TempPlace {
 	private int place_num;
 	private String del;
 	private int m_num;
+	
+	// upload용
+	private MultipartFile file;
 }

@@ -1,9 +1,13 @@
 package com.ch.goat.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +25,7 @@ import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
+import com.ch.goat.model.TempPlace;
 import com.ch.goat.service.MemberService;
 import com.ch.goat.service.PlaceService;
 import com.ch.goat.service.ScheduleService;
@@ -34,10 +39,52 @@ public class PlaceController {
 	@Autowired
 	private MemberService ms;
 	
-	@RequestMapping("place/insertPlace")
-	public String insertPlace() {
+	@RequestMapping("place/insertTempPlace")
+	public String insertTempPlace(TempPlace tempplace, Model model, HttpSession session) throws IOException{
+		int result = 0;
+		int m_num = (Integer) session.getAttribute("m_num");
 		
-		return "place/insertPlace";
+		if(tempplace.getTemp_addr().indexOf("제주특별자치도") > -1) {
+			tempplace.setTemp_area("제주도");
+		}else {
+			tempplace.setTemp_area("정보없음");
+		}
+		if(tempplace.getTemp_addr().indexOf("제주시") > -1) {
+			tempplace.setTemp_areadetail("제주시");
+		}else if(tempplace.getTemp_addr().indexOf("서귀포시") > -1){
+			tempplace.setTemp_areadetail("서귀포시");
+		}else {
+			tempplace.setTemp_areadetail("정보없음");
+		}		
+		tempplace.setM_num(m_num);		
+		// 실제 파일명
+		String fileName1 = tempplace.getFile().getOriginalFilename();
+		// 실제 파일 저장 경로
+		String real = session.getServletContext().getRealPath("/resources/p_images");
+		
+		if(fileName1.lastIndexOf(".") == -1) {
+			String temp_photo = "/goat/resources/p_images/beforeimg.png";
+			tempplace.setTemp_photo(temp_photo);
+		}else {
+			// 파일명을 변경해야 할 때 : UUID 임의의 문자열로 변경 Mac은 파일명이 한글이면 깨짐			
+			UUID uuid = UUID.randomUUID();
+			String fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
+			String temp_photo = "/goat/resources/p_images/"+fileName;
+			// 파일 저장			
+			FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
+			fos.write(tempplace.getFile().getBytes());
+			fos.close();
+			tempplace.setTemp_photo(temp_photo);
+		}		
+		result = ps.tempinsert(tempplace);
+		
+		model.addAttribute("result", result);
+		return "place/insertTempPlace";
+	}
+	
+	@RequestMapping("place/insertFormTempPlace")
+	public String insertPlace() {	
+		return "place/insertFormTempPlace";
 	}
 	
 	@RequestMapping("place/placeAreaModal")

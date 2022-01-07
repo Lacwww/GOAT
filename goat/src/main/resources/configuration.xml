@@ -8,6 +8,8 @@
 			type="com.ch.goat.model.PlaceReview" />
 		<typeAlias alias="bookmark"
 			type="com.ch.goat.model.Bookmark" />
+		<typeAlias alias="tempplace"
+			type="com.ch.goat.model.TempPlace" />
 		<typeAlias alias="member" type="com.ch.goat.model.Member" />
 		<typeAlias alias="trip" type="com.ch.goat.model.Trip" />
 		<typeAlias alias="tp" type="com.ch.goat.model.TripPhoto" />

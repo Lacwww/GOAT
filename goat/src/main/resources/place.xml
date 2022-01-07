@@ -69,6 +69,15 @@
 								#{place_photo}, #{lat}, #{lng}, sysdate, #{place_content}, '제주도', #{place_tag}, #{place_areadetail})
 	</insert>
 	
+	<!-- 임시 장소 추가 -->
+	<insert id="tempinsert" parameterType="tempplace">
+		<selectKey keyProperty="temp_num" order="BEFORE" resultType="integer">
+			select nvl(count(*), 0) + 1 from tempplace
+		</selectKey>
+		insert into tempplace values(#{temp_num},#{temp_name},#{temp_cate},#{temp_addr},#{temp_addrd},#{temp_photo},
+								#{lat},#{lng},sysdate,#{temp_content},#{temp_area},#{temp_tag},#{temp_areadetail},'등록',null,'n',#{m_num})
+	</insert>
+	
 	<!-- 북마크 삭제 -->
 	<delete id="deleteBM" parameterType="map">
 		delete from bookmark where m_num = #{m_num} and place_num = #{place_num}

@@ -5,6 +5,7 @@ import java.util.List;
 import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
+import com.ch.goat.model.TempPlace;
 
 public interface PlaceService {
 
@@ -35,6 +36,8 @@ public interface PlaceService {
 	void updatePrev(PlaceReview prev);
 
 	List<Place> areaDetailList(String place_area);
+
+	int tempinsert(TempPlace tempplace);
 
 
 
