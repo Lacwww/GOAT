@@ -12,6 +12,7 @@ import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
+import com.ch.goat.model.TempPlace;
 import com.ch.goat.service.MemberService;
 
 @Repository
@@ -80,6 +81,9 @@ public class PlaceDaoImpl implements PlaceDao{
 	}
 	public List<Place> areaDetailList(String place_area) {
 		return sst.selectList("placens.areaDetailList", place_area);
+	}
+	public int tempinsert(TempPlace tempplace) {
+		return sst.insert("placens.tempinsert", tempplace);
 	}
 
 }

@@ -9,6 +9,7 @@ import com.ch.goat.dao.PlaceDao;
 import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
+import com.ch.goat.model.TempPlace;
 
 @Service
 public class PlaceServiceImpl implements PlaceService{
@@ -56,6 +57,9 @@ public class PlaceServiceImpl implements PlaceService{
 	}
 	public List<Place> areaDetailList(String place_area) {
 		return pd.areaDetailList(place_area);
+	}
+	public int tempinsert(TempPlace tempplace) {
+		return pd.tempinsert(tempplace);
 	}
 
 }
