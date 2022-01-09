@@ -5,8 +5,9 @@
 <html>
 <head>
 <script type="text/javascript">
-	// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+	// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수
 	var markers = [];
+	var id = [];
 	function setMarkers(map) {
 	    for (var i = 0; i < markers.length; i++) {
 	        markers[i].setMap(map);
@@ -15,6 +16,8 @@
 	/* 플레이스 선택 시  */
 	function pick(num) {
 		/* 선택 목록에 테이블 추가하기 */
+		id.push(num);
+		alert(id);
 		var src = $('#p_image'+num).attr("src");
 		var name = $('#p_name'+num).text();
 		var addr = $('#p_addr'+num).text();
@@ -63,19 +66,27 @@
 		            map.panTo(coords);
 		    } 
 		});    
+		/* input type hidden 추가하기 */
+		$('#id').val(id);
 	}
  	function del(num) {
  		var msg = confirm("플레이스를 삭제하시겠습니까?");
  		if(msg) {
 			$('#tr'+num).remove();
 			$('#pList'+num).show();
+			arr.splice(num,1);
  		}
+	}
+ 	/* 플레이스 상세정보 */
+	function modal(place) {
+		$('#MoaModal .modal-content').load("prevDetailView.do?place_num=" + place);
+		$('#MoaModal').modal();
 	}
 </script>
 <style type="text/css">
 	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
 	.p_image { width: 100%; height: 100%;}
-	#pimage { width: 160px; height: 140px; float: left;}
+	#pimage { width: 160px; height: 140px; float: left; position: relative;}
 	#plist { margin: 10px;} 
 	#p_image{ width: 150px; height: 150px;}
 </style> 
@@ -97,15 +108,23 @@
 			 		<img alt="" src="${p.place_photo }" class="p_image" id="p_image${p.place_num }">
 			 	</div>
 			 	<div id="pdesc" style="height: 140px;">
-			 	 	<span style="font-weight: bold;" id="p_name${p.place_num }">${p.place_name }</span>
-			 	 		<span class="glyphicon glyphicon-plus" id="icon" onclick="pick(${p.place_num})"></span> <br>
+			 	 	<div style="width: 100%;"><span style="font-weight: bold;" id="p_name${p.place_num }">${p.place_name }</span>
+			 	 		<span class="glyphicon glyphicon-plus" id="icon" onclick="pick(${p.place_num})"></span>
+			 	 		<img alt="자세히 보기" src="${path }/resources/images/info.png" width="20px;" height="20px;"
+			 	 			onclick="modal(${p.place_num})"></div><br>
 			 	 	<span>주소</span><br><span class="p_addr" id="p_addr${p.place_num }">${p.place_addr }</span><br>
 			 	 	<span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span>
-			 	 	<hr>
 			 	 </div>
 			 </div>
 		</c:forEach>
 	</c:if>
+	<!-- 플레이스 모달 -->
+	<div class="modal fade" id="MoaModal" tabindex="-1" role="dialog"
+		aria-labelledby="historyModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content"></div>
+		</div>
+	</div>
 </div>
 </body>
 </html>
