@@ -46,6 +46,7 @@
 		var keyword = $('#keyword').val();
 		var search = $('#search option:selected').val()
 		$('#list').load('placeList.do?search='+search+'&keyword='+keyword+'&place_area=${place_area}');
+		setMarkers(null);    
 	}
 </script>
 <style type="text/css">
@@ -115,8 +116,12 @@
 					    } 
 					});    
 				</script>
-				
-			</form>
+								<div id="btn">
+					<input type="submit" value="상세일정 작성">
+					<input type="button" value="취소" onclick="location.href='selectArea.do'">
+				</div>
+					</form>	
+
 				</div>
 	
 				<!-- 플레이스 목록 -->
@@ -129,10 +134,8 @@
 					</table>
 				</div>
 				
-				<div id="btn">
-					<input type="submit" value="상세일정 작성">
-					<input type="button" value="취소" onclick="location.href='selectArea.do'">
-				</div>
+
+
 		</div>
 </body>
 </html>

@@ -52,7 +52,7 @@
 	<div class="container" align="center">
 		<h2 id="sch">스케줄 생성</h2>  
 		<h3 class="text-primary" style="margin-bottom: 40px;">어디로 가볼까요?</h3>
-		<form action="selectArea.do" method="get" name="frm">
+		<form action="schedule/selectArea.do" method="get" name="frm">
 			<input type="text" name="keyword" id="keyword"
 				placeholder=" 지역을 검색해주세요" value="${keyword }"
 				style="width: 45%; height: 4%; font-size: 25px;">
