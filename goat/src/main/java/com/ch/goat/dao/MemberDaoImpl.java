@@ -1,10 +1,15 @@
 package com.ch.goat.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
+import com.ch.goat.model.Place;
+import com.ch.goat.model.TempPlace;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -59,5 +64,30 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public String photo(String m_id) {
 		return sst.selectOne("memberns.photo", m_id);
+	}
+
+	@Override
+	public List<TempPlace> place(int m_num) {
+		return sst.selectList("memberns.cpList", m_num);
+	}
+
+	@Override
+	public int cpDelete(int temp_num) {
+		return sst.update("memberns.cpDelete", temp_num);
+	}
+
+	@Override
+	public List<Integer> bmNum(int m_num) {
+		return sst.selectList("memberns.bmNum", m_num);
+	}
+
+	@Override
+	public List<Place> bookmarkList(int temp) {
+		return sst.selectList("memberns.bookmarkList", temp);
+	}
+
+	@Override
+	public List<Cs> myCsList(int m_num) {
+		return sst.selectList("memberns.myCsList", m_num);
 	}
 }

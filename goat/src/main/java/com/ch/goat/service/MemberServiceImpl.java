@@ -1,10 +1,15 @@
 package com.ch.goat.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.MemberDao;
+import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
+import com.ch.goat.model.Place;
+import com.ch.goat.model.TempPlace;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -59,6 +64,31 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String photo(String m_id) {
 		return md.photo(m_id);
+	}
+
+	@Override
+	public List<TempPlace> cpList(int m_num) {
+		return md.place(m_num);
+	}
+
+	@Override
+	public int cpDelete(int temp_num) {
+		return md.cpDelete(temp_num);
+	}
+
+	@Override
+	public List<Integer> bmNum(int m_num) {
+		return md.bmNum(m_num);
+	}
+
+	@Override
+	public List<Place> bookmarkList(int temp) {
+		return md.bookmarkList(temp);
+	}
+
+	@Override
+	public List<Cs> myCsList(int m_num) {
+		return md.myCsList(m_num);
 	}
 
 }

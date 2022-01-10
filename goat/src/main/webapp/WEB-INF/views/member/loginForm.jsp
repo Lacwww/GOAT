@@ -15,7 +15,7 @@
 	<div class="container" align="center" style="height: 50%;">
 		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
 			<div>
-				<h2 style="margin-bottom: 30px;">Login</h2>
+				<h2 style="margin-bottom: 50px;">Login</h2>
 			 	<form action="login.do?prevUrl=${prevUrl }" method="post">
 			 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
 			 		<div align="center">

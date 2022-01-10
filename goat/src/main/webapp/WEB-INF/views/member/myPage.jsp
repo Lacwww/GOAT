@@ -35,13 +35,13 @@
 			<table>
 				<tr>
 					<td align="center">
-						<a>Place Create</a>
+						<a href="createPlaceList.do?m_num=${member.m_num }">Create Place</a>
 					</td>
 					<td align="center">
-						<a>Place Bookmark</a>
+						<a href="bookmarkList.do?m_num=${member.m_num }">Bookmark Place</a>
 					</td>
 					<td align="center">
-						<a>Customer Service</a>
+						<a href="myCsList.do?m_num=${member.m_num }">Customer Service</a>
 					</td>
 				</tr>
 				<tr>
