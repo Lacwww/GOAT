@@ -10,13 +10,13 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("삭제 완료");
-			location.href="loginForm.do";
+			alert("취소 완료");
+			location.href="createPlaceList.do?m_num=${m_num}";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("삭제 실패");
+			alert("취소 실패");
 			history.back();
 		</script>
 	</c:if>

@@ -3,6 +3,9 @@ package com.ch.goat.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -21,7 +24,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ch.goat.model.Area;
+import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
+import com.ch.goat.model.Place;
+import com.ch.goat.model.TempPlace;
 import com.ch.goat.service.MemberService;
 @Controller
 public class MemberController {
@@ -290,5 +297,37 @@ public class MemberController {
 		}
 		model.addAttribute("result", result);
 		return "member/delete";
+	}
+	@RequestMapping("member/createPlaceList")
+	public String placeCreateList(int m_num, Model model) {
+		List<TempPlace> place = ms.cpList(m_num);
+		model.addAttribute("place", place);
+		return "member/createPlaceList";
+	}
+	@RequestMapping("member/cpDelete")
+	public String cpDelete(int temp_num, int m_num, Model model) {
+		int result = ms.cpDelete(temp_num);
+		model.addAttribute("m_num", m_num);
+		model.addAttribute("result", result);
+		return "member/cpDelete";
+	}
+	@RequestMapping("member/bookmarkList")
+	public String bookmarkList(int m_num, Model model) {
+		List<Integer> num = ms.bmNum(m_num);
+		List<Place> list = new ArrayList<Place>();
+		Iterator<Integer> it = num.iterator();
+		while(it.hasNext()) {
+			int temp = it.next();
+			list.addAll((List<Place>)ms.bookmarkList(temp));
+		}
+		model.addAttribute("list", list);
+		model.addAttribute("m_num", m_num);
+		return "member/bookmarkList";
+	}
+	@RequestMapping("member/myCsList")
+	public String myCsList(int m_num, Model model) {
+		List<Cs> list = ms.myCsList(m_num);
+		model.addAttribute("list", list);
+		return "member/myCsList";
 	}
 }

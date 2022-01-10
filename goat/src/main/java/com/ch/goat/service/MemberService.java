@@ -1,6 +1,12 @@
 package com.ch.goat.service;
 
+import java.util.List;
+
+import com.ch.goat.model.Bookmark;
+import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
+import com.ch.goat.model.Place;
+import com.ch.goat.model.TempPlace;
 
 public interface MemberService {
 
@@ -23,5 +29,15 @@ public interface MemberService {
 	int delete(String m_id);
 
 	String photo(String m_id);
-	
+
+	List<TempPlace> cpList(int m_num);
+
+	int cpDelete(int temp_num);
+
+	List<Integer> bmNum(int m_num);
+
+	List<Place> bookmarkList(int temp);
+
+	List<Cs> myCsList(int m_num);
+
 }

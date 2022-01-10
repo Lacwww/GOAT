@@ -37,4 +37,19 @@
 	<select id="photo" parameterType="string" resultType="string">
 		select m_photo from member where m_id=#{m_id}
 	</select>
+	<select id="cpList" parameterType="integer" resultType="tempplace">
+		select * from tempplace where m_num=#{m_num} order by temp_num desc
+	</select>
+	<update id="cpDelete" parameterType="integer">
+		update tempplace set del='c' where temp_num=#{temp_num}
+	</update>
+	<select id="bmNum" parameterType="integer" resultType="integer">
+		select place_num from bookmark where m_num=#{m_num}
+	</select>
+	<select id="bookmarkList" parameterType="integer" resultType="place">
+		select * from place where place_num=#{temp}
+	</select>
+	<select id="myCsList" parameterType="integer" resultType="cs">
+		select * from cs where m_num=#{m_num} and del='n'
+	</select>
 </mapper>
