@@ -183,6 +183,8 @@
 				<tr><th>도로명 주소</th><th><input type="text" name="temp_addrd" size="40"></th></tr>
 				<tr><th>장소 설명</th>
 				<th><textarea rows="5" cols="50" name="temp_content" required="required"></textarea></th></tr>
+				<tr><th>건의 이유</th>
+				<th><textarea rows="5" cols="50" name="temp_explanation" required="required"></textarea></th></tr>
 				<tr><th colspan="3" align="center">
 					<input type="submit" value="등록신청">
 					<input type="button" onclick="history.back()" value="취소">

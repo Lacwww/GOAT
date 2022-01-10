@@ -39,6 +39,7 @@ public class PlaceController {
 	@Autowired
 	private MemberService ms;
 	
+	
 	@RequestMapping("place/insertTempPlace")
 	public String insertTempPlace(TempPlace tempplace, Model model, HttpSession session) throws IOException{
 		int result = 0;
@@ -190,7 +191,6 @@ public class PlaceController {
 	}
 	@RequestMapping("place/areaPlaceList")
 	public String areaPlaceList(Place place, String pageNum, Model model) {
-		System.out.println(place.getPlace_areadetail());
 		int rowPerPage = 12;
 		int pagePerBlock = 10;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
