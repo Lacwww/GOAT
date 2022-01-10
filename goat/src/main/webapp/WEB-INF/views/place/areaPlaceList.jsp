@@ -116,7 +116,7 @@
 	<div class="modal" id="MoaModal" tabindex="-1" role="dialog"
 		aria-labelledby="historyModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document" style="margin-top: 10%;">
-			<div class="modal-content"></div>
+			<div class="modal-content" ></div>
 		</div>
 	</div>
 </body>
