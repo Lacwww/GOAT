@@ -85,5 +85,8 @@ public class PlaceDaoImpl implements PlaceDao{
 	public int tempinsert(TempPlace tempplace) {
 		return sst.insert("placens.tempinsert", tempplace);
 	}
+	public Place selectPlace(int num) {
+		return sst.selectOne("placens.selectPlace", num);
+	}
 
 }

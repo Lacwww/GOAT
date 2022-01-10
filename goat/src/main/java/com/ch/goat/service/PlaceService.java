@@ -39,6 +39,9 @@ public interface PlaceService {
 
 	int tempinsert(TempPlace tempplace);
 
+	Place selectPlace(int num);
+
+
 
 
 

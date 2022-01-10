@@ -63,6 +63,10 @@
 		select distinct place_areadetail from place where place_area = #{place_area}
 	</select>
 	
+	<select id="selectPlace" parameterType="integer" resultType="place">
+		select * from place where place_num = #{place_num}
+	</select>
+	
 	<!-- 관광지 API 정보 입력 -->
 	<insert id="insertAPI" parameterType="place">
 		insert into place values(#{place_num}, #{place_name}, #{place_cate}, #{place_addr}, #{place_addrd},

@@ -61,5 +61,9 @@ public class PlaceServiceImpl implements PlaceService{
 	public int tempinsert(TempPlace tempplace) {
 		return pd.tempinsert(tempplace);
 	}
+	public Place selectPlace(int num) {
+		return pd.selectPlace(num);
+	}
+
 
 }

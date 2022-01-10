@@ -5,12 +5,25 @@
 <html>
 <head>
 <style type="text/css">
-	img {width: 100%; height: 100%; padding-right: 2px;}
+	.placeImg {width: 100%; height: 100%; padding-right: 2px;}
 	.area_photo { float: left; width: 30%; height: 30%;}
 	.area_text { width: 80%; padding: 5px; }
+	a {cursor: pointer; }
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function updatePlace() {
+		if(${empty id}){
+			alert("로그인 후 이용해주세요");
+			return false;
+		}
+		var con = confirm("플레이스 건의를 하시겠습니까?");
+		if(con){
+			location.href="updateFormTempPlace.do?place_num="+${place.place_num };
+		}
+	};
+</script>
 </head>
 <body>
 	<div>
@@ -20,7 +33,7 @@
 		<div class="modal-body">
 			<div class="container" id="inner_content" style="width: 100%;">
 				<div class="area_photo">
-					<img alt=""	src="${place.place_photo }">
+					<img class="placeImg" alt=""	src="${place.place_photo }">
 				</div>
 				<div class="area_text">
 					<h3>${place.place_name}</h3>
@@ -32,6 +45,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
+			<div class="pull-left"><a onclick="updatePlace()">플레이스 건의</a></div>
 			<input type="button" class="btn btn-sm btn-success" id="select" value="상세보기"
 				onclick="location.href='prevDetailView.do?place_num=${place.place_num}'">
 			<button class="btn btn-sm btn-danger pull-right"

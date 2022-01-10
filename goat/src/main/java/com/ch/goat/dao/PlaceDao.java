@@ -39,6 +39,8 @@ public interface PlaceDao {
 
 	int tempinsert(TempPlace tempplace);
 
+	Place selectPlace(int num);
+
 
 
 
