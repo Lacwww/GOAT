@@ -2,6 +2,7 @@ package com.ch.goat.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +51,8 @@ public class ScheduleController {
 		model.addAttribute("plist",plist);
 		return "schedule/placeList"; 
 	}
-	@RequestMapping("schedule/makeScheduleDetail.do")
-	public String makeScheduleDetail(Model model, Place place, String id, String s_date, String e_date) {
+	@RequestMapping("schedule/makeScheduleDetail")
+	public String makeScheduleDetail(Model model, Place place, String id, String s_date, String e_date,String place_area) {
 		// place PK int로 형변환
 		String[] ids = id.split(",");
 		int[] place_num = new int[ids.length];
@@ -63,6 +64,9 @@ public class ScheduleController {
 			place = ss.selectP(place_num[i]);
 			places.add(place);
 		}
+			
+		model.addAttribute("size",places.size());
+		model.addAttribute("place_area",place_area);
 		model.addAttribute("places",places);
 		model.addAttribute("s_date",s_date);
 		model.addAttribute("e_date",e_date);

@@ -71,6 +71,7 @@
  	function del(num) {
  		var msg = confirm("플레이스를 삭제하시겠습니까?");
  		if(msg) {
+			setMarkers(null); 
 			$('#tr'+num).remove();
 			$('#pList'+num).show();
 			arr.splice(num,1);
