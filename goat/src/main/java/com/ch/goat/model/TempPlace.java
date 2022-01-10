@@ -25,6 +25,7 @@ public class TempPlace {
 	private int place_num;
 	private String del;
 	private int m_num;
+	private String temp_explanation;
 	
 	// upload용
 	private MultipartFile file;

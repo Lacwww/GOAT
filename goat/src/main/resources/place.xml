@@ -75,7 +75,8 @@
 			select nvl(count(*), 0) + 1 from tempplace
 		</selectKey>
 		insert into tempplace values(#{temp_num},#{temp_name},#{temp_cate},#{temp_addr},#{temp_addrd},#{temp_photo},
-								#{lat},#{lng},sysdate,#{temp_content},#{temp_area},#{temp_tag},#{temp_areadetail},'등록',null,'n',#{m_num})
+								#{lat},#{lng},sysdate,#{temp_content},#{temp_area},#{temp_tag},#{temp_areadetail},
+								'등록',null,'n',#{m_num},#{temp_explanation})
 	</insert>
 	
 	<!-- 북마크 삭제 -->
