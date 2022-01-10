@@ -66,7 +66,9 @@
 	<!-- 여행 일자 선택 -->
 	<div id="wrapper">
 		<div id="outer" style="width: 65%; float: left;">
-		<form action="makeSchedule.do" name="frm" method="post">
+		<form action="makeScheduleDetail.do" name="frm" method="post">
+			<input type="hidden" name="id">
+			<input type="hidden" name="place_area" value="${place.area }">
 			<div style="width: 100%;">
 				<img alt="calendar" src="${path }/resources/images/calendar.png"
 					 style="width: 60px; height: 70px; padding-bottom : 5px;">

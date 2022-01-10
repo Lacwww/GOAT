@@ -1,5 +1,8 @@
 package com.ch.goat.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +50,22 @@ public class ScheduleController {
 		model.addAttribute("plist",plist);
 		return "schedule/placeList"; 
 	}
-	@RequestMapping("schedule/makeSchedule.do")
-	public String makeSchedule(Model model,String[] id, String s_date, String e_date) {
-		model.addAttribute("id",id);
+	@RequestMapping("schedule/makeScheduleDetail.do")
+	public String makeScheduleDetail(Model model, Place place, String id, String s_date, String e_date) {
+		// place PK int로 형변환
+		String[] ids = id.split(",");
+		int[] place_num = new int[ids.length];
+		for (int i=0; i<ids.length; i++) {
+			place_num[i] = Integer.parseInt(ids[i]);
+		}
+		List<Place> places = new ArrayList<Place>();
+		for(int i=0; i<place_num.length; i++) {
+			place = ss.selectP(place_num[i]);
+			places.add(place);
+		}
+		model.addAttribute("places",places);
 		model.addAttribute("s_date",s_date);
 		model.addAttribute("e_date",e_date);
-		return "schedule/makeSchedule";
+		return "schedule/makeScheduleDetail";
 	}
 }

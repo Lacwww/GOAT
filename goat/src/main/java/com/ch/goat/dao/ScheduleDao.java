@@ -13,5 +13,7 @@ public interface ScheduleDao {
 
 	List<Place> plist(Place place);
 
+	Place selectP(int id);
+
 }
   

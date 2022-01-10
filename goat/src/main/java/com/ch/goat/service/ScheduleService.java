@@ -13,4 +13,6 @@ public interface ScheduleService {
 
 	List<Place> plist(Place place);
 
+	Place selectP(int id);
+
 }
