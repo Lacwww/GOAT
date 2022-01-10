@@ -26,4 +26,8 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public List<Place> plist(Place place) {
 		return sd.plist(place);
 	}
+
+	public Place selectP(int id) {
+		return sd.selectP(id);
+	}
 }

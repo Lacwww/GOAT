@@ -17,7 +17,7 @@
 	function pick(num) {
 		/* 선택 목록에 테이블 추가하기 */
 		id.push(num);
-		alert(id);
+		frm.id.value=id;
 		var src = $('#p_image'+num).attr("src");
 		var name = $('#p_name'+num).text();
 		var addr = $('#p_addr'+num).text();
@@ -32,7 +32,6 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 		// 주소로 좌표를 검색합니다
 		geocoder.addressSearch(addr, function(result, status) {
-			
 			setMarkers(null);    
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
