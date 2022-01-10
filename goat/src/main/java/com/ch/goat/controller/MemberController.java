@@ -24,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
@@ -138,6 +139,8 @@ public class MemberController {
 				}
 				session.setAttribute("m_num", member2.getM_num());
 				session.setAttribute("img", member2.getM_photo());
+				List<Alert> alert = ms.confirm(member2.getM_num());
+				session.setAttribute("alert", alert);
 			}
 		}
 		model.addAttribute("result", result);

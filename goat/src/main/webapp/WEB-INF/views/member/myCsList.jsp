@@ -7,14 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#cpList { margin: 0px; }
-	#cpList tr { width: 100%; }
+	#csList { margin: 0px; }
+	#csList tr { width: 100%; }
 </style>
 </head>
 <body>
 	<div class="container" align="center" style="width: 100%;">
 		<h2 style="margin-bottom: 50px;">Create Place</h2>
-		<table class="table table-striped" id="cpList">
+		<table class="table table-striped" id="csList">
 			<tr style="width: 100%;">
 				<td align="center">
 					번호

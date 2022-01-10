@@ -2,6 +2,7 @@ package com.ch.goat.service;
 
 import java.util.List;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
@@ -39,5 +40,7 @@ public interface MemberService {
 	List<Place> bookmarkList(int temp);
 
 	List<Cs> myCsList(int m_num);
+
+	List<Alert> confirm(int m_num);
 
 }

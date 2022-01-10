@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-	<div style="display: flex; width: 100%; height: 100px; align-items: center; justify-content: flex-end;">
+	<div style="display: flex; width: 90%; height: 100px; align-items: center; justify-content: flex-end;">
 		<c:if test="${empty id && empty admin}">
 			<img id="key" title="login" style = "margin: 20px;" src="/goat/resources/images/key.png"
 				onclick="location.href='/goat/member/loginForm.do'" width="50px" height="50px"/>

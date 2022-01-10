@@ -50,6 +50,9 @@
 		select * from place where place_num=#{temp}
 	</select>
 	<select id="myCsList" parameterType="integer" resultType="cs">
-		select * from cs where m_num=#{m_num} and del='n'
+		select c.*, m.* from cs c, member m where c.m_num=m.m_num and c.m_num=#{m_num} and c.del='n'
+	</select>
+	<select id="confirm" parameterType="integer" resultType="alert">
+		select * from alert where m_num=#{m_num} and con='n'
 	</select>
 </mapper>

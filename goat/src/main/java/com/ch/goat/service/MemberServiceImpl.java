@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.MemberDao;
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
@@ -89,6 +90,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<Cs> myCsList(int m_num) {
 		return md.myCsList(m_num);
+	}
+
+	@Override
+	public List<Alert> confirm(int m_num) {
+		return md.confirm(m_num);
 	}
 
 }
