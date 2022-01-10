@@ -3,21 +3,23 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rpnns">
 	<select id="list" parameterType="integer" resultType="nr">
-		select * from notice_reply where no_num=#{no_num} order by nor_num
+		select mr.*, m_name from notice_reply mr, member m 
+			where mr.m_num = m.m_num and no_num = #{no_num} order by nor_num
 	</select>
 	
-<!-- 	<insert id="insert" parameterType="rbd">
-		<selectKey keyProperty="rno" order="BEFORE" resultType="integer">
-			select nvl(max(rno), 0) + 1 from replyboard
+	<insert id="insert" parameterType="nr">
+		<selectKey keyProperty="nor_num" order="BEFORE" resultType="integer">
+			select nvl(max(nor_num), 0) + 1 from notice_reply
  		</selectKey>
- 		insert into replyboard values(#{rno},#{bno},#{replytext},#{replyer},sysdate,sysdate,'n')
+ 		insert into notice_reply values(#{nor_num},#{nor_content},sysdate,'n',
+ 			#{nor_ref},#{nor_re_step},#{nor_re_level},#{m_num},#{no_num})
 	</insert>
 	
-	<update id="delete" parameterType="integer">
-		update replyBoard set del='y' where rno=#{rno}
+ 	<update id="delete" parameterType="nr">
+		update notice_reply set del='y' where nor_num=#{nor_num}
 	</update>
 	
-	<update id="update" parameterType="rbd">
+<!--	<update id="update" parameterType="rbd">
 		update replyBoard set replytext=#{replytext}, updatedate=sysdate
 			where rno=#{rno}
 	</update>  -->

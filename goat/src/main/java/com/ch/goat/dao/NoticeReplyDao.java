@@ -8,4 +8,8 @@ public interface NoticeReplyDao {
 
 	List<NoticeReply> list(int no_num);
 
+	void insert(NoticeReply nr);
+
+	void delete(NoticeReply nr);
+
 }

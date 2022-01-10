@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+	function noBack() {
+		window.history.forward();
+	}
+	
 	// 고객문의 삭제
 	function delCs() {
 		var con = confirm("고객문의 삭제하시겠습니까?");
@@ -24,11 +28,16 @@
 	
 	$(function() {
 		// 현재 게시글에 해당하는 댓글을 가져와서 보여줘라
-		$('#nrListDisp').load('${path}/notice/noticeReplyList.do?no_num=${notice.no_num}');
+		$('#nrListDisp').load('noticeReplyList.do?no_num=${notice.no_num}');
 		$('#rInsert').click(function() {
+			if(frm1.nor_content.value == "") {
+				alert("댓글을 입력해주세요");
+				frm1.nor_content.focus();
+				return false;
+			}
 			// serialize() form의 모든값을 받을 수 있음
 			var sendData = $('#frm1').serialize();
-			$.post('${path}/rInsert',sendData, function(data) {
+			$.post('rInsert.do',sendData, function(data) {
 				alert("댓글이 작성 되었습니다");	
 				$('#nrListDisp').html(data);
 				frm1.nor_content.value="";  // 작성했던 댓글 지우기
@@ -67,8 +76,10 @@
 				</td>
 			</tr>
 		</table>
-		<div id="nrListDisp"></div>
-		<!-- submit할 때 action이 없는 경우에는 자신(여기서는 view)를 한번 더 실행한다 -->
+	</div>
+	<div id="nrListDisp"></div>
+	<!-- submit할 때 action이 없는 경우에는 자신(여기서는 view)를 한번 더 실행한다 -->
+	<div>
 		<form action="" id="frm1" name="frm1">
 			<input type="hidden" name="no_num" value="${notice.no_num }">
 		<table class="table table-hover">
@@ -78,5 +89,6 @@
 		</table>	
 		</form>
 	</div>
+	
 </body>
 </html>

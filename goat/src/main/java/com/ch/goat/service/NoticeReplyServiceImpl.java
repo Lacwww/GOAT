@@ -16,6 +16,12 @@ public class NoticeReplyServiceImpl implements NoticeReplyService{
 	public List<NoticeReply> list(int no_num) {
 		return nd.list(no_num);
 	}
-	
-	
+
+	public void insert(NoticeReply nr) {
+		nd.insert(nr);
+	}
+
+	public void delete(NoticeReply nr) {
+		nd.delete(nr);
+	}
 }
