@@ -14,17 +14,17 @@
 </style>
 </head>
 <body>
-	<div>
+	<div style="width: 100%;">
 		<div class="modal-header">
 			<h3>${area }</h3>
 		</div>
 		<div class="modal-body">
 			<div class="container" id="inner_content" align="center">
-				<div onclick="location.href='/goat/makeScheduleForm.do?place_area=제주시'">
+				<div onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=제주시'">
 					<img alt="" src="${path }/resources/images/aewol.jpeg">
 					<p>제주시</p>
 				</div>
-				<div onclick="location.href='/goat/makeScheduleForm.do?place_area=서귀포시'">
+				<div onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=서귀포시'">
 					<img alt="" src="${path }/resources/images/seongsan.jpeg">
 					<p>서귀포시</p>
 				</div>

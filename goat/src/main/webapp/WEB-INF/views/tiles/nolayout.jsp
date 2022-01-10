@@ -4,7 +4,7 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>nolatout</title></head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-	<div class="container" style="height: 100%;">
+	<div class="container" style="height: 100%; width: 100%;">
 		<tiles:insertAttribute name="body"/>
 		<tiles:insertAttribute name="footer"/>
 	</div>
