@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
+import com.ch.goat.model.TempPlace;
 
 
 @Repository
@@ -55,6 +56,19 @@ public class AdminDaoImpl implements AdminDao{
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		return sst.selectList("adminns.memberList", map);
+	}
+
+	@Override
+	public int getTotalTempPlace() {
+		return sst.selectOne("adminns.getTotalTempPlace");
+	}
+
+	@Override
+	public List<TempPlace> tempPlaceList(int startRow, int endRow) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		return sst.selectList("adminns.tempPlaceList", map);
 	}
 
 }

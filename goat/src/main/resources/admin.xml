@@ -36,4 +36,16 @@
 	<select id="getTotalMember" resultType="integer">
 		select nvl(count(*), 0) from member
 	</select>
+	
+	<!-- 임시장소의 리스트 -->
+	<select id="tempPlaceList" parameterType="map" resultType="tempplace">
+		select * from (select a.*,rowNum rn from( 
+			select * from tempplace order by temp_num desc)a)
+				where rn between #{startRow} and #{endRow}	
+	</select>
+	
+	<!-- 임시장소총 갯수 -->
+	<select id="getTotalTempPlace" resultType="integer">
+		select nvl(count(*), 0) from tempplace
+	</select>
 </mapper>

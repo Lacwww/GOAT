@@ -26,7 +26,6 @@
 		<typeAlias alias="scd"
 			type="com.ch.goat.model.ScheduleDetail" />
 
-
 	</typeAliases>
 	<mappers>
 		<mapper resource="place.xml" />
