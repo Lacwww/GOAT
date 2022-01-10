@@ -439,6 +439,7 @@ CREATE TABLE TEMPPLACE (
     CONSTRAINT FK_TEMPPLACE FOREIGN KEY(M_NUM)
     REFERENCES MEMBER(M_NUM)
 );
+alter table tempplace add temp_explanation varchar2(1000);
 
 /* 지역 테이블 */    
 create table Area(

@@ -20,7 +20,7 @@
 					Logo
 				</td>
 				<td style="border-right: 2px solid;" align="center"
-					onclick="location.href='/goat/selectArea.do'">
+					onclick="location.href='/goat/schedule/selectArea.do'">
 					Schedule
 				</td>
 				<td style="border-right: 2px solid;" align="center"
