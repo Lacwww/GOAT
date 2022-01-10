@@ -4,11 +4,15 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function rDelete(bno, rno) {
-		var sendData = 'bno='+bno+'&rno='+rno;
-		$.post('${path}/rDelete', sendData, function(data) {
+	function noBack() {
+		window.history.forward();
+	}
+	
+	function rDelete(nor_num, no_num) {
+		var sendData = 'nor_num='+nor_num+'&no_num='+no_num;
+		$.post('rDelete.do', sendData, function(data) {
 			alert("댓글이 삭제되었습니다");
-			$('#rbdListDisp').html(data);
+			$('#nrListDisp').html(data);
 		});
 	}
 	function rUpdate(bno, rno) {
@@ -37,31 +41,27 @@
 	}
 </script>
 </head><body>
-<div style="height:0px;">
+<div>
 	<c:if test="${empty nrList }">댓글 업졍~</c:if>
 	<c:if test="${not empty nrList}">
-		<h3 class="text-primary">댓글</h3>
-	<table class="table table-striped">
-		<tr><th>작성자</th><th>내용</th><th>수정일</th><th></th></tr>
-	<c:forEach var="nr" items="${nrList }">
-		<c:if test="${nr.del == 'y' }">
-			<tr><td colspan="4">삭제된 댓글입니다.</td></tr>
-		</c:if>
-		<c:if test="${nr.del != 'y' }">
-			<tr><td>${nr.m_name }</td>
-				<td id="td_${nr.nor_num }"><pre>${nr.nor_content }</pre></td><!-- 댓글번호를 알기 위해서 -->
-				<td>${nr.reg_date }</td>
-	<!-- 	원래는 댓글작성자하고 로그인한 ID(작성자, 별명) 비교해서 같으면 수정/삭제가 보임
-			근데 이번 실습에서는 회원게시판이 아니라서 임시로 게시판 작성자 읽고 비교 -->
-	<!--	<c:if test="${rbd.replyer == board.writer }">
-				<td id="btn_${rbd.rno }">
-					<input type="button" class="btn btn-warning btn-sm" value="수정" onclick="rUpdate(${rbd.bno},${rbd.rno})">
-					<input type="button" class="btn btn-danger btn-sm" value="삭제" onclick="rDelete(${rbd.bno},${rbd.rno})"></td>
+		<h3 class="text-primary">댓 글 목 록</h3>
+	<table style="border: 1px solid black;">
+		<c:forEach var="nr" items="${nrList }">
+			<c:if test="${nr.del == 'y' }">
+				<tr><td colspan="2">삭제된 댓글입니다.</td></tr>
 			</c:if>
-			<c:if test="${rbd.replyer != board.writer }"><td></td></c:if>   -->	
-			</tr>
-		</c:if>
-	</c:forEach>
+			<c:if test="${nr.del != 'y' }">
+				<tr><td>${nr.m_name }</td></tr>
+				<tr><td>${nr.reg_date }</td></tr>
+				<tr><td style="white-space:pre; overflow:auto;" colspan="2" id="td_${nr.nor_num }">${nr.nor_content }</td></tr>
+				
+				<c:if test="${m_num == nr.m_num }">
+					<td><input type="button" value="수정" onclick="rUpdate(${nr.nor_num},${nr.no_num})">
+						<input type="button" value="삭제" onclick="rDelete(${nr.nor_num},${nr.no_num})"></td>
+				</c:if>
+				<c:if test="${m_num != nr.m_num }"><td></td></c:if>
+			</c:if>
+		</c:forEach>
 	</table>
 	</c:if>
 </div>

@@ -15,4 +15,7 @@ public class NoticeReply {
 	private int nor_re_level;
 	private int m_num;
 	private int no_num;
+	
+	// 공지사항 댓글 작성자 띄우기 위해
+	private String m_name;
 }

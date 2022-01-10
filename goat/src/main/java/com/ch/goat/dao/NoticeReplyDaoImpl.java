@@ -16,6 +16,10 @@ public class NoticeReplyDaoImpl implements NoticeReplyDao {
 	public List<NoticeReply> list(int no_num) {
 		return sst.selectList("rpnns.list", no_num);
 	}
-
-
+	public void insert(NoticeReply nr) {
+		sst.insert("rpnns.insert", nr);
+	}
+	public void delete(NoticeReply nr) {
+		sst.delete("rpnns.delete", nr);
+	}
 }
