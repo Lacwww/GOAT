@@ -5,3 +5,4 @@
 <c:set var="id" value="${sessionScope.id }"></c:set>
 <c:set var="admin" value="${sessionScope.adminid }"></c:set>
 <c:set var="img" value="${sessionScope.img }"></c:set>
+<c:set var="alert" value="${sessionScope.alert }"></c:set>

@@ -25,6 +25,7 @@
 		<typeAlias alias="area" type="com.ch.goat.model.Area" />
 		<typeAlias alias="scd"
 			type="com.ch.goat.model.ScheduleDetail" />
+		<typeAlias alias="alert" type="com.ch.goat.model.Alert"/>
 
 
 	</typeAliases>

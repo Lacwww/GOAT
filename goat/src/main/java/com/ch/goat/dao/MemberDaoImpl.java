@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
@@ -89,5 +90,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public List<Cs> myCsList(int m_num) {
 		return sst.selectList("memberns.myCsList", m_num);
+	}
+
+	@Override
+	public List<Alert> confirm(int m_num) {
+		return sst.selectList("memberns.confirm", m_num);
 	}
 }

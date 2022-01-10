@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table { margin: 30px; }
-	td { width: 12.5%; height: 70px; font-size: 15px; cursor: pointer; }
+	td { width: 11.1%; height: 70px; font-size: 15px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -80,10 +80,47 @@
 						<td style="border-right: 2px solid;" align="center"
 							onclick="location.href='/goat/member/myPage.do'">
 							<img title="MyPage" style = "border-radius:50%;"
-								 src="/goat/resources/m_photo/${img }" width="70px" height="70px" />
+								 src="/goat/resources/m_photo/${img }" width="70px" height="70px"/>
 						</td>
 					</c:if>
 				</c:if>
+				<td style="border-right: 2px solid;" align="center">
+					<div class="dropdown">
+						<c:if test="${empty alert}">
+							<img src="/goat/resources/images/notice.png" title="notice" width="40px" height="40px">
+						</c:if>
+						<c:if test="${not empty alert }">
+							<img data-toggle="dropdown" alt="" src="/goat/resources/images/notice2.png"
+								title="notice" width="40px" height="40px">
+							<ul class="dropdown-menu" role="menu" style="margin-top: 20px;">
+								<c:forEach var="list" items="${alert }">
+									<c:if test="${not empty list.sch_name||empty list.temp_num||empty list.cs_num}">
+										<li role="presentation">
+											<a role="menuitem" href="#">${id }님의 ${list.sch_name }이 </a>
+										</li>
+									</c:if>
+									<c:if test="${not empty list.temp_num||empty list.sch_name||empty list.cs_num}">
+										<li role="presentation">
+											<a role="menuitem" href="#">${id }님의 ${list.temp_name }에 대한 ${list.crud } 요청이 
+												<c:if test="${list.del == 'y' }">
+													승인 완료되었습니다
+												</c:if>
+												<c:if test="${list.del == 'd' }">
+													승인 거절되었습니다
+												</c:if>
+											</a>
+										</li>
+									</c:if>
+									<c:if test="${not empty list.cs_num||empty list.sch_name||empty list.temp_num}">
+										<li role="presentation">
+											<a role="menuitem" href="#">${id }님의 ${list.cs_title }에 답변이 달렸습니다 </a>
+										</li>
+									</c:if>
+								</c:forEach>
+							</ul>
+						</c:if>
+					</div>
+				</td>
 			</tr>
 		</table>
 	</div>

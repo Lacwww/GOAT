@@ -15,7 +15,7 @@
 		$('.data').attr('disabled', true);
 		$('#success').hide();
 		$('#cancel').hide();
-		$('#back').click(function() {
+		$('#update').click(function() {
 			$('.data').attr('disabled', false);
 			$('#success').show();
 			$('#cancel').show();

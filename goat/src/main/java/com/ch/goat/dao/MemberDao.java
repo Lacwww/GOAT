@@ -2,7 +2,7 @@ package com.ch.goat.dao;
 
 import java.util.List;
 
-import com.ch.goat.model.Bookmark;
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
@@ -39,5 +39,7 @@ public interface MemberDao {
 	List<Place> bookmarkList(int temp);
 
 	List<Cs> myCsList(int m_num);
+
+	List<Alert> confirm(int m_num);
 
 }
