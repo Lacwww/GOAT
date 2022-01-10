@@ -56,13 +56,18 @@
 						</c:if> 
 							<a href="csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}">${cs2.cs_title}</a>
 							</td>
+						<c:if test="${cs2.admin != 'y' }">
+							<td class="td3">${cs2.m_name }</td>
+						</c:if>
+						<c:if test="${cs2.admin == 'y' }">
 							<td class="td3">${cs2.m_nick }</td>
+						</c:if>
 							<td class="td4">${cs2.cs_view }</td>
 							<td class="td5">${cs2.reg_date }</td>
 						</c:if>
 						<c:if test="${cs2.del == 'y' }">
 							<td colspan="4" class="td2">관리자에 의해 삭제된 게시글입니다.</td>
-						</c:if>
+						</c:if></tr>
 				</c:forEach>
 			</c:if>
 		</table>

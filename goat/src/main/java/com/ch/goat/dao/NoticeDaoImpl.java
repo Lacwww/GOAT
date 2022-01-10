@@ -44,4 +44,8 @@ public class NoticeDaoImpl implements NoticeDao {
 	public int delete(int no_num) {
 		return sst.update("noticens.delete", no_num);
 	}
+
+	public int update(Notice notice) {
+		return sst.update("noticens.update", notice);
+	}
 }

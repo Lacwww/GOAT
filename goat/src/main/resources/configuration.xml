@@ -34,6 +34,7 @@
 		<mapper resource="member.xml" />
 		<mapper resource="trip.xml" />
 		<mapper resource="notice.xml" />
+		<mapper resource="noticeReply.xml" />
 		<mapper resource="cs.xml" />
 		<mapper resource="admin.xml" /> 
 	</mappers>

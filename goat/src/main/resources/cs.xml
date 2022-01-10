@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="csns">
 	<select id="list" parameterType="cs" resultType="cs">
-		select b.*, m.m_name m_name from  
+		select b.*, m.* from  
     		(select a.*, rowNum rn from  
         		(select * from cs order by cs_ref desc, cs_re_step)a)b,
            			member m where b.m_num=m.m_num and rn between #{startRow} and #{endRow}
