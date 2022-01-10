@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
+import com.ch.goat.model.TempPlace;
 import com.ch.goat.service.AdminService;
 import com.ch.goat.service.MemberService;
 
@@ -112,5 +113,26 @@ public class AdminController {
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("result", result);
 		return "admin/adminMemberDelete";
+	}
+	
+	@RequestMapping("admin/adminPlaceRequest")
+	public String request(String pageNum, Model model) {
+		int rowPerPage = 20;
+		int pagePerBlock = 5;
+		if (pageNum == null || pageNum.equals("")) pageNum="1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = as.getTotalTempPlace();
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		List<TempPlace> list = as.tempPlaceList(startRow, endRow);
+		System.out.println(list+"sdfsdf");
+		int totalPage = (int)(Math.ceil((double)total/rowPerPage));
+		int startPage = currentPage - (currentPage - 1) % pagePerBlock;
+		int endPage = startPage + pagePerBlock - 1;
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		}
+		
+		return "admin/adminPlaceRequest";
 	}
 }

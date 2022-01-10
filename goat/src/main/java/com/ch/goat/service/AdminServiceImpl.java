@@ -9,6 +9,7 @@ import com.ch.goat.dao.AdminDao;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
+import com.ch.goat.model.TempPlace;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -44,5 +45,15 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Member> memberList(int startRow, int endRow) {
 		return ad.memberList(startRow, endRow);
+	}
+
+	@Override
+	public int getTotalTempPlace() {
+		return ad.getTotalTempPlace();
+	}
+
+	@Override
+	public List<TempPlace> tempPlaceList(int startRow, int endRow) {
+		return ad.tempPlaceList(startRow, endRow);
 	}
 }

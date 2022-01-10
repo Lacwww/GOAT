@@ -6,15 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function k1(place_num) {
-		 window.open('../place/prevDetailView.do?place_num='+place_num,"","");
-	}
-</script>
 </head>
 <body>
 	<div>
-		<h2>플레이스 목록</h2>
+		<h2>플레이스 등록 요청 목록</h2>
 		<div>
 			<table>
 				<tr>
@@ -23,17 +18,20 @@
 					<th>카테고리</th>
 					<th>주소</th>
 					<th>상세주소</th>
-					<th>등록일</th>
+					<th>요청일</th>
+					<th>요청유형</th>
+					<th>상세보기</th>
 				</tr>
-				<c:forEach var="place" items="${list }">
+				<c:forEach var="temp" items="${list }">
 					<tr>
-						<td>${place.place_num }</td>
-						<td><span onclick="k1(${place.place_num})">${place.place_name }</span></td>
-						<td>${place.place_cate }</td>
-						<td>${place.place_addr }</td>
-						<td>${place.place_addrd }</td>
-						<td>${place.reg_date }</td>
-
+						<td>${temp.temp_num }</td>
+						<td>${temp.temp_name }</td>
+						<td>${temp.temp_cate }</td>
+						<td>${temp.temp_addr }</td>
+						<td>${temp.temp_addrd }</td>
+						<td>${temp.reg_date }</td>
+						<td>${temp.temp_crud }</td>
+						<td>상세보기</td>
 					</tr>
 				</c:forEach>
 			</table>
