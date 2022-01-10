@@ -34,5 +34,8 @@ public class NoticeServiceImpl implements NoticeService{
 	public int delete(int no_num) {
 		return nd.delete(no_num);
 	}
+	public int update(Notice notice) {
+		return nd.update(notice);
+	}
 	
 }

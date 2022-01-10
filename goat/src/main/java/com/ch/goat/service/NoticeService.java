@@ -20,4 +20,6 @@ public interface NoticeService {
 
 	int delete(int no_num);
 
+	int update(Notice notice);
+
 }

@@ -20,4 +20,6 @@ public interface NoticeDao {
 
 	int delete(int no_num);
 
+	int update(Notice notice);
+
 }

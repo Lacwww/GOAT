@@ -7,7 +7,7 @@
 	</select>
 	
 	<select id="getTotal" parameterType="notice" resultType="integer">
-		select count(*) from notice
+		select count(*) from notice where del != 'y'
 	</select>
 	
 	<select id="maxNum" resultType="integer">
@@ -29,6 +29,10 @@
 	
 	<update id="delete" parameterType="integer">
 		update notice set del = 'y' where no_num = #{no_num}
+	</update>
+	
+	<update id="update" parameterType="notice">
+		update notice set no_title=#{no_title},no_content=#{no_content},reg_date=sysdate where no_num = #{no_num}
 	</update>
 	
 </mapper>
