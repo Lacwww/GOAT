@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 @Data
 public class Alert {
+	private int ale_num;
 	private int m_num;
 	private int sch_num;
 	private String sch_name;
@@ -17,5 +18,4 @@ public class Alert {
 	private String del;
 	private int cs_num;
 	private String cs_title;
-	private String con;
 }
