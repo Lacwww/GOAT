@@ -30,3 +30,16 @@ CREATE TABLE TEMPPLACE (
     REFERENCES MEMBER(M_NUM)
 );
 alter table tempplace add temp_explanation varchar2(1000);
+CREATE TABLE ALERT (
+	ALE_NUM NUMBER PRIMARY KEY,  /* 알림번호 */
+	M_NUM NUMBER NOT NULL, /* 회원번호 */
+	SCH_NUM NUMBER, /* 스케줄 번호 */
+	SCH_NAME VARCHAR2(200), /* 스케줄명 */
+	S_DATE DATE, /* 여행 시작일자 */
+	TEMP_NUM NUMBER, /* 임시 플레이스 번호 */
+	TEMP_NAME VARCHAR2(100), /* 명칭 */
+    TEMP_CRUD varchar2(20), /*요청 사항 종류 */
+    DEL CHAR DEFAULT 'n', /* 해당 요청 처리 유무 */
+	CS_NUM NUMBER, /* 글번호 */
+	CS_TITLE VARCHAR2(100) /* 제목 */
+);

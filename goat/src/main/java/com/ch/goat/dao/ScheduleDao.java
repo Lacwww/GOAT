@@ -1,5 +1,6 @@
 package com.ch.goat.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.ch.goat.model.Area;
@@ -14,6 +15,8 @@ public interface ScheduleDao {
 	List<Place> plist(Place place);
 
 	Place selectP(int id);
+
+	int days(String s_date, String e_date);
 
 }
   

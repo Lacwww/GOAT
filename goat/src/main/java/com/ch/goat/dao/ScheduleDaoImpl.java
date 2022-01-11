@@ -1,7 +1,11 @@
 package com.ch.goat.dao;
 
+import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +31,12 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	}
 	public Place selectP(int id) {
 		return sst.selectOne("schedulens.pick_place",id);
+	}
+	public int days(String s_date, String e_date) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("s_date", s_date);
+		map.put("e_date", e_date);
+		return sst.selectOne("schedulens.days",map);
 	}
 
 }
