@@ -175,8 +175,8 @@
 			</script>
 		<form action="updateTempPlace.do" name="frm" onsubmit="return Chk()" method="post" enctype="multipart/form-data">			
 			<input type="hidden" name="place_num" value="${place.place_num }">
-			<input type="text" name="lat" value="${place.lat }">
-			<input type="text" name="lng" value="${place.lng }">
+			<input type="hidden" name="lat" value="${place.lat }">
+			<input type="hidden" name="lng" value="${place.lng }">
 			<div>
 			<table>
 				<tr><th><input type="file" name="file" id="temp_photo"></th>

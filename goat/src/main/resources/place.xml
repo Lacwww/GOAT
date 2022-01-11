@@ -62,9 +62,15 @@
 	<select id="areaDetailList" parameterType="string" resultType="place">
 		select distinct place_areadetail from place where place_area = #{place_area}
 	</select>
-	
+	<!-- 장소정보 -->
 	<select id="selectPlace" parameterType="integer" resultType="place">
 		select * from place where place_num = #{place_num}
+	</select>
+	
+	<!-- 임시장소 정보 -->
+	
+	<select id="selectTemp" parameterType="integer" resultType="tempplace">
+		select * from tempplace where temp_num = #{temp_num}
 	</select>
 	
 	<!-- 관광지 API 정보 입력 -->
@@ -81,6 +87,16 @@
 		insert into tempplace values(#{temp_num},#{temp_name},#{temp_cate},#{temp_addr},#{temp_addrd},#{temp_photo},
 								#{lat},#{lng},sysdate,#{temp_content},#{temp_area},#{temp_tag},#{temp_areadetail},
 								'등록',null,'n',#{m_num},#{temp_explanation})
+	</insert>
+	
+	<!-- 장소 추가 -->
+	<insert id="insertPlace" parameterType="tempplace">
+		<selectKey keyProperty="place_num" order="BEFORE" resultType="integer">
+			select nvl(count(*), 0) + 1 from place
+		</selectKey>
+		insert into place values(#{place_num},#{temp_name},#{temp_cate},#{temp_addr}, #{temp_addrd},#{temp_photo},
+								#{lat},#{lng},sysdate,#{temp_content},#{temp_area},#{temp_tag},#{temp_areadetail})
+		
 	</insert>
 	
 	<!-- 북마크 삭제 -->
@@ -105,6 +121,17 @@
 											'n',sysdate,#{m_num},#{place_num})
 	</insert>
 	
+	<!-- 임시 장소 수정 입력 -->
+	<insert id="tempUpdate" parameterType="tempplace">
+		<selectKey keyProperty="temp_num" order="BEFORE" resultType="integer">
+			select nvl(count(*), 0) + 1 from tempplace
+		</selectKey>
+		insert into tempplace values(#{temp_num},#{temp_name},#{temp_cate},#{temp_addr},#{temp_addrd},#{temp_photo},
+								#{lat},#{lng},sysdate,#{temp_content},#{temp_area},#{temp_tag},#{temp_areadetail},
+								'수정',#{place_num},'n',#{m_num},#{temp_explanation})
+	
+	</insert>
+	
 	<!-- 댓글 삭제 -->
 	<update id="deletePrev" parameterType="placereview">
 		update place_review set del = 'y' where prev_num = #{prev_num} and place_num = #{place_num}
@@ -114,5 +141,24 @@
 	<update id="updatePrev" parameterType="placereview">
 		update place_review set prev_title = #{prev_title}, prev_content = #{prev_content}, score = #{score}
 					where prev_num = #{prev_num}
+	</update>
+	
+	<!-- 임시 장소 건의 취소 -->
+	<update id="deleteTempPlace" parameterType="integer">
+		update tempplace set del = 'd' where temp_num = #{temp_num}
+	</update>
+	
+	<!-- 임시 장소 건의 완료 -->
+	<update id="approveTempPlace" parameterType="integer">
+		update tempplace set del = 'y' where temp_num = #{num}
+	</update>
+	
+	<!-- 장소 정보 수정 -->
+	<update id="updatePlace" parameterType="tempplace">
+		update place set place_name = #{temp_name}, place_cate = #{temp_cate}, place_addr = #{temp_addr},
+						place_addrd = #{temp_addrd}, place_photo = #{temp_photo}, lat = #{lat},
+						lng = #{lng}, reg_date = #{reg_date}, place_content = #{temp_content},
+						place_area = #{temp_area}, place_tag = #{temp_tag}, place_areadetail = #{temp_areadetail}
+						where place_num = #{place_num}
 	</update>
 </mapper>

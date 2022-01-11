@@ -64,6 +64,24 @@ public class PlaceServiceImpl implements PlaceService{
 	public Place selectPlace(int num) {
 		return pd.selectPlace(num);
 	}
+	public int tempUpdate(TempPlace tempplace) {
+		return pd.tempUpdate(tempplace);
+	}
+	public TempPlace selectTemp(int temp_num) {
+		return pd.selectTemp(temp_num);
+	}
+	public int deleteTempPlace(int temp_num) {
+		return pd.deleteTempPlace(temp_num);
+	}
+	public int insertPlace(TempPlace tp) {
+		return pd.insertPlace(tp);
+	}
+	public void approveTemp(int num) {
+		pd.approveTemp(num);
+	}
+	public int updatePlace(TempPlace tempplace) {
+		return pd.updatePlace(tempplace);
+	}
 
 
 }

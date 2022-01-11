@@ -78,25 +78,25 @@
 				<c:forEach var="list" items="${place }">
 					<tr>
 						<td align="center">
-							${list.temp_num }
+							<a href="${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_num }</a>
 						</td>
 						<td align="center">
-							${list.temp_name }
+							<a href="${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_name }</a>
 						</td>
 						<td align="center">
-							${list.temp_cate }
+							<a href="${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_cate }</a>
 						</td>
 						<td align="center">
-							${list.temp_addr }
+							<a href="${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_addr }</a>
 						</td>
 						<td align="center">
-							${list.temp_addrd }
+							<a href="${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_addrd }</a>
 						</td>
 						<td align="center">
-							${list.temp_crud }
+							<a href="${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_crud }</a>
 						</td>
 						<td align="center">
-							${list.reg_date }
+							<a href="${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}">${list.reg_date }</a>
 						</td>
 						<td align="center">
 							<c:if test="${list.del=='n' }">
