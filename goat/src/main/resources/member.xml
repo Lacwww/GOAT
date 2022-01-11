@@ -53,6 +53,6 @@
 		select c.*, m.* from cs c, member m where c.m_num=m.m_num and c.m_num=#{m_num} and c.del='n'
 	</select>
 	<select id="confirm" parameterType="integer" resultType="alert">
-		select * from alert where m_num=#{m_num} and con='n'
+		select * from alert where m_num=#{m_num}
 	</select>
 </mapper>
