@@ -2,7 +2,6 @@ package com.ch.goat.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,6 +39,53 @@ public class PlaceController {
 	@Autowired
 	private MemberService ms;
 	
+	@RequestMapping("place/updatePlace")
+	public String updatePlace(TempPlace tp, Model model) {
+		TempPlace tempplace = ps.selectTemp(tp.getTemp_num());
+		int result = 0;
+		result = ps.updatePlace(tempplace);
+		if(result > 0) {
+			ps.approveTemp(tp.getTemp_num());
+		}
+		model.addAttribute("result", result);
+		return "place/tempResult";
+	}
+	
+	@RequestMapping("place/insertPlace")
+	public String insertPlace(String temp_num, Model model) {
+		int num = Integer.parseInt(temp_num);
+		TempPlace tp = ps.selectTemp(num);
+		int result = 0;
+		result = ps.insertPlace(tp);
+		if(result > 0) {
+			ps.approveTemp(num);
+		}	
+		model.addAttribute("result", result);
+		return "place/tempResult";
+	}
+	
+	@RequestMapping("place/deleteTempPlace")
+	public String deleteTempPlace(TempPlace tp, Model model) {
+		int result  = 0;
+		result = ps.deleteTempPlace(tp.getTemp_num());
+		
+		model.addAttribute("result", result);
+		return "place/tempResult";
+	}
+	
+	@RequestMapping("place/tempDetailView")
+	public String tempDetailView(TempPlace tempplace, Model model) {
+		if(tempplace.getPlace_num() != 0) {
+			Place place = ps.selectPlace(tempplace.getPlace_num());
+			model.addAttribute("place", place);
+		}
+		TempPlace tp = ps.selectTemp(tempplace.getTemp_num());
+		
+		
+		model.addAttribute("tp", tp);	
+		return "place/tempDetailView";
+	}
+	
 	@RequestMapping("place/updateTempPlace")
 	public String updateTempPlace(TempPlace tempplace, Model model, HttpSession session) throws IOException {
 		int result = 0;
@@ -72,14 +118,16 @@ public class PlaceController {
 			String fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
 			String temp_photo = "/goat/resources/p_images/"+fileName;
 			// 파일 저장			
-//			FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
-//			fos.write(tempplace.getFile().getBytes());
-//			fos.close();
+			FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
+			fos.write(tempplace.getFile().getBytes());
+			fos.close();
 			tempplace.setTemp_photo(temp_photo);
 		}		
-//		result = ps.tempUpdate(tempplace);
 		
-		
+		result = ps.tempUpdate(tempplace);
+	
+		model.addAttribute("place_num", tempplace.getPlace_num());
+		model.addAttribute("result", result);
 		return "place/updateTempPlace";
 	}
 	

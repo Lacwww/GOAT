@@ -41,6 +41,21 @@ public interface PlaceDao {
 
 	Place selectPlace(int num);
 
+	int tempUpdate(TempPlace tempplace);
+
+	TempPlace selectTemp(int temp_num);
+
+	int deleteTempPlace(int temp_num);
+
+	int insertPlace(TempPlace tp);
+
+	void approveTemp(int num);
+
+	int updatePlace(TempPlace tempplace);
+
+
+
+
 
 
 
