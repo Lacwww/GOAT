@@ -6,9 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+th, td {
+	vertical-align: middle !important;
+}
+table {
+	
+}
+</style>
 <script type="text/javascript">
-	function k1(place_num) {
-		 window.open('../place/prevDetailView.do?place_num='+place_num,"","");
+	function opn(place_num) {
+		 window.open('/goat/place/prevDetailView.do?place_num='+place_num,"","");
 	}
 </script>
 </head>
@@ -16,26 +24,29 @@
 	<div>
 		<h2>플레이스 목록</h2>
 		<div>
-			<table>
-				<tr>
-					<th>번호</th>
-					<th>플레이스명</th>
-					<th>카테고리</th>
-					<th>주소</th>
-					<th>상세주소</th>
-					<th>등록일</th>
-				</tr>
-				<c:forEach var="place" items="${list }">
+			<table class="table table-hover table-striped">
+				<thead>
 					<tr>
-						<td>${place.place_num }</td>
-						<td><span onclick="k1(${place.place_num})">${place.place_name }</span></td>
-						<td>${place.place_cate }</td>
-						<td>${place.place_addr }</td>
-						<td>${place.place_addrd }</td>
-						<td>${place.reg_date }</td>
-
+						<th style="width: 3%">번호</th>
+						<th style="width: 20%">플레이스명</th>
+						<th style="width: 5%">카테고리</th>
+						<th style="width: 30%">주소</th>
+						<th style="width: 30%">상세주소</th>
+						<th style="width: 10%">등록일</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach var="place" items="${list }">
+						<tr onclick="opn(${place.place_num})">
+							<td class="col-1">${place.place_num }</td>
+							<td>${place.place_name }</td>
+							<td>${place.place_cate }</td>
+							<td>${place.place_addr }</td>
+							<td>${place.place_addrd }</td>
+							<td>${place.reg_date }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 		<div align="center" style="clear: both;">

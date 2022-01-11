@@ -6,34 +6,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.class
+=
+</style>
+<script type="text/javascript">
+	function opn(temp_num) {
+		 window.open('/goat/place/tempDetailView.do?temp_num='+temp_num,"","");
+	}
+</script>
 </head>
 <body>
 	<div>
 		<h2>플레이스 등록 요청 목록</h2>
 		<div>
-			<table>
-				<tr>
-					<th>번호</th>
-					<th>플레이스명</th>
-					<th>카테고리</th>
-					<th>주소</th>
-					<th>상세주소</th>
-					<th>요청일</th>
-					<th>요청유형</th>
-					<th>상세보기</th>
-				</tr>
-				<c:forEach var="temp" items="${list }">
+			<table class="table">
+				<colgroup>
+					<col width="5%" />
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+					<col/>
+				<thead>
 					<tr>
-						<td>${temp.temp_num }</td>
-						<td>${temp.temp_name }</td>
-						<td>${temp.temp_cate }</td>
-						<td>${temp.temp_addr }</td>
-						<td>${temp.temp_addrd }</td>
-						<td>${temp.reg_date }</td>
-						<td>${temp.temp_crud }</td>
-						<td>상세보기</td>
+						<th width="50">번호</th>
+						<th>플레이스명</th>
+						<th>카테고리</th>
+						<th>주소</th>
+						<th>상세주소</th>
+						<th>요청일</th>
+						<th>요청유형</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach var="temp" items="${list }">
+						<tr>
+							<td>${temp.temp_num }</td>
+							<td><span onclick="opn(${temp.temp_num})">${temp.temp_name }</span></td>
+							<td>${temp.temp_cate }</td>
+							<td>${temp.temp_addr }</td>
+							<td>${temp.temp_addrd }</td>
+							<td>${temp.reg_date }</td>
+							<td>${temp.temp_crud }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 		<div align="center" style="clear: both;">
