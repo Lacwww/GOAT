@@ -161,4 +161,13 @@
 						place_area = #{temp_area}, place_tag = #{temp_tag}, place_areadetail = #{temp_areadetail}
 						where place_num = #{place_num}
 	</update>
+	
+	<!-- 건의 사항 수정 -->
+	<update id="updateSuggestion" parameterType="tempplace">
+		update tempplace set temp_name = #{temp_name}, temp_cate = #{temp_cate}, temp_addr =#{temp_addr},
+							temp_addrd = #{temp_addrd}, temp_photo = #{temp_photo}, lat = #{lat}, lng = #{lng},
+							reg_date = sysdate, temp_content = #{temp_content}, temp_area = #{temp_area},
+							temp_tag = #{temp_tag}, temp_areadetail = #{temp_areadetail}, temp_explanation = #{temp_explanation}
+						where temp_num = #{temp_num}
+	</update>
 </mapper>

@@ -106,5 +106,8 @@ public class PlaceDaoImpl implements PlaceDao{
 	public int updatePlace(TempPlace tempplace) {
 		return sst.update("placens.updatePlace",tempplace);
 	}
+	public int updateSuggestion(TempPlace tempplace) {
+		return sst.update("placens.updateSuggestion", tempplace);
+	}
 
 }
