@@ -1,5 +1,6 @@
 package com.ch.goat.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	public Place selectP(int id) {
 		return sd.selectP(id);
+	}
+
+	public int days(String s_date, String e_date) {
+		return sd.days(s_date,e_date);
 	}
 }

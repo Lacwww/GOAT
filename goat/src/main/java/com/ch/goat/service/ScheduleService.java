@@ -1,5 +1,6 @@
 package com.ch.goat.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.ch.goat.model.Area;
@@ -14,5 +15,7 @@ public interface ScheduleService {
 	List<Place> plist(Place place);
 
 	Place selectP(int id);
+
+	int days(String s_date, String e_date);
 
 }

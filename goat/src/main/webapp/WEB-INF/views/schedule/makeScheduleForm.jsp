@@ -118,7 +118,7 @@
 					    } 
 					});    
 				</script>
-								<div id="btn">
+				<div id="btn">
 					<input type="submit" value="상세일정 작성">
 					<input type="button" value="취소" onclick="location.href='selectArea.do'">
 				</div>
@@ -135,9 +135,6 @@
 						<tr><th>사진</th><th>장소</th><th>주소</th><th>태그</th></tr>
 					</table>
 				</div>
-				
-
-
 		</div>
 </body>
 </html>
