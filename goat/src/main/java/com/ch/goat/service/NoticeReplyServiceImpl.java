@@ -24,4 +24,19 @@ public class NoticeReplyServiceImpl implements NoticeReplyService{
 	public void delete(NoticeReply nr) {
 		nd.delete(nr);
 	}
+
+	public void update(NoticeReply nr) {
+		nd.update(nr);
+	}
+
+	public NoticeReply select(int nor_num) {
+		return nd.select(nor_num);
+	}
+	public int maxNum() {
+		return nd.maxNum();
+	}
+
+	public void updateStep(NoticeReply nr) {
+		nd.updateStep(nr);
+	}
 }

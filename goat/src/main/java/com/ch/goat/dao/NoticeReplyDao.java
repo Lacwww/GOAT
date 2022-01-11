@@ -12,4 +12,12 @@ public interface NoticeReplyDao {
 
 	void delete(NoticeReply nr);
 
+	void update(NoticeReply nr);
+
+	NoticeReply select(int nor_num);
+
+	int maxNum();
+
+	void updateStep(NoticeReply nr);
+
 }
