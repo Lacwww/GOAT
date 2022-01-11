@@ -53,6 +53,8 @@ public interface PlaceDao {
 
 	int updatePlace(TempPlace tempplace);
 
+	int updateSuggestion(TempPlace tempplace);
+
 
 
 

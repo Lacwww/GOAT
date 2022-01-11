@@ -53,6 +53,8 @@ public interface PlaceService {
 
 	int updatePlace(TempPlace tempplace);
 
+	int updateSuggestion(TempPlace tempplace);
+
 
 
 

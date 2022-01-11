@@ -82,6 +82,9 @@ public class PlaceServiceImpl implements PlaceService{
 	public int updatePlace(TempPlace tempplace) {
 		return pd.updatePlace(tempplace);
 	}
+	public int updateSuggestion(TempPlace tempplace) {
+		return pd.updateSuggestion(tempplace);
+	}
 
 
 }

@@ -29,6 +29,12 @@
 			}	
 		}
 	}
+	function updateSuggestion(temp_num) {
+		var con = confirm("수정하시겠습니까?");
+		if(con){
+			location.href="/goat/place/updateFormSuggestion.do?temp_num=" + temp_num;
+		}
+	}
 </script>
 </head>
 <body>
@@ -113,10 +119,14 @@
 							</c:if>
 						</td>
 						<td align="center">
-							<button class="btn btn-success btn-sm" onclick="location.href=''">수정</button>
+						<c:if test="${list.del == 'n' }">
+							<button class="btn btn-success btn-sm" onclick="updateSuggestion('${list.temp_num}')">수정</button>
+						</c:if>	
 						</td>
 						<td align="center">
+						<c:if test="${list.del == 'n' }">
 							<button class="btn btn-warning btn-sm" onclick="del('${list.temp_num}', '${list.m_num }', '${list.del }')">취소</button>
+						</c:if>	
 						</td>
 					</tr>
 				</c:forEach>
