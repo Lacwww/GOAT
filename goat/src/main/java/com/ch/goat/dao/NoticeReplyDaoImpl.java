@@ -20,6 +20,18 @@ public class NoticeReplyDaoImpl implements NoticeReplyDao {
 		sst.insert("rpnns.insert", nr);
 	}
 	public void delete(NoticeReply nr) {
-		sst.delete("rpnns.delete", nr);
+		sst.update("rpnns.delete", nr);
+	}
+	public void update(NoticeReply nr) {
+		sst.update("rpnns.update", nr);
+	}
+	public NoticeReply select(int nor_num) {
+		return sst.selectOne("rpnns.select", nor_num);
+	}
+	public int maxNum() {
+		return sst.selectOne("rpnns.maxNum");
+	}
+	public void updateStep(NoticeReply nr) {
+		sst.update("rpnns.updateStep", nr);
 	}
 }

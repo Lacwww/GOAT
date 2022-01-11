@@ -7,10 +7,16 @@
 			where mr.m_num = m.m_num and no_num = #{no_num} order by nor_num
 	</select>
 	
+	<select id="maxNum" resultType="integer">
+		<!-- ref와 num을 구분하기 위해서 -->
+		select nvl(max(nor_num), 0) + 1 from notice_reply
+	</select>
+	
+<!-- 	<update id="updateStep" parameterType="nr">
+		update notice_reply set nor_re_step = #{nor_re_step} + 1 where nor_ref=#{nor_ref} and nor_re_step > #{nor_re_step}
+	</update>    -->
+	
 	<insert id="insert" parameterType="nr">
-		<selectKey keyProperty="nor_num" order="BEFORE" resultType="integer">
-			select nvl(max(nor_num), 0) + 1 from notice_reply
- 		</selectKey>
  		insert into notice_reply values(#{nor_num},#{nor_content},sysdate,'n',
  			#{nor_ref},#{nor_re_step},#{nor_re_level},#{m_num},#{no_num})
 	</insert>
@@ -19,8 +25,12 @@
 		update notice_reply set del='y' where nor_num=#{nor_num}
 	</update>
 	
-<!--	<update id="update" parameterType="rbd">
-		update replyBoard set replytext=#{replytext}, updatedate=sysdate
-			where rno=#{rno}
-	</update>  -->
+	<update id="update" parameterType="nr">
+		update notice_reply set nor_content=#{nor_content}, reg_date=sysdate
+			where nor_num=#{nor_num}
+	</update>
+	
+<!-- 	<select id="select" parameterType="integer" resultType="nr">
+		select * from notice_reply where nor_num=#{nor_num}
+	</select> -->
 </mapper>
