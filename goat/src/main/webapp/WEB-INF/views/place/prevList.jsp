@@ -9,6 +9,7 @@
 <style type="text/css">
 	th, td { border: 1px solid black;}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function prevDelete(prev_num,place_num) {
 		var sendData = 'prev_num='+prev_num+'&place_num='+place_num;
@@ -31,27 +32,50 @@
 			" class='btn btn-sm btn-danger' value='확인'> "+
 			"<input type='button' onclick='lst("+place_num+")' " +
 			" class='btn btn-sm btn-info' value='취소'>");
-		$('#score_'+prev_num).html('<select id="score1_'+prev_num+'">'+
-				'<option value="5" selected="selected">5</option>'+
-				'<option value="4">4</option>'+
-				'<option value="3">3</option>'+
-				'<option value="2">2</option>'+
-				'<option value="1">1</option>'+
-				'</select>');
+		$('#score_'+prev_num).html('<div id="str'+prev_num+'"></div>'+
+				 '<label for="star11'+prev_num+'" class="star1 star_empty" id="st1'+prev_num+'" onclick="star2(1,'+prev_num+')"></label>'+
+				 '<label for="star22'+prev_num+'" class="star1 star_empty" id="st2'+prev_num+'" onclick="star2(2,'+prev_num+')"></label>'+
+				 '<label for="star33'+prev_num+'" class="star1 star_empty" id="st3'+prev_num+'" onclick="star2(3,'+prev_num+')"></label>'+
+				 '<label for="star44'+prev_num+'" class="star1 star_empty" id="st4'+prev_num+'" onclick="star2(4,'+prev_num+')"></label>'+
+				 '<label for="star55'+prev_num+'" class="star1 star_empty" id="st5'+prev_num+'" onclick="star2(5,'+prev_num+')"></label>'+
+				 '<input type="radio" name="score" id="star11'+prev_num+'" class="radio" value="1">'+
+				 '<input type="radio" name="score" id="star22'+prev_num+'" class="radio" value="2">'+
+				 '<input type="radio" name="score" id="star33'+prev_num+'" class="radio" value="3">'+
+				 '<input type="radio" name="score" id="star44'+prev_num+'" class="radio" value="4">'+
+				 '<input type="radio" name="score" id="star55'+prev_num+'" class="radio" value="5">'
+		);
 		$('#title_'+prev_num).html('<input type="text" id="title1_'+prev_num+'" value="'+titletxt+'">');
 	}
 	function lst(place_num) {
 		$('#prevListDisp').load('prevList.do?place_num='+place_num);
 	}
+	var score = 0;
 	function up(prev_num, place_num) {
-		var sendData = "prev_content="+$('#rt_'+prev_num).val()+
-						"&prev_title="+$('#title1_'+prev_num).val()+
-						"&score="+$('#score1_'+prev_num).val()+
-						"&prev_num="+prev_num+"&place_num="+place_num;
-		$.post("updatePrev.do", sendData, function(data) {
-			alert("댓글 수정 되었습니다");
-			$('#prevListDisp').html(data);
-		});
+		if(score == 0){
+			alert("평점을 선택해주세요");
+			return false;
+		}else{
+			var sendData = "prev_content="+$('#rt_'+prev_num).val()+
+							"&prev_title="+$('#title1_'+prev_num).val()+
+							"&score="+$('#str'+prev_num).val()+
+							"&prev_num="+prev_num+"&place_num="+place_num;
+				$.post("updatePrev.do", sendData, function(data) {
+				alert("댓글 수정 되었습니다");
+				$('#prevListDisp').html(data);
+			});
+		}
+
+	}
+	function star2(num,prev_num) {
+		score = 1;
+		$('#str'+prev_num).val("");
+		$('#str'+prev_num).val(num);
+		for(var i = 1; i <=5; i++){
+			$('#st'+i+prev_num).removeClass('on');		
+		}
+		for(var i = 1; i <= num; i++){
+			$('#st'+i+prev_num).addClass('on');		
+		} 
 	}
 </script>
 </head>
@@ -67,8 +91,17 @@
 		<table>
 			<tr><th>제목</th><td id="title_${prev.prev_num }">${prev.prev_title }</td>
 				<th>작성자</th><td>${prev.name }</td>
-				<th>평점</th><td id="score_${prev.prev_num }">${prev.score }</td>
-				<th>작성일</th><td>${prev.reg_date }</td></tr>
+				<th>평점</th><td id="score_${prev.prev_num }">
+					<c:forEach begin="1" end="${prev.score }">
+						<label class="star2 star_empty on"></label>
+					</c:forEach>
+					<c:forEach begin="${prev.score }" end="4">
+						<label class="star2 star_empty"></label>
+					</c:forEach>
+				</td>
+				<th>작성일</th><td>
+				<fmt:formatDate value="${prev.reg_date }" pattern="yy-MM-dd HH-mm-ss"/>
+				</td></tr>
 			<tr><th>내용</th><td colspan="6" id="td_${prev.prev_num }"><pre>${prev.prev_content }</pre></td>
 				<td id="btn_${prev.prev_num }">
 				<c:if test="${prev.m_num == m_num }">

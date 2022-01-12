@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-장소 입력 완료
+API 입력 완료
 </body>
 </html>

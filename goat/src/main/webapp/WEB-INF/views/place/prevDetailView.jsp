@@ -9,38 +9,21 @@
 <style type="text/css">
 	.top {float: left; }
 	.bookmark {float: right; margin-right: 20%;}
+	.star, .star1, .star2{
+	  display:inline-block;
+	  width: 30px;height: 30px;
+	  cursor: pointer;
+	}
+	.star_empty{
+	  background: url(${path}/resources/p_images/nostar.png) no-repeat 0 0; 
+	  background-size: 30px; 
+	  margin-right: -3px;
+	}
+	.on{
+	  background-image: url(${path}/resources/p_images/star.png);
+	}
+	input[type=radio] {display: none; } 
 
-	.star-rating{
-		display: flex;
-		flex-direction: row-reverse;
-		font-size: 2.25rem;
-		line-height: 2.5rem;
-		justify-content: space-around;
-		padding: 0 0.2em;
-		text-align: center;
-		width: 5em;
-	}
-	
-	.star-rating input{
-		display: none;
-	}
-	
-	.star-rating label{
-		-webkit-text-fill-color:transparent;
-		-webkit-text-stroke-width:2.3px;
-		-webkit-text-stroke-color:#2b2a29;
-		cursor: pointer;
-	}
-	
-	.star-rating:checked ~ label {
-		-webkit-text-fill-color:red;
-	}
-	
-	.star-rating label:hover,
-	.star-rating lable:hover ~ label {
-		-webkit-text-fill-color:pink;
-	}
-	
 </style>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript">
@@ -59,16 +42,20 @@
 				alert("내용을 입력하세요");
 				return false;
 			}
+			if(frm1.score.value == ''){
+				alert("별점을 선택해주세요");
+				return false;
+			}
 			var sendData = $('#frm1').serialize();
 			$.post('insertPrev.do', sendData, function(data) {
 				alert("댓글이 작성 되었습니다.");
 				$('#prevListDisp').html(data);
 				frm1.prev_title.value = "";
 				frm1.prev_content.value = "";	
+				$(".star").removeClass("on");
 			});
 		});
 	});
-	
 	function bookMarkChk(place_num) {
 		if(${empty id}){
 			alert("로그인 후 이용가능합니다");
@@ -84,6 +71,18 @@
 			$(".bmChk").attr("src", bookMarkImgSrc);
 		});			
 	};
+	
+// 	클릭한 별 이전에 있는 모든별 채우기
+	$(function() {
+	    $(".star").on('click',function(){
+	    	var idx = $(this).index();
+	    	$(".star").removeClass("on");
+	    		for(var i=0; i<=idx; i++){
+	    	    $(".star").eq(i).addClass("on");
+	    	}
+	    });
+	});
+
 </script>
 </head>
 <body>
@@ -130,13 +129,19 @@
 			<table>
 				<tr><th>제목</th><td><input type="text" name="prev_title" required="required"></td>
 					<th>평점</th><td>
-							<select name="score">
-								<option value="5" selected="selected">5</option>
-								<option value="4">4</option>
-								<option value="3">3</option>
-								<option value="2">2</option>
-								<option value="1">1</option>
-							</select>
+						<div class="star-box">
+							  <label for="star1" class="star star_empty"></label>
+							  <label for="star2" class="star star_empty"></label>
+							  <label for="star3" class="star star_empty"></label>
+							  <label for="star4" class="star star_empty"></label>
+							  <label for="star5" class="star star_empty"></label>
+							   <input type="radio" name="score" id="star1" class="radio" value="1">
+							   <input type="radio" name="score" id="star2" class="radio" value="2">
+							   <input type="radio" name="score" id="star3" class="radio" value="3">
+							   <input type="radio" name="score" id="star4" class="radio" value="4">
+							   <input type="radio" name="score" id="star5" class="radio" value="5">
+						</div>
+					</td>
 					<th><input type="button" value="등록" id="insertprev"></th>
 					</tr>
 				<tr><th>내용</th><th colspan="5">
