@@ -38,6 +38,7 @@
 						<th>상세주소</th>
 						<th>요청일</th>
 						<th>요청유형</th>
+						<th>처리상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,6 +51,7 @@
 							<td>${temp.temp_addrd }</td>
 							<td>${temp.reg_date }</td>
 							<td>${temp.temp_crud }</td>
+							<td>${temp.del }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
