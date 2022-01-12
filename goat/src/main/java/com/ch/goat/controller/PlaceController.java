@@ -372,9 +372,29 @@ public class PlaceController {
 	
 	
 	
+	@RequestMapping("place/insertFoodAPI")
+	public String foodAPI() {
+		String result ="";
+		try {
+			URL url = new URL("https://api.odcloud.kr/api/15055972/v1/uddi:2a47389c-edac-495f-97f5-aa33114e50b5_201810231620?"
+					+ "page=1&perPage=1&serviceKey=JSPyU5OUvUINk9wFlvw0r8OnVxKMF%2BhyqRJqMhRMJGF8DPql19mGk1VN81M6K6Sio%2Bz6U0t85crotDjgT2nbjQ%3D%3D");	
+			BufferedReader bf;
+			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));					
+			result = bf.readLine();
+			int CurNum = ps.getPlaceNum();
+			Place place = new Place();
+			place.setPlace_num(CurNum);
+			System.out.println("장소 번호  : "+ CurNum);
+			
+			
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		
+		return "place/insertAPI";
+	}
 	
-	
-	@RequestMapping("place/insertAPI")
+	@RequestMapping("place/insertPlaceAPI")
 	public String placeAPI() {
 		
 		String key ="vjdbjvpd3scuwrna";
