@@ -12,9 +12,9 @@
 		select nvl(max(nor_num), 0) + 1 from notice_reply
 	</select>
 	
-<!-- 	<update id="updateStep" parameterType="nr">
+	<update id="updateStep" parameterType="nr">
 		update notice_reply set nor_re_step = #{nor_re_step} + 1 where nor_ref=#{nor_ref} and nor_re_step > #{nor_re_step}
-	</update>    -->
+	</update>
 	
 	<insert id="insert" parameterType="nr">
  		insert into notice_reply values(#{nor_num},#{nor_content},sysdate,'n',
@@ -30,7 +30,7 @@
 			where nor_num=#{nor_num}
 	</update>
 	
-<!-- 	<select id="select" parameterType="integer" resultType="nr">
+	<select id="select" parameterType="integer" resultType="nr">
 		select * from notice_reply where nor_num=#{nor_num}
-	</select> -->
+	</select>
 </mapper>

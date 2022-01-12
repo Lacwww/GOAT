@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.goat.model.Cs;
 import com.ch.goat.model.NoticeReply;
 import com.ch.goat.service.NoticeReplyService;
 import com.ch.goat.service.NoticeService;
@@ -40,13 +41,33 @@ public class NoticeReplyController {
 		int number = nrs.maxNum(); // 새 게시글 번호 생성
 		int nor_re_step = 0, nor_re_level = 0;
 		int no_num = nr.getNo_num();
+		int nor_num = nr.getNor_num();
+		String nor_content = nr.getNor_content();
+		
+		nr.setNor_re_step(nor_re_step);
+		nr.setNor_re_level(nor_re_level);
+		
+		if(nor_num != 0) { // 대댓글
+			NoticeReply nr1 = nrs.select(nor_num);
+			nr.setNor_ref(nor_num);
+			
+			nr.setNor_re_level(nr1.getNor_re_level());
+			nr.setNor_re_step(nr1.getNor_re_step());
+			
+			// 글을 일고 ref가 같고 re_step이 읽은 글의 re_step보다 크면 그글의 re_step + 1
+			nrs.updateStep(nr);
+			// re_step과 re_level은 읽은 값 더하기 1
+			
+			nr.setNor_content(nor_content);
+			nr.setNor_re_level(nr.getNor_re_level() + 1);
+			nr.setNor_re_step(nr.getNor_re_step() + 1);
+		} else nr.setNor_ref(number);
 		
 		nr.setNor_num(number);
 		nr.setM_num(m_num);
 		nr.setNo_num(no_num);
-		nr.setNor_ref(number);
-		nr.setNor_re_step(nor_re_step);
-		nr.setNor_re_level(nor_re_level);
+		
+		
 		nrs.insert(nr);
 		
 	//  결과를 jsp로 보내지 않고 controller내에서 찾을 때 : redirect 또는 forward

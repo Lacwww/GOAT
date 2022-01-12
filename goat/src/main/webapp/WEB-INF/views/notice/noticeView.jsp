@@ -37,7 +37,7 @@
 			}
 			// serialize() form의 모든값을 받을 수 있음
 			var sendData = $('#frm1').serialize();
-			$.post('rInsert.do',sendData, function(data) {
+			$.post('rInsert.do?nor_num=0',sendData, function(data) {
 				alert("댓글이 작성 되었습니다");	
 				$('#nrListDisp').html(data);
 				frm1.nor_content.value="";  // 작성했던 댓글 지우기

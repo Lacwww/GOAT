@@ -39,18 +39,32 @@
 			$('#nrListDisp').html(data);
 		});
 	}
+	
+	function rr(nor_num, no_num) {
+		var nor_content = frm2.nor_content.value;
+		alert(nor_content);
+		if(frm2.nor_content.value == "") {
+			alert("댓글을 입력해주세요");
+			frm2.nor_content.focus();
+			return false;
+		}
+
+		$.post('rInsert.do?nor_num='+nor_num+"&no_num="+no_num+"&nor_content="+nor_content, function(data) {
+			alert("대댓글이 작성 되었습니다");	
+			$('#nrListDisp').html(data);
+			frm2.nor_content.value="";  // 작성했던 댓글 지우기
+		});
+	}
 	function rpInsert(nor_num, no_num) {
 //		댓글을 읽어서 textarea에 넣어서 수정 가능하게 만들어야 한다
 //		input, textarea에 있는 데이터를 읽을 때는 jquery val()
 //		td등 일반 태그에 있는 데이터를 읽을때는 jquery에서는 text()로 읽는다
-		$('#aa').html("<tr><td>re댓글</td><td><textarea rows='3' cols='100' id='rt_"+nor_num+"'>" + 
-			"</textarea></td> <td><input type='button' value='댓글'>"+
-			"<input type='button' value='취소'></td></tr>");
-//		현재의 버튼을 수정하고 난 후에 확인, 취소로 변경
-		$('#b1').html("<input type='button' onclick='up("+no_num+","+nor_num+")'"+
-				" value='등록'> "+
-				"<input type='button' onclick='lst("+no_num+")' "+
-				" value='취소'>");
+		$('.reply_'+nor_num).html("<form action='' id='frm2' name='frm'>"+
+			"<input type='hidden' name='nor_num' value='"+nor_num+"'>"+
+			"<table>"+
+			"&nbsp;&nbsp;&nbsp;<tr><td><textarea rows='3' cols='100' name='nor_content'></textarea>" + 
+			"&nbsp;&nbsp;<input type='button' onclick='rr("+nor_num+","+no_num+")' value='등록'>"+
+				"<input type='button' onclick='lst("+no_num+")' value='취소'></td></tr></table>");
 	}
 </script>
 </head><body>
@@ -66,18 +80,20 @@
 			<c:if test="${nr.del != 'y' }">
 				<tr><td>${nr.m_name }</td>
 					<td><fmt:formatDate value="${nr.reg_date }" pattern="yyyy/MM/dd HH:mm:ss"/></td></tr>
-				<tr><td style="white-space:pre; overflow:auto;" colspan="2" id="td_${nr.nor_num }">${nr.nor_content }</td></tr>
+				<tr><td style="white-space:pre; overflow:auto;" id="td_${nr.nor_num }">${nr.nor_content }</td>
 				
-				<tr style="border-bottom: 1px dashed gray;"><td id="btn_${nr.nor_num }">
+				<td id="btn_${nr.nor_num }">
 					<c:if test="${m_num == nr.m_num }">
 						<input type="button" value="답글쓰기" onclick="rpInsert(${nr.nor_num},${nr.no_num})">
 						<input type="button" value="수정" onclick="rUpdate(${nr.nor_num},${nr.no_num})">
 						<input type="button" value="삭제" onclick="rDelete(${nr.nor_num},${nr.no_num})">
+						<tr><td colspan="2" class="reply_${nr.nor_num }"></td></tr>
 					</c:if>
 					<c:if test="${m_num != nr.m_num }">
-						<input type="button" value="답글쓰기" onclick="rpInsert(${nr.nor_num},${nr.no_num})"></c:if>
-				</td>
-				<td id="aa"></td></tr>
+						<input type="button" value="답글쓰기" onclick="rpInsert(${nr.nor_num},${nr.no_num})">
+						<tr><td colspan="2" class="reply_${nr.nor_num }"></td></tr>
+					</c:if>
+				</td><tr>
 			</c:if>
 		</c:forEach>
 	</table>
