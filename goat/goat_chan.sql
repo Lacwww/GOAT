@@ -16,6 +16,7 @@ CREATE TABLE MEMBER (
 	ADMIN CHAR /* 관리자 */
 );
 
+
 /* 알림 */
 CREATE TABLE ALERT (
 	ALE_NUM NUMBER PRIMARY KEY,  /* 알림번호 */
