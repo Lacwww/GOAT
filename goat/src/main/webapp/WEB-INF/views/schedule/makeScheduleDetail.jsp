@@ -21,21 +21,48 @@
 	        infowindow.close();
 	    };
 	}
+	function disp(selected_day) {
+		if(selected_day!=0) {
+			$('.selected_list > div').hide();
+			$('#day'+selected_day).show();
+		}else {
+			$('.selected_list > div').show();
+		}
+	}
 	
 	/* DAY 선택시 실행하는 함수 */
-	function day_select(num) {
-		var day = $("select[name=day] option:selected").text();
-		if($('#day').value!=0) {
+	function day_select(num,d) {
+			var day = $("select[name="+d+"]").val();
 			var name = $('#p_name'+num).text();
 			var addrs = $('#p_addr'+num).text();
+			if(day == 0) return false;
 			$('#pList'+num).hide();
-			$('#d'+day+'>tbody').append("<tr id='tr"+num+"'><td><c:set var='i' value='1'/>${i}<c:set var='i' value='i+1'/></td><td>"+name+"</td><td>"
-					+addrs+"</td><td><select name='day' onchange='day_select(num,day)'><option value='0' selected='selected'>방문할 일자를 선택하세요</option>"+
-					+"<c:forEach var='"+day+"' begin='1' end='${days }'><option value='"+day+"'>${day }</option></c:forEach>");
-			
+			$('#d'+day).append("<tr id='tr"+num+"'><td><c:set var='i' value='1'/>${i}<c:set var='i' value='i+1'/></td><td>"+name+"</td><td>"
+					+addrs+"</td><td><select name='change_"+d+"' id='change_"+d+"' onchange=\"day_change("+num+",'"+d+"')\"><option value='0'>방문 일자</option>"
+					+"<c:forEach var='tday' begin='1' end='${days}'><option value='${tday}'>${tday }</option></c:forEach></select></td></tr>");
+			$('#change_'+d).prop('selectedIndex',day);
+			disp(day);
+		}
+	
+	function day_change(num, d) {
+		var day = $("select[name=change_"+d+"]").val();
+			if(day!=0) {
+			$('#d'+day).append($('#tr'+num));
+		}else {
+			$('#'+d).prop('selectedIndex',0);
+			$('#tr'+num).remove();
+			$('#pList'+num).show();
+		}
+	}
+	
+	function back() {
+		var con = confirm("작성을 취소하고 이전 페이지로 돌아갈까요?");
+		if(con){
+			history.back();
 		}
 	}
 </script>
+
 <c:forEach var="i" items="${places }">
 	<script type="text/javascript">
 	// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
@@ -58,7 +85,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="makeSchedule.do" method="post" name="frm">
+	<form action="chkSchedule.do" method="post" name="frm">
 	<div id="wrapper">
 			<div>
 				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요"><p>
@@ -99,7 +126,8 @@
 					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 					}
 				</script>
-			<div class="list" style="width: 35%; height: 60%; overflow : auto; padding-left: 20px;">
+			<div class="list" style="width: 35%; height: 60%; overflow : auto; padding-left: 20px; border: solid green 1px;">
+				<c:set var="d" value="1"/>
 				<c:forEach var="p" items="${places }">
 					<div id="pList${p.place_num }" style="padding-bottom: 10px;">
 						<div id="pimage">
@@ -114,8 +142,8 @@
 							</div>
 							<br> <span>주소</span><br> <span class="p_addr"
 								id="p_addr${p.place_num }">${p.place_addr }</span><br> <span>선택 일자</span>
-							<select name="day" id="day" onchange="day_select(${p.place_num })">
-								<option value="0" selected="selected">방문할 일자를 선택하세요</option>
+							<select name="place${d }" id="place${d}" onchange="day_select(${p.place_num }, 'place${d}')"><c:set var="d" value="${d+1 }"/>
+								<option value="0" selected="selected">방문 일자</option>
 								<c:forEach var="day" begin="1" end="${days }">
 									<option value="${day }">${day }</option>
 								</c:forEach>
@@ -124,7 +152,15 @@
 					</div>
 				</c:forEach>
 			</div>
-			<div>
+			<div class="selected_day">
+				<div style="float: left;" id="group0" class="group" onclick="disp(0)">전체 일정</div>
+				<c:forEach var="d" begin="1" end="${days }">
+					<div style="float: left;" id="group${d }" class="group" onclick="disp(${d})">
+						${d }일차
+					</div>
+				</c:forEach>
+			</div>
+			<div class="selected_list">
 				<c:forEach var="d" begin="1" end="${days }">
 					<div id="day${d }">
 						<table class="table table-striped" id="d${d }"><caption>DAY ${d }</caption>
@@ -132,6 +168,9 @@
 						</table>
 					</div>
 				</c:forEach>
+			</div>
+			<div class="btn">
+				<input type="submit" value="확인" class="btn btn-success"> <input type="button" onclick="back()" value="이전" class="btn btn-cancel">
 			</div>
 	</div>
 	</form>
