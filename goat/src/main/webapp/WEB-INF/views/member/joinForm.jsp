@@ -191,6 +191,22 @@
 	function noBack() {
 		window.history.forward();
 	}
+	
+	// 최대 날짜 제한
+	$(function() {
+		var date = new Date();
+		var year = date.getFullYear() - 15;
+		var month = date.getMonth() + 1;
+		var day = date.getDate();
+		if(month < 10){
+			month = "0"+month;
+		}
+		if(day < 10){
+			day = "0"+day;	
+		}
+		maxYear = year+'-'+month+'-'+day;
+		document.getElementById("birth").setAttribute("max", maxYear);
+	});
 </script>
 <style type="text/css">
 	#chooseFile { display: none; }
@@ -241,7 +257,7 @@
 							placeholder="Tel" required="required">
 					</div>
 					<div>
-						<input type="date" name="m_birth" placeholder="Birth" required="required">
+						<input type="date" name="m_birth" id="birth" placeholder="Birth" required="required" max="">
 					</div>
 					<div>
 						<input type="text" name="m_addr" id="address_kakao" placeholder="Address" required="required">
