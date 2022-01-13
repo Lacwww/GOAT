@@ -39,4 +39,8 @@ public class CsServiceImpl implements CsService{
 	public int delete(int cs_ref) {
 		return cd.delete(cs_ref);
 	}
+	@Override
+	public int updateCon(int cs_ref) {
+		return cd.updateCon(cs_ref);
+	}
 }

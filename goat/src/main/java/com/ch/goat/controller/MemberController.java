@@ -94,18 +94,21 @@ public class MemberController {
 			String fileName1 = member.getFile().getOriginalFilename();
 			String fileName="";
 			if (fileName1==null||fileName1.equals("")) {
-				fileName = "goat6.png";
+				fileName = "/goat/resources/m_photo/goat6.png";
+				FileOutputStream fos = new FileOutputStream(new File(fileName));
+				fos.write(member.getFile().getBytes());
+				fos.close();
 			} else {
 				// 파일명을 변경해야 할 때 : UUID 임의의 문자열로 변경 Mac은 파일명이 한글이면 깨짐
 				UUID uuid = UUID.randomUUID();
 				fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
+				// 실제 파일 저장 경로
+				String real = session.getServletContext().getRealPath("/resources/m_photo");			
+				// 파일 저장			
+				FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
+				fos.write(member.getFile().getBytes());
+				fos.close();
 			}
-			// 실제 파일 저장 경로
-			String real = session.getServletContext().getRealPath("/resources/m_photo");			
-			// 파일 저장			
-			FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
-			fos.write(member.getFile().getBytes());
-			fos.close();
 			// 입력한 암호를 암호화 한 후 다시 db에 저장
 			String pass = bpPass.encode(member.getM_pass());
 			member.setM_pass(pass);
@@ -138,7 +141,7 @@ public class MemberController {
 					session.setAttribute("adminid", member.getM_id());
 				}
 				session.setAttribute("m_num", member2.getM_num());
-				session.setAttribute("img", member2.getM_photo());
+				session.setAttribute("m_img", member2.getM_photo());
 				List<Alert> alert = ms.confirm(member2.getM_num());
 				session.setAttribute("alert", alert);
 			}
