@@ -12,6 +12,11 @@
 		select nvl(max(nor_num), 0) + 1 from notice_reply
 	</select>
 	
+	<select id="maxStep" resultType="integer">
+		<!-- ref와 num을 구분하기 위해서 -->
+		select nvl(max(re_step), 0) + 1 from notice_reply
+	</select>
+	
 	<update id="updateStep" parameterType="nr">
 		update notice_reply set nor_re_step = #{nor_re_step} + 1 where nor_ref=#{nor_ref} and nor_re_step > #{nor_re_step}
 	</update>

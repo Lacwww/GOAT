@@ -20,4 +20,6 @@ public interface NoticeReplyService {
 
 	void updateStep(NoticeReply nr);
 
+	int maxStep();
+
 }

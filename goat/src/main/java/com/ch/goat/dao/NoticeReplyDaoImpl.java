@@ -34,4 +34,7 @@ public class NoticeReplyDaoImpl implements NoticeReplyDao {
 	public void updateStep(NoticeReply nr) {
 		sst.update("rpnns.updateStep", nr);
 	}
+	public int maxStep() {
+		return sst.selectOne("rpnns.maxStep");
+	}
 }

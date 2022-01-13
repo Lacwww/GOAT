@@ -12,8 +12,6 @@ public interface CsService {
 
 	int maxNum();
 
-	void updateStep(Cs cs);
-
 	int insert(Cs cs);
 
 	Member selectM(int m_num);

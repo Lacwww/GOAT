@@ -20,4 +20,6 @@ public interface NoticeReplyDao {
 
 	void updateStep(NoticeReply nr);
 
+	int maxStep();
+
 }

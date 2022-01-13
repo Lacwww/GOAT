@@ -23,9 +23,6 @@ public class CsServiceImpl implements CsService{
 	public int maxNum() {
 		return cd.maxNum();
 	}
-	public void updateStep(Cs cs) {
-		cd.updateStep(cs);
-	}
 	public int insert(Cs cs) {
 		return cd.insert(cs);
 	}
