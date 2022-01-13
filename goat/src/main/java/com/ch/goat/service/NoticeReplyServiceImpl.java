@@ -40,7 +40,7 @@ public class NoticeReplyServiceImpl implements NoticeReplyService{
 		nd.updateStep(nr);
 	}
 
-	public int maxStep() {
-		return nd.maxStep();
+	public int maxStep(int nor_ref) {
+		return nd.maxStep(nor_ref);
 	}
 }
