@@ -359,21 +359,14 @@ public class PlaceController {
 			endPage = totalPage;
 		}
 		String place_area = place.getPlace_area();
-		System.out.println(place.getSearch());
-//		if(place.getSearch().equals(null)) {
-//			System.out.println("null");
-//		}else if(place.getSearch().equals("관광지")) {
-////			searchPoint = 1;
-//			System.out.println("관광지");
-//		}else if(place.getSearch().equals("숙소") ) {
-////			searchPoint = 2;
-//			System.out.println("숙소");
-//		}else if(place.getSearch().equals("음식점")) {
-////			searchPoint = 3;
-//			System.out.println("음식점");
-//		}else {
-//			
-//		}
+		if(place.getSearch() == null || place.getSearch().equals("")) {
+		}else if(place.getSearch().equals("관광지")) {
+			searchPoint = 1;
+		}else if(place.getSearch().equals("숙소") ) {
+			searchPoint = 2;
+		}else if(place.getSearch().equals("음식점")) {
+			searchPoint = 3;
+		}
 		
 		model.addAttribute("searchPoint", searchPoint);
 		model.addAttribute("place_area", place_area);

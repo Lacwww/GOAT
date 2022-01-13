@@ -12,10 +12,10 @@
 // 	location.href="place/insertPlaceAPI.do";
 
 	//관광지 지역 목록
-	location.href="place/placeList.do";
+// 	location.href="place/placeList.do";
 	
 	//메인
-// 	location.href="main/main.do";
+	location.href="main/main.do";
 </script>
 </body>
 </html>
