@@ -28,10 +28,6 @@ public class CsDaoImpl implements CsDao{
 		return sst.selectOne("csns.maxNum");
 	}
 
-	public void updateStep(Cs cs) {
-		sst.update("csns.updateStep", cs);
-	}
-
 	public int insert(Cs cs) {
 		return sst.insert("csns.insert", cs);
 	}

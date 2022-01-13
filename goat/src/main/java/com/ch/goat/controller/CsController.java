@@ -92,9 +92,7 @@ public class CsController {
 		int number = css.maxNum(); // 새 게시글 번호 생성
 		
 		if(cs.getCs_num() != 0) { // 답변글
-			// 글을 읽고 ref가 같고, re_step이 읽은 글의 re_step보다 크면 그 글의 re_step+1
-			css.updateStep(cs);
-			// re_step과 re_level은 읽은 값 더하기 1
+			// re_step과 re_level 원글과 구별하기 위해 + 1
 			cs.setCs_re_level(cs.getCs_re_level() + 1);
 			cs.setCs_re_step(cs.getCs_re_step() + 1);
 		} else cs.setCs_ref(number); // 답변글이 아닐때는 num과 ref는 둘다 number

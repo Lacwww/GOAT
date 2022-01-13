@@ -25,10 +25,6 @@
 		select nvl(max(cs_num), 0) + 1 from cs
 	</select>
 	
-	<update id="updateStep" parameterType="cs">
-		update cs set cs_re_step = #{cs_re_step} + 1 where cs_ref=#{cs_ref} and cs_re_step > #{cs_re_step}
-	</update>
-	
 	<insert id="insert" parameterType="cs">
 		insert into cs values (#{cs_num},#{cs_title},sysdate,#{cs_content},
 			0,#{cs_ref},#{cs_re_step},#{cs_re_level},#{m_num},'n')

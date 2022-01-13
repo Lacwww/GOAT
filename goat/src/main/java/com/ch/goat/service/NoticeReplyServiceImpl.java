@@ -39,4 +39,8 @@ public class NoticeReplyServiceImpl implements NoticeReplyService{
 	public void updateStep(NoticeReply nr) {
 		nd.updateStep(nr);
 	}
+
+	public int maxStep() {
+		return nd.maxStep();
+	}
 }
