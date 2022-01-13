@@ -130,9 +130,9 @@
 			            marker.setPosition(mouseEvent.latLng);
 			            marker.setMap(map);
 			            
-			            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-			            infowindow.setContent(content);
-			            infowindow.open(map, marker);
+			            // 인포윈도우에 클릭한 위치에 대한 상세 주소정보를 표시합니다
+// 			            infowindow.setContent(content);
+// 			            infowindow.open(map, marker);
 			            
 			
 			            frm.lat.value ='';
@@ -159,12 +159,12 @@
 			});
 			
 			function searchAddrFromCoords(coords, callback) {
-			    // 좌표로 행정동 주소 정보를 요청합니다
+			    // 좌표로 주소 정보를 요청합니다
 			    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
 			}
 			
 			function searchDetailAddrFromCoords(coords, callback) {
-			    // 좌표로 법정동 상세 주소 정보를 요청합니다
+			    // 좌표로 상세 주소 정보를 요청합니다
 			    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 			}
 			
@@ -187,9 +187,18 @@
 						<select name="temp_cate">
 							<c:if test="${place.place_cate == '관광지' }">
 								<option value="관광지" selected="selected">관광지</option>
+								<option value="숙소">숙소</option>
+								<option value="음식점">음식점</option>
 							</c:if>
-							<c:if test="${place.place_cate != '관광지' }">
+							<c:if test="${place.place_cate == '숙소' }">
 								<option value="관광지">관광지</option>
+								<option value="숙소" selected="selected">숙소</option>
+								<option value="음식점">음식점</option>
+							</c:if>
+							<c:if test="${place.place_cate == '음식점' }">
+								<option value="관광지">관광지</option>
+								<option value="숙소">숙소</option>
+								<option value="음식점" selected="selected">음식점</option>
 							</c:if>
 						</select></th>
 				</tr>

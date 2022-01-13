@@ -55,6 +55,8 @@
 			    position: markerPosition
 			});
 			
+			map.setZoomable(false); 
+			map.setDraggable(false); 
 			// 마커가 지도 위에 표시되도록 설정합니다
 			marker.setMap(map);
 		</script>
@@ -75,7 +77,9 @@
 		<h4>태그 : ${tp.temp_tag }</h4>
 		<h4>내용 : ${tp.temp_content }</h4>	
 		<h4>건의 이유 : ${tp.temp_explanation }</h4>
-		<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>	
+		<c:if test="${empty admin }">
+			<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
+		</c:if>	
 		<c:if test="${not empty admin && tp.del == 'n'}">
 			<button onclick="insertTemp()">건의 완료</button>
 			<button onclick="del()">건의 취소</button>
@@ -106,6 +110,8 @@
 						    position: markerPosition
 						});
 						
+						map.setZoomable(false); 
+						map.setDraggable(false); 
 						// 마커가 지도 위에 표시되도록 설정합니다
 						marker.setMap(map);
 					</script></th>
@@ -128,6 +134,8 @@
 							    position: markerPosition
 							});
 							
+							map.setZoomable(false); 
+							map.setDraggable(false); 
 							// 마커가 지도 위에 표시되도록 설정합니다
 							marker.setMap(map);
 						</script></th>
@@ -143,7 +151,9 @@
 					
 	</table>
 
-		<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>	
+		<c:if test="${empty admin }">
+			<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
+		</c:if>	
 		<c:if test="${not empty admin && tp.del == 'n'}">
 			<button onclick="updateTemp()">건의 완료</button>
 			<button onclick="del()">건의 취소</button>
@@ -170,6 +180,8 @@
 			    position: markerPosition
 			});
 			
+			map.setZoomable(false); 
+			map.setDraggable(false); 
 			// 마커가 지도 위에 표시되도록 설정합니다
 			marker.setMap(map);
 		</script>
@@ -185,7 +197,9 @@
 		<h4>주소(도로명) : ${tp.temp_addrd }</h4>
 		<h4>태그 : ${tp.temp_tag }</h4>
 		<h4>내용 : ${tp.temp_content }</h4>	
-		<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>	
+		<c:if test="${empty admin }">
+			<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
+		</c:if>	
 	</div>
 </c:if>
 </body>
