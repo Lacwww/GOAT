@@ -3,8 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rpnns">
 	<select id="list" parameterType="integer" resultType="nr">
-		select mr.*, m_name from notice_reply mr, member m 
-			where mr.m_num = m.m_num and no_num = #{no_num} order by nor_num
+		select nr.*, m.m_name 
+			from notice_reply nr, member m 
+				where nr.m_num=m.m_num and no_num = #{no_num}
+   					order by nor_ref, nor_re_step, nor_num
 	</select>
 	
 	<select id="maxNum" resultType="integer">
@@ -12,13 +14,13 @@
 		select nvl(max(nor_num), 0) + 1 from notice_reply
 	</select>
 	
-	<select id="maxStep" resultType="integer">
+	<select id="maxStep" parameterType="integer" resultType="integer">
 		<!-- ref와 num을 구분하기 위해서 -->
-		select nvl(max(re_step), 0) + 1 from notice_reply
+		select nvl(max(nor_re_step), 0) + 1 from notice_reply where nor_ref = #{nor_ref}
 	</select>
 	
 	<update id="updateStep" parameterType="nr">
-		update notice_reply set nor_re_step = #{nor_re_step} + 1 where nor_ref=#{nor_ref} and nor_re_step > #{nor_re_step}
+		update notice_reply set nor_re_step = nor_re_step + 1 where nor_ref=#{nor_ref} and nor_re_step > #{nor_re_step}
 	</update>
 	
 	<insert id="insert" parameterType="nr">
