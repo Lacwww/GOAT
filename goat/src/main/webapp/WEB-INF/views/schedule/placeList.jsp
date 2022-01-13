@@ -65,18 +65,19 @@
 		            map.panTo(coords);
 		    } 
 		});    
-		/* input type hidden 추가하기 */
-		$('#id').val(id);
 	}
  	function del(num) {
  		var msg = confirm("플레이스를 삭제하시겠습니까?");
  		if(msg) {
+ 			var index = id.indexOf(num);
 			setMarkers(null); 
 			$('#tr'+num).remove();
 			$('#pList'+num).show();
-			arr.splice(num,1);
- 		}
-	}
+			id.splice(index,1);
+			frm.id.value=id;
+				}				
+			}
+	
  	/* 플레이스 상세정보 */
 	function modal(place) {
 		$('#MoaModal .modal-content').load("prevDetailView.do?place_num=" + place);

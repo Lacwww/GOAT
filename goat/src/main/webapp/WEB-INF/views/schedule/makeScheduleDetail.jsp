@@ -7,6 +7,9 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
 <script type="text/javascript">
 	var positions = [];
+	for(var i=1; i<=${days}; i++) {
+		eval('var day'+i+'= []');
+	}
 	
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	function makeOverListener(map, marker, infowindow) {
@@ -21,6 +24,7 @@
 	        infowindow.close();
 	    };
 	}
+	// 일정별 선택한 플레이스들을 보여주는 함수입니다
 	function disp(selected_day) {
 		if(selected_day!=0) {
 			$('.selected_list > div').hide();
@@ -30,7 +34,7 @@
 		}
 	}
 	
-	/* DAY 선택시 실행하는 함수 */
+	// DAY 선택시 실행하는 함수
 	function day_select(num,d) {
 			var day = $("select[name="+d+"]").val();
 			var name = $('#p_name'+num).text();
@@ -41,24 +45,52 @@
 					+addrs+"</td><td><select name='change_"+d+"' id='change_"+d+"' onchange=\"day_change("+num+",'"+d+"')\"><option value='0'>방문 일자</option>"
 					+"<c:forEach var='tday' begin='1' end='${days}'><option value='${tday}'>${tday }</option></c:forEach></select></td></tr>");
 			$('#change_'+d).prop('selectedIndex',day);
+			$
 			disp(day);
+			// 일자별 배열 담기
+			eval('day'+day).push(num);
+			// input hidden 박스에 담기
+			$('#input_day'+day).val(eval('day'+day));
 		}
-	
+	// 일정선택한 플레이스들의 일정을 변경하는 함수입니다
 	function day_change(num, d) {
 		var day = $("select[name=change_"+d+"]").val();
 			if(day!=0) {
 			$('#d'+day).append($('#tr'+num));
+			var index = eval('day'+day).indexOf(num);
+			eval('day'+day).splice(index,1);
+			frm.eval('day'+day).value=eval('day'+day);
 		}else {
 			$('#'+d).prop('selectedIndex',0);
 			$('#tr'+num).remove();
 			$('#pList'+num).show();
+			// 전체 배열중에 해당 num를 가지고 있는 배열을 찾아서 삭제
+			for(var i=1; i<=${days}; i++) {
+				var index = eval('day'+day).indexOf(num);
+				eval('day'+day).splice(index,1);
+			}
+			//
+			frm.eval('day'+day).value=eval('day'+day);
 		}
 	}
-	
+	// 이전 페이지로 돌아갑니다
 	function back() {
 		var con = confirm("작성을 취소하고 이전 페이지로 돌아갈까요?");
 		if(con){
 			history.back();
+		}
+	}
+	// submit 체크
+	function chk() {
+		var count = $('.list>div:visible').length;
+		if(count != 0) {
+			alert("일정이 선택되지 않은 플레이스가 남아있습니다.\r\n일정을 선택해 주세요");
+			return false;
+		}
+		if(frm.sch_name.value=="" || frm.sch_name.value==null) {
+			alert("스케줄 이름을 설정해주세요");
+			frm.sch_name.focus();
+			return false;
 		}
 	}
 </script>
@@ -85,7 +117,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="chkSchedule.do" method="post" name="frm">
+	<form action="chkSchedule.do" method="post" name="frm" onsubmit="return chk();">
+	<c:forEach var="detail" begin="1" end="${days }">
+		<input type="text" id="input_day${detail }" name="input_day${detail }" value="">
+	</c:forEach>
+	
 	<div id="wrapper">
 			<div>
 				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요"><p>
