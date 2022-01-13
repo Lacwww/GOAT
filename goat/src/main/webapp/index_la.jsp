@@ -8,7 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="schedule/selectArea.do"
+	location.href="schedule/chkSchedule.do"
 </script>
 </body>
 </html>

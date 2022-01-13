@@ -3,14 +3,24 @@
 <%@ include file="../tool.jsp"%>
 <!DOCTYPE html>
 <html>
+<head>
+<style type="text/css">
+	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
+	.p_image { width: 100%; height: 100%;}
+	#pimage { width: 160px; height: 140px; float: left; position: relative;}
+	#plist { margin: 10px;} 
+	#p_image{ width: 150px; height: 150px;}
+	.dragRow { background: gray;}
+</style>
+<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
-<script type="text/javascript">
+<script type="text/javascript"> 
+
 	var positions = [];
-	for(var i=1; i<=${days}; i++) {
-		eval('var day'+i+'= []');
-	}
-	
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	function makeOverListener(map, marker, infowindow) {
 	    return function() {
@@ -41,36 +51,31 @@
 			var addrs = $('#p_addr'+num).text();
 			if(day == 0) return false;
 			$('#pList'+num).hide();
-			$('#d'+day).append("<tr id='tr"+num+"'><td><c:set var='i' value='1'/>${i}<c:set var='i' value='i+1'/></td><td>"+name+"</td><td>"
+			$('#table-'+day).append("<tr id='d"+num+"' class='plz'><td><input type='text' name=\"input_day"+day+"\" value=\""+num+"\" id=\""+num+"\"></td><td>"+name+"</td><td>"
 					+addrs+"</td><td><select name='change_"+d+"' id='change_"+d+"' onchange=\"day_change("+num+",'"+d+"')\"><option value='0'>방문 일자</option>"
 					+"<c:forEach var='tday' begin='1' end='${days}'><option value='${tday}'>${tday }</option></c:forEach></select></td></tr>");
 			$('#change_'+d).prop('selectedIndex',day);
-			$
 			disp(day);
-			// 일자별 배열 담기
-			eval('day'+day).push(num);
-			// input hidden 박스에 담기
-			$('#input_day'+day).val(eval('day'+day));
+			$( function() {
+			    $( "#table-1" ).sortable({
+			    	items: $('.plz')
+		    	});
+			});
 		}
+	
 	// 일정선택한 플레이스들의 일정을 변경하는 함수입니다
 	function day_change(num, d) {
 		var day = $("select[name=change_"+d+"]").val();
 			if(day!=0) {
 			$('#d'+day).append($('#tr'+num));
-			var index = eval('day'+day).indexOf(num);
-			eval('day'+day).splice(index,1);
-			frm.eval('day'+day).value=eval('day'+day);
+			 $('#'+num).attr({
+		            'name' : 'input_day'+day
+		          });
+			
 		}else {
 			$('#'+d).prop('selectedIndex',0);
 			$('#tr'+num).remove();
 			$('#pList'+num).show();
-			// 전체 배열중에 해당 num를 가지고 있는 배열을 찾아서 삭제
-			for(var i=1; i<=${days}; i++) {
-				var index = eval('day'+day).indexOf(num);
-				eval('day'+day).splice(index,1);
-			}
-			//
-			frm.eval('day'+day).value=eval('day'+day);
 		}
 	}
 	// 이전 페이지로 돌아갑니다
@@ -92,6 +97,19 @@
 			frm.sch_name.focus();
 			return false;
 		}
+    	//값들의 갯수 -> 배열 길이를 지정
+    	for(var i=1; i <= ${days}; i++) {
+			var len = $("input[name=input_day"+i+"]").length;
+			//배열 생성
+			var day_group = new Array(len);
+				//배열에 값 주입
+				for(var j=0; j<len; j++){                          
+					day_group[j] = $("input[name=input_day"+i+"]").eq(j).val();
+			}
+			$('#input_day'+i).val(day_group);
+			alert(day_group);
+	    }
+    	
 	}
 </script>
 
@@ -105,19 +123,12 @@
 		positions.push(p);
 	</script>
 </c:forEach>
-<head>
-<style type="text/css">
-	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
-	.p_image { width: 100%; height: 100%;}
-	#pimage { width: 160px; height: 140px; float: left; position: relative;}
-	#plist { margin: 10px;} 
-	#p_image{ width: 150px; height: 150px;}
-</style>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="chkSchedule.do" method="post" name="frm" onsubmit="return chk();">
+	<form action="" method="post" name="frm" onsubmit="return chk();">
 	<c:forEach var="detail" begin="1" end="${days }">
 		<input type="text" id="input_day${detail }" name="input_day${detail }" value="">
 	</c:forEach>
@@ -199,7 +210,7 @@
 			<div class="selected_list">
 				<c:forEach var="d" begin="1" end="${days }">
 					<div id="day${d }">
-						<table class="table table-striped" id="d${d }"><caption>DAY ${d }</caption>
+						<table class="table talbe-striped" id="table-${d }"><caption>DAY ${d }</caption>
 							<tr><th>여행 순서</th><th>장소명</th><th>주소</th><th>방문일자</th></tr>
 						</table>
 					</div>

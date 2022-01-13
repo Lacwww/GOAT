@@ -67,7 +67,7 @@
 	<div id="wrapper">
 		<div id="outer" style="width: 65%; float: left;">
 		<form action="makeScheduleDetail.do" name="frm" method="post">
-			<input type="text" id="id" name="id" value="">
+			<input type="hidden" id="id" name="id" value="">
 			<input type="hidden" name="place_area" value="${place_area }">
 			<div style="width: 100%;">
 				<img alt="calendar" src="${path }/resources/images/calendar.png"
