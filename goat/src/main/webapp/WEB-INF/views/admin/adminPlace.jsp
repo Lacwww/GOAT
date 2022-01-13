@@ -7,11 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-th, td {
-	vertical-align: middle !important;
-}
-table {
-	
+.pagination {
+	justify-content: center;
 }
 </style>
 <script type="text/javascript">
@@ -27,29 +24,29 @@ table {
 			<table class="table table-hover table-striped">
 				<thead>
 					<tr>
-						<th style="width: 3%">번호</th>
-						<th style="width: 20%">플레이스명</th>
-						<th style="width: 5%">카테고리</th>
-						<th style="width: 30%">주소</th>
-						<th style="width: 30%">상세주소</th>
-						<th style="width: 10%">등록일</th>
+						<th>번호</th>
+						<th>플레이스명</th>
+						<th>카테고리</th>
+						<th class="w-30">주소</th>
+						<th class="w-30">상세주소</th>
+						<th>등록일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="place" items="${list }">
 						<tr onclick="opn(${place.place_num})">
-							<td class="col-1">${place.place_num }</td>
-							<td>${place.place_name }</td>
-							<td>${place.place_cate }</td>
-							<td>${place.place_addr }</td>
-							<td>${place.place_addrd }</td>
-							<td>${place.reg_date }</td>
+							<td class="align-middle">${place.place_num }</td>
+							<td class="align-middle">${place.place_name }</td>
+							<td class="align-middle">${place.place_cate }</td>
+							<td class="align-middle">${place.place_addr }</td>
+							<td class="align-middle">${place.place_addrd }</td>
+							<td class="align-middle">${place.reg_date }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-		<div align="center" style="clear: both;">
+		<div style="clear: both;">
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${startPage > pagePerBlock }">

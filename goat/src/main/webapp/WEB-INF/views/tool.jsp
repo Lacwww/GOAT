@@ -11,5 +11,6 @@
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <%-- ${path }를 사용하면 패키지의 경올가 절대경로로 변경 --%>
 <link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
