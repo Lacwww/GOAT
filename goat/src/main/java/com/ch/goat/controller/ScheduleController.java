@@ -66,7 +66,6 @@ public class ScheduleController {
 			places.add(place);
 		}
 		int days = ss.days(s_date, e_date);
-		
 		model.addAttribute("days", days);
 		model.addAttribute("size", places.size());
 		model.addAttribute("place_area", place_area);
@@ -74,5 +73,11 @@ public class ScheduleController {
 		model.addAttribute("s_date", s_date);
 		model.addAttribute("e_date", e_date);
 		return "schedule/makeScheduleDetail";
+	}
+	
+	@RequestMapping("schedule/chkSchedule")
+	public String chkSchedule(Model model) {
+		
+		return "schedule/chkSchedule";
 	}
 }
