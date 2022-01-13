@@ -8,8 +8,14 @@
 <title>Insert title here</title>
 <style type="text/css">
 .pagination {
-	justify-content: center;
+	display: block;
+	text-align: center;
 }
+
+.pagination > li > a {
+	float: none;
+}
+
 </style>
 <script type="text/javascript">
 	function opn(place_num) {
@@ -20,24 +26,25 @@
 <body>
 	<div>
 		<h2>플레이스 목록</h2>
-		<div>
+		<div style="width:100%;" class="div1">
 			<table class="table table-hover table-striped">
+			<!-- <table class="table table-hover table-striped"> -->
 				<thead>
 					<tr>
-						<th>번호</th>
-						<th>플레이스명</th>
-						<th>카테고리</th>
-						<th style="width: 30%">주소</th>
-						<th style="width: 30%">상세주소</th>
-						<th style="width: 20%">등록일</th>
+						<th style="width: 5%; ">번호</th>
+						<th style="width: 15%">플레이스명</th>
+						<th style="width: 10%">카테고리</th>
+						<th style="width: 25%">주소</th>
+						<th style="width: 25%">상세주소</th>
+						<th>등록일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="place" items="${list }">
 						<tr onclick="opn(${place.place_num})">
-							<td class="align-middle">${place.place_num }</td>
-							<td class="align-middle">${place.place_name }</td>
-							<td class="align-middle">${place.place_cate }</td>
+							<td style="width:5%;" class="align-middle">${place.place_num }</td>
+							<td style="width: 15%" class="align-middle">${place.place_name }</td>
+							<td style="width: 10%" class="align-middle">${place.place_cate }</td>
 							<td class="align-middle">${place.place_addr }</td>
 							<td class="align-middle">${place.place_addrd }</td>
 							<td class="align-middle">${place.reg_date }</td>
