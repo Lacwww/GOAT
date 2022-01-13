@@ -343,6 +343,7 @@ public class PlaceController {
 	}
 	@RequestMapping("place/areaPlaceList")
 	public String areaPlaceList(Place place, String pageNum, Model model) {
+		int searchPoint = 0;
 		int rowPerPage = 12;
 		int pagePerBlock = 10;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
@@ -357,9 +358,24 @@ public class PlaceController {
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
-		
 		String place_area = place.getPlace_area();
+		System.out.println(place.getSearch());
+//		if(place.getSearch().equals(null)) {
+//			System.out.println("null");
+//		}else if(place.getSearch().equals("관광지")) {
+////			searchPoint = 1;
+//			System.out.println("관광지");
+//		}else if(place.getSearch().equals("숙소") ) {
+////			searchPoint = 2;
+//			System.out.println("숙소");
+//		}else if(place.getSearch().equals("음식점")) {
+////			searchPoint = 3;
+//			System.out.println("음식점");
+//		}else {
+//			
+//		}
 		
+		model.addAttribute("searchPoint", searchPoint);
 		model.addAttribute("place_area", place_area);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -370,29 +386,6 @@ public class PlaceController {
 		return "place/areaPlaceList";
 	}
 	
-	
-	
-	@RequestMapping("place/insertFoodAPI")
-	public String foodAPI() {
-		String result ="";
-		try {
-			URL url = new URL("https://api.odcloud.kr/api/15055972/v1/uddi:2a47389c-edac-495f-97f5-aa33114e50b5_201810231620?"
-					+ "page=1&perPage=1&serviceKey=JSPyU5OUvUINk9wFlvw0r8OnVxKMF%2BhyqRJqMhRMJGF8DPql19mGk1VN81M6K6Sio%2Bz6U0t85crotDjgT2nbjQ%3D%3D");	
-			BufferedReader bf;
-			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));					
-			result = bf.readLine();
-			int CurNum = ps.getPlaceNum();
-			Place place = new Place();
-			place.setPlace_num(CurNum);
-			System.out.println("장소 번호  : "+ CurNum);
-			
-			
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		
-		return "place/insertAPI";
-	}
 	
 	@RequestMapping("place/insertPlaceAPI")
 	public String placeAPI() {

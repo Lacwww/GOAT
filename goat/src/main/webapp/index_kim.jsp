@@ -11,11 +11,8 @@
 	//관광지 장소 정보 입력
 // 	location.href="place/insertPlaceAPI.do";
 
-	//서귀포시 음식점
-	location.href="place/insertFoodAPI.do";
-	
 	//관광지 지역 목록
-// 	location.href="place/placeList.do";
+	location.href="place/placeList.do";
 	
 	//메인
 // 	location.href="main/main.do";
