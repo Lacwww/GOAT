@@ -27,9 +27,9 @@
 						<th>번호</th>
 						<th>플레이스명</th>
 						<th>카테고리</th>
-						<th class="w-30">주소</th>
-						<th class="w-30">상세주소</th>
-						<th>등록일</th>
+						<th style="width: 30%">주소</th>
+						<th style="width: 30%">상세주소</th>
+						<th style="width: 20%">등록일</th>
 					</tr>
 				</thead>
 				<tbody>
