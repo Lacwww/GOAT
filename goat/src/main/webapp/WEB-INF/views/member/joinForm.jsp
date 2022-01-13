@@ -22,21 +22,21 @@
 	}
 	/* 비밀번호 일치 여부 & 중복체크 여부 검사 */
 	function chk() {
-		if (frm.pass.value != frm.pass2.value) {
+		if(frm.m_pass.value != frm.m_pass2.value) {
 			alert("암호와 암호 확인이 다릅니다");
-			frm.pass2.focus();
-			frm.pass2.value = "";
+			frm.m_pass2.focus();
+			frm.m_pass2.value = "";
 			return false;
 		}
-		if (frm.idchk.value == "unChk") {
+		if(frm.idchk.value == "unChk") {
 	  		alert("아이디 중복체크를 해주세요.");
 	   	 	return false;
 		}	
-		if (frm.nickchk.value == "unChk") {
+		if(frm.nickchk.value == "unChk") {
 	   	 	alert("닉네임 중복체크를 해주세요.");
 	    	return false;
 		}
-		if (frm.emailchk.value == "unChk") {
+		if(frm.emailchk.value == "unChk") {
 	   	 	alert("이메일 중복체크를 해주세요.");
 	    	return false;
 		}

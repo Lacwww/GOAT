@@ -51,4 +51,9 @@ public class CsDaoImpl implements CsDao{
 		return sst.update("csns.delete", cs_ref);
 	}
 
+	@Override
+	public int updateCon(int cs_ref) {
+		return sst.update("csns.updateCon", cs_ref);
+	}
+
 }

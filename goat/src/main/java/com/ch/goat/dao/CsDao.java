@@ -22,4 +22,6 @@ public interface CsDao {
 	void updateViewcount(int cs_num);
 
 	int delete(int cs_ref);
+
+	int updateCon(int cs_ref);
 }

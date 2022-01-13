@@ -90,15 +90,22 @@ public class CsController {
 	@RequestMapping("cs/csInsert")
 	public String csInsert(Cs cs, String pageNum, Model model) {
 		int number = css.maxNum(); // 새 게시글 번호 생성
+		int result = 0;
 		
 		if(cs.getCs_num() != 0) { // 답변글
 			// re_step과 re_level 원글과 구별하기 위해 + 1
 			cs.setCs_re_level(cs.getCs_re_level() + 1);
 			cs.setCs_re_step(cs.getCs_re_step() + 1);
-		} else cs.setCs_ref(number); // 답변글이 아닐때는 num과 ref는 둘다 number
+			cs.setCs_num(number);
+			result = css.insert(cs);
+			result = css.updateCon(cs.getCs_ref());
+		} else {
+			cs.setCs_ref(number); // 답변글이 아닐때는 num과 ref는 둘다 number
+			cs.setCs_num(number);
+			result = css.insert(cs);
+		}
 		
-		cs.setCs_num(number);
-		int result = css.insert(cs);
+		
 			
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("result", result);
