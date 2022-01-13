@@ -38,7 +38,7 @@
 			</c:if>
 			<c:if test="${not empty list }">
 				<c:forEach var="list" items="${list }">
-					<tr onclick="location.href='${path}/cs/csView.do?cs_num=${list.cs_num }'">
+					<tr onclick="location.href='${path}/cs/csView.do?cs_num=${list.cs_num }'" title="${list.cs_content }">
 						<td align="center">
 							${list.cs_num }
 						</td>
