@@ -71,6 +71,9 @@ ALTER TABLE TRIP
 			M_NUM
 		);
 
+alter table trip drop column t_photo;
+drop table tirp_photo;
+
 /* 여행 게시판 댓글 */
 CREATE TABLE TRIP_REPLY (
 	TRE_NUM NUMBER NOT NULL, /* 댓글 번호 */
