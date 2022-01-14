@@ -2,17 +2,23 @@ package com.ch.goat.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.goat.model.Member;
 import com.ch.goat.model.Trip;
+import com.ch.goat.service.MemberService;
 import com.ch.goat.service.PageBean;
 import com.ch.goat.service.TripService;
 
 @Controller
 public class TripController {
+	@Autowired
+	private MemberService ms;
 	@Autowired
 	private TripService ts;
 	
@@ -37,17 +43,25 @@ public class TripController {
 		return "trip/tripList";
 	}
 	
-//	@RequestMapping("notice/noticeInsertForm")
-//	public String noticeInsertForm(Notice notice, String pageNum, HttpSession session, Model model) {
-//		String admin_id = (String) session.getAttribute("adminid");
-//		Member adminInfo = ms.select(admin_id);
-//		
-//		model.addAttribute("adminInfo",adminInfo);
-//		model.addAttribute("pageNum", pageNum);
-//
-//		return "notice/noticeInsertForm";
-//	}
-//
+	@RequestMapping("trip/tripInsertForm")
+	public String noticeInsertForm(Trip trip, String pageNum, HttpSession session, Model model) {
+		String m_id = (String) session.getAttribute("id");
+		String admin_id = (String) session.getAttribute("adminid");
+
+		if(m_id == null) {
+			Member adminInfo = ms.select(admin_id);
+			model.addAttribute("adminInfo",adminInfo);
+		}
+		if(admin_id == null) {
+			Member member = ms.select(m_id);
+			model.addAttribute("member",member);
+		}
+
+		model.addAttribute("pageNum", pageNum);
+
+		return "trip/tripInsertForm";
+	}
+
 //	@RequestMapping("notice/noticeInsert")
 //	public String noticeInsert(Notice notice, String pageNum, Model model) {
 //		int number = ns.maxNum(); // 새 게시글 번호 생성
