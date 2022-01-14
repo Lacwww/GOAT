@@ -24,6 +24,7 @@ public class Trip {
 	// upload용
 	private MultipartFile file;
 	
-	// 공지사항 작성자띄우기
+	// 작성자띄우기
+	private String m_name;
 	private String m_nick;
 }
