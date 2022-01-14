@@ -28,7 +28,7 @@
 
 .desc {
 	padding: 20px;
-	font-size: 18px;
+	font-size: 17px;
 	font-weight: bold;
 	text-align: center;
 	background-color: #5e5a5a;
@@ -38,6 +38,14 @@
 	color: #ffffff;
 	border-radius: 7px;
 }
+
+	.btn {
+	background-color: rgb(64,123,37);
+	color: white;
+	}
+	.btn:hover {
+		background-color: rgb(114,201,75);
+	}
 </style>
 <script type="text/javascript">
 	function modal(place_num) {
@@ -48,16 +56,16 @@
 </head>
 <body>
 
-<div align="center">선택 지역 : ${place.place_area }</div>
+<div align="center"><h2>선택 지역 : ${place.place_area }</h2></div>
 <c:if test="${not empty place.place_areadetail }">
-	<div align="center">상세 지역 : ${place.place_areadetail }</div>
+	<div align="center"><h3>상세 지역 : ${place.place_areadetail }</h3></div>
 </c:if>
 <form action="areaPlaceList.do">
 	<input type="hidden" name="pageNum" value="1">
 	<input type="hidden" name="place_area" value="${place_area }">
 	<input type="hidden" name="place_areadetail" value="${place.place_areadetail }">
 	<div align="center">
-		<select name="search">
+		<select class="form-control" style="width: 8%; display: inline;" name="search">
 		<c:if test="${searchPoint == 0}">
 			<option>전체</option>
 			<option value="관광지">관광지</option>
@@ -84,20 +92,20 @@
 		</c:if>
 
 		</select>
-		<input type="text" name="keyword" value="${place.keyword }">
-		<input type="submit" value="검색">
+		<input type="text" class="form-control" style="width: 20%; display: inline;" name="keyword" value="${place.keyword }">
+		<input type="submit" class="btn" value="검색">
 	</div>
 </form>
 
 <div align="center">
-	<input type="button" value="플레이스 등록" onclick="location.href='insertFormTempPlace.do'">
+	<input type="button" class="btn" value="플레이스 등록" onclick="location.href='insertFormTempPlace.do'">
 </div>
 
 <c:if test="${empty list }">
 	<h2 align="center">지역에 해당하는 장소가 없습니다.</h2>
 </c:if>
 <c:if test="${not empty list }">
-		<div class="container" align="center">
+		<div class="container" align="center" style="margin-left: 3%;">
 			<c:forEach var="place" items="${list }">
 			<div class="area" onclick="modal('${place.place_num}')">
 				<div class="areaPhoto">

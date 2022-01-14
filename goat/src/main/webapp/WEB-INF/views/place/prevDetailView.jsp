@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.top {float: left; }
-	.bookmark {float: right; margin-right: 20%;}
+	.bookmark {float: right;}
 	.star, .star1, .star2{
 	  display:inline-block;
 	  width: 30px;height: 30px;
@@ -86,7 +86,7 @@
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="margin-left: 10%;">
 		<div align="center" class="top"><img alt="" src="${place.place_photo }" style="width: 450px; height: 400px;"></div>
 		<div id="map" class="top" style="width:450px; height: 400px;"></div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9"></script>
@@ -112,7 +112,7 @@
 			marker.setMap(map);
 		</script>
 	</div>
-	<div class="container">
+	<div class="container" style="margin-left: 10%; width: 82%;">
 		<div class="bookmark"><img class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div>
 		<h2 class="text-primary">${place.place_name }</h2>
 		<br>
@@ -124,8 +124,8 @@
 		<h4>태그 : ${place.place_tag }</h4>
 		<h4>내용 : ${place.place_content }</h4>	
 	</div>
-	<div id="prevListDisp"></div>
-	<div>
+	<div id="prevListDisp" style="margin-left: 10%; width: 82%;"></div>
+	<div style="margin-left: 10%; width: 82%;">
 		<form action="" name="frm1" id="frm1">
 			<input type="hidden" name="place_num" value="${place.place_num }">
 			<table>

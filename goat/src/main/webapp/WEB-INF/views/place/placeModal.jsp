@@ -7,7 +7,8 @@
 <style type="text/css">
 	.placeImg {width: 100%; height: 100%; padding-right: 2px;}
 	.area_photo { float: left; width: 30%; height: 30%;}
-	.area_text { width: 80%; padding: 5px; }
+	.area_photo img { border-radius: 10px;}
+	.area_text {margin-left: 35%;}
 	a {cursor: pointer; }
 </style>
 <meta charset="UTF-8">
@@ -37,6 +38,7 @@
 				</div>
 				<div class="area_text">
 					<h3>${place.place_name}</h3>
+					<br>
 					<h4>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"/></h4>
 					<h5>태그 : ${place.place_tag }</h5>
 					<br>

@@ -36,6 +36,13 @@
 	color: #ffffff;
 	border-radius: 7px;
 }
+	.btn {
+	background-color: rgb(64,123,37);
+	color: white;
+	}
+	.btn:hover {
+		background-color: rgb(114,201,75);
+	}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -44,17 +51,20 @@
 		$('#MoaModal .modal-content').load("placeAreaModal.do?place_area=" + place_area);
 		$('#MoaModal').modal();
 	}
+	
+	
+	const map = new Map();
 </script>
 </head>
 <body>
 	<!-- 지역 리스트 -->
 	<div class="container" align="center">
 		<h2 id="sch">플레이스 지역 선택</h2>
-		<h3>어디로 가볼까요?</h3>
+		<h3 class="text-primary">어디로 가볼까요?</h3>
 		<div align="center"> 
-			<input type="button" value="플레이스 등록" onclick="location.href='insertFormTempPlace.do'"> 
+			<input type="button" class="btn" value="플레이스 등록" onclick="location.href='insertFormTempPlace.do'"> 
 		</div>
-		<div class="container" align="center">
+		<div class="container" align="center" style="margin-left: 3%;">
 			<c:forEach var="area" items="${list }">
 			<div class="area">
 				<div class="areaPhoto">
