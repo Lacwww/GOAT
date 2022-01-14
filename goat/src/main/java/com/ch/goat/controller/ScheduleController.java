@@ -76,8 +76,10 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping("schedule/chkSchedule")
-	public String chkSchedule(Model model) {
-		
+	public String chkSchedule(Model model, String result_day, int days) {
+		String[] rDay = result_day.split("day");
+		for(int i=1; i<=days; i++) {
+		}
 		return "schedule/chkSchedule";
 	}
 }

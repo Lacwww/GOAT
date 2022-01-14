@@ -5,22 +5,50 @@
 <html>
 <head>
 <style type="text/css">
-	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
-	.p_image { width: 100%; height: 100%;}
-	#pimage { width: 160px; height: 140px; float: left; position: relative;}
-	#plist { margin: 10px;} 
-	#p_image{ width: 150px; height: 150px;}
-	.dragRow { background: gray;}
+div #p_list {
+	overflow: auto;
+	float: right;
+	width: 30%;
+	height: 100%;
+	top: 20px;
+}
+
+.p_image {
+	width: 100%;
+	height: 100%;
+}
+
+#pimage {
+	width: 160px;
+	height: 140px;
+	float: left;
+	position: relative;
+}
+
+#plist {
+	margin: 10px;
+}
+
+#p_image {
+	width: 150px;
+	height: 150px;
+}
+
+.dragRow {
+	background: gray;
+}
 </style>
-<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${path }/resources/bootstrap/js/jquery-ui.min.js"></script>
+<script type="text/javascript"
+	src="${path }/resources/bootstrap/js/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
 <script type="text/javascript"> 
-
 	var positions = [];
+	var result_day = [];
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	function makeOverListener(map, marker, infowindow) {
 	    return function() {
@@ -51,13 +79,13 @@
 			var addrs = $('#p_addr'+num).text();
 			if(day == 0) return false;
 			$('#pList'+num).hide();
-			$('#table-'+day).append("<tr id='d"+num+"' class='plz'><td><input type='text' name=\"input_day"+day+"\" value=\""+num+"\" id=\""+num+"\"></td><td>"+name+"</td><td>"
+			$('#table-'+day).append("<tr id='d"+num+"' class='plz'><td><input type='hidden' name=\"day_value"+day+"\" value=\""+num+"\" id=\""+num+"\"></td><td>"+name+"</td><td>"
 					+addrs+"</td><td><select name='change_"+d+"' id='change_"+d+"' onchange=\"day_change("+num+",'"+d+"')\"><option value='0'>방문 일자</option>"
 					+"<c:forEach var='tday' begin='1' end='${days}'><option value='${tday}'>${tday }</option></c:forEach></select></td></tr>");
 			$('#change_'+d).prop('selectedIndex',day);
 			disp(day);
 			$( function() {
-			    $( "#table-1" ).sortable({
+			    $( "table" ).sortable({
 			    	items: $('.plz')
 		    	});
 			});
@@ -67,14 +95,14 @@
 	function day_change(num, d) {
 		var day = $("select[name=change_"+d+"]").val();
 			if(day!=0) {
-			$('#d'+day).append($('#tr'+num));
+			$('#table-'+day).append($('#d'+num));
 			 $('#'+num).attr({
-		            'name' : 'input_day'+day
+		            'name' : 'day_value'+day
 		          });
 			
 		}else {
 			$('#'+d).prop('selectedIndex',0);
-			$('#tr'+num).remove();
+			$('#d'+num).remove();
 			$('#pList'+num).show();
 		}
 	}
@@ -99,17 +127,30 @@
 		}
     	//값들의 갯수 -> 배열 길이를 지정
     	for(var i=1; i <= ${days}; i++) {
-			var len = $("input[name=input_day"+i+"]").length;
+			var len = $("input[name=day_value"+i+"]").length;
 			//배열 생성
 			var day_group = new Array(len);
-				//배열에 값 주입
-				for(var j=0; j<len; j++){                          
-					day_group[j] = $("input[name=input_day"+i+"]").eq(j).val();
+			//배열에 값 주입
+			for(var j=0; j<len; j++){                          
+				day_group[j] = $("input[name=day_value"+i+"]").eq(j).val();
+				if(j==len-1) {
+					day_group.push("day");
+				}
 			}
+			result_day.push(day_group);
 			$('#input_day'+i).val(day_group);
-			alert(day_group);
+			$('#result_day').val(result_day);
 	    }
-    	
+    	alert(result_day.length);
+    	// 비어있는 일정이 있는지 확인하기
+    	for(var i=1; i<= ${days}; i++) {
+    		var empty_table = document.getElementById('table-'+i);
+    		var row_count = empty_table.rows.length;
+    		if(row_count == 1 ) {
+    			alert("비어있는 일정이 존재합니다");
+    			return false;
+    		}
+    	}
 	}
 </script>
 
@@ -128,15 +169,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="" method="post" name="frm" onsubmit="return chk();">
-	<c:forEach var="detail" begin="1" end="${days }">
-		<input type="text" id="input_day${detail }" name="input_day${detail }" value="">
-	</c:forEach>
-	
-	<div id="wrapper">
+	<form action="chkSchedule.do" method="post" name="frm"
+		onsubmit="return chk();">
+		<c:forEach var="detail" begin="1" end="${days }">
+			<input type="hidden" id="input_day${detail }"
+				name="input_day${detail }" value="">
+		</c:forEach>
+		<input type="hidden" name="days" value="${days }">
+		<input type="hidden" name="result_day" id="result_day">
+		<div id="wrapper">
 			<div>
-				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요"><p>
-				${s_date } ~ ${e_date }
+				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요">
+				<p>${s_date } ~ ${e_date }
 			</div>
 			<!-- 지도 -->
 			<div id="map" style="width: 65%; height: 60%; float: left;"></div>
@@ -173,8 +217,9 @@
 					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 					}
 				</script>
-			<div class="list" style="width: 35%; height: 60%; overflow : auto; padding-left: 20px; border: solid green 1px;">
-				<c:set var="d" value="1"/>
+			<div class="list"
+				style="width: 35%; height: 60%; overflow: auto; padding-left: 20px; border: solid green 1px;">
+				<c:set var="d" value="1" />
 				<c:forEach var="p" items="${places }">
 					<div id="pList${p.place_num }" style="padding-bottom: 10px;">
 						<div id="pimage">
@@ -188,8 +233,10 @@
 									width="20px;" height="20px;" onclick="modal(${p.place_num})">
 							</div>
 							<br> <span>주소</span><br> <span class="p_addr"
-								id="p_addr${p.place_num }">${p.place_addr }</span><br> <span>선택 일자</span>
-							<select name="place${d }" id="place${d}" onchange="day_select(${p.place_num }, 'place${d}')"><c:set var="d" value="${d+1 }"/>
+								id="p_addr${p.place_num }">${p.place_addr }</span><br> <span>선택
+								일자</span> <select name="place${d }" id="place${d}"
+								onchange="day_select(${p.place_num }, 'place${d}')"><c:set
+									var="d" value="${d+1 }" />
 								<option value="0" selected="selected">방문 일자</option>
 								<c:forEach var="day" begin="1" end="${days }">
 									<option value="${day }">${day }</option>
@@ -200,26 +247,33 @@
 				</c:forEach>
 			</div>
 			<div class="selected_day">
-				<div style="float: left;" id="group0" class="group" onclick="disp(0)">전체 일정</div>
+				<div style="float: left;" id="group0" class="group"
+					onclick="disp(0)">전체 일정</div>
 				<c:forEach var="d" begin="1" end="${days }">
-					<div style="float: left;" id="group${d }" class="group" onclick="disp(${d})">
-						${d }일차
-					</div>
+					<div style="float: left;" id="group${d }" class="group"
+						onclick="disp(${d})">${d }일차</div>
 				</c:forEach>
 			</div>
 			<div class="selected_list">
 				<c:forEach var="d" begin="1" end="${days }">
 					<div id="day${d }">
-						<table class="table talbe-striped" id="table-${d }"><caption>DAY ${d }</caption>
-							<tr><th>여행 순서</th><th>장소명</th><th>주소</th><th>방문일자</th></tr>
+						<table class="table talbe-striped" id="table-${d }">
+							<caption>DAY ${d }</caption>
+							<tr>
+								<th>여행 순서</th>
+								<th>장소명</th>
+								<th>주소</th>
+								<th>방문일자</th>
+							</tr>
 						</table>
 					</div>
 				</c:forEach>
 			</div>
 			<div class="btn">
-				<input type="submit" value="확인" class="btn btn-success"> <input type="button" onclick="back()" value="이전" class="btn btn-cancel">
+				<input type="submit" value="확인" class="btn btn-success"> <input
+					type="button" onclick="back()" value="이전" class="btn btn-cancel">
 			</div>
-	</div>
+		</div>
 	</form>
 </body>
 </html>
