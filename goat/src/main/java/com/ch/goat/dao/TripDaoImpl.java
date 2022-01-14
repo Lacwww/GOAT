@@ -25,28 +25,28 @@ public class TripDaoImpl implements TripDao {
 		map.put("endRow", endRow);
 		return sst.selectList("tripns.list", map);
 	}
-//
-//	public int maxNum() {
-//		return sst.selectOne("noticens.maxNum");
-//	}
-//
-//	public int insert(Notice notice) {
-//		return sst.insert("noticens.insert", notice);
-//	}
-//
-//	public void updateViewcount(int no_num) {
-//		sst.update("noticens.updateViewcount", no_num);
-//	}
-//
-//	public Notice select(int no_num) {
-//		return sst.selectOne("noticens.select", no_num);
-//	}
-//
-//	public int delete(int no_num) {
-//		return sst.update("noticens.delete", no_num);
-//	}
-//
-//	public int update(Notice notice) {
-//		return sst.update("noticens.update", notice);
-//	}
+
+	public int maxNum() {
+		return sst.selectOne("tripns.maxNum");
+	}
+
+	public int insert(Trip trip) {
+		return sst.insert("tripns.insert", trip);
+	}
+
+	public void updateViewcount(int t_num) {
+		sst.update("tripns.updateViewcount", t_num);
+	}
+
+	public Trip select(int t_num) {
+		return sst.selectOne("tripns.select", t_num);
+	}
+
+	public int delete(int t_num) {
+		return sst.update("tripns.delete", t_num);
+	}
+
+	public int update(Trip trip) {
+		return sst.update("tripns.update", trip);
+	}
 }

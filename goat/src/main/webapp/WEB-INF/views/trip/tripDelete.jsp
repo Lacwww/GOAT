@@ -6,8 +6,8 @@
 </head><body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("공지사항 삭제완료");
-		location.href="noticeList.do?pageNum=${pageNum}";
+		alert("여행이야기 삭제완료");
+		location.href="tripList.do?pageNum=${pageNum}";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">

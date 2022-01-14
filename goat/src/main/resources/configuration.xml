@@ -12,7 +12,6 @@
 			type="com.ch.goat.model.TempPlace" />
 		<typeAlias alias="member" type="com.ch.goat.model.Member" />
 		<typeAlias alias="trip" type="com.ch.goat.model.Trip" />
-		<typeAlias alias="tp" type="com.ch.goat.model.TripPhoto" />
 		<typeAlias alias="tl" type="com.ch.goat.model.TripLike" />
 		<typeAlias alias="tr" type="com.ch.goat.model.TripReply" />
 

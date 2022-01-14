@@ -13,7 +13,6 @@ public class Trip {
 	private String t_content;
 	private Date reg_date;
 	private int t_view;
-	private String t_photo;
 	private String del;
 	private int m_num;
 	
