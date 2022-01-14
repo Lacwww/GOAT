@@ -80,7 +80,7 @@
 						<td style="border-right: 2px solid;" align="center"
 							onclick="location.href='/goat/member/myPage.do'">
 							<img title="MyPage" style = "border-radius:50%;"
-								 src="${m_img }" width="70px" height="70px"/>
+								 src="${path }/resources/m_photo/${m_img }" width="70px" height="70px"/>
 						</td>
 					</c:if>
 				</c:if>

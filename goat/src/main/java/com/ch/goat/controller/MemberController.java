@@ -94,10 +94,7 @@ public class MemberController {
 			String fileName1 = member.getFile().getOriginalFilename();
 			String fileName="";
 			if (fileName1==null||fileName1.equals("")) {
-				fileName = "/goat/resources/m_photo/goat6.png";
-				FileOutputStream fos = new FileOutputStream(new File(fileName));
-				fos.write(member.getFile().getBytes());
-				fos.close();
+				fileName = "goat6.png";
 			} else {
 				// 파일명을 변경해야 할 때 : UUID 임의의 문자열로 변경 Mac은 파일명이 한글이면 깨짐
 				UUID uuid = UUID.randomUUID();
