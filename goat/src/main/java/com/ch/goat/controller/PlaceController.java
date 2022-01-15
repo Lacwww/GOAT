@@ -324,12 +324,25 @@ public class PlaceController {
 	}
 	
 	@RequestMapping("place/placeModal")
-	public String placeModal(String place_num, Model model) {
+	public String placeModal(String place_num,HttpSession session, Model model) {
 		int num = Integer.parseInt(place_num);
 		Place place = ps.placeModal(num);
 		float avgScore = ps.avgScore(num);
+		String id = (String) session.getAttribute("id");
+		String bookMarkImgSrc ="";
 		
-		
+		if(id != null) {
+			Bookmark bookMark = ps.bookMarkChk(id, num);
+			if(bookMark != null) {
+				bookMarkImgSrc = "/goat/resources/bookMarkImg/bookmark.png";
+			}else {
+				bookMarkImgSrc = "/goat/resources/bookMarkImg/nobookmark.png";
+			}
+		}else {
+			bookMarkImgSrc = "/goat/resources/bookMarkImg/nobookmark.png";
+		}
+
+		model.addAttribute("bookMarkImgSrc", bookMarkImgSrc);		
 		model.addAttribute("avgScore", avgScore);
 		model.addAttribute("place", place);
 		return "place/placeModal";
