@@ -50,7 +50,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="center" colspan="2"><input type="submit" value="등록하기"></td>
+					<td align="center" colspan="2">
+						<input type="submit" value="등록하기">
+						<input type="button" value="취소" onclick="location.href='tripList.do?pageNum=${pageNum}'"></td>
 				</tr>
 			</table>
 		</form>

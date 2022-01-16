@@ -42,7 +42,6 @@
 	
 	function rr(nor_num, no_num) {
 		var nor_content = frm2.nor_content.value;
-		alert(nor_content);
 		if(frm2.nor_content.value == "") {
 			alert("댓글을 입력해주세요");
 			frm2.nor_content.focus();
@@ -83,7 +82,6 @@
 			</c:if>
 
 			<c:if test="${nr.del != 'y' }">
-			
 				<div style="float: left;">
 				<c:if test="${nr.nor_re_level > 0 }">
 					<!-- 답변글 레벨당 10px들여 쓰기 -->
@@ -100,19 +98,18 @@
 				<tr><td style="white-space:pre; overflow:auto;" id="td_${nr.nor_num }">${nr.nor_content }</td>
 				
 				<td id="btn_${nr.nor_num }">
-					<c:if test="${m_num == nr.m_num }">
+					<c:if test="${m_num == nr.m_num || not empty admin}">
 						<input type="button" value="답글쓰기" onclick="rpInsert(${nr.nor_num},${nr.no_num})">
 						<input type="button" value="수정" onclick="rUpdate(${nr.nor_num},${nr.no_num})">
 						<input type="button" value="삭제" onclick="rDelete(${nr.nor_num},${nr.no_num})">
 						<tr><td colspan="2" class="reply_${nr.nor_num }" style="height:0px; border-bottom: 1px dashed;"></td></tr>
 					</c:if>
-					<c:if test="${m_num != nr.m_num }">
+					<c:if test="${m_num != nr.m_num && empty admin}">
 						<input type="button" value="답글쓰기" onclick="rpInsert(${nr.nor_num},${nr.no_num})">
 						<tr><td colspan="2" class="reply_${nr.nor_num }" style="height:0px; border-bottom: 1px dashed;"></td></tr>
 					</c:if>
 				</td><tr>
 				</table>
-
 			</c:if>
 		</c:forEach>
 	</c:if>

@@ -45,7 +45,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="center" colspan="2"><input type="submit" value="수정하기"></td>
+					<td align="center" colspan="2">
+						<input type="submit" value="수정하기">
+						<input type="button" value="취소" onclick="location.href='tripView.do?t_num=${trip.t_num}&pageNum=${pageNum }'"></td>
 				</tr>
 			</table>
 		</form>

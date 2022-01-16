@@ -26,24 +26,40 @@
 		}
 	}
 	
-/* 	$(function() {
+ 	$(function() {
 		// 현재 게시글에 해당하는 댓글을 가져와서 보여줘라
-		$('#nrListDisp').load('tripReplyList.do?t_num=${trip.t_num}');
-		$('#rInsert').click(function() {
-			if(frm1.t_content.value == "") {
+		$('#trListDisp').load('tripReplyList.do?t_num=${trip.t_num}');
+		$('#trInsert').click(function() {
+			if(frm1.tre_content.value == "") {
 				alert("댓글을 입력해주세요");
-				frm1.t_content.focus();
+				frm1.tre_content.focus();
 				return false;
 			}
 			// serialize() form의 모든값을 받을 수 있음
 			var sendData = $('#frm1').serialize();
-			$.post('rInsert.do?t_num=0',sendData, function(data) {
+			$.post('trInsert.do?tre_num=0',sendData, function(data) {
 				alert("댓글이 작성 되었습니다");	
-				$('#nrListDisp').html(data);
-				frm1.t_content.value="";  // 작성했던 댓글 지우기
+				$('#trListDisp').html(data);
+				frm1.tre_content.value="";  // 작성했던 댓글 지우기
 			});
 		});
-	}); */
+	});
+ 	
+/*  	function tripLike(like_num) {
+		if(${empty id}){
+			alert("로그인 후 이용가능합니다");
+			return false;
+		}
+		$.post("bookMark.do", "place_num="+place_num, function(data) {
+			var bookMarkImgSrc = data;
+			if(bookMarkImgSrc.indexOf('no') == -1){
+				alert("북마크에 저장되었습니다");
+			}else{
+				alert("북마크가 삭제되었습니다");
+			}
+			$(".bmChk").attr("src", bookMarkImgSrc);
+		});			
+	}; */
 </script>
 </head>
 <body>
@@ -69,7 +85,7 @@
 			<tr align="center">
 				<td colspan="2">
 					<a href="tripList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
-				<c:if test="${m_num == trip.m_num }">
+				<c:if test="${m_num == trip.m_num || not empty admin}">
 					<a href="tripUpdateForm.do?t_num=${trip.t_num}&pageNum=${pageNum }" class="btn btn-success">수정</a>
 					<input type="button" onclick="delTrip()" class="btn btn-danger" value="삭제">
 				</c:if>
@@ -77,15 +93,21 @@
 			</tr>
 		</table>
 	</div>
-	<div id="nrListDisp"></div>
+	<!-- 좋아요(추천수) -->
+	<div>
+		<img style="border-radius:10px; width: 50px;" class="tripLike" 
+			onclick="tripLike(${like_num})" src="${path}/resources/tripPhoto/heart.png">
+	</div>
+	
+	<div id="trListDisp"></div>
 	<!-- submit할 때 action이 없는 경우에는 자신(여기서는 view)를 한번 더 실행한다 -->
 	<div>
 		<form action="" id="frm1" name="frm1">
 			<input type="hidden" name="t_num" value="${trip.t_num }">
 		<table class="table table-hover">
 		<!-- 회원 게시판의 경우에는 회원이름 또는 회원별명 또는 회원 id -->
-			<tr><th>댓글</th><td><textarea rows="3" cols="100" name="nor_content"></textarea></td>
-				<td><input type="button" value="댓글입력" onclick="sessionChk()" id="rInsert"></td></tr>
+			<tr><th>댓글</th><td><textarea rows="3" cols="100" name="tre_content"></textarea></td>
+				<td><input type="button" value="댓글입력" onclick="sessionChk()" id="trInsert"></td></tr>
 		</table>	
 		</form>
 	</div>

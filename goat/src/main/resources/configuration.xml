@@ -32,6 +32,7 @@
 		<mapper resource="schedule.xml" />
 		<mapper resource="member.xml" />
 		<mapper resource="trip.xml" />
+		<mapper resource="tripReply.xml" />
 		<mapper resource="notice.xml" />
 		<mapper resource="noticeReply.xml" />
 		<mapper resource="cs.xml" />
