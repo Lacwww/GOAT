@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tripReplyns">
+ 	<select id="list" parameterType="integer" resultType="tr">
+		select tr.*, m.m_name 
+    		from trip_reply tr, member m 
+        		where tr.m_num=m.m_num and t_num = #{t_num}
+            		order by tre_ref, tre_re_step, tre_num
+	</select>
+	
+	<select id="maxNum" resultType="integer">
+		<!-- ref와 num을 구분하기 위해서 -->
+		select nvl(max(tre_num), 0) + 1 from trip_reply
+	</select>
+	
+	<select id="maxStep" parameterType="integer" resultType="integer">
+		<!-- ref와 num을 구분하기 위해서 -->
+		select nvl(max(tre_re_step), 0) + 1 from trip_reply where tre_ref = #{tre_ref}
+	</select>
+	
+	<update id="updateStep" parameterType="tr">
+		update trip_reply set tre_re_step = tre_re_step + 1 where tre_ref=#{tre_ref} and tre_re_step > #{tre_re_step}
+	</update>
+	
+	<insert id="insert" parameterType="tr">
+ 		insert into trip_reply values(#{tre_num},#{tre_content},sysdate,'n',
+ 			#{tre_ref},#{tre_re_step},#{tre_re_level},#{t_num},#{m_num})
+	</insert>
+	
+	<update id="delete" parameterType="tr">
+		update trip_reply set del='y' where tre_num=#{tre_num}
+	</update>
+	
+	<update id="update" parameterType="tr">
+		update trip_reply set tre_content=#{tre_content}, reg_date=sysdate
+			where tre_num=#{tre_num}
+	</update>
+	
+	<select id="select" parameterType="integer" resultType="tr">
+		select * from trip_reply where tre_num=#{tre_num}
+	</select> 
+</mapper>

@@ -41,6 +41,9 @@
    <definition name="notice/noticeReplyList" extends="noFixLayout">
     	<put-attribute name="body"   value="/WEB-INF/views/notice/noticeReplyList.jsp" /> 
    </definition>
+   <definition name="trip/tripReplyList" extends="noFixLayout">
+    	<put-attribute name="body"   value="/WEB-INF/views/trip/tripReplyList.jsp" /> 
+   </definition>
    <definition name="place/placeModal" extends="noHeightLayout">
     	<put-attribute name="body"   value="/WEB-INF/views/place/placeModal.jsp" /> 
    </definition>		

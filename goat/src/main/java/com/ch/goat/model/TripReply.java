@@ -15,4 +15,7 @@ public class TripReply {
 	private int tre_re_level;
 	private int t_num;
 	private int m_num;
+	
+	// 공지사항 댓글 작성자 띄우기 위해
+	private String m_name;
 }
