@@ -17,8 +17,8 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao ad;
 
 	@Override
-	public int getTotalPlace() {
-		return ad.getTotalPlace();
+	public int getTotalPlace(String cate) {
+		return ad.getTotalPlace(cate);
 	}
 
 	@Override
@@ -55,5 +55,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<TempPlace> tempPlaceList(int startRow, int endRow) {
 		return ad.tempPlaceList(startRow, endRow);
+	}
+
+	@Override
+	public List<Place> getCateList() {
+		return ad.getCateList();
 	}
 }

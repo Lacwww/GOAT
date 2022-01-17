@@ -20,7 +20,7 @@ element.style {
 	align-content: center;
 }
 li a {
-	color: green;
+	color: rgb(64,123,37);
 }
 </style>
 </head>

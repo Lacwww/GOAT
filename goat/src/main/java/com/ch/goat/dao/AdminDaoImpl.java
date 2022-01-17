@@ -20,8 +20,8 @@ public class AdminDaoImpl implements AdminDao{
 	private SqlSessionTemplate sst;
 
 	@Override
-	public int getTotalPlace() {
-		return sst.selectOne("adminns.getTotalPlace");
+	public int getTotalPlace(String cate) {
+		return sst.selectOne("adminns.getTotalPlace", cate);
 	}
 
 	@Override
@@ -69,6 +69,11 @@ public class AdminDaoImpl implements AdminDao{
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		return sst.selectList("adminns.tempPlaceList", map);
+	}
+
+	@Override
+	public List<Place> getCateList() {
+		return sst.selectList("adminns.getCateList");
 	}
 
 }

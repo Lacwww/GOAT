@@ -29,12 +29,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("admin/adminPlace")
-	public String adminPlace(String pageNum, Model model) {
+	public String adminPlace(String pageNum, String cate, Model model) {
 		int rowPerPage = 20;
 		int pagePerBlock = 5;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
+		if (cate == null || cate.equals("")) cate="1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = as.getTotalPlace();
+		
+		
+		int total = as.getTotalPlace(cate);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		List<Place> list = as.placeList(startRow, endRow);
@@ -44,13 +47,14 @@ public class AdminController {
 		if (endPage > totalPage) {
 			endPage = totalPage;	
 		}
-
+		List<Place> cateList = as.getCateList();
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pagePerBlock", pagePerBlock);
 		model.addAttribute("list", list);
+		model.addAttribute("cateList", cateList);
 		return "admin/adminPlace";
 	}
 	

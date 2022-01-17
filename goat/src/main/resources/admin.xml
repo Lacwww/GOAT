@@ -9,7 +9,7 @@
 	</select>
 	
 	<!-- 장소 총 갯수 -->
-	<select id="getTotalPlace" resultType="integer">
+	<select id="getTotalPlace" parameterType="String" resultType="integer">
 		select nvl(count(*), 0) from place
 	</select>
 	
@@ -47,5 +47,10 @@
 	<!-- 임시장소총 갯수 -->
 	<select id="getTotalTempPlace" resultType="integer">
 		select nvl(count(*), 0) from tempplace
+	</select>
+	
+	<!-- 카테고리 목록 -->
+	<select id="getCateList" parameterType="string" resultType="place">
+		select distinct place_cate from place
 	</select>
 </mapper>

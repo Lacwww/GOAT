@@ -9,7 +9,8 @@
 </head>
 <body>
 	<div>
-		<h2>회원 목록</h2>
+		<h2 style="color: rgb(64,123,37);">회원 목록</h2>
+		<br><br>
 		<div>
 			<table>
 				<tr>
@@ -36,6 +37,7 @@
 				</c:forEach>
 			</table>
 		</div>
+		<br><br>
 		<div align="center" style="clear: both;">
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
