@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Trip;
 import com.ch.goat.model.TripLike;
@@ -54,10 +53,12 @@ public class TripController {
 		List<Trip> list = ts.list(startRow, endRow);
 		
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
-
+		String[] title = {"제목","내용","제목+내용"};
+		
+		model.addAttribute("trip", trip);
+		model.addAttribute("title", title);
 		model.addAttribute("total", total);
 		model.addAttribute("list", list);
-		System.out.println(list);
 		model.addAttribute("pb", pb);
 		
 		return "trip/tripList";
@@ -293,5 +294,31 @@ public class TripController {
 		model.addAttribute("result", result);
 
 		return "trip/tripUpdate";
+	}
+	
+	@RequestMapping("trip/tripSearch")
+	public String tripSearch(Trip trip, String keyword, String pageNum, Model model) {
+		int  rowPerPage = 10;
+		if (pageNum == null || pageNum.equals("")) pageNum="1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ts.getTotal(trip);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		trip.setStartRow(startRow);
+		trip.setEndRow(endRow);
+		List<Trip> searchList = ts.searchList(trip);
+		PageBean pb = new PageBean(currentPage, rowPerPage, total);
+		// 답변글로 인한 번호를 보기좋게 다시 설정
+		int no = total - startRow + 1;
+		String[] title = {"제목","내용","제목+내용"};
+		
+		model.addAttribute("trip", trip);
+		model.addAttribute("title", title);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("no", no);
+		model.addAttribute("searchList", searchList);
+		model.addAttribute("pb", pb);
+		
+		return "trip/tripSearch";
 	}
 }

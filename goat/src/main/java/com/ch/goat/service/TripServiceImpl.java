@@ -50,5 +50,11 @@ public class TripServiceImpl implements TripService{
 	public int tlCnt(int t_num) {
 		return td.tlCnt(t_num);
 	}
+	public int getSearchTotal(String part, String searchData) {
+		return td.getSearchTotal(part, searchData);
+	}
+	public List<Trip> searchList(Trip trip) {
+		return td.searchList(trip);
+	}
 	
 }

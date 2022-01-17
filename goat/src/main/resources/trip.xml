@@ -58,4 +58,31 @@
 		select count(*) from trip_like where t_num=#{t_num}
 	</select>
 	
+	<select id="getSearchTotal" parameterType="map" resultType="integer">
+		select count(*) from trip where ${part} like '%'||#{searchData}||'%' order by t_num desc
+	</select>
+	
+	<select id="searchList" parameterType="trip" resultType="trip">
+		select * from (select a.*, rowNum rn from(
+			select * from trip 
+			<!-- keyword에 데이터가 있으면 <where>는 안에 문장이 있으면 where 없으면 공란 -->
+			<where>
+				<!-- $는 변수 #은 데이터 #이 있으면 값문자인 경우 '값'에 인용부호가 붙는다 -->
+				<!-- mysql에서는 concat('%',#{keyword},'%') -->
+<!-- 			search는 문자 search, ${search}는 search 속성에 들어있는 값
+								   #{search}는               "            을 문자로 표시(인용부호 추가)      -->
+				<if test="keyword!=null and keyword!=''">
+					<if test="search=='subcon'">
+						t_title like '%'||#{keyword}||'%' or t_content like '%'||#{keyword}||'%'
+					</if>
+<!-- 			${search} : SEARCH에 들어있는 값  title, content이다  -->
+					<if test="search!='subcon'">
+						${search} like '%'||#{keyword}||'%'
+					</if>
+				</if>
+			</where>
+			order by t_num desc)a)
+				where rn between #{startRow} and #{endRow}
+	</select>
+	
 </mapper>
