@@ -62,6 +62,8 @@
 </script>
 </head>
 <body>
+<div align="center"><h2 class="text-primary" style="color: green;"><b>장소 등록 건의</b></h2></div>
+<br>
 <div class="container" style="margin-left: 9%; width: 85%;">
 		<div><img id="imgpreview" style="width:450px; height: 400px;" src="${path }/resources/p_images/selectimg.png"> </div>
 		<div id="map" style="width:450px; height: 400px;"></div>
@@ -184,6 +186,7 @@
 						<input type="text" class="form-control" style="width: 80%; display: inline;margin-left:5px; margin-right: 5px;" name="mapSearch">
 							<input type="button" class="btn btn-primary" style="width: 16%; height: 40px;" onclick="PS()" value="검색"></td></tr>
 			</table>
+			<br>
 			<table  style="width: 75%;">
 				<tr><td class="bgcolor" align="center" style="width: 18%;">장소 이름  </td>
 					<td style="width: 53%;">

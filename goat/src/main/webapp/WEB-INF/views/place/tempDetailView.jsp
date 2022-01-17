@@ -8,6 +8,15 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.top {float: left; }
+	.bgcolor{	
+		background-color: rgb(64,123,37);
+		color: white; 
+		border-radius: 5px;
+	}
+	.textTh {text-align:center; width: 20%; border-bottom: 1px solid white; }
+	.textTh1 {text-align:center; width: 17%; border-bottom: 1px solid white; }
+	.lpad {padding-left: 5%; border-bottom: 1px solid black;}
+	.rblack {border-right: 1px solid black;}
 </style>
 <script type="text/javascript">
 	function del() {
@@ -33,9 +42,10 @@
 </script>
 </head>
 <body>
-<div align="center"><h2>등록 건의 상세보기</h2></div>
+<div align="center" class="text-primary" style="color: green;"><h2><b>등록 건의 상세보기</b></h2></div>
+<br>
 <c:if test="${empty place }">
-	<div class="container">
+	<div class="container" style="margin-left: 9%; width: 85%;">
 		<div align="center" class="top"><img alt="" src="${tp.temp_photo }" style="width: 450px; height: 400px;"></div>
 		<div id="map" class="top" style="width:450px; height: 400px;"></div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9"></script>
@@ -61,37 +71,45 @@
 			marker.setMap(map);
 		</script>
 	</div>
-	<div class="container">
-		<h2 class="text-primary">${tp.temp_name }</h2>
+	<div class="container" style="margin-left: 9%; width: 85%;">
+		<h2 class="text-primary" style="color: green;" align="center"><b>장소명 :</b><span style="color: black;"> ${tp.temp_name }</span></h2>
+		<h3 class="text-primary" style="color: green;" align="center"><b>건의자 :</b><span style="color: black;"> ${member.m_name }</span></h3>
 		<br>
-		<h4>요청사항 : ${tp.temp_crud }
-		<c:if test="${tp.del != 'n' }">
-			<b style="color: red"> (처리완료)</b>
-		</c:if>	
-		</h4>
-		<h4>지역 : ${tp.temp_area }</h4>
-		<h4>상세지역 : ${tp.temp_areadetail }</h4>
-		<h4>카테고리 : ${tp.temp_cate }</h4>
-		<h4>주소(지번) : ${tp.temp_addr }</h4>
-		<h4>주소(도로명) : ${tp.temp_addrd }</h4>
-		<h4>태그 : ${tp.temp_tag }</h4>
-		<h4>내용 : ${tp.temp_content }</h4>	
-		<h4>건의 이유 : ${tp.temp_explanation }</h4>
-		<c:if test="${empty admin }">
-			<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
-		</c:if>	
-		<c:if test="${not empty admin && tp.del == 'n'}">
-			<button onclick="insertTemp()">건의 완료</button>
-			<button onclick="del()">건의 취소</button>
-		</c:if>
+		<table style="margin-left: 5%; width: 90%">
+			<tr><td class="bgcolor textTh"><h4>요청사항</h4>
+				</td><td class="lpad">${tp.temp_crud }
+					<c:if test="${tp.del != 'n' }">
+						<b style="color: red"> (처리완료)</b>
+					</c:if>	</td></tr>
+			<tr><td class="bgcolor textTh"><h4>지역</h4></td><td class="lpad">${tp.temp_area }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>상세지역 </h4></td><td class="lpad">${tp.temp_areadetail }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>카테고리</h4></td><td class="lpad">${tp.temp_cate }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>지번 주소</h4></td><td class="lpad">${tp.temp_addr }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>도로명 주소</h4></td><td class="lpad">${tp.temp_addrd }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>태그</h4></td><td class="lpad">${tp.temp_tag }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>내용</h4></td><td class="lpad">${tp.temp_content }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>건의 이유</h4></td><td class="lpad">${tp.temp_explanation }</td></tr>
+		</table>
+		<div align="center">
+			<c:if test="${empty admin }">
+				<button class="btn bgcolor" style="margin-top: 10px;" onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
+			</c:if>	
+			<c:if test="${not empty admin && tp.del == 'n'}">
+				<button class="btn btn-primary" style="margin-top: 10px;" onclick="insertTemp()">건의 완료</button>
+				<button class="btn btn-danger" style="margin-top: 10px;" onclick="del()">건의 취소</button>
+			</c:if>
+		</div>
 	</div>
 </c:if>
 <c:if test="${not empty place && tp.del == 'n'}">
-	<table>
-		<tr><th></th><th align="center">수정전</th><th align="center">수정후</th></tr>
-		<tr><th>사진</th><th><img alt="" src="${place.place_photo }" style="width: 350px; height: 300px;"></th>
-						<th><img alt="" src="${tp.temp_photo }" style="width: 350px; height: 300px;"></th></tr>
-		<tr><th>위치</th><th>
+	<div align="center">
+	<table style=" width: 74%">
+		<tr><th></th><th align="center" class="bgcolor textTh" style="border-right: 1px solid white;"><h4>수정전</h4></th>
+					<th align="center" class="bgcolor textTh"><h4>수정후</h4></th></tr>
+		<tr><th class="bgcolor textTh1"><h4>사진</h4></th>
+			<th><img alt="" src="${place.place_photo }" style="width: 350px; height: 300px;"></th>
+			<th><img alt="" src="${tp.temp_photo }" style="width: 350px; height: 300px;"></th></tr>
+		<tr><th class="bgcolor textTh1"><h4>위치</h4></th><th>
 				<div id="map" class="top" style="width:350px; height: 300px;"></div>
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9"></script>
 					<script>
@@ -140,27 +158,45 @@
 							marker.setMap(map);
 						</script></th>
 			</tr>
-			<tr><th>요청사항</th><td colspan="2">${tp.temp_crud }</td></tr>
-			<tr><th>장소 이름</th><td>${place.place_name }</td><td>${tp.temp_name }</td></tr>
-			<tr><th>카테고리</th><td>${place.place_cate }</td><td>${tp.temp_cate }</td></tr>
-			<tr><th>장소 태그</th><td>${place.place_tag }</td><td>${tp.temp_tag }</td></tr>
-			<tr><th>지번 주소</th><td>${place.place_addr }</td><td>${tp.temp_addr }</td></tr>
-			<tr><th>도로명 주소</th><td>${place.place_addrd }</td><td>${tp.temp_addrd }</td></tr>			
-			<tr><th>장소 내용</th><td>${place.place_content }</td><td>${tp.temp_content }</td></tr>
-			<tr><th>건의 이유</th><td colspan="2">${tp.temp_explanation }</td></tr>
+			<tr><th class="bgcolor textTh1"><h4>요청사항</h4></th>
+				<td colspan="2" class="lpad">${tp.temp_crud }</td></tr>
+			<tr><th class="bgcolor textTh1"><h4>건의자</h4></th>
+				<td colspan="2" class="lpad">${member.m_name }</td></tr>
+			<tr><th class="bgcolor textTh1"><h4>장소 이름</h4></th>
+				<td class="lpad rblack">${place.place_name }</td>
+				<td class="lpad">${tp.temp_name }</td></tr>
+			<tr><th class="bgcolor textTh1"><h4>카테고리</h4></th>
+				<td class="lpad rblack">${place.place_cate }</td>
+				<td class="lpad">${tp.temp_cate }</td></tr>
+			<tr><th class="bgcolor textTh1"><h4>장소 태그</h4></th>
+				<td class="lpad rblack">${place.place_tag }</td>
+				<td class="lpad">${tp.temp_tag }</td></tr>
+			<tr><th class="bgcolor textTh1"><h4>지번 주소</h4></th>
+				<td class="lpad rblack">${place.place_addr }</td>
+				<td class="lpad">${tp.temp_addr }</td></tr>
+			<tr><th class="bgcolor textTh1"><h4>도로명 주소</h4></th>
+				<td class="lpad rblack">${place.place_addrd }</td>
+				<td class="lpad">${tp.temp_addrd }</td></tr>			
+			<tr><th class="bgcolor textTh1"><h4>장소 내용</h4></th>
+				<td class="lpad rblack">${place.place_content }</td>
+				<td class="lpad">${tp.temp_content }</td></tr>
+			<tr><th class="bgcolor textTh1"><h4>건의 이유</h4></th>
+				<td colspan="2" class="lpad">${tp.temp_explanation }</td></tr>
 					
-	</table>
-
+		</table>
+	</div>
+	<div align="center">
 		<c:if test="${empty admin }">
-			<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
+			<button class="btn bgcolor" style="margin-top: 10px;" onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
 		</c:if>	
 		<c:if test="${not empty admin && tp.del == 'n'}">
-			<button onclick="updateTemp()">건의 완료</button>
-			<button onclick="del()">건의 취소</button>
+			<button class="btn btn-primary" style="margin-top: 10px;" onclick="updateTemp()">건의 완료</button>
+			<button class="btn btn-danger" style="margin-top: 10px;" onclick="del()">건의 취소</button>
 		</c:if>
+	</div>
 </c:if>
 <c:if test="${not empty place && tp.del != 'n'}">
-	<div class="container">
+	<div class="container" style="margin-left: 9%; width: 85%;">
 		<div align="center" class="top"><img alt="" src="${tp.temp_photo }" style="width: 450px; height: 400px;"></div>
 		<div id="map" class="top" style="width:450px; height: 400px;"></div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9"></script>
@@ -186,20 +222,30 @@
 			marker.setMap(map);
 		</script>
 	</div>
-	<div class="container">
-		<h2 class="text-primary">${tp.temp_name }</h2>
+	<div class="container"  style="margin-left: 9%; width: 85%;">
+		<h2 class="text-primary" style="color: green;" align="center"><b>장소명 :</b><span style="color: black;"> ${tp.temp_name }</span></h2>
+		<h3 class="text-primary" style="color: green;" align="center"><b>건의자 :</b><span style="color: black;"> ${member.m_name }</span></h3>
 		<br>
-		<h4>요청사항 : ${tp.temp_crud }<b style="color: red"> (처리완료)</b></h4>
-		<h4>지역 : ${tp.temp_area }</h4>
-		<h4>상세지역 : ${tp.temp_areadetail }</h4>
-		<h4>카테고리 : ${tp.temp_cate }</h4>
-		<h4>주소(지번) : ${tp.temp_addr }</h4>
-		<h4>주소(도로명) : ${tp.temp_addrd }</h4>
-		<h4>태그 : ${tp.temp_tag }</h4>
-		<h4>내용 : ${tp.temp_content }</h4>	
-		<c:if test="${empty admin }">
-			<button onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
-		</c:if>	
+		<table style="margin-left: 5%; width: 90%">
+			<tr><td class="bgcolor textTh"><h4>요청사항</h4>
+				</td><td class="lpad">${tp.temp_crud }
+					<c:if test="${tp.del != 'n' }">
+						<b style="color: red"> (처리완료)</b>
+					</c:if>	</td></tr>
+			<tr><td class="bgcolor textTh"><h4>지역</h4></td><td class="lpad">${tp.temp_area }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>상세지역 </h4></td><td class="lpad">${tp.temp_areadetail }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>카테고리</h4></td><td class="lpad">${tp.temp_cate }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>지번 주소</h4></td><td class="lpad">${tp.temp_addr }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>도로명 주소</h4></td><td class="lpad">${tp.temp_addrd }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>태그</h4></td><td class="lpad">${tp.temp_tag }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>내용</h4></td><td class="lpad">${tp.temp_content }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>건의 이유</h4></td><td class="lpad">${tp.temp_explanation }</td></tr>
+		</table>
+		<div align="center">	
+			<c:if test="${empty admin }">
+				<button class="btn bgcolor" style="margin-top: 10px;" onclick="location.href='${path}/member/createPlaceList.do?m_num=${m_num }'">목록</button>
+			</c:if>
+		</div>	
 	</div>
 </c:if>
 </body>

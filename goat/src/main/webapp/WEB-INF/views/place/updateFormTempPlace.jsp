@@ -8,7 +8,13 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#imgpreview { float: left; }
-
+	.bgcolor{	
+		background-color: rgb(64,123,37);
+		color: white; 
+		border-radius: 5px;
+	}	
+		
+	td { border-bottom: 1px solid white; height: 40px;}
 </style>
 <script>
 	window.history.forward();
@@ -55,7 +61,9 @@
 </script>
 </head>
 <body>
-<div class="container">
+<div align="center"><h2 class="text-primary" style="color: green;"><b>장소 수정 건의</b></h2></div>
+<br>
+<div class="container" style="margin-left: 9%; width: 85%;">
 		<div><img id="imgpreview" style="width:450px; height: 400px;" src="${place.place_photo }"> </div>
 		<div id="map" style="width:450px; height: 400px;"></div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9&libraries=services"></script>
@@ -177,14 +185,23 @@
 			<input type="hidden" name="place_num" value="${place.place_num }">
 			<input type="hidden" name="lat" value="${place.lat }">
 			<input type="hidden" name="lng" value="${place.lng }">
-			<div>
-			<table>
-				<tr><th><input type="file" name="file" id="temp_photo"></th>
-					<th>장소 검색 : <input type="text" name="mapSearch"><input type="button" onclick="PS()" value="검색"></th></tr>
-				<tr><th>장소 이름  </th><th><input type="text" name="temp_name" autofocus="autofocus" required="required"
-											value="${place.place_name }"></th></tr>
-				<tr><th>카테고리 </th><th>
-						<select name="temp_cate">
+			<div align="center">
+			<table style="width: 93%;">
+				<tr><td style="width: 38%;">
+					<input type="file" name="file" class="form-control" id="temp_photo"></td>
+					<td class="bgcolor" align="center" style="width: 10%;">장소 검색</td>
+					<td style="width: 34%;">
+					<input type="text" class="form-control" style="width: 80%; display: inline;margin-left:5px; margin-right: 5px;" name="mapSearch">
+					<input type="button" class="btn btn-primary" style="width: 16%; height: 40px;" onclick="PS()" value="검색"></td></tr>
+			</table>
+			<br>
+			<table style="width: 75%;">
+				<tr><td class="bgcolor" align="center" style="width: 18%;">장소 이름  </td>
+					<td style="width: 53%;">
+						<input type="text" class="form-control" style="width: 50%; margin-left: 10px;" name="temp_name" autofocus="autofocus" required="required"
+											value="${place.place_name }"></td></tr>
+				<tr><td class="bgcolor" align="center">카테고리 </td><td>
+						<select name="temp_cate"  class="form-control" style="width: 18%; margin-left: 10px;">
 							<c:if test="${place.place_cate == '관광지' }">
 								<option value="관광지" selected="selected">관광지</option>
 								<option value="숙소">숙소</option>
@@ -200,19 +217,22 @@
 								<option value="숙소">숙소</option>
 								<option value="음식점" selected="selected">음식점</option>
 							</c:if>
-						</select></th>
+						</select></td>
 				</tr>
-				<tr><th>태그</th><th><input type="text" name="temp_tag" size="40" required="required" value="${place.place_tag }"></th></tr>
-				<tr><th>지번 주소</th><th><input type="text" name="temp_addr" size="40" required="required" value="${place.place_addr }"></th></tr>
-				<tr><th>도로명 주소</th><th><input type="text" name="temp_addrd" size="40" value="${place.place_addrd }"></th></tr>
-				<tr><th>장소 설명</th>
-				<th><textarea rows="5" cols="50" name="temp_content" required="required">${place.place_content }</textarea></th></tr>
-				<tr><th>건의 이유</th>
-				<th><textarea rows="5" cols="50" name="temp_explanation" required="required"></textarea></th></tr>
-				<tr><th colspan="3" align="center">
-					<input type="submit" value="수정신청">
-					<input type="button" onclick="history.back()" value="취소">
-				</th></tr>
+				<tr><td class="bgcolor" align="center">태그</td>
+					<td><input type="text" name="temp_tag" class="form-control" style="width: 70%; margin-left: 10px;" size="40" required="required" value="${place.place_tag }"></td></tr>
+				<tr><td class="bgcolor" align="center">지번 주소</td>
+					<td><input type="text" name="temp_addr" class="form-control" style="width: 70%; margin-left: 10px;" size="40" required="required" value="${place.place_addr }"></td></tr>
+				<tr><td class="bgcolor" align="center">도로명 주소</td>
+					<td><input type="text" name="temp_addrd" class="form-control" style="width: 70%; margin-left: 10px;"  size="40" value="${place.place_addrd }"></td></tr>
+				<tr><td class="bgcolor" align="center">장소 설명</td>
+				<td><textarea rows="5" cols="50" style="margin-left: 10px;" class="form-control" name="temp_content" required="required">${place.place_content }</textarea></td></tr>
+				<tr><td class="bgcolor" align="center">건의 이유</td>
+				<td><textarea rows="5" cols="50" style="margin-left: 10px;" class="form-control" name="temp_explanation" required="required"></textarea></td></tr>
+				<tr><td colspan="3" align="center">
+					<input type="submit" class="btn btn-primary" value="수정신청">
+					<input type="button" class="btn btn-warning" onclick="history.back()" value="취소">
+				</td></tr>
 			</table>
 			</div>
 			

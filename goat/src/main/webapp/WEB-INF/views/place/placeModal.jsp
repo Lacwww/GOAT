@@ -11,6 +11,7 @@
 	.area_text {margin-left: 35%;}
 	a {cursor: pointer; }
 	.bookmark {float: right;}
+	`.bmChk { cursor: pointer;}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>

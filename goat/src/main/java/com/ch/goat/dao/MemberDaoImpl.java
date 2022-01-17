@@ -108,4 +108,9 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Trip> myTripList(int m_num) {
 		return sst.selectList("memberns.myTripList", m_num);
 	}
+
+	@Override
+	public Member selectM_num(int m_num) {
+		return sst.selectOne("memberns.selectM_num", m_num);
+	}
 }
