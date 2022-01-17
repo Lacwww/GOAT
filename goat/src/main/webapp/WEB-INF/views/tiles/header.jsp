@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	table { margin: 30px; }
-	td { width: 11.1%; height: 70px; font-size: 15px; cursor: pointer; }
+	#table { margin: 30px; }
+	#table td { width: 11.1%; height: 70px; font-size: 15px; cursor: pointer; }
 </style>
 </head>
 <body>
 	<div class="container" align="center" style="display: flex; justify-content: center; width: 100%;">
-		<table style="width: 100%;">
+		<table style="width: 100%;" id="table">
 			<tr>
 				<td style="border-left: 2px solid; border-right: 2px solid;" align="center" 
 					onclick="location.href='/goat/main/home.do'">

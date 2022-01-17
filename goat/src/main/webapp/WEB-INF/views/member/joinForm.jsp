@@ -218,7 +218,7 @@
 			<div>
 				<h2 style="margin-bottom: 50px;">Join Us</h2>
 				<label for="chooseFile">
-					<img alt="" src="${path }/resources/images/goat6.png" id="preview"
+					<img alt="" src="${path }/resources/m_photo/goat6.png" id="preview"
 						style = "border-radius:50%; border: 1px solid black;" width="200px;" height="200px;">
 					<p>프로필 수정</p>
 				</label>
