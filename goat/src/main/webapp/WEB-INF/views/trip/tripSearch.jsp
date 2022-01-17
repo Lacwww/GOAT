@@ -28,6 +28,12 @@
 				onclick="location.href='tripView.do?t_num=0&pageNum=${pageNum }'" src=""> --%></span>
 		<span class="hotTrip">2</span>
 		<span class="hotTrip">3</span>
+		
+		<c:forTokens var="sh" items="t_title,t_content,subcon" delims="," varStatus="i">
+			<c:if test="${!title[0] }">
+				<h4>"${title[i.index] }"에 "${keyword }" 단어가 포함된 결과</h4>
+			</c:if>
+		</c:forTokens>
 		<table>
 			<tr>
 				<th class="tl">번호</th>
@@ -36,17 +42,17 @@
 				<th class="tl">조회수</th>
 				<th class="tl">작성일</th>
 			</tr>
-			<c:if test="${empty list}">
+			<c:if test="${empty searchList}">
 				<tr>
-					<td colspan="5">등록된 여행이야기가 없습니다.</td>
+					<td colspan="5">검색과 맞는 결과가 없습니다.</td>
 				</tr>
 			</c:if>
 
-			<c:if test="${not empty list}">
-				<c:forEach var="trip2" items="${list }">
+			<c:if test="${not empty searchList}">
+				<c:forEach var="trip2" items="${searchList }">
 					<c:if test="${trip2.del != 'y' }">
 						<tr>
-							<td class="td1">${total}<c:set var="total" value="${total - 1}"></c:set></td>
+							<td class="td1">${no}<c:set var="no" value="${no - 1}"></c:set></td>
 							<td class="td2">
 								<a href="tripView.do?t_num=${trip2.t_num}&pageNum=${pb.currentPage}">${trip2.t_title}</a>
 							</td>
@@ -101,8 +107,8 @@
 					</c:if>
 				</c:forTokens>
 			</select>
-			<input type="text" name="keyword" class="form-controllogin" value="${trip.keyword }" />
-			<input type="submit" value="검색" class="btn btn-primary mar"/> 
+		<input type="text" name="keyword" class="form-controllogin" value="${trip.keyword }" />
+		<input type="submit" value="검색" class="btn btn-primary mar"/> 
 		</form>
 		</div>
 		

@@ -57,14 +57,34 @@
 		}
 		
 		$.post("tripLike.do", "t_num="+t_num, function(data) {
-			var tripLikeImgSrc = data;
-			if(tripLikeImgSrc.indexOf('full') == -1){ // full이라는 글씨가 있으면, full이라는 글자의 인덱스를 반환하기 때문에
-													 // 0포함  0보다 큰 수가 나옴
-				location.reload();
-			}else{
-				location.reload();
-			}
-		});			
+			var likeYesOrNo = '${tripLikeImgSrc}'; //현재 사용자가 공감이 되어있는지 아닌지 확인
+            if(likeYesOrNo.indexOf('full') == -1){
+               var cnt = 0; // 공감 안했던거면 0으로 보내고
+            }else{
+               var cnt = 1; // 공감을 했으면 1로 보내고
+            }
+            var tripLikeImgSrc = data;
+            if(tripLikeImgSrc.indexOf('full') == -1 && cnt == 0){ // full이라는 글씨가 있으면, full이라는 글자의 인덱스를 반환하기 때문에
+                                           // 0포함  0보다 큰 수가 나옴
+               $('#likeSpan').empty();
+               $('#likeSpan').append(" : " + ${tripLikeCnt});
+               var del = '${tripLikeCnt}';
+            }else if(tripLikeImgSrc.indexOf('full') > -1 && cnt == 0){
+               $('#likeSpan').empty();
+               $('#likeSpan').append(" : " + ${tripLikeCnt + 1});
+            }else if(tripLikeImgSrc.indexOf('full') == -1 && cnt == 1){              
+               $('#likeSpan').empty();
+               $('#likeSpan').append(" : " + ${tripLikeCnt -1});
+               var del = '${tripLikeCnt - 1}';
+            }else if(tripLikeImgSrc.indexOf('full') > -1 && cnt == 1){
+               $('#likeSpan').empty();
+               $('#likeSpan').append(" : " + ${tripLikeCnt});
+            }
+            if(del == 0){
+               $('#likeSpan').empty();
+            }
+            $(".tlChk").attr("src", tripLikeImgSrc);
+		});
 	}; 
 </script>
 </head>
@@ -104,10 +124,10 @@
 		<img style="border-radius:10px; width: 40px;" class="tlChk" 
 			onclick="tripLike(${trip.t_num})" src="${tripLikeImgSrc}">
 		<c:if test="${tripLikeCnt == 0}">
-			<span style="font-size: 20px;">공감</span>
+			<span style="font-size: 20px;">공감</span><span id="likeSpan"></span>
 		</c:if>
 		<c:if test="${tripLikeCnt != 0}">
-			<span style="font-size: 20px;">공감:${tripLikeCnt}</span>
+			<span style="font-size: 20px;">공감</span><span id="likeSpan">:${tripLikeCnt}</span>
 		</c:if>
 	</div>
 	

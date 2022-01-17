@@ -26,4 +26,8 @@ public class Trip {
 	// 작성자띄우기
 	private String m_name;
 	private String m_nick;
+	
+	// 검색용
+	private String search;
+	private String keyword;
 }
