@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.TripDao;
 import com.ch.goat.model.Trip;
+import com.ch.goat.model.TripLike;
 
 @Service
 public class TripServiceImpl implements TripService{
@@ -36,6 +37,18 @@ public class TripServiceImpl implements TripService{
 	}
 	public int update(Trip trip) {
 		return td.update(trip);
+	}
+	public TripLike tLike(String m_id, int t_num) {
+		return td.tLike(m_id, t_num);
+	}
+	public void deleteTL(String m_id, int t_num) {
+		td.deleteTL(m_id, t_num);
+	}
+	public void insertTL(String m_id, int t_num) {
+		td.insertTL(m_id, t_num);
+	}
+	public int tlCnt(int t_num) {
+		return td.tlCnt(t_num);
 	}
 	
 }

@@ -8,12 +8,17 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.goat.model.Member;
 import com.ch.goat.model.Trip;
+import com.ch.goat.model.TripLike;
+import com.ch.goat.service.MemberService;
 
 @Repository
 public class TripDaoImpl implements TripDao {
 	@Autowired
 	private SqlSessionTemplate sst;
+	@Autowired
+	private MemberService ms;
 
 	public int getTotal(Trip trip) {
 		return sst.selectOne("tripns.getTotal", trip);
@@ -49,4 +54,34 @@ public class TripDaoImpl implements TripDao {
 	public int update(Trip trip) {
 		return sst.update("tripns.update", trip);
 	}
+
+	public TripLike tLike(String m_id, int t_num) {
+		Member member = ms.select(m_id);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("m_num", member.getM_num());
+		map.put("t_num", t_num);
+		return sst.selectOne("tripns.tLike", map);
+	}
+
+	public void deleteTL(String m_id, int t_num) {
+		Member member = ms.select(m_id);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("m_num", member.getM_num());
+		map.put("t_num", t_num);
+		sst.delete("tripns.deleteTL", map);
+	}
+
+	public void insertTL(String m_id, int t_num) {
+		Member member = ms.select(m_id);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("m_num", member.getM_num());
+		map.put("t_num", t_num);
+		sst.insert("tripns.insertTL", map);
+	}
+
+	public int tlCnt(int t_num) {
+		return sst.selectOne("tripns.tlCnt", t_num);
+	}
+
+	
 }
