@@ -36,4 +36,26 @@
 		update trip set t_title=#{t_title},t_content=#{t_content},reg_date=sysdate where t_num = #{t_num}
 	</update>
 	
+	<!-- 좋아요(추천수) -->
+	<select id="tLike" parameterType="map" resultType="tl">
+		select * from trip_like where m_num = #{m_num} and t_num = #{t_num}	
+	</select>
+	
+	<!-- 좋아요 삭제 -->
+	<delete id="deleteTL" parameterType="map">
+		delete from trip_like where m_num = #{m_num} and t_num = #{t_num}
+	</delete>
+	
+	<!-- 좋아요 추가 -->
+	<insert id="insertTL" parameterType="map">
+		<selectKey keyProperty="like_num" order="BEFORE" resultType="integer">
+			select nvl(max(like_num), 0) + 1 from trip_like
+		</selectKey>
+		insert into trip_like values(#{like_num},#{m_num},#{t_num})
+	</insert>
+	
+	<select id="tlCnt" parameterType="integer" resultType="integer">
+		select count(*) from trip_like where t_num=#{t_num}
+	</select>
+	
 </mapper>

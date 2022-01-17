@@ -100,7 +100,7 @@
 		</table>
 	</div>
 	<!-- 좋아요(추천수) -->
-	<div>
+	<div style="text-align: center; margin: 20px;">
 		<img style="border-radius:10px; width: 40px;" class="tlChk" 
 			onclick="tripLike(${trip.t_num})" src="${tripLikeImgSrc}">
 		<c:if test="${tripLikeCnt == 0}">
