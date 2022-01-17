@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.Schedule;
+import com.ch.goat.model.ScheduleDetail;
 
 public interface ScheduleDao {
 
@@ -17,6 +19,12 @@ public interface ScheduleDao {
 	Place selectP(int id);
 
 	int days(String s_date, String e_date);
+
+	int insert(Schedule sch);
+
+	void insertDetail(ScheduleDetail scd);
+
+	int select_num();
 
 }
   

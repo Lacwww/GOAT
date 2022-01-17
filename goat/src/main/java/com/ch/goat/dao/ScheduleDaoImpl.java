@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.Schedule;
+import com.ch.goat.model.ScheduleDetail;
 
 @Repository
 public class ScheduleDaoImpl implements ScheduleDao{
@@ -37,6 +39,16 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		map.put("s_date", s_date);
 		map.put("e_date", e_date);
 		return sst.selectOne("schedulens.days",map);
+	}
+	public int insert(Schedule sch) {
+		return sst.insert("schedulens.insert",sch);
+	}
+	public void insertDetail(ScheduleDetail scd) {
+		sst.insert("schedulens.insertDetail",scd);
+	}
+
+	public int select_num() {
+		return sst.selectOne("schedulens.select_num");
 	}
 
 }

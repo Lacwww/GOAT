@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.ch.goat.dao.ScheduleDao;
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.Schedule;
+import com.ch.goat.model.ScheduleDetail;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService{
@@ -34,5 +36,16 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	public int days(String s_date, String e_date) {
 		return sd.days(s_date,e_date);
+	}
+
+	public int insert(Schedule sch) {
+		return sd.insert(sch);
+	}
+	public void insertDetail(ScheduleDetail scd) {
+		sd.insertDetail(scd);
+	}
+
+	public int select_num() {
+		return sd.select_num();
 	}
 }
