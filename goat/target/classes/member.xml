@@ -4,11 +4,11 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where m_id=#{m_id}
 	</select>
-	<select id="nickChk" parameterType="string" resultType="member">
-		select * from member where m_nick=#{m_nick}
+	<select id="nickChk" parameterType="member" resultType="member">
+		select * from member where m_nick=#{m_nick} and del='n'
 	</select>
-	<select id="emailChk" parameterType="string" resultType="member">
-		select * from member where m_email=#{m_email}
+	<select id="emailChk" parameterType="member" resultType="member">
+		select * from member where m_email=#{m_email} and del='n'
 	</select>
 	<insert id="insert" parameterType="member">
 		insert into member values ((SELECT NVL(MAX(m_num),0)+1 FROM member), #{m_id}, #{m_pass}, #{m_nick},
@@ -23,4 +23,36 @@
 	<update id="updatePass" parameterType="member">
 		update member set m_pass=#{m_pass} where m_id=#{m_id}
 	</update>
+	<update id="update" parameterType="member">
+		update member set m_pass=#{m_pass}, m_nick=#{m_nick}, m_email=#{m_email}, m_name=#{m_name}, 
+			m_tel=#{m_tel}, m_birth=#{m_birth}, m_addr=#{m_addr}, m_addrd=#{m_addrd}
+			<if test="m_photo != null">
+				, m_photo=#{m_photo}
+			</if>
+			where m_id=#{m_id}
+	</update>
+	<update id="delete" parameterType="string">
+		update member set del='y' where m_id=#{m_id}
+	</update>
+	<select id="photo" parameterType="string" resultType="string">
+		select m_photo from member where m_id=#{m_id}
+	</select>
+	<select id="cpList" parameterType="integer" resultType="tempplace">
+		select * from tempplace where m_num=#{m_num} order by temp_num desc
+	</select>
+	<update id="cpDelete" parameterType="integer">
+		update tempplace set del='c' where temp_num=#{temp_num}
+	</update>
+	<select id="bmNum" parameterType="integer" resultType="integer">
+		select place_num from bookmark where m_num=#{m_num}
+	</select>
+	<select id="bookmarkList" parameterType="integer" resultType="place">
+		select * from place where place_num=#{temp}
+	</select>
+	<select id="myCsList" parameterType="integer" resultType="cs">
+		select c.*, m.* from cs c, member m where c.m_num=m.m_num and c.m_num=#{m_num} and c.del='n'
+	</select>
+	<select id="confirm" parameterType="integer" resultType="alert">
+		select * from alert where m_num=#{m_num}
+	</select>
 </mapper>

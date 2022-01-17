@@ -19,11 +19,5 @@ $( function() {
 <title>Insert title here</title>
 </head>
 <body>
-<table id="table">
-  <tr class="target"><td>첫 번째 아이템</td></tr>
-  <tr class="target"><td>두 번째 아이템</td></tr>
-  <tr class="target"><td>세 번째 아이템</td></tr>
-  <tr class="target"><td>네 번째 아이템</td></tr>
-</table>
 </body>
 </html>

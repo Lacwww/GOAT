@@ -17,5 +17,13 @@
 			<if test="keyword != null and keyword !='' ">
 				and ${search} like '%'||#{keyword}||'%'
 			</if>
+	</select>
+	<!-- 선택한 플레이스 조회 -->
+	<select id="pick_place" parameterType="integer" resultType="place">
+		select * from place where place_num=#{id}
 	</select>   
+	<!-- 여행 기간 구하기 -->
+	<select id="days" parameterType="hashmap" resultType="integer">
+		select to_date(#{e_date},'yyyy-mm-dd')-to_date(#{s_date},'yyyy-mm-dd')+1 FROM DUAL
+	</select>
 </mapper>

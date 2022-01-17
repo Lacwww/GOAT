@@ -8,9 +8,10 @@
 			type="com.ch.goat.model.PlaceReview" />
 		<typeAlias alias="bookmark"
 			type="com.ch.goat.model.Bookmark" />
+		<typeAlias alias="tempplace"
+			type="com.ch.goat.model.TempPlace" />
 		<typeAlias alias="member" type="com.ch.goat.model.Member" />
 		<typeAlias alias="trip" type="com.ch.goat.model.Trip" />
-		<typeAlias alias="tp" type="com.ch.goat.model.TripPhoto" />
 		<typeAlias alias="tl" type="com.ch.goat.model.TripLike" />
 		<typeAlias alias="tr" type="com.ch.goat.model.TripReply" />
 
@@ -23,7 +24,7 @@
 		<typeAlias alias="area" type="com.ch.goat.model.Area" />
 		<typeAlias alias="scd"
 			type="com.ch.goat.model.ScheduleDetail" />
-
+		<typeAlias alias="alert" type="com.ch.goat.model.Alert"/>
 
 	</typeAliases>
 	<mappers>
@@ -31,7 +32,9 @@
 		<mapper resource="schedule.xml" />
 		<mapper resource="member.xml" />
 		<mapper resource="trip.xml" />
+		<mapper resource="tripReply.xml" />
 		<mapper resource="notice.xml" />
+		<mapper resource="noticeReply.xml" />
 		<mapper resource="cs.xml" />
 		<mapper resource="admin.xml" /> 
 	</mappers>
