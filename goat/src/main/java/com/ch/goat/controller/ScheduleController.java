@@ -1,7 +1,13 @@
 package com.ch.goat.controller;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.Schedule;
+import com.ch.goat.model.ScheduleDetail;
 import com.ch.goat.service.ScheduleService;
 
 @Controller
@@ -74,15 +82,40 @@ public class ScheduleController {
 		model.addAttribute("e_date", e_date);
 		return "schedule/makeScheduleDetail";
 	}
-	
+
 	@RequestMapping("schedule/chkSchedule")
-	public String chkSchedule(Model model, String[] result_day, int days) {
-		for (int k =1 ; k<=days;k++) {
-			
-			for (int l = 0 ; l<result_day.length;l++) {
-				
+	public String chkSchedule(Model model, String result_day, int days, HttpSession session, Date s_date, Date e_date,
+			String sch_name) {
+		int m_num = (Integer) session.getAttribute("m_num");
+		Schedule sch = new Schedule();
+		ScheduleDetail scd = new ScheduleDetail();
+		sch.setS_date(s_date);
+		sch.setE_date(e_date);
+		sch.setM_num(m_num);
+		sch.setSch_name(sch_name);
+		int results=ss.insert(sch);
+		List<String> list = new ArrayList<String>();
+		String[] result = result_day.split(",day");
+		for (int i = 0; i < result.length; i++) {
+			String[] arr = result[i].split(",");
+			for (String s : arr) {
+				if (s != null && s.length() > 0) {
+					list.add(s);
+				}
 			}
-			System.out.println(result_day[k]);
+			arr = list.toArray(new String[list.size()]);
+			
+			int sch_num = ss.select_num();
+			
+			scd.setDay(i+1);
+			scd.setSch_num(sch_num);
+			//scd.set
+			for(int k=0; k<arr.length; k++) {
+				int pnum = Integer.parseInt(arr[k]);
+				scd.setPlace_num(pnum);
+				ss.insertDetail(scd);
+			}
+			list.clear();
 		}
 		return "schedule/chkSchedule";
 	}

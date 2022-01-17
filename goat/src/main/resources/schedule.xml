@@ -26,4 +26,16 @@
 	<select id="days" parameterType="hashmap" resultType="integer">
 		select to_date(#{e_date},'yyyy-mm-dd')-to_date(#{s_date},'yyyy-mm-dd')+1 FROM DUAL
 	</select>
+	<!-- 스케줄 생성 -->
+ 	<insert id="insert" parameterType="sc">
+		insert into schedule  values ((SELECT NVL(MAX(sch_num),0)+1 FROM schedule), #{sch_name},#{s_date},#{e_date},#{m_num})
+	</insert>
+	<select id="select_num" resultType="integer">
+		SELECT NVL(MAX(sch_num),1) FROM schedule
+	</select>
+	<!-- 스케줄 상세내역 생성 -->
+	<insert id="insertDetail" parameterType="scd">
+		insert into schedule_detail values((SELECT NVL(MAX(schd_num),0)+1 FROM schedule_detail),#{day},'자동차',#{sch_num},#{place_num})
+	</insert>
+	
 </mapper>
