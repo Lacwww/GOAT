@@ -18,4 +18,6 @@ public class Alert {
 	private String del;
 	private int cs_num;
 	private String cs_title;
+	private int t_num;
+	private String t_title;
 }

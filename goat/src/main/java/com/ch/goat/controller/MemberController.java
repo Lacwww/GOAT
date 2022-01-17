@@ -29,7 +29,9 @@ import com.ch.goat.model.Area;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.Schedule;
 import com.ch.goat.model.TempPlace;
+import com.ch.goat.model.Trip;
 import com.ch.goat.service.MemberService;
 @Controller
 public class MemberController {
@@ -338,5 +340,17 @@ public class MemberController {
 		List<Cs> list = ms.myCsList(m_num);
 		model.addAttribute("list", list);
 		return "member/myCsList";
+	}
+	@RequestMapping("member/scheduleList")
+	public String scheduleList(int m_num, Model model) {
+		List<Schedule> list = ms.myScList(m_num);
+		model.addAttribute("list", list);
+		return "member/scheduleList";
+	}
+	@RequestMapping("member/tripList")
+	public String tripList(int m_num, Model model) {
+		List<Trip> list = ms.myTripList(m_num);
+		model.addAttribute("list", list);
+		return "member/tripList";
 	}
 }

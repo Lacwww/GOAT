@@ -55,4 +55,10 @@
 	<select id="confirm" parameterType="integer" resultType="alert">
 		select * from alert where m_num=#{m_num}
 	</select>
+	<select id="myScList" parameterType="integer" resultType="sc">
+		select * from schedule where m_num=#{m_num}
+	</select>
+	<select id="myTripList" parameterType="integer" resultType="trip">
+		select * from trip where m_num=#{m_num}
+	</select>
 </mapper>

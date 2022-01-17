@@ -68,7 +68,7 @@ body {
 		<c:if test="${not empty id || not empty admin}">
 			<p style="margin: 20px;">
 				<img title="MyPage" style="border-radius: 50%;"
-					src="/goat/resources/m_photo/${img }"
+					src="/goat/resources/m_photo/${m_img }"
 					onclick="location.href='/goat/member/myPage.do'" width="70px"
 					height="70px" />
 			</p>

@@ -10,7 +10,9 @@ import com.ch.goat.model.Alert;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.Schedule;
 import com.ch.goat.model.TempPlace;
+import com.ch.goat.model.Trip;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -95,5 +97,15 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public List<Alert> confirm(int m_num) {
 		return sst.selectList("memberns.confirm", m_num);
+	}
+
+	@Override
+	public List<Schedule> myScList(int m_num) {
+		return sst.selectList("memberns.myScList", m_num);
+	}
+
+	@Override
+	public List<Trip> myTripList(int m_num) {
+		return sst.selectList("memberns.myTripList", m_num);
 	}
 }

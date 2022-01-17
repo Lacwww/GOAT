@@ -43,6 +43,8 @@ CREATE TABLE ALERT (
 	CS_NUM NUMBER, /* 글번호 */
 	CS_TITLE VARCHAR2(100) /* 제목 */
 );
+alter table alert add t_num number;
+alter table alert add t_title varchar2(100);
 
 /* 여행 게시판 */
 CREATE TABLE TRIP (
@@ -260,6 +262,8 @@ ALTER TABLE SCHEDULE_DETAIL
 		REFERENCES PLACE (
 			PLACE_NUM
 		);
+
+alter table schedule_detail modify(day number);
 
 /* 좋아요 */
 CREATE TABLE TRIP_LIKE (

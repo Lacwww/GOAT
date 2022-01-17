@@ -7,7 +7,9 @@ import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
+import com.ch.goat.model.Schedule;
 import com.ch.goat.model.TempPlace;
+import com.ch.goat.model.Trip;
 
 public interface MemberService {
 
@@ -42,5 +44,9 @@ public interface MemberService {
 	List<Cs> myCsList(int m_num);
 
 	List<Alert> confirm(int m_num);
+
+	List<Schedule> myScList(int m_num);
+
+	List<Trip> myTripList(int m_num);
 
 }

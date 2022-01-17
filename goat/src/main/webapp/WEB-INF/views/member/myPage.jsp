@@ -11,6 +11,7 @@
 	a:active { text-decoration: none; }
 	a:hover { text-decoration: none; color: #FFCD12; }
 	a:visited { text-decoration: none; }
+	#myPage td { width: 11.1%; height: 70px; font-size: 15px; cursor: pointer; }
 </style>
 <script type="text/javascript">
 	/* 삭제 */
@@ -32,7 +33,7 @@
 				style = "border-radius:50%;" width="200px;" height="200px;">
 		<h3>${member.m_id }</h3>
 		<div style="width: 50%;">
-			<table>
+			<table id="myPage">
 				<tr>
 					<td align="center">
 						<a href="createPlaceList.do?m_num=${member.m_num }">Create Place</a>
@@ -46,10 +47,10 @@
 				</tr>
 				<tr>
 					<td align="center">
-						<a>Schedule List</a>
+						<a href="scheduleList.do?m_num=${member.m_num }">Schedule List</a>
 					</td>
 					<td align="center">
-						<a>Trip History</a>
+						<a href="tripList.do?m_num${member.m_num }">Trip History</a>
 					</td>
 					<td align="center">
 						<a href="updateForm.do?m_id=${member.m_id }">Member Update</a>
