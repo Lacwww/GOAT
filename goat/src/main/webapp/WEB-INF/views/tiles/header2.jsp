@@ -13,6 +13,7 @@ body {
 
 .navbar {
 	background-color: white;
+	font-size: 2rem;
 }
 
 element.style {
@@ -24,7 +25,7 @@ li a {
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-fixed-top"">
+	<nav class="navbar navbar-expand-lg navbar-fixed-top">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -88,7 +89,7 @@ li a {
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right"
-					style="display: flex; align-content: center; flex-wrap: wrap; overflow: auto; height: 100px; text-align: center;">
+					style="display: flex; align-content: center; flex-wrap: wrap; overflow: auto; width: 5%; height: 100px; text-align: center;">
 					<c:if test="${empty alert}">
 						<li><a href="#"><img
 								src="/goat/resources/images/notice.png" title="notice"
