@@ -64,7 +64,7 @@
 		<div align="center"> 
 			<input type="button" class="btn" value="플레이스 등록" onclick="location.href='insertFormTempPlace.do'"> 
 		</div>
-		<div class="container" align="center" style="margin-left: 3%;">
+		<div class="container" align="center" style="margin-left: 1%;">
 			<c:forEach var="area" items="${list }">
 			<div class="area">
 				<div class="areaPhoto">

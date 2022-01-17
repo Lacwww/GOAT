@@ -133,7 +133,9 @@ public class PlaceController {
 		}
 		TempPlace tp = ps.selectTemp(tempplace.getTemp_num());
 		
+		Member member = ms.selectM_num(tp.getM_num());
 		
+		model.addAttribute("member", member);	
 		model.addAttribute("tp", tp);	
 		return "place/tempDetailView";
 	}

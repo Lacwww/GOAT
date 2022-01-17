@@ -38,7 +38,7 @@
 	}	
 	.bmChk { cursor: pointer;}
 	.textTh {text-align:center; width: 20%; border-bottom: 1px solid white; }
-	.lpad {padding-left: 5%;}
+	.lpad {padding-left: 5%; border-bottom: 1px solid black;}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript">

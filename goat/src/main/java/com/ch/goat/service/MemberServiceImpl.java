@@ -109,4 +109,9 @@ public class MemberServiceImpl implements MemberService {
 		return md.myTripList(m_num);
 	}
 
+	@Override
+	public Member selectM_num(int m_num) {
+		return md.selectM_num(m_num);
+	}
+
 }

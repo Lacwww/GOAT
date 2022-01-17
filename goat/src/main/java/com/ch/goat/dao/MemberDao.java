@@ -48,4 +48,6 @@ public interface MemberDao {
 
 	List<Trip> myTripList(int m_num);
 
+	Member selectM_num(int m_num);
+
 }
