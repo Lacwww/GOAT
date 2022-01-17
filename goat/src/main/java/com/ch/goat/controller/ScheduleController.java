@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
@@ -94,6 +95,10 @@ public class ScheduleController {
 		sch.setM_num(m_num);
 		sch.setSch_name(sch_name);
 		int results=ss.insert(sch);
+		ss.schAlert(sch);
+		List<Alert> alert = ss.alertCon(m_num);
+		session.removeAttribute("alert");
+		session.setAttribute("alert", alert);
 		List<String> list = new ArrayList<String>();
 		String[] result = result_day.split(",day");
 		for (int i = 0; i < result.length; i++) {
