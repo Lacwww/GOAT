@@ -202,10 +202,10 @@
 				<tr><td class="bgcolor" align="center">도로명 주소</td>
 					<td><input type="text" class="form-control" style="width: 70%; margin-left: 10px;" name="temp_addrd" size="40"></td></tr>
 				<tr><td class="bgcolor" align="center">장소 설명</td>
-				<td><textarea rows="5" cols="50" class="form-control" name="temp_content" required="required"></textarea></td></tr>
+				<td><textarea rows="5" cols="50" style="margin-left: 10px;" class="form-control" name="temp_content" required="required"></textarea></td></tr>
 				<tr><td class="bgcolor" align="center">건의 이유</td>
-				<td><textarea rows="5" cols="50" class="form-control" name="temp_explanation" required="required"></textarea></td></tr>
-				<tr><td colspan="3" align="center" style="padding-right: 50px;">
+				<td><textarea rows="5" cols="50" style="margin-left: 10px;" class="form-control" name="temp_explanation" required="required"></textarea></td></tr>
+				<tr><td colspan="3" align="center">
 					<input type="submit" class="btn btn-primary" value="등록신청">
 					<input type="button" class="btn btn-warning" onclick="history.back()" value="취소">
 				</td></tr>

@@ -36,6 +36,8 @@
 		color: white; 
 		border-radius: 5px;
 	}	
+	.bmChk { cursor: pointer;}
+	.textTh {text-align:center; width: 20%; border-bottom: 1px solid white; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript">
@@ -126,24 +128,29 @@
 	</div>
 	<div class="container" style="margin-left: 10%; width: 81.5%;">
 		<div class="bookmark"><img style="border-radius:10px; width: 50px;" class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div>
-		<h2 class="text-primary">${place.place_name }</h2>
+		<h2 class="text-primary" style="color: green;"><b>${place.place_name }</b></h2>
 		<br>
-		<h3>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"></fmt:formatNumber> </h3>
-		<h4>지역 : ${place.place_area }</h4>
-		<h4>카테고리 : ${place.place_cate }</h4>
-		<h4>주소(지번) : ${place.place_addr }</h4>
-		<h4>주소(도로명) : ${place.place_addrd }</h4>
-		<h4>태그 : ${place.place_tag }</h4>
-		<h4>내용 : ${place.place_content }</h4>	
+		<table>
+			<tr><td class="bgcolor textTh"><h4>평점</h4></td><td><fmt:formatNumber value="${avgScore }" pattern="0.00"></fmt:formatNumber></td></tr>
+			<tr><td class="bgcolor textTh"><h4>지역</h4></td><td>${place.place_area }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>카테고리</h4></td><td>${place.place_cate }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>지번 주소</h4></td><td>${place.place_addr }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>도로명 주소</h4></td><td>${place.place_addrd }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>태그</h4></td><td>${place.place_tag }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>내용</h4></td><td>${place.place_content }</td></tr>
+		</table>	
 	</div>
-	<div id="prevListDisp" style="margin-left: 9%; width: 85%;"></div>
+	<br>
+	<hr>
+	<div id="prevListDisp" style="margin-left: 9%; width: 81%;"></div>
+	<br>
 	<hr style="margin-left: 10%; width: 80%;">
 	<div style="margin-left: 10%; width: 85%;">
 		<form action="" name="frm1" id="frm1">
 			<input type="hidden" name="place_num" value="${place.place_num }">
-			<h3 class="text-primary">평가글 작성</h3>
-				<div style="margin-left:5%; color:red"><b>* 제목은 최대 10글자</b></div>
-			<table style="margin-top: 0px;">
+			<h3 class="text-primary"><b>평가글 작성</b></h3>
+				<div style="margin-left:10%; color:red"><b>* 제목은 최대 10글자</b></div>
+			<table style="margin-left:10%; margin-top: 2px; margin-bottom: 4px; width: 70%;">
 				<tr>
 					<td align="center" style="width: 7%;" class="bgcolor">제목</td><td style="width: 25%; padding-left: 10px; padding-right: 10px;" >
 						<input type="text" class="form-control" maxlength="10" name="prev_title" required="required"></td>
@@ -160,13 +167,19 @@
 							   <input type="radio" name="score" id="star4" class="radio" value="4">
 							   <input type="radio" name="score" id="star5" class="radio" value="5">
 						</div>
-					</td>
-					<td align="center" style="width: 7%;" class="bgcolor">내용</td><td colspan="5" style="padding-left: 10px;">
-					<textarea rows="2" cols="30" name="prev_content" required="required"></textarea></td>
-					<td><input type="button" style="margin-left: 10%;" class="btn" value="등록" id="insertprev"></td>
+					</td></tr>
+					</table>
+					<table style="margin-left:10%; margin-top: 0px; width: 68%;">
+					<tr>
+						<td align="center" style="width: 12%;" class="bgcolor">내용</td>
+						<td style="padding-left: 10px;">
+							<textarea rows="4" cols="60" name="prev_content" required="required"></textarea>
+						</td>
+						<td><input type="button" style="margin-left: 2%;" class="btn" value="등록" id="insertprev"></td>
+					</tr>	
 			</table>
-			<hr>
 		</form>
 	</div>
+	<hr style="margin-left: 10%; width: 80%;">
 </body>
 </html>

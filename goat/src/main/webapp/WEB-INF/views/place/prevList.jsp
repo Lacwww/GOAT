@@ -13,6 +13,10 @@
 		color: white; 
 		border-radius: 5px;
 	}	
+/* 	pre {  */
+/* 		background-color: white; border: 0px; */
+/* 	} */
+	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -30,10 +34,10 @@
 		var txt = $('#td_'+prev_num).text();
 		var titletxt = $('#title_'+prev_num).text();
 //		클릭한 위치에 있는 댓글을 읽어서 수정할 수있도록 textarea에 넣기		
-		$('#td_'+prev_num).html("<textarea rows='3' cols='30' id='rt_"+prev_num+"'>" +
+		$('#td_'+prev_num).html("<textarea rows='3' class='form-control' cols='30' id='rt_"+prev_num+"'>" +
 				txt+"</textarea>");
 //      현재의 버튼을 수정하고 난 후에 확인, 취소로 변경	
-		$('#btn_'+prev_num).html("<input type='button' onclick='up("+prev_num+","+place_num+")'"+
+		$('#btn_'+prev_num).html("<input type='button' style='margin-left:5px;' onclick='up("+prev_num+","+place_num+")'"+
 			" class='btn btn-sm btn-danger' value='확인'> "+
 			"<input type='button' onclick='lst("+place_num+")' " +
 			" class='btn btn-sm btn-info' value='취소'>");
@@ -49,7 +53,7 @@
 				 '<input type="radio" name="score" id="star44'+prev_num+'" class="radio" value="4">'+
 				 '<input type="radio" name="score" id="star55'+prev_num+'" class="radio" value="5">'
 		);
-		$('#title_'+prev_num).html('<input type="text" id="title1_'+prev_num+'" value="'+titletxt+'">');
+		$('#title_'+prev_num).html('<input type="text" class="form-control" style="margin-left:1px;" maxlength="10" id="title1_'+prev_num+'" value="'+titletxt+'">');
 	}
 	function lst(place_num) {
 		$('#prevListDisp').load('prevList.do?place_num='+place_num);
@@ -86,35 +90,31 @@
 </head>
 <body>
 <c:if test="${not empty list }">
-	<h3 class="text-primary">장소 평가</h3>
+	<h3 class="text-primary"><b>장소 평가</b></h3>
+	<br>
 <c:forEach var="prev" items="${list }">
-	<c:if test="${prev.del == 'y' }">
-<!-- 		<table style=" width: 75%;" class="under"> -->
-<!-- 			<tr><th>삭제된 평가입니다.</th></tr> -->
-<!-- 		</table> -->
-	</c:if>
 	<c:if test="${prev.del != 'y' }">
-		<table style=" width: 80%; margin-bottom: 10px;">
-			<tr align="center"><td style="width: 5%;" class="bgcolor">제목</td><td style="border-bottom: 1px solid black;" id="title_${prev.prev_num }">${prev.prev_title }</td>
-				<td style="width: 5%;" class="bgcolor">작성자</td><td style="border-bottom: 1px solid black;">${prev.name }</td>
-				<td style="width: 5%;" class="bgcolor">작성일</td><td style="border-bottom: 1px solid black;">
+		<table style=" width: 80%; margin-left:5%; margin-bottom: 10px; margin-top: 10px;">
+			<tr align="center"><td style="width: 11%;" class="bgcolor">제목</td><td style="width:20%; border-bottom: 1px solid black;" id="title_${prev.prev_num }">${prev.prev_title }</td>
+				<td style="width: 11%;" class="bgcolor">작성자</td><td style="border-bottom: 1px solid black;">${prev.name }</td>
+				<td style="width: 11%;" class="bgcolor">작성일</td><td style="width:17%; border-bottom: 1px solid black;">
 				<fmt:formatDate value="${prev.reg_date }" pattern="yyyy년 MM월 dd일"/>
 				</td>
 				<td style="width: 15%;"></td>
 				</tr>	
 		</table>
-		<table style="width: 95%;  margin-top: 0px;">
-			<tr><td style="width: 8%; border-bottom: 1px solid black;" id="score_${prev.prev_num }">
+		<table style="margin-left:5%; width: 81%;  margin-top: 0px;">
+			<tr><td style="width: 20%; border-bottom: 1px solid black;" id="score_${prev.prev_num }">
 					<c:forEach begin="1" end="${prev.score }">
 						<label class="star2 star_empty on"></label>
 					</c:forEach>
 					<c:forEach begin="${prev.score }" end="4">
 						<label class="star2 star_empty"></label>
 					</c:forEach>
-				</td><td colspan="5" id="td_${prev.prev_num }" style="width:30%; border-bottom: 1px solid black;"><pre>${prev.prev_content }</pre></td>
+				</td><td colspan="5" id="td_${prev.prev_num }" style="width:65%; border-bottom: 1px solid black;"><pre>${prev.prev_content }</pre></td>
 				<td id="btn_${prev.prev_num }">
 				<c:if test="${prev.m_num == m_num }">
-				<div>
+				<div style="margin-left: 10px;">
 					<input type="button" class="btn btn-primary" value="수정" onclick="prevUpdate(${prev.prev_num}, ${prev.place_num })">
 					<input type="button" class="btn btn-danger" value="삭제" onclick="prevDelete(${prev.prev_num}, ${prev.place_num })">
 				</div> 
