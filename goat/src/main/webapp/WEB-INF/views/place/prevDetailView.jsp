@@ -38,6 +38,7 @@
 	}	
 	.bmChk { cursor: pointer;}
 	.textTh {text-align:center; width: 20%; border-bottom: 1px solid white; }
+	.lpad {padding-left: 5%;}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript">
@@ -130,14 +131,14 @@
 		<div class="bookmark"><img style="border-radius:10px; width: 50px;" class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div>
 		<h2 class="text-primary" style="color: green;"><b>${place.place_name }</b></h2>
 		<br>
-		<table>
-			<tr><td class="bgcolor textTh"><h4>평점</h4></td><td><fmt:formatNumber value="${avgScore }" pattern="0.00"></fmt:formatNumber></td></tr>
-			<tr><td class="bgcolor textTh"><h4>지역</h4></td><td>${place.place_area }</td></tr>
-			<tr><td class="bgcolor textTh"><h4>카테고리</h4></td><td>${place.place_cate }</td></tr>
-			<tr><td class="bgcolor textTh"><h4>지번 주소</h4></td><td>${place.place_addr }</td></tr>
-			<tr><td class="bgcolor textTh"><h4>도로명 주소</h4></td><td>${place.place_addrd }</td></tr>
-			<tr><td class="bgcolor textTh"><h4>태그</h4></td><td>${place.place_tag }</td></tr>
-			<tr><td class="bgcolor textTh"><h4>내용</h4></td><td>${place.place_content }</td></tr>
+		<table style="margin-left: 5%; width: 90%">
+			<tr><td class="bgcolor textTh"><h4>평점</h4></td><td class="lpad"><fmt:formatNumber value="${avgScore }" pattern="0.00"></fmt:formatNumber></td></tr>
+			<tr><td class="bgcolor textTh"><h4>지역</h4></td><td class="lpad">${place.place_area }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>카테고리</h4></td><td class="lpad">${place.place_cate }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>지번 주소</h4></td><td class="lpad">${place.place_addr }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>도로명 주소</h4></td><td class="lpad">${place.place_addrd }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>태그</h4></td><td class="lpad">${place.place_tag }</td></tr>
+			<tr><td class="bgcolor textTh"><h4>내용</h4></td><td class="lpad">${place.place_content }</td></tr>
 		</table>	
 	</div>
 	<br>
