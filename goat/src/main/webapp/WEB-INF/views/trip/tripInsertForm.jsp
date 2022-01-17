@@ -16,7 +16,7 @@
 <body>
 	<div align="center">
 		<h3>여행이야기 등록</h3><hr>
-		<form action="tripInsert.do?" method="post" name="frm">
+		<form action="tripInsert.do?" method="post" name="frm" enctype="multipart/form-data">
 			<input type="hidden" name="pageNum" value="${pageNum}"> 
 		<c:if test="${not empty id && empty admin }">
 			<input type="hidden" name="m_num" value="${member.m_num }">
@@ -43,13 +43,16 @@
 					<textarea class="form-control" name="t_content" id="t_content"></textarea>
 					<script type="text/javascript">
  						CKEDITOR.replace('t_content'
-                			, {height: 500, width: 1000               
+ 							, {filebrowserUploadUrl:'imageUpload.do'
+                			, height: 500, width: 1000
                 		 });
 					</script>
 					</td>
 				</tr>
 				<tr>
-					<td align="center" colspan="2"><input type="submit" value="등록하기"></td>
+					<td align="center" colspan="2">
+						<input type="submit" value="등록하기">
+						<input type="button" value="취소" onclick="location.href='tripList.do?pageNum=${pageNum}'"></td>
 				</tr>
 			</table>
 		</form>

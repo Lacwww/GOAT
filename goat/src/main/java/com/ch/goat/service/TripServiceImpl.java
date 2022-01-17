@@ -19,23 +19,23 @@ public class TripServiceImpl implements TripService{
 	public List<Trip> list(int startRow, int endRow) {
 		return td.list(startRow, endRow);
 	}
-//	public int maxNum() {
-//		return nd.maxNum();
-//	}
-//	public int insert(Notice notice) {
-//		return nd.insert(notice);
-//	}
-//	public void updateViewcount(int no_num) {
-//		nd.updateViewcount(no_num);
-//	}
-//	public Notice select(int no_num) {
-//		return nd.select(no_num);
-//	}
-//	public int delete(int no_num) {
-//		return nd.delete(no_num);
-//	}
-//	public int update(Notice notice) {
-//		return nd.update(notice);
-//	}
+	public int maxNum() {
+		return td.maxNum();
+	}
+	public int insert(Trip trip) {
+		return td.insert(trip);
+	}
+	public void updateViewcount(int t_num) {
+		td.updateViewcount(t_num);
+	}
+	public Trip select(int t_num) {
+		return td.select(t_num);
+	}
+	public int delete(int t_num) {
+		return td.delete(t_num);
+	}
+	public int update(Trip trip) {
+		return td.update(trip);
+	}
 	
 }

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
 <script type="text/javascript">
 	function noBack() {
 		window.history.forward();
@@ -14,31 +15,39 @@
 </head>
 <body>
 	<div align="center">
-		<h3>공지사항 수정</h3><hr>
-		<form action="noticeUpdate.do?" method="post" name="frm">
+		<h3>여행이야기 수정</h3><hr>
+		<form action="tripUpdate.do?" method="post" name="frm">
 			<input type="hidden" name="pageNum" value="${pageNum}">
-			<input type="hidden" name="no_num" value="${notice.no_num}">
+			<input type="hidden" name="t_num" value="${trip.t_num}">
 			
 			<table>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="no_title" required="required"
-						autofocus="autofocus" value="${notice.no_title }"></td>
+					<td><input type="text" name="t_title" required="required"
+						autofocus="autofocus" value="${trip.t_title }"></td>
 				</tr>
 
 				<tr>
 					<th>작성자</th>
-					<td>${adminInfo.m_name }</td>
+					<td><c:if test="${not empty id && empty admin}">${member.m_name }</c:if>
+						<c:if test="${not empty admin && empty id}">${adminInfo.m_name }</c:if></td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td>
-					<textarea rows="10" cols="80" name="no_content"
-							required="required" id="no_content">${notice.no_content }</textarea>
+					<textarea class="form-control" name="t_content" id="t_content">${trip.t_content }</textarea>
+					<script type="text/javascript">
+ 						CKEDITOR.replace('t_content'
+ 							, {filebrowserUploadUrl:'imageUpload.do'
+                			, height: 500, width: 1000
+                		 });
+					</script>
 					</td>
 				</tr>
 				<tr>
-					<td align="center" colspan="2"><input type="submit" value="수정하기"></td>
+					<td align="center" colspan="2">
+						<input type="submit" value="수정하기">
+						<input type="button" value="취소" onclick="location.href='tripView.do?t_num=${trip.t_num}&pageNum=${pageNum }'"></td>
 				</tr>
 			</table>
 		</form>
