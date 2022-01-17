@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.btn {
+	background-color: rgb(64,123,37);
+	color: white;
+	}
+	.btn:hover {
+		background-color: rgb(114,201,75);
+	}
+</style>
 </head>
 <body>
 	<div>
@@ -13,13 +22,15 @@
 		</div>
 		<div class="modal-body">
 			<div class="container">
-			<%-- areaPlaceList.do?place_area=${area.place_area } --%>
-				<div>지역 : ${place_area }</div>
-				<input type="button" value="전 지역" onclick="location.href='areaPlaceList.do?place_area=${place_area }'">
-				<c:forEach var="areaDe" items="${areaDetailList }">
-					<input type="button" value="${areaDe.place_areadetail }"
-						onclick="location.href='areaPlaceList.do?place_area=${place_area }&place_areadetail=${areaDe.place_areadetail }'" >
-				</c:forEach>
+				<div style="width: 73%;" align="center"><h2>지역 : ${place_area }</h2></div>
+				<br>
+				<div style="width: 73%;" align="center">
+					<input type="button" class="btn" value="전 지역" onclick="location.href='areaPlaceList.do?place_area=${place_area }'">
+					<c:forEach var="areaDe" items="${areaDetailList }">
+						<input type="button" class="btn" value="${areaDe.place_areadetail }"
+							onclick="location.href='areaPlaceList.do?place_area=${place_area }&place_areadetail=${areaDe.place_areadetail }'" >
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 		<div class="modal-footer">

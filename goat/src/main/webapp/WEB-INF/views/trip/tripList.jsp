@@ -41,7 +41,7 @@
 							<td class="td2">
 								<a href="tripView.do?t_num=${trip2.t_num}&pageNum=${pb.currentPage}">${trip2.t_title}</a>
 							</td>
-							<td class="td3">${trip2.m_nick }</td>
+							<td class="td3">${trip2.m_name }</td>
 							<td class="td4">${trip2.t_view }</td>
 							<td class="td5">${trip2.reg_date }</td>
 						</tr>

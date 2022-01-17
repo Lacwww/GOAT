@@ -7,8 +7,10 @@
 <style type="text/css">
 	.placeImg {width: 100%; height: 100%; padding-right: 2px;}
 	.area_photo { float: left; width: 30%; height: 30%;}
-	.area_text { width: 80%; padding: 5px; }
+	.area_photo img { border-radius: 10px;}
+	.area_text {margin-left: 35%;}
 	a {cursor: pointer; }
+	.bookmark {float: right;}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -23,6 +25,21 @@
 			location.href="updateFormTempPlace.do?place_num="+${place.place_num };
 		}
 	};
+	function bookMarkChk(place_num) {
+		if(${empty id}){
+			alert("로그인 후 이용가능합니다");
+			return false;
+		}
+		$.post("bookMark.do", "place_num="+place_num, function(data) {
+			var bookMarkImgSrc = data;
+			if(bookMarkImgSrc.indexOf('no') == -1){
+				alert("북마크에 저장되었습니다");
+			}else{
+				alert("북마크가 삭제되었습니다");
+			}
+			$(".bmChk").attr("src", bookMarkImgSrc);
+		});			
+	};
 </script>
 </head>
 <body>
@@ -32,11 +49,13 @@
 		</div>
 		<div class="modal-body">
 			<div class="container" id="inner_content" style="width: 100%;">
+				<div class="bookmark"><img style="border-radius:10px; width: 50px;" class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div>
 				<div class="area_photo">
 					<img class="placeImg" alt=""	src="${place.place_photo }">
 				</div>
 				<div class="area_text">
 					<h3>${place.place_name}</h3>
+					<br>
 					<h4>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"/></h4>
 					<h5>태그 : ${place.place_tag }</h5>
 					<br>

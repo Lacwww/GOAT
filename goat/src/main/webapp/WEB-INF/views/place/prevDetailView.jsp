@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.top {float: left; }
-	.bookmark {float: right; margin-right: 20%;}
+	.bookmark {float: right;}
 	.star, .star1, .star2{
 	  display:inline-block;
 	  width: 30px;height: 30px;
@@ -21,9 +21,21 @@
 	}
 	.on{
 	  background-image: url(${path}/resources/p_images/star.png);
+	  background-size: 30px;
 	}
 	input[type=radio] {display: none; } 
-
+	.btn {
+	background-color: rgb(64,123,37);
+	color: white;
+	}
+	.btn:hover {
+		background-color: rgb(114,201,75);
+	}
+	.bgcolor{	
+		background-color: rgb(64,123,37);
+		color: white; 
+		border-radius: 5px;
+	}	
 </style>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript">
@@ -86,7 +98,7 @@
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="margin-left: 10%;">
 		<div align="center" class="top"><img alt="" src="${place.place_photo }" style="width: 450px; height: 400px;"></div>
 		<div id="map" class="top" style="width:450px; height: 400px;"></div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9"></script>
@@ -112,8 +124,8 @@
 			marker.setMap(map);
 		</script>
 	</div>
-	<div class="container">
-		<div class="bookmark"><img class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div>
+	<div class="container" style="margin-left: 10%; width: 81.5%;">
+		<div class="bookmark"><img style="border-radius:10px; width: 50px;" class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div>
 		<h2 class="text-primary">${place.place_name }</h2>
 		<br>
 		<h3>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"></fmt:formatNumber> </h3>
@@ -124,14 +136,19 @@
 		<h4>태그 : ${place.place_tag }</h4>
 		<h4>내용 : ${place.place_content }</h4>	
 	</div>
-	<div id="prevListDisp"></div>
-	<div>
+	<div id="prevListDisp" style="margin-left: 9%; width: 85%;"></div>
+	<hr style="margin-left: 10%; width: 80%;">
+	<div style="margin-left: 10%; width: 85%;">
 		<form action="" name="frm1" id="frm1">
 			<input type="hidden" name="place_num" value="${place.place_num }">
-			<table>
-				<tr><th>제목</th><td><input type="text" name="prev_title" required="required"></td>
-					<th>평점</th><td>
-						<div class="star-box">
+			<h3 class="text-primary">평가글 작성</h3>
+				<div style="margin-left:5%; color:red"><b>* 제목은 최대 10글자</b></div>
+			<table style="margin-top: 0px;">
+				<tr>
+					<td align="center" style="width: 7%;" class="bgcolor">제목</td><td style="width: 25%; padding-left: 10px; padding-right: 10px;" >
+						<input type="text" class="form-control" maxlength="10" name="prev_title" required="required"></td>
+					<td align="center" style="width: 7%;" class="bgcolor">평점</td><td  style="width: 22%;">
+						<div class="star-box" style="padding-left: 10px; padding-right: 10px;">
 							  <label for="star1" class="star star_empty"></label>
 							  <label for="star2" class="star star_empty"></label>
 							  <label for="star3" class="star star_empty"></label>
@@ -144,11 +161,11 @@
 							   <input type="radio" name="score" id="star5" class="radio" value="5">
 						</div>
 					</td>
-					<th><input type="button" value="등록" id="insertprev"></th>
-					</tr>
-				<tr><th>내용</th><th colspan="5">
-				<textarea rows="4" cols="50" name="prev_content" required="required"></textarea></th></tr>
+					<td align="center" style="width: 7%;" class="bgcolor">내용</td><td colspan="5" style="padding-left: 10px;">
+					<textarea rows="2" cols="30" name="prev_content" required="required"></textarea></td>
+					<td><input type="button" style="margin-left: 10%;" class="btn" value="등록" id="insertprev"></td>
 			</table>
+			<hr>
 		</form>
 	</div>
 </body>

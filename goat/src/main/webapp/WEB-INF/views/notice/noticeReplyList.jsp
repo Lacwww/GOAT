@@ -42,7 +42,6 @@
 	
 	function rr(nor_num, no_num) {
 		var nor_content = frm2.nor_content.value;
-		alert(nor_content);
 		if(frm2.nor_content.value == "") {
 			alert("댓글을 입력해주세요");
 			frm2.nor_content.focus();
@@ -79,40 +78,45 @@
 	
 		<c:forEach var="nr" items="${nrList }">
 			<c:if test="${nr.del == 'y' }">
-				<tr><td colspan="2">삭제된 댓글입니다.</td></tr>
+			<table style="height: 20px;">
+				<tr height="20px;">
+					<td><!-- 답변글 레벨당 10px들여 쓰기 -->
+						<img alt="" src="${path}/resources/csImages/level.gif"
+							width="${nr.nor_re_level * 25 }" height="18px;">
+						<img alt="" src="${path}/resources/csImages/reply.png"
+							height="18" width="20">
+					</td>
+					<td colspan="2" height="20px;">삭제된 댓글입니다.</td></tr>
+			</table>
 			</c:if>
-
 			<c:if test="${nr.del != 'y' }">
-			
 				<div style="float: left;">
 				<c:if test="${nr.nor_re_level > 0 }">
 					<!-- 답변글 레벨당 10px들여 쓰기 -->
 					<img alt="" src="${path}/resources/csImages/level.gif"
-						width="${nr.nor_re_level * 25 }">
+						width="${nr.nor_re_level * 25 }" height="18px;">
 					<img alt="" src="${path}/resources/csImages/reply.png"
-						height="20" width="20">
+						height="18" width="20">
 					</c:if>
 				</div>
-			<table style="width:50%; float: inherit;">
-					
+			<table style="width:50%; float: inherit;" id="reply">
 				<tr><td>${nr.m_name }</td>
 					<td><fmt:formatDate value="${nr.reg_date }" pattern="yyyy/MM/dd HH:mm:ss"/></td></tr>
 				<tr><td style="white-space:pre; overflow:auto;" id="td_${nr.nor_num }">${nr.nor_content }</td>
 				
 				<td id="btn_${nr.nor_num }">
-					<c:if test="${m_num == nr.m_num }">
+					<c:if test="${m_num == nr.m_num || not empty admin}">
 						<input type="button" value="답글쓰기" onclick="rpInsert(${nr.nor_num},${nr.no_num})">
 						<input type="button" value="수정" onclick="rUpdate(${nr.nor_num},${nr.no_num})">
 						<input type="button" value="삭제" onclick="rDelete(${nr.nor_num},${nr.no_num})">
 						<tr><td colspan="2" class="reply_${nr.nor_num }" style="height:0px; border-bottom: 1px dashed;"></td></tr>
 					</c:if>
-					<c:if test="${m_num != nr.m_num }">
+					<c:if test="${m_num != nr.m_num && empty admin}">
 						<input type="button" value="답글쓰기" onclick="rpInsert(${nr.nor_num},${nr.no_num})">
 						<tr><td colspan="2" class="reply_${nr.nor_num }" style="height:0px; border-bottom: 1px dashed;"></td></tr>
 					</c:if>
 				</td><tr>
 				</table>
-
 			</c:if>
 		</c:forEach>
 	</c:if>

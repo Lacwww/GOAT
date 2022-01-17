@@ -45,11 +45,14 @@
 		});
 	});
 </script>
+<style type="text/css">
+	#noticeTable td { width: 11.1%; height: 70px; font-size: 15px; cursor: pointer; }
+</style>
 </head>
 <body>
 	<div align="center">
 		<h2 class="text-primary">공지 사항 상세 조회</h2>
-		<table>
+		<table id="noticeTable">
 			<tr>
 				<th>제목</th>
 				<td>${notice.no_title}</td>
