@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.ScheduleDao;
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
@@ -47,5 +48,13 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	public int select_num() {
 		return sd.select_num();
+	}
+
+	public void schAlert(Schedule sch) {
+		sd.schAlert(sch);
+	}
+
+	public List<Alert> alertCon(int m_num) {
+		return sd.alertCon(m_num);
 	}
 }

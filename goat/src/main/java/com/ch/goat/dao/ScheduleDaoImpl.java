@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
@@ -49,6 +50,14 @@ public class ScheduleDaoImpl implements ScheduleDao{
 
 	public int select_num() {
 		return sst.selectOne("schedulens.select_num");
+	}
+
+	public void schAlert(Schedule sch) {
+		sst.insert("schedulens.schAlert", sch);
+	}
+
+	public List<Alert> alertCon(int m_num) {
+		return sst.selectList("schedulens.alertCon", m_num);
 	}
 
 }

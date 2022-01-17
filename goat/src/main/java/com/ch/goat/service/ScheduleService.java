@@ -3,6 +3,7 @@ package com.ch.goat.service;
 import java.sql.Date;
 import java.util.List;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
@@ -25,5 +26,9 @@ public interface ScheduleService {
 	void insertDetail(ScheduleDetail scd);
 
 	int select_num();
+
+	void schAlert(Schedule sch);
+
+	List<Alert> alertCon(int m_num);
 
 }

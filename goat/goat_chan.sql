@@ -43,6 +43,7 @@ CREATE TABLE ALERT (
 	CS_NUM NUMBER, /* 글번호 */
 	CS_TITLE VARCHAR2(100) /* 제목 */
 );
+select * from alert;
 alter table alert add t_num number;
 alter table alert add t_title varchar2(100);
 

@@ -149,6 +149,10 @@ public class MemberController {
 				session.setAttribute("m_img", member2.getM_photo());
 				List<Alert> alert = ms.confirm(member2.getM_num());
 				session.setAttribute("alert", alert);
+//				List<Alert> alert = ms.tempAlert(temp);
+//				session.setAttribute("alert", alert);
+//				List<Alert> alert = ms.tripAlert(trip);
+//				session.setAttribute("alert", alert);
 			}
 		}
 		model.addAttribute("result", result);

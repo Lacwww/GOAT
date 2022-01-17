@@ -104,14 +104,15 @@ li a {
 							<ul class="dropdown-menu">
 								<c:forEach var="list" items="${alert }">
 									<c:if
-										test="${not empty list.sch_name||empty list.temp_num||empty list.cs_num}">
+										test="${not empty list.sch_name&&empty list.temp_num&&empty list.cs_num&&
+											(list.s_date)<7}">
 										<li role="presentation"><a role="menuitem" href="#">${id }님의
-												${list.sch_name }이 </a></li>
+												${list.sch_name }이 &{list.s_date}일 남았습니다.</a></li>
 									</c:if>
 									<c:if
 										test="${not empty list.temp_num||empty list.sch_name||empty list.cs_num}">
 										<li role="presentation"><a role="menuitem" href="#">${id }님의
-												${list.temp_name }에 대한 ${list.crud } 요청이 <c:if
+												${list.temp_name }에 대한 ${list.temp_crud } 요청이 <c:if
 													test="${list.del == 'y' }">
 													승인 완료되었습니다
 												</c:if> <c:if test="${list.del == 'd' }">
