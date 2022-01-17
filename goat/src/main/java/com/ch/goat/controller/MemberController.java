@@ -294,7 +294,7 @@ public class MemberController {
 		member.setM_pass(pass);
 		member.setM_photo(fileName);
 		result = ms.update(member);
-		session.setAttribute("img", member.getM_photo());
+		session.setAttribute("m_img", member.getM_photo());
 		model.addAttribute("result", result);
 		return "member/update";
 	}
