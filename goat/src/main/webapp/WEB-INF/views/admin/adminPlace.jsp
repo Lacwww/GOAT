@@ -25,7 +25,11 @@
 </head>
 <body>
 	<div>
-		<h2>플레이스 목록</h2>
+		<h2 style="color: rgb(64,123,37);">플레이스 목록</h2>
+		<select name="카테고리명" onchange="location.href=(this.value);">
+			<option value="location.href='adminPlace.do?pageNum=1">전체</option>
+		</select>
+		<br><br>
 		<div style="width:100%;" class="div1">
 			<table class="table table-hover table-striped">
 			<!-- <table class="table table-hover table-striped"> -->
@@ -53,6 +57,7 @@
 				</tbody>
 			</table>
 		</div>
+		<br><br>
 		<div style="clear: both;">
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->

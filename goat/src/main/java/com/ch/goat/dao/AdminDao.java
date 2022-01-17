@@ -9,7 +9,7 @@ import com.ch.goat.model.TempPlace;
 
 public interface AdminDao {
 
-	int getTotalPlace();
+	int getTotalPlace(String cate);
 
 	List<Place> placeList(int startRow, int endRow);
 
@@ -24,4 +24,6 @@ public interface AdminDao {
 	int getTotalTempPlace();
 
 	List<TempPlace> tempPlaceList(int startRow, int endRow);
+
+	List<Place> getCateList();
 }
