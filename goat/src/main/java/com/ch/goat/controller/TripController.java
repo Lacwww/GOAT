@@ -22,11 +22,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Trip;
+import com.ch.goat.model.TripLike;
 import com.ch.goat.service.MemberService;
 import com.ch.goat.service.PageBean;
 import com.ch.goat.service.TripService;
@@ -190,15 +193,55 @@ public class TripController {
 	}
 	
 	@RequestMapping("trip/tripView")
-	public String noticeView(Trip trip, String pageNum, Model model) {
+	public String noticeView(Trip trip, HttpSession session, String pageNum, Model model) {
 		int t_num = trip.getT_num();
+		String m_id = (String) session.getAttribute("id");
+		String tripLikeImgSrc ="";
+		int tripLikeCnt;
+		
 		ts.updateViewcount(t_num);  // 조회수 증가
 		Trip trip2 = ts.select(t_num); // 조회
 		
+		if(m_id != null) {
+			TripLike tripLike = ts.tLike(m_id, t_num);
+			if(tripLike != null) {
+				tripLikeImgSrc = "/goat/resources/tripPhoto/fullHeart.png";
+				tripLikeCnt = ts.tlCnt(t_num);
+			}else {
+				tripLikeImgSrc = "/goat/resources/tripPhoto/heart.png";
+				tripLikeCnt = ts.tlCnt(t_num);
+			}
+		}else {
+			tripLikeImgSrc = "/goat/resources/tripPhoto/heart.png";
+			tripLikeCnt = ts.tlCnt(t_num);
+		}
+		
+		model.addAttribute("tripLikeImgSrc",tripLikeImgSrc);
+		model.addAttribute("tripLikeCnt", tripLikeCnt);
 		model.addAttribute("pageNum", pageNum);		
 		model.addAttribute("trip", trip2);
 		
 		return "trip/tripView";
+	}
+	
+	@RequestMapping(value = "trip/tripLike", produces = "text/html;charset=utf-8")
+	@ResponseBody // jsp로 가지말고 바로 본문으로 전달
+	public String tripLike(String t_num, HttpSession session) {
+		
+		String m_id = (String) session.getAttribute("id");
+		int num = Integer.parseInt(t_num);
+		String tripLikeImgSrc = "";
+		
+		TripLike tripLike = ts.tLike(m_id, num);
+		
+		if(tripLike != null) { // 좋아요 테이블에 있으면
+			ts.deleteTL(m_id, num); // 좋아요 삭제
+			tripLikeImgSrc = "/goat/resources/tripPhoto/heart.png";
+		}else {
+			ts.insertTL(m_id, num); // 좋아요 추가
+			tripLikeImgSrc = "/goat/resources/tripPhoto/fullHeart.png";
+		}	
+		return tripLikeImgSrc;
 	}
 	
 	@RequestMapping("trip/tripDelete")

@@ -22,7 +22,7 @@
 	function sessionChk() {
 		if (${empty id && empty admin}) {
 			alert("비회원은 댓글쓰기 권한이 없습니다.");
-			location.href="${path}/member/loginForm.do";		
+			location.href="${path}/member/loginForm.do";
 		}
 	}
 	
@@ -45,21 +45,27 @@
 		});
 	});
  	
-/*  	function tripLike(like_num) {
-		if(${empty id}){
+  	function tripLike(t_num) {
+		if(${empty id && empty admin}){
 			alert("로그인 후 이용가능합니다");
+			location.href="${path}/member/loginForm.do";
 			return false;
 		}
-		$.post("bookMark.do", "place_num="+place_num, function(data) {
-			var bookMarkImgSrc = data;
-			if(bookMarkImgSrc.indexOf('no') == -1){
-				alert("북마크에 저장되었습니다");
+		if(${not empty admin}) {
+			alert("관리자는 공감 막음");
+			return false;
+		}
+		
+		$.post("tripLike.do", "t_num="+t_num, function(data) {
+			var tripLikeImgSrc = data;
+			if(tripLikeImgSrc.indexOf('full') == -1){ // full이라는 글씨가 있으면, full이라는 글자의 인덱스를 반환하기 때문에
+													 // 0포함  0보다 큰 수가 나옴
+				location.reload();
 			}else{
-				alert("북마크가 삭제되었습니다");
+				location.reload();
 			}
-			$(".bmChk").attr("src", bookMarkImgSrc);
 		});			
-	}; */
+	}; 
 </script>
 </head>
 <body>
@@ -95,8 +101,14 @@
 	</div>
 	<!-- 좋아요(추천수) -->
 	<div>
-		<img style="border-radius:10px; width: 50px;" class="tripLike" 
-			onclick="tripLike(${like_num})" src="${path}/resources/tripPhoto/heart.png">
+		<img style="border-radius:10px; width: 40px;" class="tlChk" 
+			onclick="tripLike(${trip.t_num})" src="${tripLikeImgSrc}">
+		<c:if test="${tripLikeCnt == 0}">
+			<span style="font-size: 20px;">공감</span>
+		</c:if>
+		<c:if test="${tripLikeCnt != 0}">
+			<span style="font-size: 20px;">공감:${tripLikeCnt}</span>
+		</c:if>
 	</div>
 	
 	<div id="trListDisp"></div>
