@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="noticens">
-
+	<select id="list" parameterType="notice" resultType="notice">
+        select n.*, m.m_name m_name, m.m_nick m_nick from notice n, member m
+    		where n.m_num = m.m_num and no_num between #{startRow} and #{endRow} order by no_num desc
+	</select>
+	
+	<select id="getTotal" parameterType="notice" resultType="integer">
+		select count(*) from notice where del != 'y'
+	</select>
+	
+	<select id="maxNum" resultType="integer">
+		select nvl(max(no_num), 0) + 1 from notice
+	</select>
+	
+	<insert id="insert" parameterType="notice">
+		insert into notice values (#{no_num},#{no_title},#{no_content},sysdate,0,'n',#{m_num})
+	</insert>
+	
+	<select id="select" parameterType="integer" resultType="notice">
+		select n.*, m.m_name m_name, m.m_nick m_nick 
+			from notice n, member m where n.m_num = m.m_num	and no_num = #{no_num}
+	</select>
+	
+	<update id="updateViewcount" parameterType="integer">
+		update notice set no_view = no_view + 1 where no_num=#{no_num}
+	</update>
+	
+	<update id="delete" parameterType="integer">
+		update notice set del = 'y' where no_num = #{no_num}
+	</update>
+	
+	<update id="update" parameterType="notice">
+		update notice set no_title=#{no_title},no_content=#{no_content},reg_date=sysdate where no_num = #{no_num}
+	</update>
+	
 </mapper>

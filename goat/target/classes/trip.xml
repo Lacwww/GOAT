@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tripns">
-
+	<select id="list" parameterType="trip" resultType="trip">
+        select t.*, m.m_name m_name, m.m_nick m_nick from trip t, member m
+    		where t.m_num = m.m_num and t.del != 'y' and t_num between #{startRow} and #{endRow} 
+    			order by t_num desc
+	</select>
+	
+	<select id="getTotal" parameterType="trip" resultType="integer">
+		select count(*) from trip where del != 'y'
+	</select>
+	
+	<select id="maxNum" resultType="integer">
+		select nvl(max(t_num), 0) + 1 from trip
+	</select>
+	
+	<insert id="insert" parameterType="trip">
+		insert into trip values (#{t_num},#{t_title},#{t_content},sysdate,0,'n',#{m_num})
+	</insert>
+	
+	<select id="select" parameterType="integer" resultType="trip">
+		select t.*, m.m_name m_name, m.m_nick m_nick 
+			from trip t, member m where t.m_num = m.m_num and t_num = #{t_num}
+	</select>
+	
+	<update id="updateViewcount" parameterType="integer">
+		update trip set t_view = t_view + 1 where t_num=#{t_num}
+	</update>
+	
+	<update id="delete" parameterType="integer">
+		update trip set del = 'y' where t_num = #{t_num}
+	</update>
+	
+	<update id="update" parameterType="trip">
+		update trip set t_title=#{t_title},t_content=#{t_content},reg_date=sysdate where t_num = #{t_num}
+	</update>
+	
 </mapper>

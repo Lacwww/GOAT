@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="csns">
 	<select id="list" parameterType="cs" resultType="cs">
-		select b.*, m.m_name m_name from  
+		select b.*, m.* from  
     		(select a.*, rowNum rn from  
         		(select * from cs order by cs_ref desc, cs_re_step)a)b,
            			member m where b.m_num=m.m_num and rn between #{startRow} and #{endRow}
@@ -25,13 +25,9 @@
 		select nvl(max(cs_num), 0) + 1 from cs
 	</select>
 	
-	<update id="updateStep" parameterType="cs">
-		update cs set cs_re_step = #{cs_re_step} + 1 where cs_ref=#{cs_ref} and cs_re_step > #{cs_re_step}
-	</update>
-	
 	<insert id="insert" parameterType="cs">
 		insert into cs values (#{cs_num},#{cs_title},sysdate,#{cs_content},
-			0,#{cs_ref},#{cs_re_step},#{cs_re_level},#{m_num},'n')
+			0,#{cs_ref},#{cs_re_step},#{cs_re_level},#{m_num},'n','n')
 	</insert>
 	
 	<update id="updateViewcount" parameterType="integer">
@@ -41,5 +37,7 @@
 	<update id="delete" parameterType="integer">
 		update cs set del = 'y' where cs_ref = #{cs_ref}
 	</update>
-	
+	<update id="updateCon" parameterType="integer">
+		update cs set con = 'y' where cs_ref = #{cs_ref} and cs_re_step=0
+	</update>
 </mapper>

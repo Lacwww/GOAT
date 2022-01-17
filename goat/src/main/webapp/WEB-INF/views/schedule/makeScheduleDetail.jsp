@@ -160,7 +160,7 @@ div #p_list {
 		var p = {
 		        content: '<div style="width:150px;text-align:center;padding:6px 0;">${i.place_name}</div>', 
 		        latlng: new kakao.maps.LatLng(${i.lat}, ${i.lng})
-			};
+			}; 
 		positions.push(p);
 	</script>
 </c:forEach>
@@ -172,11 +172,11 @@ div #p_list {
 	<form action="chkSchedule.do" method="post" name="frm"
 		onsubmit="return chk();">
 		<c:forEach var="detail" begin="1" end="${days }">
-			<input type="hidden" id="input_day${detail }"
+			<input type="text" id="input_day${detail }"
 				name="input_day${detail }" value="">
 		</c:forEach>
 		<input type="hidden" name="days" value="${days }">
-		<input type="hidden" name="result_day" id="result_day">
+		<input type="text" name="result_day" id="result_day">
 		<div id="wrapper">
 			<div>
 				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요">

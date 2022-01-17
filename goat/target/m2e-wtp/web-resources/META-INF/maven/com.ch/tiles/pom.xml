@@ -8,19 +8,19 @@
 	<name>tiles</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	<properties> 
+	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>4.2.4.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<org.apache.tiles-version>3.0.8</org.apache.tiles-version>
-	</properties> 
+	</properties>	
 	<dependencies>
 		<!-- JSON -->
 		<dependency>
-    		<groupId>com.googlecode.json-simple</groupId>
-    		<artifactId>json-simple</artifactId>
-    		<version>1.1.1</version>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 		<!-- lombok -->
 		<dependency>
@@ -34,8 +34,8 @@
 			<artifactId>javax.persistence-api</artifactId>
 			<version>2.2</version>
 		</dependency>
-		<!-- JDK11 추가 --> 
-		<dependency> 
+		<!-- JDK11 추가 -->
+		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.1</version>
@@ -342,14 +342,9 @@
 					<target>${java-version}</target>
 				</configuration>
 			</plugin>
-<!-- 		<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<warName>abc</warName>
-				</configuration>
-			</plugin> -->
-			<plugin> 
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
+				<configuration> <warName>abc</warName> </configuration> </plugin> -->
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
