@@ -14,11 +14,20 @@
 .td1, .td2, .td3, .td4, .td5 {
 	height: 30px;
 }
+.hotTrip {
+	border: 1px solid black;
+}
 </style>
 </head>
 <body>
 	<div align="center">
 		<h2>여행게시판</h2>
+		<h4>추천수 HOT 게시물</h4>
+		<span class="hotTrip">
+			<img style="border-radius:10px; width: 40px;"
+				onclick="location.href='tripView.do?t_num=0&pageNum=${pageNum }'" src=""></span>
+		<span class="hotTrip">2</span>
+		<span class="hotTrip">3</span>
 		<table>
 			<tr>
 				<th class="tl">번호</th>

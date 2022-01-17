@@ -57,6 +57,7 @@ public class TripController {
 
 		model.addAttribute("total", total);
 		model.addAttribute("list", list);
+		System.out.println(list);
 		model.addAttribute("pb", pb);
 		
 		return "trip/tripList";
