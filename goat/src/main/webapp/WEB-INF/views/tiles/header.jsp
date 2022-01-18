@@ -11,12 +11,12 @@
 	#table td { width: 11.1%; height: 70px; font-size: 15px; cursor: pointer; }
 </style>
 <script type="text/javascript">
-	$(function() {
-		$.post('/goat/member/chkAlert.do', "m_num=1", function(data) {
-			alert(data);
- 		 	var list = data;
-		});
-	});
+// 	$(function() {
+// 		$.post('/goat/member/chkAlert.do', "m_num=1", function(data) {
+// 			alert(data);
+//  		 	var list = data;
+// 		});
+// 	});
 </script>
 </head>
 <body>
