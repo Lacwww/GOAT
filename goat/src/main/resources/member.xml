@@ -64,4 +64,7 @@
 	<select id="myTripList" parameterType="integer" resultType="trip">
 		select * from trip where m_num=#{m_num}
 	</select>
+	<delete id="alertCs" parameterType="integer">
+		delete from alert where ale_num=#{ale_num}
+	</delete>
 </mapper>

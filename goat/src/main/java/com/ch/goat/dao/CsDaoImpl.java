@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 
@@ -51,9 +52,20 @@ public class CsDaoImpl implements CsDao{
 		return sst.update("csns.delete", cs_ref);
 	}
 
-	@Override
 	public int updateCon(int cs_ref) {
 		return sst.update("csns.updateCon", cs_ref);
+	}
+
+	public Cs getTitle(Cs cs) {
+		return sst.selectOne("csns.getTitle", cs);
+	}
+
+	public void csAlert(Cs cs) {
+		sst.insert("csns.csAlert", cs);
+	}
+
+	public List<Alert> alertCon(int m_num) {
+		return sst.selectList("csns.alertCon", m_num);
 	}
 
 }

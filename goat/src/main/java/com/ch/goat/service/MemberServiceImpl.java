@@ -114,4 +114,9 @@ public class MemberServiceImpl implements MemberService {
 		return md.selectM_num(m_num);
 	}
 
+	@Override
+	public void alertCs(int ale_num) {
+		md.alertCs(ale_num);
+	}
+	
 }

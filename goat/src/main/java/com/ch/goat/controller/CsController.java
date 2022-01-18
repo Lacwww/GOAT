@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 import com.ch.goat.service.CsService;
@@ -88,17 +89,25 @@ public class CsController {
 	}
 
 	@RequestMapping("cs/csInsert")
-	public String csInsert(Cs cs, String pageNum, Model model) {
+	public String csInsert(Cs cs, String pageNum, Model model, HttpSession session) {
 		int number = css.maxNum(); // 새 게시글 번호 생성
 		int result = 0;
 		
 		if(cs.getCs_num() != 0) { // 답변글
+			// 원 글 제목
+			Cs cs2 = css.getTitle(cs);
 			// re_step과 re_level 원글과 구별하기 위해 + 1
 			cs.setCs_re_level(cs.getCs_re_level() + 1);
 			cs.setCs_re_step(cs.getCs_re_step() + 1);
 			cs.setCs_num(number);
 			result = css.insert(cs);
 			result = css.updateCon(cs.getCs_ref());
+			cs.setCs_title(cs2.getCs_title());
+			cs.setM_num(cs2.getM_num());
+			css.csAlert(cs);
+			List<Alert> alert = css.alertCon(cs.getM_num());
+			session.removeAttribute("alert");
+			session.setAttribute("alert", alert);
 		} else {
 			cs.setCs_ref(number); // 답변글이 아닐때는 num과 ref는 둘다 number
 			cs.setCs_num(number);
