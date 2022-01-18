@@ -8,7 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="place/insertPlaceAPI.do";
+	location.href="admin/admin.do";
 </script>
 </body>
 </html>

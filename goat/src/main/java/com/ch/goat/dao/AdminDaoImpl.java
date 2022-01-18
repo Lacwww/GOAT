@@ -20,15 +20,20 @@ public class AdminDaoImpl implements AdminDao{
 	private SqlSessionTemplate sst;
 
 	@Override
-	public int getTotalPlace(String cate) {
-		return sst.selectOne("adminns.getTotalPlace", cate);
+	public int getTotalPlace(String cate, String search) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cate", cate);
+		map.put("search", search);
+		return sst.selectOne("adminns.getTotalPlace", map);
 	}
 
 	@Override
-	public List<Place> placeList(int startRow, int endRow) {
+	public List<Place> placeList(int startRow, int endRow, String cate, String search) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
+		map.put("cate", cate);
+		map.put("search", search);
 		return sst.selectList("adminns.placeList", map);
 	}
 
@@ -72,7 +77,7 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public List<Place> getCateList() {
+	public List<Place> getCateList() {	
 		return sst.selectList("adminns.getCateList");
 	}
 

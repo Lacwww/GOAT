@@ -17,13 +17,13 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao ad;
 
 	@Override
-	public int getTotalPlace(String cate) {
-		return ad.getTotalPlace(cate);
+	public int getTotalPlace(String cate, String search) {
+		return ad.getTotalPlace(cate, search);
 	}
 
 	@Override
-	public List<Place> placeList(int startRow, int endRow) {
-		return ad.placeList(startRow, endRow);
+	public List<Place> placeList(int startRow, int endRow, String cate, String search) {
+		return ad.placeList(startRow, endRow, cate, search);
 	}
 
 	@Override
