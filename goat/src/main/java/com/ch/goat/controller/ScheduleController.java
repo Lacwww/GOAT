@@ -84,7 +84,7 @@ public class ScheduleController {
 		return "schedule/makeScheduleDetail";
 	}
 
-	@RequestMapping("schedule/chkSchedule")
+	@RequestMapping("schedule/insertSchedule")
 	public String chkSchedule(Model model, String result_day, int days, HttpSession session, Date s_date, Date e_date,
 			String sch_name) {
 		int m_num = (Integer) session.getAttribute("m_num");
@@ -123,6 +123,18 @@ public class ScheduleController {
 			}
 			list.clear();
 		}
-		return "schedule/chkSchedule";
+		model.addAttribute("sch_num",sch_num);
+		return "schedule/insertSchedule";
+	}
+	@RequestMapping("schedule/schList")
+	public String schList(Model model, HttpSession session) {
+		
+		return "schedule/schList";
+	}
+	
+	@RequestMapping("schedule/schView")
+	public String schView(Model model, HttpSession session ) {
+		
+		return "schedule/schView";
 	}
 }

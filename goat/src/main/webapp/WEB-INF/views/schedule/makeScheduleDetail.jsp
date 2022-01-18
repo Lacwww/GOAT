@@ -166,6 +166,8 @@ div #p_list {
         		}
         	} 
 		}
+    	var con = confirm("스케줄 작성을 완료하시겠습니까?");
+    	if(con==false) {return false;}
 
 	}
 	
