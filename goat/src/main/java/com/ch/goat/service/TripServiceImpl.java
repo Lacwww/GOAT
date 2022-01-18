@@ -56,5 +56,8 @@ public class TripServiceImpl implements TripService{
 	public int getSearchTotal(Trip trip) {
 		return td.getSearchTotal(trip);
 	}
+	public List<Trip> hotLike(Trip trip) {
+		return td.hotLike(trip);
+	}
 	
 }

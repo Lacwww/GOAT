@@ -57,6 +57,10 @@ public class TripController {
 		int no = total - startRow + 1;
 		String[] title = {"제목","내용","제목+내용"};
 		
+		List<Trip> hotLike = ts.hotLike(trip);
+		System.out.println("hotLike:"+hotLike);
+		model.addAttribute("hotLike", hotLike);
+		
 		model.addAttribute("trip", trip);
 		model.addAttribute("title", title);
 		model.addAttribute("no", no);
@@ -310,8 +314,7 @@ public class TripController {
 		int endRow = startRow + rowPerPage - 1;
 		trip.setStartRow(startRow);
 		trip.setEndRow(endRow);
-		System.out.println("startRow:"+startRow);
-		System.out.println("endRow:"+endRow);
+		
 		List<Trip> searchList = ts.searchList(trip);
 
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);

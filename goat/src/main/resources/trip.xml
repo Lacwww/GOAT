@@ -102,4 +102,14 @@
 						order by b.t_num desc
 	</select>
 	
+	
+	<select id="hotLike" parameterType="trip" resultType="trip">
+        select b.*, t.*, m.m_name from  
+    		(select a.*, rowNum rn from  
+        		(select t_num,count(*) cnt from trip_like tl group by t_num order by cnt desc)a)b,
+           			trip t, member m where b.t_num=t.t_num and m.m_num=t.m_num and rn between 1 and 3
+	</select>
+	
+	
+	
 </mapper>

@@ -90,5 +90,9 @@ public class TripDaoImpl implements TripDao {
 	public int getSearchTotal(Trip trip) {
 		return sst.selectOne("tripns.getSearchTotal", trip);
 	}
+
+	public List<Trip> hotLike(Trip trip) {
+		return sst.selectList("tripns.hotLike", trip);
+	}
 	
 }

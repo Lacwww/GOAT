@@ -35,4 +35,6 @@ public interface TripService {
 
 	int getSearchTotal(Trip trip);
 
+	List<Trip> hotLike(Trip trip);
+
 }
