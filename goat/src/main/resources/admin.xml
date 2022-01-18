@@ -4,13 +4,13 @@
 	<!-- 장소의 리스트 -->
 	<select id="placeList" parameterType="map" resultType="place">
 		select * from (select a.*,rowNum rn from( 
-			select * from place order by place_num desc)a)
-				where rn between #{startRow} and #{endRow}	
+			select * from place where place_cate like decode(#{cate}, 'null', '%', #{cate}) and place_name like case when #{search} = 'null' then '%' else '%'||#{search}||'%' end order by place_num desc)a)
+				where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<!-- 장소 총 갯수 -->
 	<select id="getTotalPlace" parameterType="String" resultType="integer">
-		select nvl(count(*), 0) from place
+		select nvl(count(*), 0) from place where place_cate like decode(#{cate}, 'null', '%', #{cate}) and place_name like case when #{search} = 'null' then '%' else '%'||#{search}||'%' end
 	</select>
 	
 	<!-- 스케쥴의 리스트 -->

@@ -9,9 +9,9 @@ import com.ch.goat.model.TempPlace;
 
 public interface AdminService {
 
-	int getTotalPlace(String cate);
+	int getTotalPlace(String cate, String search);
 
-	List<Place> placeList(int startRow, int endRow);
+	List<Place> placeList(int startRow, int endRow, String cate, String search);
 
 	int getTotalSchedule();
 
