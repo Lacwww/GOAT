@@ -27,14 +27,16 @@
 }
 
 .desc {
-	padding: 20px;
+	padding-top: 10%;
+	padding-bottom: 10%;
+	height: 30%;
 	font-size: 17px;
 	font-weight: bold;
 	text-align: center;
 	background-color: #5e5a5a;
 	opacity: 0.8;
 	position: relative;
-	bottom: 24%;
+	bottom: 29%;
 	color: #ffffff;
 	border-radius: 7px;
 }
