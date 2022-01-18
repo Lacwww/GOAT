@@ -21,7 +21,7 @@
 		<div>
 			<input type="button" name="mainBtn" value="메인페이지" onclick="location.href='${path}/main/home.do'">
 			<input type="submit" name="chkSch" value="스케줄 확인">
-			<input type="button" name="SchList" value="스케줄 목록" onclick="location.href='schedule/schList.do'">
+			<input type="button" name="SchList" value="스케줄 목록" onclick="location.href='${path}/schList.do'">
 		</div>
 	</form>
 </div>

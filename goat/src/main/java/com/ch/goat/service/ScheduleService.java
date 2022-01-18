@@ -1,6 +1,5 @@
 package com.ch.goat.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.ch.goat.model.Alert;
@@ -30,5 +29,12 @@ public interface ScheduleService {
 	void schAlert(Schedule sch);
 
 	List<Alert> alertCon(int m_num);
+
+	List<Schedule> schList(int m_num);
+
+	Schedule selectSch(int sch_num);
+
+	List<ScheduleDetail> selectScd(int sch_num);
+
 
 }

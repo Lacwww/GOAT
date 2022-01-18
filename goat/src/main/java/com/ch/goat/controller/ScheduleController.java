@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -126,15 +127,16 @@ public class ScheduleController {
 		model.addAttribute("sch_num",sch_num);
 		return "schedule/insertSchedule";
 	}
-	@RequestMapping("schedule/schList")
-	public String schList(Model model, HttpSession session) {
-		
-		return "schedule/schList";
-	}
-	
-	@RequestMapping("schedule/schView")
-	public String schView(Model model, HttpSession session ) {
-		
-		return "schedule/schView";
+	@RequestMapping("schedule/scView")
+	public String schView(Model model, HttpSession session,int sch_num ) {
+		Schedule sch = ss.selectSch(sch_num);
+		String s_date = DateFormatUtils.format(sch.getS_date(), "yyyy-MM-dd");
+		String e_date = DateFormatUtils.format(sch.getE_date(), "yyyy-MM-dd");
+		int days = ss.days(s_date,e_date);
+		List<ScheduleDetail> list = ss.selectScd(sch_num); 
+		model.addAttribute("days",days);
+		model.addAttribute("sch",sch);
+		model.addAttribute("list",list);
+		return "schedule/scView";
 	}
 }

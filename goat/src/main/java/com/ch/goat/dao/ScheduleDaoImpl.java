@@ -1,11 +1,9 @@
 package com.ch.goat.dao;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -58,6 +56,18 @@ public class ScheduleDaoImpl implements ScheduleDao{
 
 	public List<Alert> alertCon(int m_num) {
 		return sst.selectList("schedulens.alertCon", m_num);
+	}
+
+	public List<Schedule> schList(int m_num) {
+		return sst.selectList("schedulens.schList",m_num);
+	}
+
+	public Schedule selectSch(int sch_num) {
+		return sst.selectOne("schedulens.selectSch",sch_num);
+	}
+
+	public List<ScheduleDetail> selectScd(int sch_num) {
+		return sst.selectList("schedulens.selectScd",sch_num);
 	}
 
 }

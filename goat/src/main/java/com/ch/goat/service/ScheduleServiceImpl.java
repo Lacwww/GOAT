@@ -57,4 +57,16 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public List<Alert> alertCon(int m_num) {
 		return sd.alertCon(m_num);
 	}
+
+	public List<Schedule> schList(int m_num) {
+		return sd.schList(m_num);
+	}
+
+	public Schedule selectSch(int sch_num) {
+		return sd.selectSch(sch_num);
+	}
+
+	public List<ScheduleDetail> selectScd(int sch_num) {
+		return sd.selectScd(sch_num);
+	}
 }
