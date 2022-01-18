@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function noEvent() {
+		if (event.keyCode == 116) {
+			event.keyCode= 2;
+			return false;
+		}else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82)){
+			return false;
+			}
+		}
+	document.onkeydown = noEvent;	
+</script>
 </head>
 <body>
 <c:if test="${result > 0 }">

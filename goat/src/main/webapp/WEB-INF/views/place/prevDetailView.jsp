@@ -182,6 +182,7 @@
 			</table>
 		</form>
 	</div>
+	<div align="center"><input class="btn bgcolor" type="button" value="뒤로가기" onclick="history.back();"></div>
 	<hr style="margin-left: 10%; width: 80%;">
 </body>
 </html>
