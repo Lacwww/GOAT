@@ -11,8 +11,9 @@
 	<div>
 		<h2 style="color: rgb(64,123,37);">스케쥴 목록</h2>
 		<br><br>
-		<div>
-			<table>
+		<div style="width:100%;" class="div1">
+			<table class="table table-hover table-striped">
+			<thead>
 				<tr>
 					<th>번호</th>
 					<th>스케쥴명</th>
@@ -20,6 +21,8 @@
 					<th>도착일</th>
 					<th>회원명</th>
 				</tr>
+				</thead>
+				<tbody>
 				<c:forEach var="schedule" items="${list }">
 					<tr>
 						<td>${schedule.sch_num }</td>
@@ -29,6 +32,7 @@
 						<td>${schedule.m_name }</td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
 		</div>
 		<br><br>
