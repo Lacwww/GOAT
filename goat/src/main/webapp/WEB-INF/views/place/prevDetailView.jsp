@@ -68,6 +68,7 @@
 				frm1.prev_title.value = "";
 				frm1.prev_content.value = "";	
 				$(".star").removeClass("on");
+				location.reload();
 			});
 		});
 	});

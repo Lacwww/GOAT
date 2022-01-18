@@ -25,6 +25,7 @@
 		$.post('deletePrev.do', sendData, function(data) {
 			alert("댓글이 삭제 되었습니다");
 			$('#prevListDisp').html(data);
+			location.reload();
 		});
 	}
 	function prevUpdate(prev_num, place_num) {
@@ -71,6 +72,7 @@
 				$.post("updatePrev.do", sendData, function(data) {
 				alert("댓글 수정 되었습니다");
 				$('#prevListDisp').html(data);
+				location.reload();
 			});
 		}
 

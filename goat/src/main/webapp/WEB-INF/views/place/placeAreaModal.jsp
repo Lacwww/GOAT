@@ -22,7 +22,7 @@
 		</div>
 		<div class="modal-body">
 			<div class="container">
-				<div style="width: 73%;" align="center"><h2>지역 : ${place_area }</h2></div>
+				<div style="width: 73%;" align="center"><h2><b>${place_area }</b></h2></div>
 				<br>
 				<div style="width: 73%;" align="center">
 					<input type="button" class="btn" value="전 지역" onclick="location.href='areaPlaceList.do?place_area=${place_area }'">

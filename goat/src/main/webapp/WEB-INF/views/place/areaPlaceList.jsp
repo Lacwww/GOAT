@@ -56,9 +56,9 @@
 </head>
 <body>
 
-<div align="center"><h2>선택 지역 : ${place.place_area }</h2></div>
+<div align="center"><h2><b>${place.place_area }</b></h2></div>
 <c:if test="${not empty place.place_areadetail }">
-	<div align="center"><h3>상세 지역 : ${place.place_areadetail }</h3></div>
+	<div align="center"><h3><b>- ${place.place_areadetail } -</b></h3></div>
 </c:if>
 <form action="areaPlaceList.do">
 	<input type="hidden" name="pageNum" value="1">
