@@ -50,14 +50,17 @@ public class TripController {
 		int endRow = startRow + rowPerPage - 1;
 		trip.setStartRow(startRow);
 		trip.setEndRow(endRow);
+
 		List<Trip> list = ts.list(startRow, endRow);
-		
+	
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
+		// 답변글로 인한 번호를 보기좋게 다시 설정
+		int no = total - startRow + 1;
 		String[] title = {"제목","내용","제목+내용"};
 		
 		model.addAttribute("trip", trip);
 		model.addAttribute("title", title);
-		model.addAttribute("total", total);
+		model.addAttribute("no", no);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
 		
@@ -297,11 +300,11 @@ public class TripController {
 	}
 	
 	@RequestMapping("trip/tripSearch")
-	public String tripSearch(Trip trip, String keyword, String pageNum, Model model) {
-		int  rowPerPage = 10;
+	public String tripSearch(Trip trip, String keyword, String search, String pageNum, Model model) {
+		int rowPerPage = 10;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = ts.getTotal(trip);
+		int total = ts.getSearchTotal(search, keyword);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		trip.setStartRow(startRow);

@@ -2,9 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tripns">
 	<select id="list" parameterType="trip" resultType="trip">
-        select t.*, m.m_name m_name, m.m_nick m_nick from trip t, member m
-    		where t.m_num = m.m_num and t.del != 'y' and t_num between #{startRow} and #{endRow} 
-    			order by t_num desc
+        select b.*, m.* from  
+    		(select a.*, rowNum rn from  
+        		(select * from trip order by t_num desc)a)b,
+           			member m where b.m_num=m.m_num and b.del != 'y' and rn between #{startRow} and #{endRow}
+                    order by b.t_num desc
 	</select>
 	
 	<select id="getTotal" parameterType="trip" resultType="integer">
@@ -59,7 +61,18 @@
 	</select>
 	
 	<select id="getSearchTotal" parameterType="map" resultType="integer">
-		select count(*) from trip where ${part} like '%'||#{searchData}||'%' order by t_num desc
+		select count(*) from trip 
+			<where>
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='subcon'">
+					t_title like '%'||#{keyword}||'%' or t_content like '%'||#{keyword}||'%'
+				</if>
+				<if test="search!='subcon'">
+					${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+			</where>
+		order by t_num desc
 	</select>
 	
 	<select id="searchList" parameterType="trip" resultType="trip">

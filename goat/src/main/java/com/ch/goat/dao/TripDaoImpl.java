@@ -83,21 +83,11 @@ public class TripDaoImpl implements TripDao {
 		return sst.selectOne("tripns.tlCnt", t_num);
 	}
 
-	public int getSearchTotal(String part, String searchData) {
+	public int getSearchTotal(String search, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("part", part);
-		map.put("searchData", searchData);
+		map.put("search", search);
+		map.put("keyword", keyword);
 		return sst.selectOne("tripns.getSearchTotal", map);
-	}
-
-	public List<Trip> search_list(int startRow, int endRow, String part, String searchData) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		map.put("part", part);
-		map.put("searchData", searchData);
-		
-		return sst.selectList("tripns.search_list", map);
 	}
 
 	public List<Trip> searchList(Trip trip) {
