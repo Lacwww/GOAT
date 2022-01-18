@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
@@ -109,6 +110,12 @@ public class PlaceDaoImpl implements PlaceDao{
 	}
 	public int updateSuggestion(TempPlace tempplace) {
 		return sst.update("placens.updateSuggestion", tempplace);
+	}
+	public void tpAlert(TempPlace tempplace2) {
+		sst.insert("placens.tpAlert", tempplace2);
+	}
+	public List<Alert> alertCon(int m_num) {
+		return sst.selectList("placens.alertCon", m_num);
 	}
 
 }

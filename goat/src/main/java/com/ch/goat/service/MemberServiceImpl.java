@@ -115,6 +115,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void alertTp(int ale_num) {
+		md.alertTp(ale_num);
+	}
+
+	@Override
 	public void alertCs(int ale_num) {
 		md.alertCs(ale_num);
 	}

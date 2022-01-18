@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.PlaceDao;
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
@@ -85,6 +86,11 @@ public class PlaceServiceImpl implements PlaceService{
 	public int updateSuggestion(TempPlace tempplace) {
 		return pd.updateSuggestion(tempplace);
 	}
-
+	public void tpAlert(TempPlace tempplace2) {
+		pd.tpAlert(tempplace2);
+	}
+	public List<Alert> alertCon(int m_num) {
+		return pd.alertCon(m_num);
+	}
 
 }

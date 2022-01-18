@@ -38,7 +38,7 @@
 			</c:if>
 			<c:if test="${not empty list }">
 				<c:forEach var="list" items="${list }">
-					<tr onclick="location.href='${path}/schedule/scView.do?sch_num=${list.cs_num }'">
+					<tr onclick="location.href='${path}/schedule/schView.do?sch_num=${list.sch_num }'">
 						<td align="center">
 							${list.sch_num }
 						</td>
@@ -49,7 +49,7 @@
 							${list.s_date }
 						</td>
 						<td align="center">
-							${list.d_date }
+							${list.e_date }
 						</td>
 					</tr>
 				</c:forEach>

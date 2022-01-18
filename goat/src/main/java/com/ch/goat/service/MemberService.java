@@ -51,6 +51,8 @@ public interface MemberService {
 
 	Member selectM_num(int m_num);
 
+	void alertTp(int ale_num);
+	
 	void alertCs(int ale_num);
 
 }

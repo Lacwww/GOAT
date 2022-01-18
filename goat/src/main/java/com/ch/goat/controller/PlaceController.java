@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Area;
 import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Member;
@@ -92,34 +93,53 @@ public class PlaceController {
 	}
 	
 	@RequestMapping("place/updatePlace")
-	public String updatePlace(TempPlace tp, Model model) {
+	public String updatePlace(TempPlace tp, Model model, HttpSession session) {
 		TempPlace tempplace = ps.selectTemp(tp.getTemp_num());
 		int result = 0;
 		result = ps.updatePlace(tempplace);
 		if(result > 0) {
 			ps.approveTemp(tp.getTemp_num());
+			TempPlace tempplace2 = ps.selectTemp(tp.getTemp_num());
+			ps.tpAlert(tempplace2);
+			List<Alert> alert = ps.alertCon(tp.getM_num());
+			session.removeAttribute("alert");
+			session.setAttribute("alert", alert);
+			
+			model.addAttribute("result", result);
 		}
 		model.addAttribute("result", result);
 		return "place/tempResult";
 	}
 	
 	@RequestMapping("place/insertPlace")
-	public String insertPlace(String temp_num, Model model) {
+	public String insertPlace(String temp_num, Model model, HttpSession session) {
 		int num = Integer.parseInt(temp_num);
 		TempPlace tp = ps.selectTemp(num);
 		int result = 0;
 		result = ps.insertPlace(tp);
 		if(result > 0) {
 			ps.approveTemp(num);
+			TempPlace tempplace2 = ps.selectTemp(tp.getTemp_num());
+			ps.tpAlert(tempplace2);
+			List<Alert> alert = ps.alertCon(tp.getM_num());
+			session.removeAttribute("alert");
+			session.setAttribute("alert", alert);
+			
+			model.addAttribute("result", result);
 		}	
 		model.addAttribute("result", result);
 		return "place/tempResult";
 	}
 	
 	@RequestMapping("place/deleteTempPlace")
-	public String deleteTempPlace(TempPlace tp, Model model) {
+	public String deleteTempPlace(TempPlace tp, Model model, HttpSession session) {
 		int result  = 0;
 		result = ps.deleteTempPlace(tp.getTemp_num());
+		TempPlace tempplace2 = ps.selectTemp(tp.getTemp_num());
+		ps.tpAlert(tempplace2);
+		List<Alert> alert = ps.alertCon(tp.getM_num());
+		session.removeAttribute("alert");
+		session.setAttribute("alert", alert);
 		
 		model.addAttribute("result", result);
 		return "place/tempResult";
@@ -232,7 +252,6 @@ public class PlaceController {
 			tempplace.setTemp_photo(temp_photo);
 		}		
 		result = ps.tempinsert(tempplace);
-		
 		model.addAttribute("result", result);
 		return "place/insertTempPlace";
 	}

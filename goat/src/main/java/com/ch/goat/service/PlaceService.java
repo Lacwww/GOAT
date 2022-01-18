@@ -2,6 +2,7 @@ package com.ch.goat.service;
 
 import java.util.List;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.PlaceReview;
@@ -54,6 +55,10 @@ public interface PlaceService {
 	int updatePlace(TempPlace tempplace);
 
 	int updateSuggestion(TempPlace tempplace);
+
+	void tpAlert(TempPlace tempplace2);
+
+	List<Alert> alertCon(int m_num);
 
 
 
