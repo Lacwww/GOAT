@@ -55,10 +55,19 @@
 			return false;
 		}
 		
-		document.getElementById('Ppick');
+		var table = document.getElementById('Ppick');
+		var s_date = $('input[name=s_date]').val();
+		var s_arr = s_date.split("-");
+		var e_date = $('input[name=e_date]').val();
+		var e_arr = e_date.split("-");
+		var stDate=new Date(s_arr[0], s_arr[1], s_arr[2]);
+		var endDate=new Date(e_arr[0], e_arr[1], e_arr[2]);
+		var btMs = endDate.getTime() - stDate.getTime();
+		var days = btMs / (1000*60*60*24)+1;
 		var tbody = table.tBodies[0].rows.length
-		if(tbody-1 < ) {
-			alert("선택한 플레이스가 여행 일수보다 적을 수 없습니다.")
+		if(tbody-1 < days) {
+			alert("선택한 플레이스가 여행 일수보다 적을 수 없습니다.");
+			return false;
 		}
 	}
 </script>
@@ -79,7 +88,7 @@
 	<!-- 여행 일자 선택 -->
 	<div id="wrapper">
 		<div id="outer" style="width: 65%; float: left;">
-		<form action="makeScheduleDetail.do" name="frm" method="post">
+		<form action="insertSchedule.do" name="frm" method="post" onsubmit="return chk();">
 			<input type="hidden" id="id" name="id" value="">
 			<input type="hidden" name="place_area" value="${place_area }">
 			<div style="width: 100%;">
@@ -132,7 +141,7 @@
 					});    
 				</script>
 				<div id="btn">
-					<input type="submit" value="상세일정 작성" onsubmit="chk()">
+					<input type="submit" value="상세일정 작성">
 					<input type="button" value="취소" onclick="location.href='selectArea.do'">
 				</div>
 					</form>	
