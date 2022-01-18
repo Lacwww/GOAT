@@ -46,6 +46,7 @@ CREATE TABLE ALERT (
 select * from alert;
 alter table alert add t_num number;
 alter table alert add t_title varchar2(100);
+delete from alert;
 
 /* 여행 게시판 */
 CREATE TABLE TRIP (
