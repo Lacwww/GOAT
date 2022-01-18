@@ -160,9 +160,11 @@ public class MemberController {
 	}
 	@RequestMapping(value = "member/chkAlert")
 	@ResponseBody // jsp로 가지않고 바로 바디로 전달
-	public List<Alert> chkAlert(int m_num, Model model) {
-		List<Alert> data = ms.confirm(m_num);
-		return data;
+	public List<Alert> chkAlert(int m_num, HttpSession session) {
+		List<Alert> alert = ms.confirm(m_num);
+		session.removeAttribute("alert");
+		session.setAttribute("alert", alert);
+		return alert;
 	}
 	@RequestMapping("member/logout")
 	public String logout(HttpSession session, HttpServletRequest request, Model model) {
@@ -361,6 +363,13 @@ public class MemberController {
 		List<Trip> list = ms.myTripList(m_num);
 		model.addAttribute("list", list);
 		return "member/tripList";
+	}
+	@RequestMapping("member/alertTp")
+	public String alertTp(int ale_num, int temp_num, int place_num, Model model) {
+		ms.alertTp(ale_num);
+		model.addAttribute("temp_num", temp_num);
+		model.addAttribute("place_num", place_num);
+		return "member/alertTp";
 	}
 	@RequestMapping("member/alertCs")
 	public String alertCs(int ale_num, int cs_num, Model model) {

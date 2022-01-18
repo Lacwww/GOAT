@@ -11,12 +11,11 @@
 	#table td { width: 11.1%; height: 70px; font-size: 15px; cursor: pointer; }
 </style>
 <script type="text/javascript">
-// 	$(function() {
-// 		$.post('/goat/member/chkAlert.do', "m_num=1", function(data) {
-// 			alert(data);
-//  		 	var list = data;
-// 		});
-// 	});
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
 </script>
 </head>
 <body>
@@ -110,7 +109,7 @@
 										</c:if>
 										<c:if test="${list.temp_num!=0 && list.sch_num==0 && list.cs_num==0}">
 											<li role="presentation">
-												<a role="menuitem" href="#">${list.temp_name }에 대한 ${list.temp_crud } 요청이 
+												<a role="menuitem" href="${path }/member/alertTp.do?ale_num=${list.ale_num}&temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_name }에 대한 ${list.temp_crud } 요청이 
 													<c:if test="${list.del == 'y' }">
 														승인 완료되었습니다
 													</c:if>
@@ -122,7 +121,7 @@
 										</c:if>
 										<c:if test="${list.cs_num!=0 && list.temp_num==0 && list.sch_num==0}">
 											<li role="presentation">
-												<a role="menuitem" href="${path }/member/alertCs.do?ale_num=${list.ale_num}&&cs_num=${list.cs_num}">${list.cs_title }에 답변이 달렸습니다 </a>
+												<a role="menuitem" href="${path }/member/alertCs.do?ale_num=${list.ale_num}&cs_num=${list.cs_num}">${list.cs_title }에 답변이 달렸습니다 </a>
 											</li>
 										</c:if>
 									</c:forEach>

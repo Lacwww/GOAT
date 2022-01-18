@@ -16,6 +16,7 @@ public class Alert {
 	private int temp_num;
 	private String temp_name;
 	private String temp_crud;
+	private int place_num;
 	private String del;
 	private int cs_num;
 	private String cs_title;
