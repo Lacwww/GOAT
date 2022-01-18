@@ -36,11 +36,8 @@
 			<c:if test="${not empty list}">
 				<c:forEach var="notice2" items="${list }">
 					<c:if test="${notice2.del != 'y' }">
-						<tr>
-							<td class="td1">${total}<c:set var="total" value="${total - 1}"></c:set></td>
-							<td class="td2">
-								<a href="noticeView.do?no_num=${notice2.no_num}&pageNum=${pb.currentPage}">${notice2.no_title}</a>
-							</td>
+						<tr><td class="td1">${no}<c:set var="no" value="${no - 1}"></c:set></td>
+							<td class="td2"><a href="noticeView.do?no_num=${notice2.no_num}&pageNum=${pb.currentPage}">${notice2.no_title}</a></td>
 							<td class="td3">${notice2.m_nick }</td>
 							<td class="td4">${notice2.no_view }</td>
 							<td class="td5">${notice2.reg_date }</td>

@@ -29,8 +29,8 @@ public class TripServiceImpl implements TripService{
 	public void updateViewcount(int t_num) {
 		td.updateViewcount(t_num);
 	}
-	public Trip select(int t_num) {
-		return td.select(t_num);
+	public Trip select(Trip trip) {
+		return td.select(trip);
 	}
 	public int delete(int t_num) {
 		return td.delete(t_num);
@@ -50,11 +50,11 @@ public class TripServiceImpl implements TripService{
 	public int tlCnt(int t_num) {
 		return td.tlCnt(t_num);
 	}
-	public int getSearchTotal(String search, String keyword) {
-		return td.getSearchTotal(search, keyword);
-	}
 	public List<Trip> searchList(Trip trip) {
 		return td.searchList(trip);
+	}
+	public int getSearchTotal(Trip trip) {
+		return td.getSearchTotal(trip);
 	}
 	
 }

@@ -28,12 +28,7 @@
 				onclick="location.href='tripView.do?t_num=0&pageNum=${pageNum }'" src=""> --%></span>
 		<span class="hotTrip">2</span>
 		<span class="hotTrip">3</span>
-		
-		<c:forTokens var="sh" items="t_title,t_content,subcon" delims="," varStatus="i">
-			<c:if test="${!title[0] }">
-				<h4>"${title[i.index] }"에 "${keyword }" 단어가 포함된 결과</h4>
-			</c:if>
-		</c:forTokens>
+
 		<table>
 			<tr>
 				<th class="tl">번호</th>
@@ -44,7 +39,7 @@
 			</tr>
 			<c:if test="${empty searchList}">
 				<tr>
-					<td colspan="5">검색과 맞는 결과가 없습니다.</td>
+					<td colspan="5">검색 결과가 없습니다.</td>
 				</tr>
 			</c:if>
 
@@ -54,7 +49,7 @@
 						<tr>
 							<td class="td1">${no}<c:set var="no" value="${no - 1}"></c:set></td>
 							<td class="td2">
-								<a href="tripView.do?t_num=${trip2.t_num}&pageNum=${pb.currentPage}">${trip2.t_title}</a>
+								<a href="tripView.do?t_num=${trip2.t_num}&pageNum=${pb.currentPage}&search=${trip.search}&keyword=${trip.keyword}">${trip2.t_title}</a>
 							</td>
 							<td class="td3">${trip2.m_name }</td>
 							<td class="td4">${trip2.t_view }</td>
@@ -68,27 +63,27 @@
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
-					<li><a href="tripList.do?pageNum=1"> <span
+					<li><a href="tripSearch.do?pageNum=1&search=${trip.search}&keyword=${trip.keyword}"> <span
 							class="glyphicon glyphicon-backward"></span>
 					</a></li>
-					<li><a href="tripList.do?pageNum=${pb.startPage-1}"> <span
+					<li><a href="tripSearch.do?pageNum=${pb.startPage-1}&search=${trip.search}&keyword=${trip.keyword}"> <span
 							class="glyphicon glyphicon-triangle-left"></span>
 					</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 					<c:if test="${pb.currentPage==i }">
-						<li class="active"><a href="tripList.do?pageNum=${i}">${i}</a></li>
+						<li class="active"><a href="tripSearch.do?pageNum=${i}&search=${trip.search}&keyword=${trip.keyword}">${i}</a></li>
 					</c:if>
 					<c:if test="${pb.currentPage!=i }">
-						<li><a href="tripList.do?pageNum=${i}">${i}</a></li>
+						<li><a href="tripSearch.do?pageNum=${i}&search=${trip.search}&keyword=${trip.keyword}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 것이 남아있는 경우에는 endPage보다 totalPage가 큰경우 -->
 				<c:if test="${pb.endPage < pb.totalPage }">
-					<li><a href="tripList.do?pageNum=${pb.endPage+1}"> <span
+					<li><a href="tripSearch.do?pageNum=${pb.endPage+1}&search=${trip.search}&keyword=${trip.keyword}"> <span
 							class="glyphicon glyphicon-triangle-right"></span>
 					</a></li>
-					<li><a href="tripList.do?pageNum=${pb.totalPage}"> <span
+					<li><a href="tripSearch.do?pageNum=${pb.totalPage}&search=${trip.search}&keyword=${trip.keyword}"> <span
 							class="glyphicon glyphicon-forward"></span>
 					</a></li>
 				</c:if>

@@ -43,8 +43,8 @@ public class TripDaoImpl implements TripDao {
 		sst.update("tripns.updateViewcount", t_num);
 	}
 
-	public Trip select(int t_num) {
-		return sst.selectOne("tripns.select", t_num);
+	public Trip select(Trip trip) {
+		return sst.selectOne("tripns.select", trip);
 	}
 
 	public int delete(int t_num) {
@@ -83,16 +83,12 @@ public class TripDaoImpl implements TripDao {
 		return sst.selectOne("tripns.tlCnt", t_num);
 	}
 
-	public int getSearchTotal(String search, String keyword) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("search", search);
-		map.put("keyword", keyword);
-		return sst.selectOne("tripns.getSearchTotal", map);
-	}
-
 	public List<Trip> searchList(Trip trip) {
 		return sst.selectList("tripns.searchList", trip);
 	}
 
+	public int getSearchTotal(Trip trip) {
+		return sst.selectOne("tripns.getSearchTotal", trip);
+	}
 	
 }

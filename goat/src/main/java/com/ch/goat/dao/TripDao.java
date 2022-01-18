@@ -17,7 +17,7 @@ public interface TripDao {
 
 	void updateViewcount(int t_num);
 
-	Trip select(int t_num);
+	Trip select(Trip trip);
 	
 	int delete(int no_num);
 
@@ -31,8 +31,8 @@ public interface TripDao {
 
 	int tlCnt(int t_num);
 
-	int getSearchTotal(String search, String keyword);
-
 	List<Trip> searchList(Trip trip);
+
+	int getSearchTotal(Trip trip);
 
 }

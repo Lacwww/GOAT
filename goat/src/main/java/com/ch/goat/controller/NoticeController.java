@@ -32,11 +32,14 @@ public class NoticeController {
 		int endRow = startRow + rowPerPage - 1;
 		notice.setStartRow(startRow);
 		notice.setEndRow(endRow);
+		
 		List<Notice> list = ns.list(startRow, endRow);
 		
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
-
-		model.addAttribute("total", total);
+		// 답변글로 인한 번호를 보기좋게 다시 설정
+		int no = total - startRow + 1;
+		
+		model.addAttribute("no", no);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
 		
