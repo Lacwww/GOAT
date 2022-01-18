@@ -16,6 +16,7 @@
 }
 .hotTrip {
 	border: 1px solid black;
+	width: 210px; height: 160px;
 }
 </style>
 </head>
@@ -23,11 +24,16 @@
 	<div align="center">
 		<h2>여행게시판</h2>
 		<h4>추천수 HOT 게시물</h4>
-		<span class="hotTrip">1
-		<%-- 	<img style="border-radius:10px; width: 40px;"
-				onclick="location.href='tripView.do?t_num=0&pageNum=${pageNum }'" src=""> --%></span>
-		<span class="hotTrip">2</span>
-		<span class="hotTrip">3</span>
+		*좋아요 많은순<br>
+		<span class="hotTrip">1 : ${t_title }
+			<img style="border-radius:10px; width: 200px; height: 150px;"
+				onclick="location.href='tripView.do?t_num=${hotLike.t_num }&pageNum=${pageNum }'" src="/goat/resources/tripPhoto/hot.png"></span>
+		<span class="hotTrip">2 : ${t_title }
+			<img style="border-radius:10px; width: 200px; height: 150px;"
+				onclick="location.href='tripView.do?t_num=${hotLike.t_num }&pageNum=${pageNum }'" src="/goat/resources/tripPhoto/hot.png"></span>
+		<span class="hotTrip">3 : ${t_title }
+			<img style="border-radius:10px; width: 200px; height: 150px;"
+				onclick="location.href='tripView.do?t_num=${hotLike.t_num }&pageNum=${pageNum }'" src="/goat/resources/tripPhoto/hot.png"></span>
 		<table>
 			<tr>
 				<th class="tl">번호</th>

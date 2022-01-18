@@ -35,4 +35,6 @@ public interface TripDao {
 
 	int getSearchTotal(Trip trip);
 
+	List<Trip> hotLike(Trip trip);
+
 }
