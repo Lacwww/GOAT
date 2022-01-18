@@ -48,6 +48,19 @@
 		$('#list').load('placeList.do?search='+search+'&keyword='+keyword+'&place_area=${place_area}');
 		setMarkers(null);    
 	}
+	
+	function chk() {
+		if($('#start').val()==null || $('#start').val()=="" || $('#end').val()==null || $('#end').val()=="") {
+			alert("여행 일정을 선택해 주세요");
+			return false;
+		}
+		
+		document.getElementById('Ppick');
+		var tbody = table.tBodies[0].rows.length
+		if(tbody-1 < ) {
+			alert("선택한 플레이스가 여행 일수보다 적을 수 없습니다.")
+		}
+	}
 </script>
 <style type="text/css">
 	div #map {text-align: center;}
@@ -56,7 +69,7 @@
 	#list { margin-left: 3px; height: 65%;}
 	#wrapper {
 		width: 100%; height: 100%;; 
-	}
+	} 
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -119,7 +132,7 @@
 					});    
 				</script>
 				<div id="btn">
-					<input type="submit" value="상세일정 작성">
+					<input type="submit" value="상세일정 작성" onsubmit="chk()">
 					<input type="button" value="취소" onclick="location.href='selectArea.do'">
 				</div>
 					</form>	
