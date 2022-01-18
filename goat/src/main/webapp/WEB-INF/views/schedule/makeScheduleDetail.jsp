@@ -214,7 +214,7 @@ div #p_list {
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="chkSchedule.do" method="post" name="frm"
+	<form action="insertSchedule.do" method="post" name="frm"
 		onsubmit="return chk();">
 		<c:forEach var="detail" begin="1" end="${days }">
 			<input type="text" id="input_day${detail }"
