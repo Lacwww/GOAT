@@ -20,6 +20,7 @@
 	<div>
 		<h2 style="color: rgb(64,123,37);">플레이스 등록 요청 목록</h2>
 		<br><br>
+		<button onclick="location.href='admin.do'">돌아가기</button>
 		<div>
 			<table class="table">
 				<colgroup>

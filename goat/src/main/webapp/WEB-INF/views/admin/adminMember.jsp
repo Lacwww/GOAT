@@ -11,8 +11,9 @@
 	<div>
 		<h2 style="color: rgb(64,123,37);">회원 목록</h2>
 		<br><br>
-		<div>
-			<table>
+		<div style="width: 100%;" class="div1">
+			<table class="table table-hover table-striped">
+			<thead>
 				<tr>
 					<th>회원번호</th>
 					<th>아이디</th>
@@ -23,6 +24,8 @@
 					<th>탈퇴여부</th>
 					<th>탈퇴</th>
 				</tr>
+				</thead>
+				<tbody>
 				<c:forEach var="member" items="${list }">
 					<tr>
 						<td>${member.m_num }</td>
@@ -35,6 +38,7 @@
 						<td onclick="location.href='adminMemberDelete.do?m_id=${member.m_id }&pageNum=${pageNum }'">탈퇴</td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
 		</div>
 		<br><br>

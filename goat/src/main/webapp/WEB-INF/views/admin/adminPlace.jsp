@@ -48,7 +48,7 @@ a {
 				<td><button type="submit" class="btn btn-success">검색</button></td>
 		</table>
 		</form>
-		
+		<button onclick="location.href='admin.do'">돌아가기</button>
 		
 		
 		<br>
