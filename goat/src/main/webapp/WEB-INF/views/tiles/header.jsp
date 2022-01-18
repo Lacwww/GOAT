@@ -94,14 +94,14 @@
 								title="notice" width="40px" height="40px">
 							<ul class="dropdown-menu" role="menu" style="margin-top: 20px;">
 								<c:forEach var="list" items="${alert }">
-									<c:if test="${not empty list.sch_num||empty list.temp_num||empty list.cs_num}">
+									<c:if test="${list.sch_num!=0 && list.day < 8 && list.cs_num==0 && list.temp_num==0}">
 										<li role="presentation">
-											<a role="menuitem" href="#">${id }님의 ${list.sch_name }이 ${list.s_date}일 남았습니다.</a>
+											<a role="menuitem" href="#">${list.sch_name }이 ${list.day}일 남았습니다.</a>
 										</li>
 									</c:if>
-									<c:if test="${not empty list.temp_num||empty list.sch_name||empty list.cs_num}">
+									<c:if test="${list.temp_num!=0 && list.sch_num==0 && list.cs_num==0}">
 										<li role="presentation">
-											<a role="menuitem" href="#">${id }님의 ${list.temp_name }에 대한 ${list.temp_crud } 요청이 
+											<a role="menuitem" href="#">${list.temp_name }에 대한 ${list.temp_crud } 요청이 
 												<c:if test="${list.del == 'y' }">
 													승인 완료되었습니다
 												</c:if>
@@ -111,9 +111,9 @@
 											</a>
 										</li>
 									</c:if>
-									<c:if test="${not empty list.cs_num||empty list.sch_name||empty list.temp_num}">
+									<c:if test="${list.cs_num!=0 && list.temp_num==0 && list.sch_num==0}">
 										<li role="presentation">
-											<a role="menuitem" href="#">${id }님의 ${list.cs_title }에 답변이 달렸습니다 </a>
+											<a role="menuitem" href="#">${list.cs_title }에 답변이 달렸습니다 </a>
 										</li>
 									</c:if>
 								</c:forEach>

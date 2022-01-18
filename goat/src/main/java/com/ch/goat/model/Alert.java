@@ -12,6 +12,7 @@ public class Alert {
 	private int sch_num;
 	private String sch_name;
 	private Date s_date;
+	private int day;
 	private int temp_num;
 	private String temp_name;
 	private String temp_crud;

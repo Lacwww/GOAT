@@ -95,6 +95,8 @@ public class ScheduleController {
 		sch.setM_num(m_num);
 		sch.setSch_name(sch_name);
 		int results=ss.insert(sch);
+		int sch_num = ss.select_num();
+		sch.setSch_num(sch_num);
 		ss.schAlert(sch);
 		List<Alert> alert = ss.alertCon(m_num);
 		session.removeAttribute("alert");
@@ -110,7 +112,6 @@ public class ScheduleController {
 			}
 			arr = list.toArray(new String[list.size()]);
 			
-			int sch_num = ss.select_num();
 			
 			scd.setDay(i+1);
 			scd.setSch_num(sch_num);
