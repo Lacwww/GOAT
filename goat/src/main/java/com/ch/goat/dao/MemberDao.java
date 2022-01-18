@@ -50,4 +50,6 @@ public interface MemberDao {
 
 	Member selectM_num(int m_num);
 
+	void alertCs(int ale_num);
+
 }

@@ -79,6 +79,11 @@
 		<c:forEach var="nr" items="${nrList }">
 			<c:if test="${nr.del == 'y' }">
 			<table style="height: 20px;">
+				<c:if test="${nr.nor_re_step == 0 }">
+					<tr height="20px;">
+					<td colspan="3" height="20px;">삭제된 댓글입니다.</td></tr>
+				</c:if>
+				<c:if test="${nr.nor_re_step > 0 }">
 				<tr height="20px;">
 					<td><!-- 답변글 레벨당 10px들여 쓰기 -->
 						<img alt="" src="${path}/resources/csImages/level.gif"
@@ -87,6 +92,7 @@
 							height="18" width="20">
 					</td>
 					<td colspan="2" height="20px;">삭제된 댓글입니다.</td></tr>
+				</c:if>
 			</table>
 			</c:if>
 			<c:if test="${nr.del != 'y' }">

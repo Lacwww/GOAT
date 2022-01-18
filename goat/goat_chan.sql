@@ -335,6 +335,7 @@ alter table cs add con char(1) default 'n' not null;
 update cs set con='n' where cs_num=1;
 select * from cs;
 delete from cs where cs_num=3;
+delete from cs;
 
 /* 플레이스 */
 CREATE TABLE PLACE (

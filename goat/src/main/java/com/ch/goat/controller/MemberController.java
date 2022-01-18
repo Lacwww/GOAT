@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.goat.model.Alert;
-import com.ch.goat.model.Area;
 import com.ch.goat.model.Cs;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Place;
@@ -158,6 +157,12 @@ public class MemberController {
 		model.addAttribute("result", result);
 		model.addAttribute("prevUrl", prevUrl);
 		return "member/login";
+	}
+	@RequestMapping(value = "member/chkAlert")
+	@ResponseBody // jsp로 가지않고 바로 바디로 전달
+	public List<Alert> chkAlert(int m_num, Model model) {
+		List<Alert> data = ms.confirm(m_num);
+		return data;
 	}
 	@RequestMapping("member/logout")
 	public String logout(HttpSession session, HttpServletRequest request, Model model) {
@@ -356,5 +361,11 @@ public class MemberController {
 		List<Trip> list = ms.myTripList(m_num);
 		model.addAttribute("list", list);
 		return "member/tripList";
+	}
+	@RequestMapping("member/alertCs")
+	public String alertCs(int ale_num, int cs_num, Model model) {
+		ms.alertCs(ale_num);
+		model.addAttribute("cs_num", cs_num);
+		return "member/alertCs";
 	}
 }

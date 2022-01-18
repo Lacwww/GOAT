@@ -113,4 +113,9 @@ public class MemberDaoImpl implements MemberDao {
 	public Member selectM_num(int m_num) {
 		return sst.selectOne("memberns.selectM_num", m_num);
 	}
+
+	@Override
+	public void alertCs(int ale_num) {
+		sst.delete("memberns.alertCs", ale_num);
+	}
 }
