@@ -69,7 +69,7 @@
 	#list { margin-left: 3px; height: 65%;}
 	#wrapper {
 		width: 100%; height: 100%;; 
-	}
+	} 
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
