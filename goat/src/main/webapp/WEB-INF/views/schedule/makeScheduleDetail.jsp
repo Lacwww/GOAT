@@ -49,6 +49,14 @@ div #p_list {
 <script type="text/javascript"> 
 	var positions = [];
 	var result_day = [];
+	var linePath = [];
+	var polyline = new kakao.maps.Polyline({
+	    path: linePath, // 선을 구성하는 좌표배열 입니다
+	    strokeWeight: 3, // 선의 두께 입니다
+	    strokeColor: '#2ECCFA', // 선의 색깔입니다
+	    strokeOpacity: 0.9, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'solid' // 선의 스타일입니다
+	});
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	function makeOverListener(map, marker, infowindow) {
 	    return function() {
@@ -77,13 +85,13 @@ div #p_list {
 			var day = $("select[name="+d+"]").val();
 			var name = $('#p_name'+num).text();
 			var addrs = $('#p_addr'+num).text();
-			var lat = $('#p_lat'+num).text();
-			var lng = $('#p_lng'+num).text();
+			var lat = $('#p_lat'+num).val();
+			var lng = $('#p_lng'+num).val();
 			if(day == 0) return false;
 			$('#pList'+num).hide();
 			$('#table-'+day).append("<tr id='d"+num+"' class='tr'><td><input type='hidden' name=\"day_value"+day+"\" value=\""+num+"\" id=\""+num+"\"></td><td>"+name+"</td><td>"
 					+addrs+"</td><td><select name='change_"+d+"' id='change_"+d+"' onchange=\"day_change("+num+",'"+d+"')\"><option value='0'>방문 일자</option>"
-					+"<c:forEach var='tday' begin='1' end='${days}'><option value='${tday}'>${tday }</option></c:forEach></select></td></tr>");
+					+"<c:forEach var='tday' begin='1' end='${days}'><option value='${tday}'>${tday }</option></c:forEach></select></td><td id='lat'>"+lat+"</td><td id='lng'>"+lng+"</td></tr>");
 			$('#change_'+d).prop('selectedIndex',day);
 			disp(day);
 			$( function() {
@@ -120,7 +128,7 @@ div #p_list {
 		var count = $('.list>div:visible').length;
 		if(${empty id}) {
 			alert("로그인 후 이용해주세요 ");
-			return false;
+			location.href="${path}/member/loginForm.do";
 		}
 		if(count != 0) {
 			alert("일정이 선택되지 않은 플레이스가 남아있습니다.\r\n일정을 선택해 주세요");
@@ -147,30 +155,41 @@ div #p_list {
 			$('#input_day'+i).val(day_group);
 			$('#result_day').val(result_day);
 	    }
-    	// 비어있는 일정이 있는지 확인하기
-    	for(var i=1; i<= ${days}; i++) {
-    		var empty_table = document.getElementById('table-'+i);
-    		var row_count = empty_table.rows.length;
-    		if(row_count == 1 ) {
-    			alert("비어있는 일정이 존재합니다");
-    			return false;
-    		}
-    	}
+    	function empty_schedule() {
+        	// 비어있는 일정이 있는지 확인하기
+        	for(var i=1; i<= ${days}; i++) {
+        		var empty_table = document.getElementById('table-'+i);
+        		var row_count = empty_table.rows.length;
+        		if(row_count == 1 ) {
+        			alert("비어있는 일정이 존재합니다");
+        			return false;
+        		}
+        	} 
+		}
+
 	}
 	
 	function preview() {
 		// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
-		for(var i=1; i<=${days}; i++) {
-			var linePath = [
-			    
-			];
+		polyline.setMap(null);
+		var i = $("select[name=polyDay]").val();
+		var linePath = [];
+		var table = document.getElementById('table-'+i);
+		var tbody = table.tBodies[0].rows.length;
+		for(var j=1; j<=tbody-1; j++) {
+			var tr= $('#table-'+i+'>tbody tr').eq(j);
+			var td= tr.children();
+			var plat= td.eq(4).text();
+			var plng= td.eq(5).text();
+			var latlng = new kakao.maps.LatLng(plat, plng);
+			linePath.push(latlng);
 		}
 		// 지도에 표시할 선을 생성합니다
-		var polyline = new kakao.maps.Polyline({
+		polyline = new kakao.maps.Polyline({
 		    path: linePath, // 선을 구성하는 좌표배열 입니다
-		    strokeWeight: 5, // 선의 두께 입니다
-		    strokeColor: '#FFAE00', // 선의 색깔입니다
-		    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		    strokeWeight: 3, // 선의 두께 입니다
+		    strokeColor: '#FF0000', // 선의 색깔입니다
+		    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 		    strokeStyle: 'solid' // 선의 스타일입니다
 		});
 		// 지도에 선을 표시합니다 
@@ -247,8 +266,8 @@ div #p_list {
 				style="width: 35%; height: 60%; overflow: auto; padding-left: 20px; border: solid green 1px;">
 				<c:set var="d" value="1" />
 				<c:forEach var="p" items="${places }">
-					<input type="hidden" id="p_lat"${p.place_num } value="${p.lat }">
-					<input type="hidden" id="p_lng"${p.place_num } value="${p.lng }">
+					<input type="hidden" id="p_lat${p.place_num }" value="${p.lat }">
+					<input type="hidden" id="p_lng${p.place_num }" value="${p.lng }">
 					<div id="pList${p.place_num }" style="padding-bottom: 10px;">
 						<div id="pimage">
 							<img alt="" src="${p.place_photo }" class="p_image"
@@ -298,7 +317,12 @@ div #p_list {
 				</c:forEach>
 			</div>
 			<div class="btn">
-				<input type="button" onclick="preview()">
+				<select name="polyDay">
+					<c:forEach var="polyday" begin="1" end="${days }">
+						<option value="${polyday }">${polyday }</option>
+					</c:forEach>
+				</select>
+				<input type="button" onclick="preview()" value="경로 그리기">
 				<input type="submit" value="확인" class="btn btn-success"> <input
 					type="button" onclick="back()" value="이전" class="btn btn-cancel">
 			</div>
