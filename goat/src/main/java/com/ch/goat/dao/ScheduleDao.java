@@ -31,5 +31,11 @@ public interface ScheduleDao {
 
 	List<Alert> alertCon(int m_num);
 
+	List<Schedule> schList(int m_num);
+
+	Schedule selectSch(int sch_num);
+
+	List<ScheduleDetail> selectScd(int sch_num);
+
 }
   
