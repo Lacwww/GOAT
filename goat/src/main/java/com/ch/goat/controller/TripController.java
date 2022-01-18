@@ -52,7 +52,6 @@ public class TripController {
 		trip.setEndRow(endRow);
 
 		List<Trip> list = ts.list(startRow, endRow);
-	
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
 		// 답변글로 인한 번호를 보기좋게 다시 설정
 		int no = total - startRow + 1;
@@ -198,14 +197,14 @@ public class TripController {
 	}
 	
 	@RequestMapping("trip/tripView")
-	public String noticeView(Trip trip, HttpSession session, String pageNum, Model model) {
+	public String noticeView(Trip trip, String search, String keyword, HttpSession session, String pageNum, Model model) {
 		int t_num = trip.getT_num();
 		String m_id = (String) session.getAttribute("id");
 		String tripLikeImgSrc ="";
 		int tripLikeCnt;
 		
 		ts.updateViewcount(t_num);  // 조회수 증가
-		Trip trip2 = ts.select(t_num); // 조회
+		Trip trip2 = ts.select(trip); // 조회
 		
 		if(m_id != null) {
 			TripLike tripLike = ts.tLike(m_id, t_num);
@@ -225,6 +224,8 @@ public class TripController {
 		model.addAttribute("tripLikeCnt", tripLikeCnt);
 		model.addAttribute("pageNum", pageNum);		
 		model.addAttribute("trip", trip2);
+		model.addAttribute("search", search);
+		model.addAttribute("keyword", keyword);
 		
 		return "trip/tripView";
 	}
@@ -264,8 +265,7 @@ public class TripController {
 	public String noticeUpdateForm(Trip trip, String pageNum, HttpSession session,Model model) {
 		String m_id = (String) session.getAttribute("id");
 		String admin_id = (String) session.getAttribute("adminid");
-		int t_num = trip.getT_num();
-		Trip trip2 = ts.select(t_num);
+		Trip trip2 = ts.select(trip);
 		
 		if(m_id == null) {
 			Member adminInfo = ms.select(admin_id);
@@ -292,7 +292,8 @@ public class TripController {
 		trip.setT_title(t_title);
 		trip.setT_content(t_content);
 		int result = ts.update(trip);
-			
+		
+		model.addAttribute("t_num", t_num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("result", result);
 
@@ -300,24 +301,25 @@ public class TripController {
 	}
 	
 	@RequestMapping("trip/tripSearch")
-	public String tripSearch(Trip trip, String keyword, String search, String pageNum, Model model) {
+	public String tripSearch(Trip trip, String pageNum, Model model) {
 		int rowPerPage = 10;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = ts.getSearchTotal(search, keyword);
+		int total = ts.getSearchTotal(trip);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		trip.setStartRow(startRow);
 		trip.setEndRow(endRow);
+		System.out.println("startRow:"+startRow);
+		System.out.println("endRow:"+endRow);
 		List<Trip> searchList = ts.searchList(trip);
+
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
 		// 답변글로 인한 번호를 보기좋게 다시 설정
 		int no = total - startRow + 1;
 		String[] title = {"제목","내용","제목+내용"};
-		
 		model.addAttribute("trip", trip);
 		model.addAttribute("title", title);
-		model.addAttribute("keyword", keyword);
 		model.addAttribute("no", no);
 		model.addAttribute("searchList", searchList);
 		model.addAttribute("pb", pb);

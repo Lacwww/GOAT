@@ -33,8 +33,8 @@ public class CsController {
 		int endRow = startRow + rowPerPage - 1;
 		cs.setStartRow(startRow);
 		cs.setEndRow(endRow);
-		List<Cs> list = css.list(startRow, endRow);
 		
+		List<Cs> list = css.list(startRow, endRow);
 		PageBean pb = new PageBean(currentPage, rowPerPage, total);
 
 		// 답변글로 인한 번호를 보기좋게 다시 설정

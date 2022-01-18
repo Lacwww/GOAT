@@ -87,7 +87,9 @@
 		</div>
 		
 		<div>
+
 		<form method="post" action="tripSearch.do">
+		<input type="hidden" name="pageNum" value="1">
 			<select name="search" class="form-selectcate">
 				<c:forTokens var="sh" items="t_title,t_content,subcon" delims="," varStatus="i">
 					<c:if test="${sh==trip.search }">
@@ -102,7 +104,7 @@
 			<input type="submit" value="검색" class="btn btn-primary mar"/> 
 		</form>
 		</div>
-		
+
 		<div align="center">
 			<c:if test="${not empty admin || not empty id }">
 				<input type="button" value="게시글 입력" onclick="location.href='tripInsertForm.do?pageNum=1'">
