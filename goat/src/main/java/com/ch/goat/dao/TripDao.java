@@ -31,7 +31,7 @@ public interface TripDao {
 
 	int tlCnt(int t_num);
 
-	int getSearchTotal(String part, String searchData);
+	int getSearchTotal(String search, String keyword);
 
 	List<Trip> searchList(Trip trip);
 
