@@ -9,7 +9,7 @@
 	#div1 { display: flex; align-items: center;}
 	 {border: 2px;}
 	#day_box {background: gray; border: 2px;}
-	
+	.lst { display: none;}
 </style>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
@@ -24,6 +24,10 @@
 	    strokeOpacity: 0.9, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 	    strokeStyle: 'solid' // 선의 스타일입니다
 	});
+	window.onload = function () {
+		$('.place:last-child').find('.rout').remove();
+	}
+
 //인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	function makeOverListener(map, marker, infowindow) {
 	    return function() {
@@ -93,6 +97,18 @@
 		// 지도에 선을 표시합니다 
 		polyline.setMap(map); 
 	}
+	function rout(day,d) {
+		var count_place = $('#schedule_day'+day).children().length;
+		var place_name1 = $('#schedule_day'+day).children('.place').eq(d-1).find('span').html();
+		var lat1 = $("input[name=plat"+day+"]").eq(d-1).val();
+		var lng1 = $("input[name=plng"+day+"]").eq(d-1).val();
+		
+		var place_name2 = $('#schedule_day'+day).children('.place').eq(d).find('span').html();
+		var lat2 = $("input[name=plat"+day+"]").eq(d).val();
+		var lng2 = $("input[name=plng"+day+"]").eq(d).val();
+		
+		window.open("https://map.kakao.com/link/from/"+place_name1+","+lat1+","+lng1+"/to/"+place_name2+","+lat2+","+lng2);
+	}
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -126,25 +142,25 @@
 					});
 				</script>
 		</div>
-		<div class="col-md-3" id="day_box">
+		<div class="col-md-3" id="day_box" style="height: 80%;">
          <c:forEach var="day" begin="1" end="${days }">
          	<c:set var="d" value="1"/>
             <div class="row" id="div1">
-               <div class="col-md-5 day">
+               <div class="col-md-5 day" style="height: 100%;">
                   <div>
 	                  <span>Day${day }</span><p>
 	                  <input type="button" id="prev${day }" value="직선경로 보기" onclick="make_marker(${day})">
                   </div>
                </div>
-               <div class="col-md-7 cont" id="schedule_day${day }" style="background: white;">
+               <div class="col-md-7 cont" id="schedule_day${day }" style="background: white; height: 100%">
                   <c:forEach var="scd" items="${list }">
                      <c:if test="${scd.day==day }">
 	                    <div class="place">
                               <span>${scd.place_name }</span>
                               <input type="hidden" name="plat${scd.day}" id="${d }" value="${scd.lat }">
-                              <input type="hidden" name="plng${scd.day}" id="${d }" value="${scd.lng }">
+                              <input type="hidden" name="plng${scd.day}" id="${d }" value="${scd.lng }"><br>
+                              <input type="button" class="rout" value="상세경로" onclick="rout(${day },${d})">
                               <c:set var="d" value="${d+1 }"/>
-                              <p><input type="button" value="상세경로" onclick="rout()"></p>
                      	</div>
                      </c:if>
                   </c:forEach>

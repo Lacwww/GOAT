@@ -37,6 +37,9 @@ div #p_list {
 .dragRow {
 	background: gray;
 }
+td #lat, td #lng {
+	display:none;
+}
 </style>
 <script type="text/javascript"
 	src="${path }/resources/bootstrap/js/jquery-ui.min.js"></script>
@@ -91,7 +94,7 @@ div #p_list {
 			$('#pList'+num).hide();
 			$('#table-'+day).append("<tr id='d"+num+"' class='tr'><td><input type='hidden' name=\"day_value"+day+"\" value=\""+num+"\" id=\""+num+"\"></td><td>"+name+"</td><td>"
 					+addrs+"</td><td><select name='change_"+d+"' id='change_"+d+"' onchange=\"day_change("+num+",'"+d+"')\"><option value='0'>방문 일자</option>"
-					+"<c:forEach var='tday' begin='1' end='${days}'><option value='${tday}'>${tday }</option></c:forEach></select></td><td id='lat'>"+lat+"</td><td id='lng'>"+lng+"</td></tr>");
+					+"<c:forEach var='tday' begin='1' end='${days}'><option value='${tday}'>${tday }</option></c:forEach></select></td><td style='display : none;'>"+lat+"</td><td style='display : none;'>"+lng+"</td></tr>");
 			$('#change_'+d).prop('selectedIndex',day);
 			disp(day);
 			$( function() {
@@ -129,16 +132,20 @@ div #p_list {
 		if(${empty id}) {
 			alert("로그인 후 이용해주세요 ");
 			location.href="${path}/member/loginForm.do";
+			return false;
 		}
+		
 		if(count != 0) {
 			alert("일정이 선택되지 않은 플레이스가 남아있습니다.\r\n일정을 선택해 주세요");
 			return false;
 		}
+		
 		if(frm.sch_name.value=="" || frm.sch_name.value==null) {
 			alert("스케줄 이름을 설정해주세요");
 			frm.sch_name.focus();
 			return false;
 		}
+		
     	//값들의 갯수 -> 배열 길이를 지정
     	for(var i=1; i <= ${days}; i++) {
 			var len = $("input[name=day_value"+i+"]").length;
@@ -155,20 +162,19 @@ div #p_list {
 			$('#input_day'+i).val(day_group);
 			$('#result_day').val(result_day);
 	    }
-    	function empty_schedule() {
-        	// 비어있는 일정이 있는지 확인하기
-        	for(var i=1; i<= ${days}; i++) {
-        		var empty_table = document.getElementById('table-'+i);
-        		var row_count = empty_table.rows.length;
-        		if(row_count == 1 ) {
-        			alert("비어있는 일정이 존재합니다");
-        			return false;
-        		}
-        	} 
+    	
+       	// 비어있는 일정이 있는지 확인하기
+       	for(var i=1; i<= ${days}; i++) {
+       		var empty_table = document.getElementById('table-'+i);
+       		var row_count = empty_table.rows.length;
+       		if(row_count == 1 ) {
+       			alert("비어있는 일정이 존재합니다");
+       			return false;
+       		}
 		}
     	var con = confirm("스케줄 작성을 완료하시겠습니까?");
     	if(con==false) {return false;}
-
+		return false;
 	}
 	
 	function preview() {
@@ -217,7 +223,7 @@ div #p_list {
 	<form action="insertSchedule.do" method="post" name="frm"
 		onsubmit="return chk();">
 		<c:forEach var="detail" begin="1" end="${days }">
-			<input type="text" id="input_day${detail }"
+			<input type="hidden" id="input_day${detail }"
 				name="input_day${detail }" value="">
 		</c:forEach>
 		<input type="hidden" name="days" value="${days }">
