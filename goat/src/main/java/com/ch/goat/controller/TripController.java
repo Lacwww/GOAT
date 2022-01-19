@@ -58,9 +58,8 @@ public class TripController {
 		String[] title = {"제목","내용","제목+내용"};
 		
 		List<Trip> hotLike = ts.hotLike(trip);
-		System.out.println("hotLike:"+hotLike);
-		model.addAttribute("hotLike", hotLike);
 		
+		model.addAttribute("hotLike", hotLike);
 		model.addAttribute("trip", trip);
 		model.addAttribute("title", title);
 		model.addAttribute("no", no);
@@ -230,7 +229,7 @@ public class TripController {
 		model.addAttribute("trip", trip2);
 		model.addAttribute("search", search);
 		model.addAttribute("keyword", keyword);
-		
+
 		return "trip/tripView";
 	}
 	
@@ -321,6 +320,10 @@ public class TripController {
 		// 답변글로 인한 번호를 보기좋게 다시 설정
 		int no = total - startRow + 1;
 		String[] title = {"제목","내용","제목+내용"};
+		
+		List<Trip> hotLike = ts.hotLike(trip);
+		model.addAttribute("hotLike", hotLike);
+		
 		model.addAttribute("trip", trip);
 		model.addAttribute("title", title);
 		model.addAttribute("no", no);
