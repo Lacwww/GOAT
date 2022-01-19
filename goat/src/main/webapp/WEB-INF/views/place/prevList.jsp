@@ -23,7 +23,7 @@
 	function prevDelete(prev_num,place_num) {
 		var sendData = 'prev_num='+prev_num+'&place_num='+place_num;
 		$.post('deletePrev.do', sendData, function(data) {
-			alert("댓글이 삭제 되었습니다");
+			alert("평가가 삭제 되었습니다");
 			$('#prevListDisp').html(data);
 			location.reload();
 		});
@@ -70,7 +70,7 @@
 							"&score="+$('#str'+prev_num).val()+
 							"&prev_num="+prev_num+"&place_num="+place_num;
 				$.post("updatePrev.do", sendData, function(data) {
-				alert("댓글 수정 되었습니다");
+				alert("평가가 수정 되었습니다");
 				$('#prevListDisp').html(data);
 				location.reload();
 			});
@@ -116,6 +116,12 @@
 				</td><td colspan="5" id="td_${prev.prev_num }" style="width:65%; border-bottom: 1px solid black;"><pre>${prev.prev_content }</pre></td>
 				<td id="btn_${prev.prev_num }">
 				<c:if test="${prev.m_num == m_num }">
+				<div style="margin-left: 10px;">
+					<input type="button" class="btn btn-primary" value="수정" onclick="prevUpdate(${prev.prev_num}, ${prev.place_num })">
+					<input type="button" class="btn btn-danger" value="삭제" onclick="prevDelete(${prev.prev_num}, ${prev.place_num })">
+				</div> 
+				</c:if>
+				<c:if test="${not empty admin }">
 				<div style="margin-left: 10px;">
 					<input type="button" class="btn btn-primary" value="수정" onclick="prevUpdate(${prev.prev_num}, ${prev.place_num })">
 					<input type="button" class="btn btn-danger" value="삭제" onclick="prevDelete(${prev.prev_num}, ${prev.place_num })">

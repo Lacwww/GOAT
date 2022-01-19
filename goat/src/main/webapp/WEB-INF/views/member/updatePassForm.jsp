@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function chk() {
-			if (frm.pass.value != frm.pass2.value) {
+			if (frm.m_pass.value != frm.m_pass2.value) {
 				alert("암호와 암호 확인이 다릅니다");
-				frm.pass2.focus();
-				frm.pass2.value = "";
+				frm.m_pass2.focus();
+				frm.m_pass2.value = "";
 				return false;
 			}
 		}
