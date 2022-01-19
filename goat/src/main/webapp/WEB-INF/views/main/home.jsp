@@ -319,21 +319,21 @@
 			d="M148.226,754.688l0.681,0.781l-0.445,0.596l0.786,-0.314l0.656,0.22l-0.524,0.531l0.393,1.157l-0.551,1.221l-2.07,-0.5l-0.445,-1.439l0.786,-1.971L148.226,754.688zM143.614,769.785l-1.442,0.531l-1.703,1.749l-0.472,2.025l-2.463,2.47l0.157,1.436l-1.31,1.468l-2.122,0.469l-2.936,-0.563l-3.118,3.245l-2.411,0.155l-3.799,1.062l-0.759,-0.406l-2.018,0.312l-2.673,2.152l-0.079,0.779l-1.808,0.687l-0.864,-0.374l-0.132,-0.53l-1.703,-0.063l-0.524,1.279l-1.467,-0.873l-2.149,0.187l-1.598,0.811l-3.694,0.841l-1.1,-1.684l-0.734,-0.154l-2.332,0.623l-1.336,-1.061l-0.524,0.062l-3.301,1.498l-4.219,-1.122l-3.092,2.026l0.026,2.96l-0.55,0.156l-0.314,-0.623l-0.524,-0.03l-0.944,0.622l-0.89,-0.592l0.235,-1.122l-0.838,-0.031l-2.122,-2.869l-2.987,-1.276l-1.886,-1.561l-1.834,-2.995l0.577,-3.307l-0.577,-1.811l0.419,-0.78l1.363,-0.687l0.026,-1.405l2.751,-1.779L79,769.879l1.206,0.188l2.175,-2.5l0.445,-2.812l4.193,-1.688l0.079,-1.688l0.367,-0.281l1.939,-0.033l1.886,-0.529l0.236,-0.532l1.309,0.063l1.651,-1.345l0.472,-0.031l0.708,0.782l1.153,-0.876l4.139,-1.094l1.258,-1.002l1.337,-0.094l0.34,-0.813l0.733,-0.407l2.018,0.597l1.257,-0.221l1.153,-0.751l0.97,0.438l1.257,-0.688l2.07,0.157l0.786,-1.158l3.694,-0.251l0.105,-0.813l0.996,-1.189l1.887,1.503l0.865,-0.282l0.235,-0.846l0.866,0.345l3.773,-1.251l3.17,0.374l0.236,-0.938l3.013,0.595l0.314,0.532l1.834,-0.596l0.918,0.095l0.104,1.409l1.206,1.596l1.074,0.094l0.681,0.845l0.996,-0.626l2.201,0.282l1.048,0.749l-0.418,1.314h1.021l0.341,0.939l-0.157,1.313l-0.813,0.094l-0.184,0.751l1.809,1.438l1.337,-0.5l0.131,0.875l0.943,0.813l-0.472,0.562l-0.996,-0.654l-0.812,1.219l-0.105,1.03l1.494,1.094l-0.734,0.876l-0.629,-0.501l0.262,-0.469l-0.865,-0.343L143.614,769.785z" />
 	</g>
 	<text id="LCD11" class="TEXT" x="152" y="294" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=서울'">서울</text>
-	<text id="LCD26" class="TEXT" x="360" y="565" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=부산'">부산</text>
+	<text id="LCD26" class="TEXT" x="360" y="565" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=부산'">부산</text>
 	<text id="LCD27" class="TEXT" x="301" y="498" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=대구'">대구</text>
 	<text id="LCD28" class="TEXT" x="123" y="294" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=인천'">인천</text>
 	<text id="LCD29" class="TEXT" x="139" y="571" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=광주'">광주</text>
-	<text id="LCD30" class="TEXT" x="211" y="435" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=대전'">대전</text>
-	<text id="LCD31" class="TEXT" x="370" y="529" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=울산'">울산</text>
-	<text id="LCD36" class="TEXT" x="186" y="416" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=세종'">세종</text>
-	<text id="LCD41" class="TEXT" x="170" y="262" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경기도'">경기도</text>
-	<text id="LCD42" class="TEXT" x="280" y="270" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=강원도'">강원</text>
-	<text id="LCD43" class="TEXT" x="217" y="400" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=충북'">충청북도</text>
-	<text id="LCD44" class="TEXT" x="152" y="420" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=충남'">충청남도</text>
+	<text id="LCD30" class="TEXT" x="211" y="435" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=대전'">대전</text>
+	<text id="LCD31" class="TEXT" x="370" y="529" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=울산'">울산</text>
+	<text id="LCD36" class="TEXT" x="186" y="416" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=세종'">세종</text>
+	<text id="LCD41" class="TEXT" x="170" y="262" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경기도'">경기도</text>
+	<text id="LCD42" class="TEXT" x="280" y="270" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=강원도'">강원도</text>
+	<text id="LCD43" class="TEXT" x="217" y="400" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=충북'">충청북도</text>
+	<text id="LCD44" class="TEXT" x="152" y="420" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=충남'">충청남도</text>
 	<text id="LCD45" class="TEXT" x="170" y="505" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=전북'">전라북도</text>
-	<text id="LCD46" class="TEXT" x="160" y="590" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=전남'">전라남도</text>
-	<text id="LCD47" class="TEXT" x="325" y="435" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경북'">경상북도</text>
-	<text id="LCD48" class="TEXT" x="295" y="550" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경남'">경상남도</text>
+	<text id="LCD46" class="TEXT" x="160" y="590" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=전남'">전라남도</text>
+	<text id="LCD47" class="TEXT" x="325" y="435" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경북'">경상북도</text>
+	<text id="LCD48" class="TEXT" x="295" y="550" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경남'">경상남도</text>
 	<text id="LCD50" class="TEXT" x="111" y="772" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=제주도'">제주도</text>
 	</svg>
 </div>
