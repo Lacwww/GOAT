@@ -327,7 +327,7 @@
 	<text id="LCD31" class="TEXT" x="370" y="529" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=울산'">울산</text>
 	<text id="LCD36" class="TEXT" x="186" y="416" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=세종'">세종</text>
 	<text id="LCD41" class="TEXT" x="170" y="262" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경기도'">경기도</text>
-	<text id="LCD42" class="TEXT" x="280" y="270" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=강원도'">강원도</text>
+	<text id="LCD42" class="TEXT" x="280" y="270" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=강원도'">강원</text>
 	<text id="LCD43" class="TEXT" x="217" y="400" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=충북'">충청북도</text>
 	<text id="LCD44" class="TEXT" x="152" y="420" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=충남'">충청남도</text>
 	<text id="LCD45" class="TEXT" x="170" y="505" onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=전북'">전라북도</text>
