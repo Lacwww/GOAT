@@ -15,25 +15,44 @@
 	height: 30px;
 }
 .hotTrip {
+	text-align: center;
 	border: 1px solid black;
-	width: 210px; height: 160px;
+	margin: 15px;
+	padding : 15px;
+}
+.hotTrip img {
+	margin-bottom: 10px;
+}
+.hotLikeContainer {
+	display: flex;
+	margin : 0px auto;
+	justify-content: center;
 }
 </style>
 </head>
 <body>
 	<div align="center">
-		<h2>여행게시판</h2>
-		<h4>추천수 HOT 게시물</h4>
-		*좋아요 많은순<br>
-		<span class="hotTrip">1 : ${t_title }
-			<img style="border-radius:10px; width: 200px; height: 150px;"
-				onclick="location.href='tripView.do?t_num=${hotLike.t_num }&pageNum=${pageNum }'" src="/goat/resources/tripPhoto/hot.png"></span>
-		<span class="hotTrip">2 : ${t_title }
-			<img style="border-radius:10px; width: 200px; height: 150px;"
-				onclick="location.href='tripView.do?t_num=${hotLike.t_num }&pageNum=${pageNum }'" src="/goat/resources/tripPhoto/hot.png"></span>
-		<span class="hotTrip">3 : ${t_title }
-			<img style="border-radius:10px; width: 200px; height: 150px;"
-				onclick="location.href='tripView.do?t_num=${hotLike.t_num }&pageNum=${pageNum }'" src="/goat/resources/tripPhoto/hot.png"></span>
+		<h2>여행 게시판</h2>
+		<h4>좋아요 HOT 게시물<small>&nbsp;(*공감수 많은순)</small></h4>
+		<div>
+			<c:if test="${empty hotLike }">
+				<i>공감수 집계중입니다.</i>
+			</c:if>
+			<c:if test="${not empty hotLike }">
+				<div class="hotLikeContainer">
+				<c:forEach var="hl" items="${hotLike }">
+				<c:set var="i" value="${i+1}"></c:set>
+					<div class="hotTrip">
+						<img style="border-radius:10px; width: 140px; height: 140px;"
+							onclick="location.href='tripView.do?t_num=${hl.t_num }&pageNum=${pb.currentPage }'" src="/goat/resources/tripPhoto/${i}.png">
+						<div>제목 :  ${hl.t_title }</div>
+						<div>작성자 : ${hl.m_name }</div>
+					</div>
+				</c:forEach>
+				</div>
+			</c:if>
+		</div>
+		
 		<table>
 			<tr>
 				<th class="tl">번호</th>
