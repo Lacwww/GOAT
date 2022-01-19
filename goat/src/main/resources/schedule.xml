@@ -53,5 +53,8 @@
 	<select id="selectScd" parameterType="integer" resultType="scd">
 		select p.place_name,p.lat,p.lng, d.* from schedule_detail d,place p where sch_num = #{sch_num} and p.place_num=d.place_num order by schd_num
 	</select>
-	
+	<!-- 스케줄 여행 지역 조회 -->
+	<select id="selectArea" parameterType="integer" resultType="string">
+		select place_area from place where place_num =#{place_num}
+	</select>
 </mapper>

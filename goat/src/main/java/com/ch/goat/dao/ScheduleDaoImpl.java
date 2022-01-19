@@ -70,4 +70,8 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return sst.selectList("schedulens.selectScd",sch_num);
 	}
 
+	public String selectArea(int place_num) {
+		return sst.selectOne("schedulens.selectArea",place_num);
+	}
+
 }
