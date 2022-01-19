@@ -29,6 +29,17 @@
 	justify-content: center;
 }
 </style>
+
+<script type="text/javascript">
+	function sessionChk() {
+		if (${empty id && empty admin}) {
+			alert("로그인후 이용할 수 있습니다");
+			location.href="${path}/member/loginForm.do";
+		} else {
+			location.href="tripInsertForm.do?pageNum=1";
+		} 
+	}
+</script>
 </head>
 <body>
 	<div align="center">
@@ -138,9 +149,7 @@
 		</div>
 		
 		<div align="center">
-			<c:if test="${not empty admin || not empty id }">
-				<input type="button" value="게시글 입력" onclick="location.href='tripInsertForm.do?pageNum=1'">
-			</c:if>
+			<input type="button" onclick="sessionChk()" value="게시글 입력">
 		</div>
 	</div>
 </body>
