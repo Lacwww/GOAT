@@ -127,7 +127,7 @@ public class ScheduleController {
 		model.addAttribute("sch_num",sch_num);
 		return "schedule/insertSchedule";
 	}
-	@RequestMapping("schedule/scView")
+	@RequestMapping("schedule/schView")
 	public String schView(Model model, HttpSession session,int sch_num ) {
 		Schedule sch = ss.selectSch(sch_num);
 		String s_date = DateFormatUtils.format(sch.getS_date(), "yyyy-MM-dd");
@@ -140,6 +140,6 @@ public class ScheduleController {
 		model.addAttribute("days",days);
 		model.addAttribute("sch",sch);
 		model.addAttribute("list",list);
-		return "schedule/scView";
+		return "schedule/schView";
 	}
 }
