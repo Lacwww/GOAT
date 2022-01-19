@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.class
-=
+
 </style>
 <script type="text/javascript">
 	function opn(temp_num) {
@@ -22,7 +21,7 @@
 		<br><br>
 		<button onclick="location.href='admin.do'">돌아가기</button>
 		<div>
-			<table class="table">
+			<table class="table table-hover table-striped">
 				<colgroup>
 					<col width="5%" />
 					<col/>
@@ -45,7 +44,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="temp" items="${list }">
-						<tr>
+						<tr style="cursor: pointer;">
 							<td>${temp.temp_num }</td>
 							<td><span onclick="opn(${temp.temp_num})">${temp.temp_name }</span></td>
 							<td>${temp.temp_cate }</td>
