@@ -10,6 +10,7 @@
 <body>
 	<div>
 		<h2 style="color: rgb(64,123,37);">스케쥴 목록</h2>
+		<button onclick="location.href='admin.do'">돌아가기</button>
 		<br><br>
 		<div style="width:100%;" class="div1">
 			<table class="table table-hover table-striped">

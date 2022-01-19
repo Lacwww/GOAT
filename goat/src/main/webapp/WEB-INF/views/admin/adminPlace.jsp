@@ -19,6 +19,9 @@
 a {
 	color: rgb(64, 123, 37);
 }
+.search {
+	float: right;
+}
 </style>
 <script type="text/javascript">
 	function opn(place_num) {
@@ -31,28 +34,35 @@ a {
 </script>
 </head>
 <body>
-	<div>
-		<h2><a href="adminPlace.do?pageNum=1">플레이스 목록</a></h2>
+	<br><br>
+	<div style="width:100%;">
+		<h2 style="display: inline;">
+			<a href="adminPlace.do?pageNum=1">플레이스 목록</a>
+		</h2>
+		<button class="btn pull-right" style="height: 30px;" onclick="location.href='admin.do'">돌아가기</button>
+	</div>
+	<br>
+	<br>
+	<div style="clear: both;">
 		<select name="카테고리명" onchange="location.href=(this.value);">
 			<option value="">선택하세요</option>
 			<option value="adminPlace.do?pageNum=1">전체</option>
 			<c:forEach var="cate" items="${cateList }">
-				<option
-					value="adminPlace.do?pageNum=1&cate=${cate.place_cate }">${cate.place_cate }</option>
+				<option value="adminPlace.do?pageNum=1&cate=${cate.place_cate }">${cate.place_cate }</option>
 			</c:forEach>
-		</select> 
-		<form action="adminPlace.do" onclick="search()">
-		<table>
-			<tr>
-				<td><input type="text" placeholder="카페, 갈치, 전복..." name="search" maxlength="100"></td>
-				<td><button type="submit" class="btn btn-success">검색</button></td>
-		</table>
+		</select>
+		<form class="search" action="adminPlace.do" onclick="search()">
+			<table>
+				<tr>
+					<td><input type="text" placeholder="카페, 갈치, 전복..."
+						name="search" maxlength="100"></td>
+					<td><button type="submit" class="btn btn-success">검색</button></td>
+			</table>
 		</form>
-		<button onclick="location.href='admin.do'">돌아가기</button>
 		
-		
-		<br>
-		<br>
+
+
+		<br> <br>
 		<div style="width: 100%;" class="div1">
 			<table class="table table-hover table-striped">
 				<!-- <table class="table table-hover table-striped"> -->
@@ -68,7 +78,7 @@ a {
 				</thead>
 				<tbody>
 					<c:forEach var="place" items="${list }">
-						<tr onclick="opn(${place.place_num})">
+						<tr style="cursor: pointer;" onclick="opn(${place.place_num})">
 							<td style="width: 5%;" class="align-middle">${place.place_num }</td>
 							<td style="width: 15%" class="align-middle">${place.place_name }</td>
 							<td style="width: 10%" class="align-middle">${place.place_cate }</td>
@@ -80,8 +90,7 @@ a {
 				</tbody>
 			</table>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 		<div style="clear: both;">
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
