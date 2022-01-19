@@ -9,7 +9,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		location.href="goat/cs/csView.do?cs_num=${cs_num}";
+		location.href="${path}/cs/csView.do?cs_num=${cs_num}";
 	</script>
 </body>
 </html>
