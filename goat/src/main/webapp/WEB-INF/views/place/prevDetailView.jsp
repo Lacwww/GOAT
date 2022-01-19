@@ -63,7 +63,7 @@
 			}
 			var sendData = $('#frm1').serialize();
 			$.post('insertPrev.do', sendData, function(data) {
-				alert("댓글이 작성 되었습니다.");
+				alert("평가가 작성 되었습니다.");
 				$('#prevListDisp').html(data);
 				frm1.prev_title.value = "";
 				frm1.prev_content.value = "";	
