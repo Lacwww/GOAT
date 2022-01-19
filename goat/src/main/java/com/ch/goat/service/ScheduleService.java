@@ -36,5 +36,7 @@ public interface ScheduleService {
 
 	List<ScheduleDetail> selectScd(int sch_num);
 
+	String selectArea(int place_num);
+
 
 }

@@ -134,6 +134,9 @@ public class ScheduleController {
 		String e_date = DateFormatUtils.format(sch.getE_date(), "yyyy-MM-dd");
 		int days = ss.days(s_date,e_date);
 		List<ScheduleDetail> list = ss.selectScd(sch_num); 
+		String place_area = ss.selectArea(list.get(0).getPlace_num());
+		
+		model.addAttribute("place_area",place_area);
 		model.addAttribute("days",days);
 		model.addAttribute("sch",sch);
 		model.addAttribute("list",list);

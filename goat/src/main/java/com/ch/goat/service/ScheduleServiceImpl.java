@@ -69,4 +69,8 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public List<ScheduleDetail> selectScd(int sch_num) {
 		return sd.selectScd(sch_num);
 	}
+
+	public String selectArea(int place_num) {
+		return sd.selectArea(place_num);
+	}
 }
