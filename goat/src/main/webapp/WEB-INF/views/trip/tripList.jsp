@@ -53,7 +53,8 @@
 			</c:if>
 		</div>
 		
-		<table>
+		<table class="table table-hover table-striped">
+		<thead>
 			<tr>
 				<th class="tl">번호</th>
 				<th class="tl">제목</th>
@@ -66,7 +67,8 @@
 					<td colspan="5">등록된 여행이야기가 없습니다.</td>
 				</tr>
 			</c:if>
-
+		</thead>
+		<tbody>
 			<c:if test="${not empty list}">
 				<c:forEach var="trip2" items="${list }">
 					<tr><td class="td1">${no}<c:set var="no" value="${no - 1}"></c:set></td>
@@ -79,6 +81,7 @@
 					</tr>
 				</c:forEach>
 			</c:if>
+			</tbody>
 		</table>
 		<div align="center">
 			<ul class="pagination">

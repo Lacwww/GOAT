@@ -56,7 +56,8 @@
 		</c:if>
 		
 		
-		<table>
+		<table class="table table-hover table-striped">
+		<thead>
 			<tr>
 				<th class="tl">번호</th>
 				<th class="tl">제목</th>
@@ -69,7 +70,8 @@
 					<td colspan="5">검색 결과가 없습니다.</td>
 				</tr>
 			</c:if>
-
+		</thead>
+		<tbody>
 			<c:if test="${not empty searchList}">
 				<c:forEach var="trip2" items="${searchList }">
 					<c:if test="${trip2.del != 'y' }">
@@ -85,6 +87,7 @@
 					</c:if>
 				</c:forEach>
 			</c:if>
+			</tbody>
 		</table>
 		<div align="center">
 			<ul class="pagination">
