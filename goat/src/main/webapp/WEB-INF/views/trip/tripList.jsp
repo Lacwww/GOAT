@@ -15,7 +15,9 @@
 	height: 30px;
 }
 .hotTrip {
+	width : 250px;
 	text-align: center;
+	border-radius: 10px; 
 	border: 1px solid black;
 	margin: 15px;
 	padding : 15px;
@@ -54,7 +56,7 @@
 				<c:forEach var="hl" items="${hotLike }">
 				<c:set var="i" value="${i+1}"></c:set>
 					<div class="hotTrip">
-						<img style="border-radius:10px; width: 140px; height: 140px;"
+						<img style="width: 140px; height: 140px;"
 							onclick="location.href='tripView.do?t_num=${hl.t_num }&pageNum=${pb.currentPage }'" src="/goat/resources/tripPhoto/${i}.png">
 						<div>제목 :  ${hl.t_title }</div>
 						<div>작성자 : ${hl.m_name }</div>
