@@ -63,7 +63,7 @@ a {
 				<option value="adminPlace.do?pageNum=1&cate=${cate.place_cate }">${cate.place_cate }</option>
 			</c:forEach>
 		</select>
-		<button onclick="location.href='../place/adminInsertPlace.do'" value="장소등록"></button>
+		<button onclick="location.href='../place/adminInsertPlaceForm.do'">장소등록</button>
 		<form class="search">
 			<table>
 				<tr>
