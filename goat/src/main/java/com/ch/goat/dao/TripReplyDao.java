@@ -2,6 +2,7 @@ package com.ch.goat.dao;
 
 import java.util.List;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.TripReply;
 
 public interface TripReplyDao {
@@ -21,5 +22,9 @@ public interface TripReplyDao {
 	void updateStep(TripReply tr);
 
 	int maxStep(int tre_ref);
+
+	void trAlert(Alert ale);
+
+	List<Alert> alertCon(int m_num);
 
 }

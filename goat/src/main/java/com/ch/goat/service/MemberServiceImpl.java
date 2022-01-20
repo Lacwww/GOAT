@@ -123,5 +123,10 @@ public class MemberServiceImpl implements MemberService {
 	public void alertCs(int ale_num) {
 		md.alertCs(ale_num);
 	}
+
+	@Override
+	public void alertTr(int ale_num) {
+		md.alertTr(ale_num);
+	}
 	
 }

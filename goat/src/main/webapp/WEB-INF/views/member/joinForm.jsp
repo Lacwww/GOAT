@@ -236,7 +236,7 @@
 						<input type="password" name="m_pass" placeholder="Password" required="required">
 					</div>
 					<div>
-						<input type="password" name="m_pass2" placeholder="Password Confirm" required="required" onchange="passChk()">
+						<input type="password" name="m_pass2" placeholder="Password Confirm" required="required" onkeyup="passChk()">
 						<div id="same"></div>
 					</div>
 					<div>

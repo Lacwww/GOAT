@@ -148,10 +148,6 @@ public class MemberController {
 				session.setAttribute("m_img", member2.getM_photo());
 				List<Alert> alert = ms.confirm(member2.getM_num());
 				session.setAttribute("alert", alert);
-//				List<Alert> alert = ms.tempAlert(temp);
-//				session.setAttribute("alert", alert);
-//				List<Alert> alert = ms.tripAlert(trip);
-//				session.setAttribute("alert", alert);
 			}
 		}
 		model.addAttribute("result", result);
@@ -274,7 +270,7 @@ public class MemberController {
 	public String chkUpdateEmail(Member member, Model model) {
 		String msg = "";
 		Member member2 = ms.emailChk(member);
-		if(member == null) {
+		if(member2 == null) {
 			msg = "0";
 		} else if (member.getM_id().equals(member2.getM_id())) {
 			msg = "1";
@@ -376,5 +372,11 @@ public class MemberController {
 		ms.alertCs(ale_num);
 		model.addAttribute("cs_num", cs_num);
 		return "member/alertCs";
+	}
+	@RequestMapping("member/alertTr")
+	public String alertTr(int ale_num, int t_num, Model model) {
+		ms.alertTr(ale_num);
+		model.addAttribute("t_num", t_num);
+		return "member/alertTr";
 	}
 }

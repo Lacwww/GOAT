@@ -47,6 +47,8 @@ select * from alert;
 alter table alert add t_num number;
 alter table alert add t_title varchar2(100);
 alter table alert add place_num number;
+alter table alert add t_like number;
+alter table alert add t_reply number;
 delete from alert;
 
 /* 여행 게시판 */

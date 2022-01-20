@@ -123,4 +123,9 @@ public class MemberDaoImpl implements MemberDao {
 	public void alertCs(int ale_num) {
 		sst.delete("memberns.alertCs", ale_num);
 	}
+
+	@Override
+	public void alertTr(int ale_num) {
+		sst.delete("memberns.alertTr", ale_num);
+	}
 }

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.TripReply;
 
 @Repository
@@ -36,5 +37,11 @@ public class TripReplyDaoImpl implements TripReplyDao {
 	}
 	public int maxStep(int tre_ref) {
 		return sst.selectOne("tripReplyns.maxStep", tre_ref);
+	}
+	public void trAlert(Alert ale) {
+		sst.insert("tripReplyns.trAlert", ale);
+	}
+	public List<Alert> alertCon(int m_num) {
+		return sst.selectList("tripReplyns.alertCon", m_num);
 	}
 }

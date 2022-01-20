@@ -22,4 +22,6 @@ public class Alert {
 	private String cs_title;
 	private int t_num;
 	private String t_title;
+	private int t_like;
+	private int t_reply;
 }

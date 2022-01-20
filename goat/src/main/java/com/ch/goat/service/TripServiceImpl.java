@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.TripDao;
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Trip;
 import com.ch.goat.model.TripLike;
 
@@ -58,6 +59,15 @@ public class TripServiceImpl implements TripService{
 	}
 	public List<Trip> hotLike(Trip trip) {
 		return td.hotLike(trip);
+	}
+	public String getTitle(int num) {
+		return td.getTitle(num);
+	}
+	public void trAlert(Alert ale) {
+		td.trAlert(ale);
+	}
+	public List<Alert> alertCon(int m_num) {
+		return td.alertCon(m_num);
 	}
 	
 }

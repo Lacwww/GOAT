@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Trip;
 import com.ch.goat.model.TripLike;
@@ -200,7 +201,7 @@ public class TripController {
 	}
 	
 	@RequestMapping("trip/tripView")
-	public String noticeView(Trip trip, String search, String keyword, HttpSession session, String pageNum, Model model) {
+	public String tripView(HttpServletRequest request, Trip trip, String search, String keyword, HttpSession session, String pageNum, Model model) {
 		int t_num = trip.getT_num();
 		String m_id = (String) session.getAttribute("id");
 		String tripLikeImgSrc ="";
@@ -222,13 +223,17 @@ public class TripController {
 			tripLikeImgSrc = "/goat/resources/tripPhoto/heart.png";
 			tripLikeCnt = ts.tlCnt(t_num);
 		}
-		
+		int m_num = (Integer) session.getAttribute("m_num");
+		String prevUrl = request.getHeader("Referer");
+		prevUrl = prevUrl.substring(27, 33);
 		model.addAttribute("tripLikeImgSrc",tripLikeImgSrc);
 		model.addAttribute("tripLikeCnt", tripLikeCnt);
 		model.addAttribute("pageNum", pageNum);		
 		model.addAttribute("trip", trip2);
 		model.addAttribute("search", search);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("m_num", m_num);
+		model.addAttribute("prevUrl", prevUrl);
 
 		return "trip/tripView";
 	}
@@ -249,6 +254,16 @@ public class TripController {
 		}else {
 			ts.insertTL(m_id, num); // 좋아요 추가
 			tripLikeImgSrc = "/goat/resources/tripPhoto/fullHeart.png";
+			Alert ale = new Alert();
+			int m_num = (Integer) session.getAttribute("m_num");
+			String t_tile = ts.getTitle(num);
+			ale.setT_num(num);
+			ale.setM_num(m_num);
+			ale.setT_title(t_tile);
+			ts.trAlert(ale);
+			List<Alert> alert = ts.alertCon(m_num);
+			session.removeAttribute("alert");
+			session.setAttribute("alert", alert);
 		}	
 		return tripLikeImgSrc;
 	}

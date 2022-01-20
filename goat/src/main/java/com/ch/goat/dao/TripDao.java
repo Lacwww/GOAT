@@ -2,6 +2,7 @@ package com.ch.goat.dao;
 
 import java.util.List;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Trip;
 import com.ch.goat.model.TripLike;
 
@@ -36,5 +37,11 @@ public interface TripDao {
 	int getSearchTotal(Trip trip);
 
 	List<Trip> hotLike(Trip trip);
+
+	String getTitle(int num);
+
+	void trAlert(Alert ale);
+
+	List<Alert> alertCon(int m_num);
 
 }
