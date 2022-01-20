@@ -74,4 +74,16 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return sst.selectOne("schedulens.selectArea",place_num);
 	}
 
+	public List<Place> placeList(int sch_num) {
+		return sst.selectList("schedulens.updateSchList",sch_num);
+	}
+
+	public int updateSch(Schedule sch) {
+		return sst.update("schedulens.updateSch",sch);
+	}
+	public void deleteScd(int sch_num) {
+		sst.delete("schedulens.deleteScd",sch_num);
+	}
+
+
 }
