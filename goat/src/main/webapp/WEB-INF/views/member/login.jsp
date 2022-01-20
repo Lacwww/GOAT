@@ -14,9 +14,17 @@
 				location.href="/goat/main/home.do"
 			} else if("${prevUrl}" == "/goat/member/join.do") {
 				location.href="/goat/main/home.do"
+			} else if("${prevUrl}" == "/goat/member/findIdForm.do") {
+				location.href="/goat/main/home.do"
 			} else if("${prevUrl}" == "/goat/member/findIdResult.do") {
 				location.href="/goat/main/home.do"
+			} else if("${prevUrl}" == "/goat/member/findPassForm.do") {
+				location.href="/goat/main/home.do"
+			} else if("${prevUrl}" == "/goat/member/findPassResult.do") {
+				location.href="/goat/main/home.do"
 			} else if("${prevUrl}" == "/goat/member/updatePassResult.do") {
+				location.href="/goat/main/home.do"
+			} else if("${prevUrl}" == "/goat/member/delete.do") {
 				location.href="/goat/main/home.do"
 			} else {
 				location.href="${prevUrl}";

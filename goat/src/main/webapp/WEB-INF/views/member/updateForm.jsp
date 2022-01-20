@@ -216,13 +216,12 @@
 					<div id="same"></div>
 				</div>
 				<div>
-					<input type="text" name="m_nick" class="data" value="${member.m_nick }" placeholder="Nickname" required="required">
-					<input type="button" class="data btn btn-info btn-sm" onclick="nickChk()" value="중복체크">
+					<input type="text" name="m_nick" class="data" value="${member.m_nick }" placeholder="Nickname" required="required" onkeyup="nickChk()">
+<!-- 					<input type="button" class="data btn btn-info btn-sm" onclick="nickChk()" value="중복체크"> -->
 					<div id="nickChk_result" class="err"></div>
 				</div>
 				<div>
-					<input type="email" name="m_email" class="data" value="${member.m_email }" id="m_email" placeholder="Email" required="required">
-					<input type="button" class="data btn btn-info btn-sm" onclick="emailChk()" value="중복체크">
+					<input type="email" name="m_email" class="data" value="${member.m_email }" id="m_email" placeholder="Email" required="required" onkeyup="nickChk()">
 					<div id="emailChk_result" class="err"></div>
 				</div>
 				<div>
