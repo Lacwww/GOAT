@@ -151,6 +151,12 @@ public class MemberController {
 			}
 		}
 		model.addAttribute("result", result);
+		if (prevUrl.length() > 22) {
+			String prevUrl2 = prevUrl.substring(0,22);
+			if (prevUrl2.equals("/goat/member/delete.do")) {
+				prevUrl = prevUrl2;
+			}
+		}
 		model.addAttribute("prevUrl", prevUrl);
 		return "member/login";
 	}
