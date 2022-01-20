@@ -56,6 +56,8 @@ public class AdminController {
 		model.addAttribute("pagePerBlock", pagePerBlock);
 		model.addAttribute("list", list);
 		model.addAttribute("cateList", cateList);
+		model.addAttribute("cate", cate);
+
 		return "admin/adminPlace";
 	}
 	
