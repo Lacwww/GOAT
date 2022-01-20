@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+</style>
 </head>
 <body>
 	<div>
@@ -36,7 +39,7 @@
 						<td>${member.reg_date }</td>
 						<th>${member.admin }
 						<td>${member.del }</td>
-						<td onclick="location.href='adminMemberDelete.do?m_id=${member.m_id }&pageNum=${pageNum }'">탈퇴</td>
+						<td><button class="btn btn-danger" onclick="location.href='adminMemberDelete.do?m_id=${member.m_id }&pageNum=${pageNum }'">탈퇴</button></td>
 					</tr>
 				</c:forEach>
 				</tbody>

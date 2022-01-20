@@ -116,7 +116,7 @@ public class AdminController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pagePerBlock", pagePerBlock);
 		model.addAttribute("list", list);
-
+		model.addAttribute("pageNum", pageNum);
 		return "admin/adminMember";
 	}
 
