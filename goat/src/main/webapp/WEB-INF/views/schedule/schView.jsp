@@ -170,7 +170,7 @@
          </div>
    </div>
    <div id="btns">
-   		<input type="button" value="목록" onclick="history.back();">
+		<input type="button" name="SchList" value="스케줄 목록" onclick="location.href='${path}/member/scheduleList.do?m_num=${m_num }'">
    		<input type="button" value="수정" onclick="location.href='updateSchForm.do?sch_num=${sch_num}'">
    </div>
 </div>
