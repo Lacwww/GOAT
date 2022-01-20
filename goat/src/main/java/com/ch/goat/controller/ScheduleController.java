@@ -28,7 +28,10 @@ import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 public class ScheduleController {
 	@Autowired
 	private ScheduleService ss;
-
+	@RequestMapping("schedule/NewFile")
+	public String newFile() {
+		return "schedule/NewFile";
+	}
 	@RequestMapping("schedule/selectArea")
 	public String selectArea(Model model) {
 		List<Area> list = ss.list();

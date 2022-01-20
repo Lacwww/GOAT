@@ -1,42 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../tool.jsp"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="../tool.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <script type="text/javascript">
 	var id = [];
-	$(function() {
-		$("#start").datepicker({
-			showOn : "both",
-			buttonImage : "${path}/resources/images/date.png",
-			buttonImageOnly : "true",
-			dateFormat : "yy-mm-dd",
-			minDate: 0,
-			buttonText : "여행 시작날짜",
-			onClose : function(selectDate) {
-				$("#end").datepicker("option","minDate",selectDate)
-			}
-		});
-		
-		$("#end").datepicker({
-			showOn : "both",
-			buttonImage : "${path}/resources/images/date.png",
-			buttonImageOnly : "true",
-			dateFormat : "yy-mm-dd",
-			minDate: new Date($('#start').val()),
-			buttonText : "여행 종료날짜",
-			onClose : function(selectDate) {
-				$("#start").datepicker("option","maxDate",selectDate)
-			}
-		});
-	});
-	
+	document.addEventListener('keydown', function(event) {
+	    if (event.keyCode === 13) {
+	        event.preventDefault();
+	    }
+	}, true);
 	$(document).ready(function() {
+		$.datepicker.regional['ko'] = {
+		        closeText: '닫기',
+		        prevText: '이전달',
+		        nextText: '다음달',
+		        currentText: '오늘',
+		        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+		        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+		        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+		        '7월','8월','9월','10월','11월','12월'],
+		        dayNames: ['일','월','화','수','목','금','토'],
+		        dayNamesShort: ['일','월','화','수','목','금','토'],
+		        dayNamesMin: ['일','월','화','수','목','금','토'],
+		        weekHeader: 'Wk',
+		        mindate : 0,
+		        dateFormat: 'yy-mm-dd',
+		        firstDay: 0,
+		        isRTL: false,
+		        showMonthAfterYear: true,
+		        yearSuffix: '',
+		        showOn: 'both',
+		        buttonImage : "${path}/resources/images/date.png",
+				buttonImageOnly : "true",
+		        changeMonth: true,
+		        changeYear: true,
+		        showButtonPanel: true,
+		        yearRange: 'c-99:c+99',
+		    };
+		    
+		    $.datepicker.setDefaults($.datepicker.regional['ko']);
+
+		    $('#sdate').datepicker();
+		    $('#sdate').datepicker("option", "minDate", 0);
+		    $('#sdate').datepicker("option", "maxDate", $("#edate").val());
+		    $('#sdate').datepicker("option", "onClose", function ( selectedDate ) {
+		        $("#edate").datepicker( "option", "minDate", selectedDate );
+		    });
+
+		    $('#edate').datepicker();
+		    $('#edate').datepicker("option", "minDate", $("#sdate").val());
+		    $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
+		        $("#sdate").datepicker( "option", "maxDate", selectedDate );
+		    });
+		
 		var keyword = $('#keyword').val();
 		var search = $('#search option:selected').val()
 		if(keyword==null || keyword==''){
@@ -95,9 +116,9 @@
 			<div style="width: 100%;">
 				<img alt="calendar" src="${path }/resources/images/calendar.png"
 					 style="width: 60px; height: 70px; padding-bottom : 5px;">
-				<input type="text" name="s_date" id="start" class="date">
+				<input type="text" name="s_date" id="sdate" class="date">
 				<span class="glyphicon glyphicon-minus" style="padding-left: 15px; padding-right: 15px;">
-				</span><input type="text" name="e_date" id="end" class="date">
+				</span><input type="text" name="e_date" id="edate" class="date">
 
 				<!-- 플레이스 검색 -->
 				<div style="float: left;">
