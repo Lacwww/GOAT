@@ -2,6 +2,7 @@ package com.ch.goat.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,6 +40,51 @@ public class PlaceController {
 	private ScheduleService ss;
 	@Autowired
 	private MemberService ms;
+	
+	@RequestMapping("place/adminInsertPlace")
+	public String adminInserPlace(Model model, Place place, HttpSession session) throws IOException {
+		int result = 0;
+		
+		if(place.getPlace_addr().indexOf("제주특별자치도") > -1) {
+			place.setPlace_area("제주도");
+		}else {
+			place.setPlace_area("정보없음");
+		}
+		if(place.getPlace_addr().indexOf("제주시") > -1) {
+			place.setPlace_areadetail("제주시");
+		}else if(place.getPlace_addr().indexOf("서귀포시") > -1){
+			place.setPlace_areadetail("서귀포시");
+		}else {
+			place.setPlace_areadetail("정보없음");
+		}			
+		// 실제 파일명
+		String fileName1 = place.getFile().getOriginalFilename();
+		// 실제 파일 저장 경로
+		String real = session.getServletContext().getRealPath("/resources/p_images");
+		
+		if(fileName1.lastIndexOf(".") == -1) {
+			String temp_photo = "/goat/resources/p_images/beforeimg.png";
+			place.setPlace_photo(temp_photo);
+		}else {
+			// 파일명을 변경해야 할 때 : UUID 임의의 문자열로 변경 Mac은 파일명이 한글이면 깨짐			
+			UUID uuid = UUID.randomUUID();
+			String fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
+			String temp_photo = "/goat/resources/p_images/"+fileName;
+			// 파일 저장			
+			FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
+			fos.write(place.getFile().getBytes());
+			fos.close();
+			place.setPlace_photo(temp_photo);
+		}		
+		result = ps.adminPlaceInsert(place);
+		model.addAttribute("result", result);
+		return "place/adminInsertPlace";
+	}
+	
+	@RequestMapping("place/adminInsertPlaceForm")
+	public String adminInsertPlaceForm() {
+		return "place/adminInsertPlaceForm";
+	}
 	
 	@RequestMapping("place/updateSuggestion")
 	public String updateSuggestion(TempPlace tempplace, Model model, HttpSession session) throws IOException {

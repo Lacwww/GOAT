@@ -2,6 +2,8 @@ package com.ch.goat.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -24,4 +26,6 @@ public class Place {
 	private String keyword;
 	private String search; 
 	
+	// upload용
+	private MultipartFile file;
 }

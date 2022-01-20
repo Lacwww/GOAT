@@ -13,10 +13,15 @@
 		color: white; 
 		border-radius: 5px;
 	}	
-/* 	pre {  */
-/* 		background-color: white; border: 0px; */
-/* 	} */
-	
+	.starDiv{
+		display: inline-block;
+		direction: rtl;
+	}
+	.starDiv label:hover,
+	.starDiv label:hover ~  label {
+ 	  background-image: url(${path}/resources/p_images/upstar.png);
+	  background-size: 30px;
+	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -42,17 +47,17 @@
 			" class='btn btn-sm btn-danger' value='확인'> "+
 			"<input type='button' onclick='lst("+place_num+")' " +
 			" class='btn btn-sm btn-info' value='취소'>");
-		$('#score_'+prev_num).html('<div id="str'+prev_num+'"></div>'+
-				 '<label for="star11'+prev_num+'" class="star1 star_empty" id="st1'+prev_num+'" onclick="star2(1,'+prev_num+')"></label>'+
-				 '<label for="star22'+prev_num+'" class="star1 star_empty" id="st2'+prev_num+'" onclick="star2(2,'+prev_num+')"></label>'+
-				 '<label for="star33'+prev_num+'" class="star1 star_empty" id="st3'+prev_num+'" onclick="star2(3,'+prev_num+')"></label>'+
-				 '<label for="star44'+prev_num+'" class="star1 star_empty" id="st4'+prev_num+'" onclick="star2(4,'+prev_num+')"></label>'+
-				 '<label for="star55'+prev_num+'" class="star1 star_empty" id="st5'+prev_num+'" onclick="star2(5,'+prev_num+')"></label>'+
-				 '<input type="radio" name="score" id="star11'+prev_num+'" class="radio" value="1">'+
-				 '<input type="radio" name="score" id="star22'+prev_num+'" class="radio" value="2">'+
-				 '<input type="radio" name="score" id="star33'+prev_num+'" class="radio" value="3">'+
-				 '<input type="radio" name="score" id="star44'+prev_num+'" class="radio" value="4">'+
-				 '<input type="radio" name="score" id="star55'+prev_num+'" class="radio" value="5">'
+		$('#score_'+prev_num).html('<div id="str'+prev_num+'"></div><div class="starDiv">'+
+				 '<label for="star11'+prev_num+'" class="star1 star_empty" id="st1'+prev_num+'" onclick="star2(0,'+prev_num+')"></label>'+
+				 '<label for="star22'+prev_num+'" class="star1 star_empty" id="st2'+prev_num+'" onclick="star2(1,'+prev_num+')"></label>'+
+				 '<label for="star33'+prev_num+'" class="star1 star_empty" id="st3'+prev_num+'" onclick="star2(2,'+prev_num+')"></label>'+
+				 '<label for="star44'+prev_num+'" class="star1 star_empty" id="st4'+prev_num+'" onclick="star2(3,'+prev_num+')"></label>'+
+				 '<label for="star55'+prev_num+'" class="star1 star_empty" id="st5'+prev_num+'" onclick="star2(4,'+prev_num+')"></label>'+
+				 '<input type="radio" name="score" id="star11'+prev_num+'" class="radio1" >'+
+				 '<input type="radio" name="score" id="star22'+prev_num+'" class="radio1" >'+
+				 '<input type="radio" name="score" id="star33'+prev_num+'" class="radio1" >'+
+				 '<input type="radio" name="score" id="star44'+prev_num+'" class="radio1" >'+
+				 '<input type="radio" name="score" id="star55'+prev_num+'" class="radio1" ></div>'
 		);
 		$('#title_'+prev_num).html('<input type="text" class="form-control" style="margin-left:1px;" maxlength="10" id="title1_'+prev_num+'" value="'+titletxt+'">');
 	}
@@ -79,14 +84,25 @@
 	}
 	function star2(num,prev_num) {
 		score = 1;
-		$('#str'+prev_num).val("");
-		$('#str'+prev_num).val(num);
 		for(var i = 1; i <=5; i++){
-			$('#st'+i+prev_num).removeClass('on');		
+			$('#st'+i+prev_num).addClass('on');		
 		}
 		for(var i = 1; i <= num; i++){
-			$('#st'+i+prev_num).addClass('on');		
+			$('#st'+i+prev_num).removeClass('on');		
 		} 
+ 		if(num == 0){
+			num = 5;
+ 		}else if(num == 1){
+ 			num = 4;
+		}else if(num == 2){
+			num = 3;
+		}else if(num == 3){
+			num = 2;
+		}else if(num == 4){
+			num = 1;
+		}
+		$('#str'+prev_num).val("");
+		$('#str'+prev_num).val(num);
 	}
 </script>
 </head>

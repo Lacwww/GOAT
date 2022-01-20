@@ -54,6 +54,17 @@
 		$('#MoaModal .modal-content').load("placeModal.do?place_num=" + place_num);
 		$('#MoaModal').modal();
 	}
+	
+	function insertPlace() {
+		if(${not empty admin}){
+			alert("관리자는 플레이스 등록을 할 수 없습니다.");
+			return false;
+		}else if(${empty id}){
+			alert("로그인 후 이용가능합니다");
+			return false;
+		}
+		location.href='insertFormTempPlace.do';
+	}
 </script>
 </head>
 <body>
@@ -100,7 +111,7 @@
 </form>
 
 <div align="center">
-	<input type="button" class="btn" value="플레이스 등록" onclick="location.href='insertFormTempPlace.do'">
+	<input type="button" class="btn" value="플레이스 등록" onclick="insertPlace()">
 </div>
 
 <c:if test="${empty list }">

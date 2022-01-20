@@ -23,6 +23,10 @@
 	  background-image: url(${path}/resources/p_images/star.png);
 	  background-size: 30px;
 	}
+	.up{
+	  background-image: url(${path}/resources/p_images/upstar.png);
+	  background-size: 30px;
+	}
 	input[type=radio] {display: none; } 
 	.btn {
 	background-color: rgb(64,123,37);
@@ -45,7 +49,10 @@
 	$(function() {
 		$('#prevListDisp').load('prevList.do?place_num=${place.place_num}');	
 		$('#insertprev').click(function() {
-			if(${empty id}){
+			if(${not empty admin}){
+				alert("관리자는 평가를 할 수 없습니다.");
+				return false;
+			}else if(${empty id}){
 				alert("로그인 후 이용가능합니다");
 				return false;
 			}
@@ -73,7 +80,10 @@
 		});
 	});
 	function bookMarkChk(place_num) {
-		if(${empty id}){
+		if(${not empty admin}){
+			alert("관리자는 북마크를 할 수 없습니다.");
+			return false;
+		}else if(${empty id}){
 			alert("로그인 후 이용가능합니다");
 			return false;
 		}
@@ -89,6 +99,7 @@
 	};
 	
 // 	클릭한 별 이전에 있는 모든별 채우기
+//  마우스 올려놓을떄 이전별 모드 채우기
 	$(function() {
 	    $(".star").on('click',function(){
 	    	var idx = $(this).index();
@@ -96,6 +107,16 @@
 	    		for(var i=0; i<=idx; i++){
 	    	    $(".star").eq(i).addClass("on");
 	    	}
+	    });
+	    $(".star").on('mouseenter',function(){
+	    	var idx = $(this).index();
+	    	$(".star").removeClass("up");
+	    		for(var i=0; i<=idx; i++){
+	    	    $(".star").eq(i).addClass("up");
+	    	}
+	    });
+	    $(".star").mouseout(function(){
+			$('.star').removeClass('up');	
 	    });
 	});
 
