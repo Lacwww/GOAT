@@ -16,7 +16,7 @@
 		});
 	}
 	function rUpdate(nor_num, no_num) {
-		$('#nrListDisp').load('noticeReplyList.do?no_num='+no_num);
+
 //		댓글을 읽어서 textarea에 넣어서 수정 가능하게 만들어야 한다
 //		input, textarea에 있는 데이터를 읽을 때는 jquery val()
 //		td등 일반 태그에 있는 데이터를 읽을때는 jquery에서는 text()로 읽는다
