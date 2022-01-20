@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>layout</title>
+<title>GOAT</title>
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div class="container" style="height: 100%;">

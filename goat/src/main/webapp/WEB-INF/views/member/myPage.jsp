@@ -50,7 +50,7 @@
 						<a href="scheduleList.do?m_num=${member.m_num }">Schedule List</a>
 					</td>
 					<td align="center">
-						<a href="tripList.do?m_num${member.m_num }">Trip History</a>
+						<a href="tripList.do?m_num=${member.m_num }">Trip History</a>
 					</td>
 					<td align="center">
 						<a href="updateForm.do?m_id=${member.m_id }">Member Update</a>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.goat.dao.TripReplyDao;
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.TripReply;
 
 @Service
@@ -42,5 +43,13 @@ public class TripReplyServiceImpl implements TripReplyService{
 
 	public int maxStep(int nor_ref) {
 		return trd.maxStep(nor_ref);
+	}
+
+	public void trAlert(Alert ale) {
+		trd.trAlert(ale);
+	}
+
+	public List<Alert> alertCon(int m_num) {
+		return trd.alertCon(m_num);
 	}
 }

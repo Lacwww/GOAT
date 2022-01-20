@@ -2,6 +2,7 @@ package com.ch.goat.service;
 
 import java.util.List;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.TripReply;
 
 public interface TripReplyService {
@@ -21,5 +22,9 @@ public interface TripReplyService {
 	void updateStep(TripReply tr);
 
 	int maxStep(int tre_ref);
+
+	void trAlert(Alert ale);
+
+	List<Alert> alertCon(int m_num);
 
 }

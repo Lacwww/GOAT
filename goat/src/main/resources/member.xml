@@ -59,15 +59,18 @@
 		select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title from alert where m_num=#{m_num}
 	</select>
 	<select id="myScList" parameterType="integer" resultType="sc">
-		select * from schedule where m_num=#{m_num}
+		select * from schedule where m_num=#{m_num} order by sch_num
 	</select>
 	<select id="myTripList" parameterType="integer" resultType="trip">
-		select * from trip where m_num=#{m_num}
+		select * from trip where m_num=#{m_num} and del='n'
 	</select>
 	<delete id="alertTp" parameterType="integer">
 		delete from alert where ale_num=#{ale_num}
 	</delete>
 	<delete id="alertCs" parameterType="integer">
+		delete from alert where ale_num=#{ale_num}
+	</delete>
+	<delete id="alertTr" parameterType="integer">
 		delete from alert where ale_num=#{ale_num}
 	</delete>
 </mapper>

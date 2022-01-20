@@ -46,10 +46,10 @@
 	}
 	/* 비밀번호 일치 여부 & 중복체크 여부 검사 */
 	function chk() {
-		if (frm.pass.value != frm.pass2.value) {
+		if (frm.m_pass.value != frm.m_pass2.value) {
 			alert("암호와 암호 확인이 다릅니다");
-			frm.pass2.focus();
-			frm.pass2.value = "";
+			frm.m_pass2.focus();
+			frm.m_pass2.value = "";
 			return false;
 		}
 		if (frm.nickchk.value == "unChk") {
@@ -98,7 +98,7 @@
 			 if(data == 1) {
                 $('#nickChk_result').html("현재 닉네임입니다");
                 $('#nickChk_result').css("color","blue");
-                frm.nickchk.value="unChk";
+                frm.nickchk.value="chk";
              } else if(data == 0) {
                 $('#nickChk_result').html("사용 가능한 닉네임입니다");
                 $('#nickChk_result').css("color","blue");
@@ -133,7 +133,7 @@
  		 	if(data == 1) {
                 $('#emailChk_result').html("현재 이메일입니다");
                 $('#emailChk_result').css("color","blue");
-                frm.emailchk.value="unChk";
+                frm.emailchk.value="chk";
             } else if(data == 0) {
             	$('#emailChk_result').html("사용 가능한 이메일입니다");
              	$('#emailChk_result').css("color","blue");
@@ -212,7 +212,7 @@
 					<input type="password" name="m_pass" class="data" placeholder="Password" required="required">
 				</div>
 				<div>
-					<input type="password" name="m_pass2" class="data" placeholder="Password Confirm" required="required" onchange="passChk()">
+					<input type="password" name="m_pass2" class="data" placeholder="Password Confirm" required="required"  onkeyup="passChk()">
 					<div id="same"></div>
 				</div>
 				<div>

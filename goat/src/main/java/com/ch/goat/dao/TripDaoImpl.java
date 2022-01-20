@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ch.goat.model.Alert;
 import com.ch.goat.model.Member;
 import com.ch.goat.model.Trip;
 import com.ch.goat.model.TripLike;
@@ -93,6 +94,18 @@ public class TripDaoImpl implements TripDao {
 
 	public List<Trip> hotLike(Trip trip) {
 		return sst.selectList("tripns.hotLike", trip);
+	}
+
+	public String getTitle(int num) {
+		return sst.selectOne("tripns.getTitle", num);
+	}
+
+	public void trAlert(Alert ale) {
+		sst.insert("tripns.trAlert", ale);
+	}
+
+	public List<Alert> alertCon(int m_num) {
+		return sst.selectList("tripns.alertCon", m_num);
 	}
 	
 }

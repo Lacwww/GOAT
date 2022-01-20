@@ -2,7 +2,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ include file="../tool.jsp" %>
 <!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>noHeightLayout</title></head>
+<title>GOAT</title></head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div class="container" style="width: 100%;">
 		<tiles:insertAttribute name="body"/>
