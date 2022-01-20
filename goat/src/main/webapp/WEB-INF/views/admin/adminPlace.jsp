@@ -24,7 +24,7 @@ a {
 }
 </style>
 <script type="text/javascript">
-	var url="adminPlace.do?pageNum=1";
+	var url="adminPlace.do?";
 	function opn(place_num) {
 		 window.open('/goat/place/prevDetailView.do?place_num='+place_num,"","");
 	}
@@ -37,32 +37,36 @@ a {
 		url = cate;
 		location.href=url;
 	}
-	
+	window.onload = function() {
+		document.querySelectorAll('option').forEach(function(element) {
+			var name = element.innerText;
+			var cate = '${cate}';
+			if ( (cate != null && cate != '') && name == cate ) {
+				element.setAttribute('selected', true);
+			} 
+		})
+	}
 </script>
 </head>
 <body>
 	<br><br>
 	<div style="width:100%;">
 		<h2 style="display: inline;">
-			<a href="adminPlace.do?pageNum=1">플레이스 목록</a>
+			<a href="adminPlace.do">플레이스 목록</a>
 		</h2>
 		<button class="btn pull-right" style="height: 30px;" onclick="location.href='admin.do'">돌아가기</button>
 	</div>
 	<br>
 	<br>
 	<div style="clear: both;">
+		
 		<select name="카테고리명" onchange="onChange(this.value)">
-			<c:if test="${empty cate}">
-				<option value="">선택하세요</option>
-			</c:if>
-			<c:if test="${not empty cate }">
-				<option value="">${cate }</option>
-			</c:if>
-			<option value="adminPlace.do?pageNum=1">전체</option>
+			<option value="adminPlace.do">전체</option>
 			<c:forEach var="cate" items="${cateList }">
-				<option value="adminPlace.do?pageNum=1&cate=${cate.place_cate }">${cate.place_cate }</option>
+				<option value="adminPlace.do?cate=${cate.place_cate }">${cate.place_cate }</option>
 			</c:forEach>
 		</select>
+		
 		<button onclick="location.href='../place/adminInsertPlaceForm.do'">장소등록</button>
 		<form class="search">
 			<table>
@@ -108,27 +112,27 @@ a {
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${startPage > pagePerBlock }">
-					<li><a href="adminPlace.do?pageNum=1"> <span
+					<li><a href="adminPlace.do?cate=${cate }&search=${search }&pageNum=1"> <span
 							class="glyphicon glyphicon-backward"></span>
 					</a></li>
-					<li><a href="adminPlace.do?pageNum=${startPage-1}"> <span
+					<li><a href="adminPlace.do?cate=${cate }&search=${search }&pageNum=${startPage-1}"> <span
 							class="glyphicon glyphicon-triangle-left"></span>
 					</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
 					<c:if test="${currentPage==i }">
-						<li class="active"><a href="adminPlace.do?pageNum=${i}">${i}</a></li>
+						<li class="active"><a href="adminPlace.do?cate=${cate }&search=${search }&pageNum=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${currentPage!=i }">
-						<li><a href="adminPlace.do?pageNum=${i}">${i}</a></li>
+						<li><a href="adminPlace.do?cate=${cate }&search=${search }&pageNum=${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 것이 남아있는 경우에는 endPage보다 totalPage가 큰경우 -->
 				<c:if test="${endPage < totalPage }">
-					<li><a href="adminPlace.do?pageNum=${endPage+1}"> <span
+					<li><a href="adminPlace.do?cate=${cate }&search=${search }&pageNum=${endPage+1}"> <span
 							class="glyphicon glyphicon-triangle-right"></span>
 					</a></li>
-					<li><a href="adminPlace.do?pageNum=${totalPage}"> <span
+					<li><a href="adminPlace.do?cate=${cate }&search=${search }&pageNum=${totalPage}"> <span
 							class="glyphicon glyphicon-forward"></span>
 					</a></li>
 				</c:if>
