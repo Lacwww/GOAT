@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
 import com.ch.goat.model.ScheduleDetail;
 import com.ch.goat.service.ScheduleService;
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 @Controller
 public class ScheduleController {
@@ -136,10 +138,112 @@ public class ScheduleController {
 		List<ScheduleDetail> list = ss.selectScd(sch_num); 
 		String place_area = ss.selectArea(list.get(0).getPlace_num());
 		
+		model.addAttribute("sch_num",sch_num);
 		model.addAttribute("place_area",place_area);
 		model.addAttribute("days",days);
 		model.addAttribute("sch",sch);
 		model.addAttribute("list",list);
 		return "schedule/schView";
+	}
+	@RequestMapping("schedule/updateSchForm")
+	public String updateSch(Model model,int sch_num, HttpSession session) {
+		Schedule sch = ss.selectSch(sch_num);
+		List<ScheduleDetail> list = ss.selectScd(sch_num); 
+		String place_area = ss.selectArea(list.get(0).getPlace_num());
+		List<Place> plist = ss.placeList(sch_num);
+		String[] t = { "장소명", "테마" };
+		
+		String[] places_num = new String[list.size()];
+		String places_numS="";
+		for(int i=0; i<list.size(); i++	) {
+			places_num[i] = Integer.toString(list.get(i).getPlace_num());
+			if(i < list.size()-1) {
+				places_numS += places_num[i]+",";
+			}else {
+				places_numS += places_num[i];
+			}
+		}
+		System.out.println(places_numS);
+		model.addAttribute("places_numS",places_numS);
+		model.addAttribute("sch_num",sch_num);
+		model.addAttribute("t", t);
+		model.addAttribute("place_area", place_area);
+		model.addAttribute("sch",sch);
+		model.addAttribute("list",list);
+		model.addAttribute("plist",plist);
+		return "schedule/updateSchForm";
+	}
+	@RequestMapping("schedule/updateSchDetail")
+	public String updateSchDetail(Model model, Place place, String id, String s_date, String e_date,
+			String place_area, int sch_num) {
+		// place PK int로 형변환
+		String[] ids = id.split(",");
+		int[] place_num = new int[ids.length];
+		
+		for(int i=0; i<place_num.length; i++) {
+			System.out.println("place_num "+i+"번째 : "+place_num[i]);
+		}
+		
+		for (int i = 0; i < ids.length; i++) {
+			place_num[i] = Integer.parseInt(ids[i]);
+		}
+		List<Place> places = new ArrayList<Place>();
+		for (int i = 0; i < place_num.length; i++) {
+			place = ss.selectP(place_num[i]);
+			places.add(place);
+		}
+		int days = ss.days(s_date, e_date);
+		model.addAttribute("sch_num",sch_num);
+		model.addAttribute("days", days);
+		model.addAttribute("size", places.size());
+		model.addAttribute("place_area", place_area);
+		model.addAttribute("places", places);
+		model.addAttribute("s_date", s_date);
+		model.addAttribute("e_date", e_date);
+		return "schedule/updateSchDetail";
+	}
+	@RequestMapping("schedule/updateSch")
+	public String updateSch(Model model, String result_day, int days, HttpSession session, Date s_date, Date e_date,
+			String sch_name, int sch_num) {
+		int m_num = (Integer) session.getAttribute("m_num");
+		Schedule sch = new Schedule();
+		ScheduleDetail scd = new ScheduleDetail();
+		sch.setS_date(s_date);
+		sch.setE_date(e_date);
+		sch.setM_num(m_num);
+		sch.setSch_name(sch_name);
+		sch.setSch_num(sch_num);
+		System.out.println(sch_num);
+		int results=ss.updateSch(sch);
+		// 알람
+		ss.schAlert(sch);
+		List<Alert> alert = ss.alertCon(m_num);
+		session.removeAttribute("alert");
+		session.setAttribute("alert", alert);
+		
+		
+		List<String> list = new ArrayList<String>();
+		String[] result = result_day.split(",day");
+		for (int i = 0; i < result.length; i++) {
+			String[] arr = result[i].split(",");
+			for (String s : arr) {
+				if (s != null && s.length() > 0) {
+					list.add(s);
+				}
+			}
+			arr = list.toArray(new String[list.size()]);
+			scd.setDay(i+1);
+			scd.setSch_num(sch_num);
+			ss.deleteScd(sch_num);
+			//scd.set
+			for(int k=0; k<arr.length; k++) {
+				int pnum = Integer.parseInt(arr[k]);
+				scd.setPlace_num(pnum);
+				ss.insertDetail(scd);
+			}
+			list.clear();
+		}
+		model.addAttribute("sch_num",sch_num);
+		return "schedule/updateSch";
 	}
 }

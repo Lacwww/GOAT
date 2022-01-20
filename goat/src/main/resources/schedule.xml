@@ -57,4 +57,20 @@
 	<select id="selectArea" parameterType="integer" resultType="string">
 		select place_area from place where place_num =#{place_num}
 	</select>
+	<!-- 스케줄 수정 시 선택했던 플레이스 조회 -->
+ 	<select id="updateSchList" parameterType="integer" resultType="place">
+		select p.* from place p, schedule_detail d where p.place_num=d.place_num and sch_num = #{sch_num}
+	</select>
+	<!-- 스케줄 수정 -->
+	<update id="updateSch" parameterType="sc">
+		update schedule set sch_name=#{sch_name}, s_date=#{s_date}, e_date=#{e_date} where sch_num = #{sch_num} 
+	</update>
+	<!-- 스케줄 상세내역 수정 -->
+	<insert id="updateSchDetail" parameterType="scd">
+		insert into schedule_detail values((SELECT NVL(MAX(schd_num),0)+1 FROM schedule_detail),#{day},'자동차',#{sch_num},#{place_num})
+	</insert>
+	<!-- 스케줄 상세내역 삭제 -->
+<!-- 	<delete id="deleteScd" parameterType="integer">
+		delete from schedule_detail where sch_num = #{sch_num}
+	</delete> -->
 </mapper>

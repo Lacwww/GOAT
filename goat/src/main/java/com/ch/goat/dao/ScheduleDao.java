@@ -39,5 +39,12 @@ public interface ScheduleDao {
 
 	String selectArea(int place_num);
 
+	List<Place> placeList(int sch_num);
+
+	int updateSch(Schedule sch);
+
+	void deleteScd(int sch_num);
+
+
 }
   

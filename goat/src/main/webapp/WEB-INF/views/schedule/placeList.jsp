@@ -25,7 +25,6 @@
 		$('#Ppick>tbody').append("<tr id='tr"+num+"'><td><span onclick='del("+num+")' class='glyphicon glyphicon-remove'></span>"+
 			"<img alt='' src='"+src+"' id='p_image' style='align : center;'></td><td>"
 				+name+"</td><td>"+addr+"</td><td>"+tag+"</td></tr>");
-		$('#pList'+num).hide();
 		
 		/* 지도에 표시 & 이동 */
 		// 주소-좌표 변환 객체를 생성합니다
@@ -72,7 +71,7 @@
  			var index = id.indexOf(num);
 			setMarkers(null); 
 			$('#tr'+num).remove();
-			$('#pList'+num).show();
+			alert(index);
 			id.splice(index,1);
 			frm.id.value=id;
 				}				
@@ -83,6 +82,11 @@
 		$('#MoaModal .modal-content').load("prevDetailView.do?place_num=" + place);
 		$('#MoaModal').modal();
 	}
+ 	function show(cate) {
+		$('.place_box').hide();
+		$('#'+cate).show();
+	}
+ 	
 </script>
 <style type="text/css">
 	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
@@ -90,6 +94,7 @@
 	#pimage { width: 160px; height: 140px; float: left; position: relative;}
 	#plist { margin: 10px;} 
 	#p_image{ width: 150px; height: 150px;}
+	.cate_select { float: left;}
 </style> 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -97,28 +102,85 @@
 <body> 
 <input type="hidden" name="place_area" value="${place.place_area }">
 <div class="p_container" id="p_list" style="margin-top: 20px;">
+	<div>
+		<div class="cate_select" onclick="show('tour')">
+			관광지
+		</div>
+		<div class="cate_select" onclick="show('food')">
+			식당
+		</div>
+		<div onclick="show('rest')">
+			숙소
+		</div>
+	</div>
 	<c:if test="${empty plist }">
 		<div id="pList">
 			플레이스 데이터를 준비중입니다.
 		</div>
 	</c:if>
-	<c:if test="${not empty plist }">
-		<c:forEach var="p" items="${plist }">
-			 <div id="pList${p.place_num }">
-			 	<div id="pimage">
-			 		<img alt="" src="${p.place_photo }" class="p_image" id="p_image${p.place_num }">
-			 	</div>
-			 	<div id="pdesc" style="height: 140px;">
-			 	 	<div style="width: 100%;"><span style="font-weight: bold;" id="p_name${p.place_num }">${p.place_name }</span>
-			 	 		<span class="glyphicon glyphicon-plus" id="icon" onclick="pick(${p.place_num})"></span>
-			 	 		<img alt="자세히 보기" src="${path }/resources/images/info.png" width="20px;" height="20px;"
-			 	 			onclick="modal(${p.place_num})"></div><br>
-			 	 	<span>주소</span><br><span class="p_addr" id="p_addr${p.place_num }">${p.place_addr }</span><br>
-			 	 	<span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span>
-			 	 </div>
-			 </div>
-		</c:forEach>
-	</c:if>
+	<div class="place_box" id="tour">
+		<c:if test="${not empty plist }">
+			<c:forEach var="p" items="${plist }">
+			<c:if test="${p.place_cate=='관광지' }">
+				 <div id="pList${p.place_num }">
+				 	<div id="pimage">
+				 		<img alt="" src="${p.place_photo }" class="p_image" id="p_image${p.place_num }">
+				 	</div>
+				 	<div id="pdesc" style="height: 140px;">
+				 	 	<div style="width: 100%;"><span style="font-weight: bold;" id="p_name${p.place_num }">${p.place_name }</span>
+				 	 		<span class="glyphicon glyphicon-plus" id="icon" onclick="pick(${p.place_num})"></span>
+				 	 		<img alt="자세히 보기" src="${path }/resources/images/info.png" width="20px;" height="20px;"
+				 	 			onclick="modal(${p.place_num})"></div><br>
+				 	 	<span>주소</span><br><span class="p_addr" id="p_addr${p.place_num }">${p.place_addr }</span><br>
+				 	 	<span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span>
+				 	 </div>
+				 </div>
+			</c:if>
+			</c:forEach>
+		</c:if>
+	</div>
+	<div class="place_box" id="food" style="display: none;">
+		<c:if test="${not empty plist }">
+			<c:forEach var="p" items="${plist }">
+			<c:if test="${p.place_cate=='음식점' }">
+				 <div id="pList${p.place_num }">
+				 	<div id="pimage">
+				 		<img alt="" src="${p.place_photo }" class="p_image" id="p_image${p.place_num }">
+				 	</div>
+				 	<div id="pdesc" style="height: 140px;">
+				 	 	<div style="width: 100%;"><span style="font-weight: bold;" id="p_name${p.place_num }">${p.place_name }</span>
+				 	 		<span class="glyphicon glyphicon-plus" id="icon" onclick="pick(${p.place_num})"></span>
+				 	 		<img alt="자세히 보기" src="${path }/resources/images/info.png" width="20px;" height="20px;"
+				 	 			onclick="modal(${p.place_num})"></div><br>
+				 	 	<span>주소</span><br><span class="p_addr" id="p_addr${p.place_num }">${p.place_addr }</span><br>
+				 	 	<span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span>
+				 	 </div>
+				 </div>
+			</c:if>
+			</c:forEach>
+		</c:if>
+	</div>
+	<div class="place_box" id="rest" style="display: none;">
+		<c:if test="${not empty plist }">
+			<c:forEach var="p" items="${plist }">
+			<c:if test="${p.place_cate=='숙소' }">
+				 <div id="pList${p.place_num }">
+				 	<div id="pimage">
+				 		<img alt="" src="${p.place_photo }" class="p_image" id="p_image${p.place_num }">
+				 	</div>
+				 	<div id="pdesc" style="height: 140px;">
+				 	 	<div style="width: 100%;"><span style="font-weight: bold;" id="p_name${p.place_num }">${p.place_name }</span>
+				 	 		<span class="glyphicon glyphicon-plus" id="icon" onclick="pick(${p.place_num})"></span>
+				 	 		<img alt="자세히 보기" src="${path }/resources/images/info.png" width="20px;" height="20px;"
+				 	 			onclick="modal(${p.place_num})"></div><br>
+				 	 	<span>주소</span><br><span class="p_addr" id="p_addr${p.place_num }">${p.place_addr }</span><br>
+				 	 	<span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span>
+				 	 </div>
+				 </div>
+			</c:if>
+			</c:forEach>
+		</c:if>
+	</div>
 	<!-- 플레이스 모달 -->
 	<div class="modal fade" id="MoaModal" tabindex="-1" role="dialog"
 		aria-labelledby="historyModalLabel" aria-hidden="true">
