@@ -126,10 +126,10 @@
 										</c:if>
 										<c:if test="${list.t_num!=0 && list.cs_num==0 && list.temp_num==0 && list.sch_num==0}">
 											<li role="presentation">
-												<c:if test="${list.t_like==1 }">
+												<c:if test="${list.t_like==1 && list.t_reply==0}">
 													<a role="menuitem" href="${path }/member/alertTr.do?ale_num=${list.ale_num}&t_num=${list.t_num}">${list.t_title }에 좋아요를 눌렀습니다 </a>
 												</c:if>
-												<c:if test="${list.t_reply==1 }">
+												<c:if test="${list.t_reply==1 && list.t_like==0}">
 													<a role="menuitem" href="${path }/member/alertTr.do?ale_num=${list.ale_num}&t_num=${list.t_num}">${list.t_title }에 댓글이 달렸습니다 </a>
 												</c:if>
 											</li>

@@ -255,16 +255,19 @@ public class TripController {
 		}else {
 			ts.insertTL(m_id, num); // 좋아요 추가
 			tripLikeImgSrc = "/goat/resources/tripPhoto/fullHeart.png";
-			Alert ale = new Alert();
-			int m_num = (Integer) session.getAttribute("m_num");
-			String t_tile = ts.getTitle(num);
-			ale.setT_num(num);
-			ale.setM_num(m_num);
-			ale.setT_title(t_tile);
-			ts.trAlert(ale);
-			List<Alert> alert = ts.alertCon(m_num);
-			session.removeAttribute("alert");
-			session.setAttribute("alert", alert);
+			int m_num = ts.getM_num(num);			
+			int m_num2 = (Integer) session.getAttribute("m_num");
+			if (m_num != m_num2) {
+				Alert ale = new Alert();			
+				String t_tile = ts.getTitle(num);
+				ale.setT_num(num);
+				ale.setM_num(m_num);
+				ale.setT_title(t_tile);
+				ts.trAlert(ale);
+				List<Alert> alert = ts.alertCon(m_num2);
+				session.removeAttribute("alert");
+				session.setAttribute("alert", alert);
+			}
 		}	
 		return tripLikeImgSrc;
 	}
