@@ -17,8 +17,11 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function updatePlace() {
-		if(${empty id}){
-			alert("로그인 후 이용해주세요");
+		if(${not empty admin}){
+			alert("관리자는 플레이스 건의를  할 수 없습니다.");
+			return false;
+		}else if(${empty id}){
+			alert("로그인 후 이용가능합니다");
 			return false;
 		}
 		var con = confirm("플레이스 건의를 하시겠습니까?");
@@ -27,7 +30,10 @@
 		}
 	};
 	function bookMarkChk(place_num) {
-		if(${empty id}){
+		if(${not empty admin}){
+			alert("관리자는 북마크를 할 수 없습니다.");
+			return false;
+		}else if(${empty id}){
 			alert("로그인 후 이용가능합니다");
 			return false;
 		}

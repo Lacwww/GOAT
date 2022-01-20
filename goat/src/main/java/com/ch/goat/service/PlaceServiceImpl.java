@@ -92,5 +92,8 @@ public class PlaceServiceImpl implements PlaceService{
 	public List<Alert> alertCon(int m_num) {
 		return pd.alertCon(m_num);
 	}
+	public int adminPlaceInsert(Place place) {
+		return pd.adminPlaceInsert(place);
+	}
 
 }

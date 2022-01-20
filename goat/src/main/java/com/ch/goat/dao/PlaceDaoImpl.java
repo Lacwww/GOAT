@@ -117,5 +117,8 @@ public class PlaceDaoImpl implements PlaceDao{
 	public List<Alert> alertCon(int m_num) {
 		return sst.selectList("placens.alertCon", m_num);
 	}
+	public int adminPlaceInsert(Place place) {
+		return sst.insert("placens.adminPlaceInsert",place);
+	}
 
 }

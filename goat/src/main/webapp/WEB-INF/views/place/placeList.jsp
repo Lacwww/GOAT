@@ -54,6 +54,17 @@
 	
 	
 	const map = new Map();
+	
+	function insertPlace() {
+		if(${not empty admin}){
+			alert("관리자는 플레이스 등록을 할 수 없습니다.");
+			return false;
+		}else if(${empty id}){
+			alert("로그인 후 이용가능합니다");
+			return false;
+		}
+		location.href='insertFormTempPlace.do';
+	}
 </script>
 </head>
 <body>
@@ -62,7 +73,7 @@
 		<h2 id="sch">플레이스 지역 선택</h2>
 		<h3 class="text-primary">어디로 가볼까요?</h3>
 		<div align="center"> 
-			<input type="button" class="btn" value="플레이스 등록" onclick="location.href='insertFormTempPlace.do'"> 
+			<input type="button" class="btn" value="플레이스 등록" onclick="insertPlace()"> 
 		</div>
 		<div class="container" align="center" style="margin-left: 1%;">
 			<c:forEach var="area" items="${list }">

@@ -60,6 +60,8 @@ public interface PlaceDao {
 
 	List<Alert> alertCon(int m_num);
 
+	int adminPlaceInsert(Place place);
+
 
 
 
