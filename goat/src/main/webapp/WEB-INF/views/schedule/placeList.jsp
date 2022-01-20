@@ -78,7 +78,7 @@
 	
  	/* 플레이스 상세정보 */
 	function modal(place) {
-		$('#MoaModal .modal-content').load("prevDetailView.do?place_num=" + place);
+		$('#MoaModal .modal-content').load("${path}/place/placeModal.do?place_num=" + place);
 		$('#MoaModal').modal();
 	}
  	function show(cate) {

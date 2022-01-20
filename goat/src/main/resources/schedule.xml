@@ -69,6 +69,10 @@
 	<insert id="updateSchDetail" parameterType="scd">
 		insert into schedule_detail values((SELECT NVL(MAX(schd_num),0)+1 FROM schedule_detail),#{day},'자동차',#{sch_num},#{place_num})
 	</insert>
+	<!-- 스케줄 삭제 -->
+ 	<delete id="deleteSch" parameterType="integer">
+		delete from schedule where sch_num = #{sch_num}
+	</delete>
 	<!-- 스케줄 상세내역 삭제 -->
  	<delete id="deleteScd" parameterType="integer">
 		delete from schedule_detail where sch_num = #{sch_num}

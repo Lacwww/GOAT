@@ -109,6 +109,12 @@
 		
 		window.open("https://map.kakao.com/link/from/"+place_name1+","+lat1+","+lng1+"/to/"+place_name2+","+lat2+","+lng2);
 	}
+	function del(sch_num) {
+		var con = confirm("정말 스케줄을 삭제하시겠습니까?");
+		if(con) {
+			location.href='deleteSch.do?sch_num=${sch_num}';
+		}else return false;
+	}
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -172,6 +178,7 @@
    <div id="btns">
 		<input type="button" name="SchList" value="스케줄 목록" onclick="location.href='${path}/member/scheduleList.do?m_num=${m_num }'">
    		<input type="button" value="수정" onclick="location.href='updateSchForm.do?sch_num=${sch_num}'">
+   		<input type="button" value="삭제" onclick="del(${sch_num})">
    </div>
 </div>
 </body>
