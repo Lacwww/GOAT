@@ -24,13 +24,20 @@ a {
 }
 </style>
 <script type="text/javascript">
+	var url="adminPlace.do?pageNum=1";
 	function opn(place_num) {
 		 window.open('/goat/place/prevDetailView.do?place_num='+place_num,"","");
 	}
-	function search() {
+	function searchFunc() {
+
 		var search = document.getElementById('search').value;
-		location.href("adminPlace.do?pageNum=1&search=search");
+		location.href= url + "&search=" + search+"&cate=${cate}";
 	}
+	function onChange(cate) {
+		url = cate;
+		location.href=url;
+	}
+	
 </script>
 </head>
 <body>
@@ -44,19 +51,25 @@ a {
 	<br>
 	<br>
 	<div style="clear: both;">
-		<select name="카테고리명" onchange="location.href=(this.value);">
-			<option value="">선택하세요</option>
+		<select name="카테고리명" onchange="onChange(this.value)">
+			<c:if test="${empty cate}">
+				<option value="">선택하세요</option>
+			</c:if>
+			<c:if test="${not empty cate }">
+				<option value="">${cate }</option>
+			</c:if>
 			<option value="adminPlace.do?pageNum=1">전체</option>
 			<c:forEach var="cate" items="${cateList }">
 				<option value="adminPlace.do?pageNum=1&cate=${cate.place_cate }">${cate.place_cate }</option>
 			</c:forEach>
 		</select>
-		<form class="search" action="adminPlace.do" onclick="search()">
+		<button onclick="location.href='../place/adminInsertPlace.do'" value="장소등록"></button>
+		<form class="search">
 			<table>
 				<tr>
 					<td><input type="text" placeholder="카페, 갈치, 전복..."
-						name="search" maxlength="100"></td>
-					<td><button type="submit" class="btn btn-success">검색</button></td>
+						id="search" maxlength="100"></td>
+					<td><input type="button" value="검색" onclick="searchFunc()" class="btn btn-success"></td>
 			</table>
 		</form>
 		
