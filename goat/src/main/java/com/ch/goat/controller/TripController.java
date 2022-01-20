@@ -212,6 +212,8 @@ public class TripController {
 		
 		if(m_id != null) {
 			TripLike tripLike = ts.tLike(m_id, t_num);
+			int m_num = (Integer) session.getAttribute("m_num");
+			model.addAttribute("m_num", m_num);
 			if(tripLike != null) {
 				tripLikeImgSrc = "/goat/resources/tripPhoto/fullHeart.png";
 				tripLikeCnt = ts.tlCnt(t_num);
@@ -223,7 +225,7 @@ public class TripController {
 			tripLikeImgSrc = "/goat/resources/tripPhoto/heart.png";
 			tripLikeCnt = ts.tlCnt(t_num);
 		}
-		int m_num = (Integer) session.getAttribute("m_num");
+		
 		String prevUrl = request.getHeader("Referer");
 		prevUrl = prevUrl.substring(27, 33);
 		model.addAttribute("tripLikeImgSrc",tripLikeImgSrc);
@@ -232,7 +234,6 @@ public class TripController {
 		model.addAttribute("trip", trip2);
 		model.addAttribute("search", search);
 		model.addAttribute("keyword", keyword);
-		model.addAttribute("m_num", m_num);
 		model.addAttribute("prevUrl", prevUrl);
 
 		return "trip/tripView";
