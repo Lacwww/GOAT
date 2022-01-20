@@ -221,7 +221,7 @@ td #lat, td #lng {
 				name="input_day${detail }" value="">
 		</c:forEach>
 		<input type="hidden" name="days" value="${days }">
-		<input type="text" name="result_day" id="result_day">
+		<input type="hidden" name="result_day" id="result_day">
 		<input type="hidden" name="s_date" value="${s_date }">
 		<input type="hidden" name="e_date" value="${e_date }">
 		<div id="wrapper">
