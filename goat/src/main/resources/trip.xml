@@ -120,4 +120,7 @@
 	<select id="alertCon" parameterType="integer" resultType="alert">
 		select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title, t_like, t_reply from alert where m_num=#{m_num}
 	</select>
+	<select id="getM_num" parameterType="integer" resultType="integer">
+		select m_num from trip where t_num=#{num}
+	</select>
 </mapper>

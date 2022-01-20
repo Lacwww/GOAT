@@ -71,15 +71,19 @@ public class TripReplyController {
 		tr.setM_num(m_num);
 
 		trs.insert(tr);
-		Alert ale = new Alert();
-		String t_tile = ts.getTitle(t_num);
-		ale.setT_num(t_num);
-		ale.setM_num(m_num);
-		ale.setT_title(t_tile);
-		trs.trAlert(ale);
-		List<Alert> alert = trs.alertCon(m_num);
-		session.removeAttribute("alert");
-		session.setAttribute("alert", alert);
+		
+		int m_num2 = ts.getM_num(t_num);
+		if(m_num != m_num2) {
+			Alert ale = new Alert();
+			String t_tile = ts.getTitle(t_num);
+			ale.setT_num(t_num);
+			ale.setM_num(m_num2);
+			ale.setT_title(t_tile);
+			trs.trAlert(ale);
+			List<Alert> alert = trs.alertCon(m_num);
+			session.removeAttribute("alert");
+			session.setAttribute("alert", alert);
+		}
 		
 	//  결과를 jsp로 보내지 않고 controller내에서 찾을 때 : redirect 또는 forward
 		return "redirect:/trip/tripReplyList.do?t_num="+tr.getT_num();

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function chk() {
-		var n = parseInt($num});
+		var n = parseInt(${num});
 		var cn = parseInt(frm.confirmNum.value);
 		if(n != cn) {
 			alert("인증번호가 일치하지 않습니다. 메일을 다시 확인해주세요.");

@@ -44,4 +44,6 @@ public interface TripDao {
 
 	List<Alert> alertCon(int m_num);
 
+	int getM_num(int num);
+
 }

@@ -228,8 +228,7 @@
 			    	<input type="hidden" name="nickchk" value="unChk">
 			    	<input type="hidden" name="emailchk" value="unChk">
 					<div>
-						<input type="text" name="m_id" id="m_id" placeholder="ID" required="required" autofocus="autofocus">
-						<input type="button" class="btn btn-info btn-sm" onclick="idChk()" value="중복체크">
+						<input type="text" name="m_id" id="m_id" placeholder="ID" required="required" autofocus="autofocus" onkeyup="idChk()">
 						<div id="idChk_result" class="err"></div>
 					</div>
 					<div>
@@ -240,13 +239,11 @@
 						<div id="same"></div>
 					</div>
 					<div>
-						<input type="text" name="m_nick" placeholder="Nickname" required="required">
-						<input type="button" class="btn btn-info btn-sm" onclick="nickChk()" value="중복체크">
+						<input type="text" name="m_nick" placeholder="Nickname" required="required" onkeyup="nickChk()">
 						<div id="nickChk_result" class="err"></div>
 					</div>
 					<div>
-						<input type="email" name="m_email" id="m_email" placeholder="Email" required="required">
-						<input type="button" class="btn btn-info btn-sm" onclick="emailChk()" value="중복체크">
+						<input type="email" name="m_email" id="m_email" placeholder="Email" required="required" onkeyup="emailChk()">
 						<div id="emailChk_result" class="err"></div>
 					</div>
 					<div>

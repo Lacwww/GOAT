@@ -69,5 +69,8 @@ public class TripServiceImpl implements TripService{
 	public List<Alert> alertCon(int m_num) {
 		return td.alertCon(m_num);
 	}
+	public int getM_num(int num) {
+		return td.getM_num(num);
+	}
 	
 }

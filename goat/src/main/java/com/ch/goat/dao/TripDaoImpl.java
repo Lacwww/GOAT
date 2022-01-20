@@ -107,5 +107,9 @@ public class TripDaoImpl implements TripDao {
 	public List<Alert> alertCon(int m_num) {
 		return sst.selectList("tripns.alertCon", m_num);
 	}
+
+	public int getM_num(int num) {
+		return sst.selectOne("tripns.getM_num", num);
+	}
 	
 }
