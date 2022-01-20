@@ -41,6 +41,56 @@ public class PlaceController {
 	@Autowired
 	private MemberService ms;
 	
+	@RequestMapping("place/adminUpdatePlace.do")
+	public String adminUpdatePlace(Place place, Model model, HttpSession session) throws IOException {
+		int result = 0;
+		
+		if(place.getPlace_addr().indexOf("제주시") > -1) {
+			place.setPlace_area("제주도");
+			place.setPlace_areadetail("제주시");
+		}else if(place.getPlace_addr().indexOf("서귀포시") > -1){
+			place.setPlace_area("제주도");
+			place.setPlace_areadetail("서귀포시");
+		}else {
+			place.setPlace_area("정보없음");
+			place.setPlace_areadetail("정보없음");
+		}			
+		
+		// 실제 파일명
+		String fileName1 = place.getFile().getOriginalFilename();
+		// 실제 파일 저장 경로
+		String real = session.getServletContext().getRealPath("/resources/p_images");
+		
+		if(fileName1.lastIndexOf(".") == -1) {
+			Place place1 = ps.selectPlace(place.getPlace_num());
+			String temp_photo = place1.getPlace_photo();
+			place.setPlace_photo(temp_photo);
+		}else {
+			// 파일명을 변경해야 할 때 : UUID 임의의 문자열로 변경 Mac은 파일명이 한글이면 깨짐			
+			UUID uuid = UUID.randomUUID();
+			String fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
+			String temp_photo = "/goat/resources/p_images/"+fileName;
+			// 파일 저장			
+			FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
+			fos.write(place.getFile().getBytes());
+			fos.close();
+			place.setPlace_photo(temp_photo);
+		}		
+		
+		result = ps.adminPlaceUpdate(place);
+		model.addAttribute("result", result);
+		return "place/adminUpdatePlace";
+	}
+	
+	@RequestMapping("place/adminUpdatePlaceForm")
+	public String adminUpdatePlaceForm(String place_num, Model model) {		
+		int num = Integer.parseInt(place_num);
+		Place place = ps.selectPlace(num);
+		
+		model.addAttribute("place", place);
+		return "place/adminUpdatePlaceForm";
+	}
+	
 	@RequestMapping("place/adminInsertPlace")
 	public String adminInserPlace(Model model, Place place, HttpSession session) throws IOException {
 		int result = 0;

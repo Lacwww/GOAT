@@ -98,7 +98,7 @@
 	<!-- 장소 추가 -->
 	<insert id="insertPlace" parameterType="tempplace">
 		<selectKey keyProperty="place_num" order="BEFORE" resultType="integer">
-			select nvl(count(*), 0) + 1 from place
+			select nvl(max(place_num), 0) + 1 from place
 		</selectKey>
 		insert into place values(#{place_num},#{temp_name},#{temp_cate},#{temp_addr}, #{temp_addrd},#{temp_photo},
 								#{lat},#{lng},sysdate,#{temp_content},#{temp_area},#{temp_tag},#{temp_areadetail})
@@ -108,7 +108,7 @@
 	<!-- 관리자 장소 등록 -->
 	<insert id="adminPlaceInsert" parameterType="place">
 		<selectKey keyProperty="place_num" order="BEFORE" resultType="integer">
-			select nvl(count(*), 0) + 1 from place
+			select nvl(max(place_num), 0) + 1 from place
 		</selectKey>
 		insert into place values(#{place_num},#{place_name},#{place_cate},#{place_addr}, #{place_addrd},#{place_photo},
 								#{lat},#{lng},sysdate,#{place_content},#{place_area},#{place_tag},#{place_areadetail})
@@ -175,6 +175,15 @@
 						lng = #{lng}, reg_date = #{reg_date}, place_content = #{temp_content},
 						place_area = #{temp_area}, place_tag = #{temp_tag}, place_areadetail = #{temp_areadetail}
 						where place_num = #{place_num}
+	</update>
+	
+	<!-- 관리자 장소 수정 -->
+	<update id="adminPlaceUpdate" parameterType="place">
+		update place set place_name = #{place_name}, place_cate = #{place_cate}, place_addr = #{place_addr},
+						place_addrd = #{place_addrd}, place_photo = #{place_photo}, lat = #{lat},
+						lng = #{lng}, reg_date = sysdate, place_content = #{place_content},
+						place_area = #{place_area}, place_tag = #{place_tag}, place_areadetail = #{place_areadetail}
+						where place_num = #{place_num}		
 	</update>
 	
 	<!-- 건의 사항 수정 -->
