@@ -22,14 +22,6 @@
 		<button onclick="location.href='admin.do'">돌아가기</button>
 		<div>
 			<table class="table table-hover table-striped">
-				<colgroup>
-					<col width="5%" />
-					<col/>
-					<col/>
-					<col/>
-					<col/>
-					<col/>
-					<col/>
 				<thead>
 					<tr>
 						<th width="50">번호</th>
@@ -63,27 +55,27 @@
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${startPage > pagePerBlock }">
-					<li><a href="adminPlace.do?pageNum=1"> <span
+					<li><a href="adminTempPlace.do?pageNum=1"> <span
 							class="glyphicon glyphicon-backward"></span>
 					</a></li>
-					<li><a href="adminPlace.do?pageNum=${startPage-1}"> <span
+					<li><a href="adminTempPlace.do?pageNum=${startPage-1}"> <span
 							class="glyphicon glyphicon-triangle-left"></span>
 					</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
 					<c:if test="${currentPage==i }">
-						<li class="active"><a href="adminPlace.do?pageNum=${i}">${i}</a></li>
+						<li class="active"><a href="adminTempPlace.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${currentPage!=i }">
-						<li><a href="adminPlace.do?pageNum=${i}">${i}</a></li>
+						<li><a href="adminTempPlace.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 것이 남아있는 경우에는 endPage보다 totalPage가 큰경우 -->
 				<c:if test="${endPage < totalPage }">
-					<li><a href="adminPlace.do?pageNum=${endPage+1}"> <span
+					<li><a href="adminTempPlace.do?pageNum=${endPage+1}"> <span
 							class="glyphicon glyphicon-triangle-right"></span>
 					</a></li>
-					<li><a href="adminPlace.do?pageNum=${totalPage}"> <span
+					<li><a href="adminTempPlace.do?pageNum=${totalPage}"> <span
 							class="glyphicon glyphicon-forward"></span>
 					</a></li>
 				</c:if>

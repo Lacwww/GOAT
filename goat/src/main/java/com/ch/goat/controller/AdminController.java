@@ -2,6 +2,7 @@ package com.ch.goat.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,13 +30,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("admin/adminPlace")
-	public String adminPlace(String pageNum, String cate, String search, Model model) {
+	public String adminPlace(String pageNum, String cate, String search, HttpServletRequest request, Model model) {
 		int rowPerPage = 20;
 		int pagePerBlock = 5;
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
 		if (cate == null || cate.equals("")) cate="null";
 		if (search == null || search.equals("")) search="null"; 
 		int currentPage = Integer.parseInt(pageNum);
+		String prevUrl = request.getHeader("Referer");
+		prevUrl = prevUrl.substring(27);
 
 		int total = as.getTotalPlace(cate, search);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
@@ -57,7 +60,9 @@ public class AdminController {
 		model.addAttribute("list", list);
 		model.addAttribute("cateList", cateList);
 		model.addAttribute("cate", cate);
-
+		model.addAttribute("prevUrl", prevUrl);
+		model.addAttribute("search", search);
+		
 		return "admin/adminPlace";
 	}
 	
@@ -111,6 +116,7 @@ public class AdminController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pagePerBlock", pagePerBlock);
 		model.addAttribute("list", list);
+
 		return "admin/adminMember";
 	}
 
