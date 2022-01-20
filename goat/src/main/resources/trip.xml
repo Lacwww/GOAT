@@ -112,7 +112,7 @@
 	</select>
 	
 	<select id="getTitle" parameterType="integer" resultType="string">
-		select t_title from trip where t_num=#{num};
+		select t_title from trip where t_num=#{num}
 	</select>
 	<insert id="trAlert" parameterType="alert">
 		insert into alert (ale_num, t_num, t_title, t_like, m_num) values ((SELECT NVL(MAX(ale_num),0)+1 FROM alert), #{t_num},#{t_title},1,#{m_num})
