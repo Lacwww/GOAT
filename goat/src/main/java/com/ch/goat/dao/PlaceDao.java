@@ -62,6 +62,8 @@ public interface PlaceDao {
 
 	int adminPlaceInsert(Place place);
 
+	int adminPlaceUpdate(Place place);
+
 
 
 

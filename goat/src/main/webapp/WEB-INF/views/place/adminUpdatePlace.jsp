@@ -21,13 +21,13 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("장소 등록 성공");
+		alert("장소 수정 성공");
 		location.href="/goat/admin/adminPlace.do";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("장소 등록 실패");
+		alert("장소 수정 실패");
 		location.href="/goat/admin/adminPlace.do";
 	</script>
 </c:if>

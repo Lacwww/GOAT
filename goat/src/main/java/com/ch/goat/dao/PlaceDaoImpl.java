@@ -120,5 +120,8 @@ public class PlaceDaoImpl implements PlaceDao{
 	public int adminPlaceInsert(Place place) {
 		return sst.insert("placens.adminPlaceInsert",place);
 	}
+	public int adminPlaceUpdate(Place place) {
+		return sst.update("placens.adminPlaceUpdate",place);
+	}
 
 }

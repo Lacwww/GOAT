@@ -120,6 +120,15 @@
 	    });
 	});
 
+	function update(num) {
+		var con = confirm("수정하시겠습니까?");
+		
+		if(con){
+			location.href="adminUpdatePlaceForm.do?place_num="+num;
+		}else{
+			
+		}
+	}
 </script>
 </head>
 <body>
@@ -203,7 +212,13 @@
 			</table>
 		</form>
 	</div>
-	<div align="center"><input class="btn bgcolor" type="button" value="뒤로가기" onclick="history.back();"></div>
+	<div align="center">
+		<input class="btn bgcolor" type="button" value="뒤로가기" onclick="history.back();">
+		<c:if test="${not empty admin }">
+			<input class="btn btn-danger" type="button" value="수정" onclick="update(${place.place_num})">
+		</c:if>
+	</div>
+	
 	<hr style="margin-left: 10%; width: 80%;">
 </body>
 </html>

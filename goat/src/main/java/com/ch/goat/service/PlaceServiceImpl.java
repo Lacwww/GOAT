@@ -95,5 +95,8 @@ public class PlaceServiceImpl implements PlaceService{
 	public int adminPlaceInsert(Place place) {
 		return pd.adminPlaceInsert(place);
 	}
+	public int adminPlaceUpdate(Place place) {
+		return pd.adminPlaceUpdate(place);
+	}
 
 }

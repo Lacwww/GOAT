@@ -62,6 +62,8 @@ public interface PlaceService {
 
 	int adminPlaceInsert(Place place);
 
+	int adminPlaceUpdate(Place place);
+
 
 
 
