@@ -72,7 +72,13 @@
 	}
 	
 	function chk() {
-		if($('#start').val()==null || $('#start').val()=="" || $('#end').val()==null || $('#end').val()=="") {
+		if(${empty id}) { 
+			alert("로그인 후 이용해주세요 ");
+			location.href="${path}/member/loginForm.do";
+			return false;
+		}
+		
+		if($('#sdate').val()==null || $('#sdate').val()=="" || $('#edate').val()==null || $('#edate').val()=="") {
 			alert("여행 일정을 선택해 주세요");
 			return false;
 		}

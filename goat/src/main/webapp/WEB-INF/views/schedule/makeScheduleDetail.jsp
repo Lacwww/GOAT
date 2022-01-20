@@ -129,12 +129,6 @@ td #lat, td #lng {
 	// submit 체크
 	function chk() {
 		var count = $('.list>div:visible').length;
-		if(${empty id}) {
-			alert("로그인 후 이용해주세요 ");
-			location.href="${path}/member/loginForm.do";
-			return false;
-		}
-		
 		if(count != 0) {
 			alert("일정이 선택되지 않은 플레이스가 남아있습니다.\r\n일정을 선택해 주세요");
 			return false;

@@ -86,4 +86,8 @@ public class ScheduleServiceImpl implements ScheduleService{
 		sd.deleteScd(sch_num);
 	}
 
+	public void deleteSch(int sch_num) {
+		sd.deleteSch(sch_num);
+	}
+
 }

@@ -235,7 +235,6 @@ public class ScheduleController {
 		List<String> list = new ArrayList<String>();
 		String[] result = result_day.split(",day");
 		for (int i = 0; i < result.length; i++) {
-			System.out.println("result : "+result[i]);
 			String[] arr = result[i].split(",");
 			for (String s : arr) {
 				if (s != null && s.length() > 0) {
@@ -255,5 +254,14 @@ public class ScheduleController {
 		model.addAttribute("sch_num",sch_num);
 		model.addAttribute("m_num",m_num);
 		return "schedule/updateSch";
+	}
+	
+	@RequestMapping("schedule/deleteSch")
+	public String deleteSch(Model model, int sch_num, HttpSession session) {
+		int m_num = (Integer) session.getAttribute("m_num");
+		ss.deleteScd(sch_num);
+		ss.deleteSch(sch_num);
+		model.addAttribute("m_num",m_num);
+		return "schedule/deleteSch";
 	}
 }
