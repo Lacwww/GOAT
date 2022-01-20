@@ -19,9 +19,9 @@
 			alert(id+"1");
 		} else {
 			for(var i=0; i<places_num.length; i++) {
-				id.push(places_num[i]);
+				id.push(Number(places_num[i]));
+				frm.id.value=id;
 			}
-			frm.id.value=id;
 		}
 	}
 
@@ -105,16 +105,15 @@
 	<div id="wrapper">
 		<div id="outer" style="width: 65%; float: left;">
 		<form action="updateSchDetail.do" name="frm" method="post" onsubmit="return chk();"> 
-			<input type="text" name="id" value="">
+			<input type="hidden" name="id" value="">
 			<input type="hidden" name="sch_num" value="${sch_num }">
-			<input type="hidden" id="id" name="id" value="">
 			<input type="hidden" name="place_area" value="${place_area }">
 			<div style="width: 100%;">
 				<img alt="calendar" src="${path }/resources/images/calendar.png"
 					 style="width: 60px; height: 70px; padding-bottom : 5px;">
 				<input type="text" name="s_date" id="start" class="date" value="${sch.s_date }">
 				<span class="glyphicon glyphicon-minus" style="padding-left: 15px; padding-right: 15px;">
-				</span><input type="text" name="e_date" id="end" class="date" value="${sch.s_date }">
+				</span><input type="text" name="e_date" id="end" class="date" value="${sch.e_date }">
 
 				<!-- 플레이스 검색 -->
 				<div style="float: left;">

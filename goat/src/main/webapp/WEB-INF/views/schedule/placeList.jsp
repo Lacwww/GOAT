@@ -7,7 +7,6 @@
 <script type="text/javascript">
 	// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수
 	var markers = [];
-	var id = [];
 	function setMarkers(map) {
 	    for (var i = 0; i < markers.length; i++) {
 	        markers[i].setMap(map);
@@ -17,6 +16,7 @@
 	function pick(num) {
 		/* 선택 목록에 테이블 추가하기 */
 		id.push(num);
+		$('#pList'+num).hide();
 		frm.id.value=id;
 		var src = $('#p_image'+num).attr("src");
 		var name = $('#p_name'+num).text();
@@ -71,7 +71,6 @@
  			var index = id.indexOf(num);
 			setMarkers(null); 
 			$('#tr'+num).remove();
-			alert(index);
 			id.splice(index,1);
 			frm.id.value=id;
 				}				

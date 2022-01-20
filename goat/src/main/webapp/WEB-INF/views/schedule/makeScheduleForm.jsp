@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+	var id = [];
 	$(function() {
 		$("#start").datepicker({
 			showOn : "both",
@@ -27,7 +28,7 @@
 			buttonImage : "${path}/resources/images/date.png",
 			buttonImageOnly : "true",
 			dateFormat : "yy-mm-dd",
-			minDate: 0,
+			minDate: new Date($('#start').val()),
 			buttonText : "여행 종료날짜",
 			onClose : function(selectDate) {
 				$("#start").datepicker("option","maxDate",selectDate)

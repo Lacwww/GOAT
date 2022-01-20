@@ -126,11 +126,13 @@ public class ScheduleController {
 			}
 			list.clear();
 		}
+		model.addAttribute("m_num",m_num);
 		model.addAttribute("sch_num",sch_num);
 		return "schedule/insertSchedule";
 	}
 	@RequestMapping("schedule/schView")
 	public String schView(Model model, HttpSession session,int sch_num ) {
+		int m_num = (Integer) session.getAttribute("m_num");
 		Schedule sch = ss.selectSch(sch_num);
 		String s_date = DateFormatUtils.format(sch.getS_date(), "yyyy-MM-dd");
 		String e_date = DateFormatUtils.format(sch.getE_date(), "yyyy-MM-dd");
@@ -143,6 +145,8 @@ public class ScheduleController {
 		model.addAttribute("days",days);
 		model.addAttribute("sch",sch);
 		model.addAttribute("list",list);
+		model.addAttribute("m_num",m_num);
+
 		return "schedule/schView";
 	}
 	@RequestMapping("schedule/updateSchForm")
@@ -163,7 +167,6 @@ public class ScheduleController {
 				places_numS += places_num[i];
 			}
 		}
-		System.out.println(places_numS);
 		model.addAttribute("places_numS",places_numS);
 		model.addAttribute("sch_num",sch_num);
 		model.addAttribute("t", t);
@@ -180,10 +183,6 @@ public class ScheduleController {
 		String[] ids = id.split(",");
 		int[] place_num = new int[ids.length];
 		
-		for(int i=0; i<place_num.length; i++) {
-			System.out.println("place_num "+i+"번째 : "+place_num[i]);
-		}
-		
 		for (int i = 0; i < ids.length; i++) {
 			place_num[i] = Integer.parseInt(ids[i]);
 		}
@@ -192,7 +191,10 @@ public class ScheduleController {
 			place = ss.selectP(place_num[i]);
 			places.add(place);
 		}
+		Schedule sch = ss.selectSch(sch_num);
+		
 		int days = ss.days(s_date, e_date);
+		model.addAttribute("sch",sch);
 		model.addAttribute("sch_num",sch_num);
 		model.addAttribute("days", days);
 		model.addAttribute("size", places.size());
@@ -207,13 +209,16 @@ public class ScheduleController {
 			String sch_name, int sch_num) {
 		int m_num = (Integer) session.getAttribute("m_num");
 		Schedule sch = new Schedule();
-		ScheduleDetail scd = new ScheduleDetail();
 		sch.setS_date(s_date);
 		sch.setE_date(e_date);
 		sch.setM_num(m_num);
 		sch.setSch_name(sch_name);
 		sch.setSch_num(sch_num);
-		System.out.println(sch_num);
+	
+		ss.deleteScd(sch_num);
+		ScheduleDetail scd = new ScheduleDetail();
+		scd.setSch_num(sch_num);
+		
 		int results=ss.updateSch(sch);
 		// 알람
 		ss.schAlert(sch);
@@ -222,9 +227,12 @@ public class ScheduleController {
 		session.setAttribute("alert", alert);
 		
 		
+		
+
 		List<String> list = new ArrayList<String>();
 		String[] result = result_day.split(",day");
 		for (int i = 0; i < result.length; i++) {
+			System.out.println("result : "+result[i]);
 			String[] arr = result[i].split(",");
 			for (String s : arr) {
 				if (s != null && s.length() > 0) {
@@ -233,8 +241,6 @@ public class ScheduleController {
 			}
 			arr = list.toArray(new String[list.size()]);
 			scd.setDay(i+1);
-			scd.setSch_num(sch_num);
-			ss.deleteScd(sch_num);
 			//scd.set
 			for(int k=0; k<arr.length; k++) {
 				int pnum = Integer.parseInt(arr[k]);
@@ -244,6 +250,7 @@ public class ScheduleController {
 			list.clear();
 		}
 		model.addAttribute("sch_num",sch_num);
+		model.addAttribute("m_num",m_num);
 		return "schedule/updateSch";
 	}
 }

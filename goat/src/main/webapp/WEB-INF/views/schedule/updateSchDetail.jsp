@@ -133,7 +133,7 @@ td #lat, td #lng {
 			alert("로그인 후 이용해주세요 ");
 			location.href="${path}/member/loginForm.do";
 			return false;
-		}
+		} 
 		
 		if(count != 0) {
 			alert("일정이 선택되지 않은 플레이스가 남아있습니다.\r\n일정을 선택해 주세요");
@@ -211,7 +211,7 @@ td #lat, td #lng {
 		var p = {
 		        content: '<div style="width:150px;text-align:center;padding:6px 0;">${i.place_name}</div>', 
 		        latlng: new kakao.maps.LatLng(${i.lat}, ${i.lng})
-			}; 
+			};
 		positions.push(p);
 	</script>
 </c:forEach>
@@ -226,14 +226,14 @@ td #lat, td #lng {
 			<input type="hidden" id="input_day${detail }"
 				name="input_day${detail }" value="">
 		</c:forEach>
-		<input type="hidden" name="sch_name" value="${sch_name }">
+		<input type="hidden" name="sch_num" value="${sch_num }">
 		<input type="hidden" name="days" value="${days }">
 		<input type="hidden" name="result_day" id="result_day">
 		<input type="hidden" name="s_date" value="${s_date }">
 		<input type="hidden" name="e_date" value="${e_date }">
 		<div id="wrapper">
 			<div>
-				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요">
+				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요" value="${sch.sch_name }">
 				<p>${s_date } ~ ${e_date }
 			</div>
 			<!-- 지도 -->
