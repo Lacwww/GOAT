@@ -53,6 +53,9 @@
 	<definition name="schedule/selectModal" extends="noHeightLayout">
     	<put-attribute name="body"   value="/WEB-INF/views/schedule/selectModal.jsp" /> 
    </definition>
+	<definition name="schedule/NewFile" extends="noHeightLayout">
+    	<put-attribute name="body"   value="/WEB-INF/views/schedule/NewFile.jsp" /> 
+   </definition>
 	<!-- 폴더{1}/프로그램{2}는 jsp  -->
 	<definition name="*/*" extends="tilesbase">
 		<put-attribute name="body"	value="/WEB-INF/views/{1}/{2}.jsp" />
