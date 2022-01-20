@@ -22,7 +22,8 @@
 		var name = $('#p_name'+num).text();
 		var addr = $('#p_addr'+num).text();
 		var tag = $('#p_tag'+num).text();
-		$('#Ppick>tbody').append("<tr id='tr"+num+"'><td><span onclick='del("+num+")' class='glyphicon glyphicon-remove'></span>"+
+		$('#Ppick>tbody').append("<tr id='tr"+num+"'><td style='position:relative;' class='column1' align='center'><span onclick='del("+num+")'"
+		+"class='glyphicon glyphicon-remove' style='position : absolute; top:8%; left:5%;'></span>"+
 			"<img alt='' src='"+src+"' id='p_image' style='align : center;'></td><td>"
 				+name+"</td><td>"+addr+"</td><td>"+tag+"</td></tr>");
 		
@@ -81,10 +82,6 @@
 		$('#MoaModal .modal-content').load("${path}/place/placeModal.do?place_num=" + place);
 		$('#MoaModal').modal();
 	}
- 	function show(cate) {
-		$('.place_box').hide();
-		$('#'+cate).show();
-	}
  	
 </script>
 <style type="text/css">
@@ -93,25 +90,16 @@
 	#pimage { width: 160px; height: 140px; float: left; position: relative;}
 	#plist { margin: 10px;} 
 	#p_image{ width: 150px; height: 150px;}
-	.cate_select { float: left;}
+	.place_box { background: #EFFBFB;}
+
 </style> 
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body> 
 <input type="hidden" name="place_area" value="${place.place_area }">
-<div class="p_container" id="p_list" style="margin-top: 20px;">
-	<div>
-		<div class="cate_select" onclick="show('tour')">
-			관광지
-		</div>
-		<div class="cate_select" onclick="show('food')">
-			식당
-		</div>
-		<div onclick="show('rest')">
-			숙소
-		</div>
-	</div>
+<div class="p_container" id="p_list">
+	
 	<c:if test="${empty plist }">
 		<div id="pList">
 			플레이스 데이터를 준비중입니다.
@@ -121,7 +109,7 @@
 		<c:if test="${not empty plist }">
 			<c:forEach var="p" items="${plist }">
 			<c:if test="${p.place_cate=='관광지' }">
-				 <div id="pList${p.place_num }">
+				 <div id="pList${p.place_num }" class="pList">
 				 	<div id="pimage">
 				 		<img alt="" src="${p.place_photo }" class="p_image" id="p_image${p.place_num }">
 				 	</div>
@@ -131,7 +119,7 @@
 				 	 		<img alt="자세히 보기" src="${path }/resources/images/info.png" width="20px;" height="20px;"
 				 	 			onclick="modal(${p.place_num})"></div><br>
 				 	 	<span>주소</span><br><span class="p_addr" id="p_addr${p.place_num }">${p.place_addr }</span><br>
-				 	 	<span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span>
+				 	 	<div style="display: none;"><span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span></div>
 				 	 </div>
 				 </div>
 			</c:if>
@@ -142,7 +130,7 @@
 		<c:if test="${not empty plist }">
 			<c:forEach var="p" items="${plist }">
 			<c:if test="${p.place_cate=='음식점' }">
-				 <div id="pList${p.place_num }">
+				 <div id="pList${p.place_num }" class="pList">
 				 	<div id="pimage">
 				 		<img alt="" src="${p.place_photo }" class="p_image" id="p_image${p.place_num }">
 				 	</div>
@@ -152,7 +140,7 @@
 				 	 		<img alt="자세히 보기" src="${path }/resources/images/info.png" width="20px;" height="20px;"
 				 	 			onclick="modal(${p.place_num})"></div><br>
 				 	 	<span>주소</span><br><span class="p_addr" id="p_addr${p.place_num }">${p.place_addr }</span><br>
-				 	 	<span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span>
+				 	 	<div style="display: none;"><span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span></div>
 				 	 </div>
 				 </div>
 			</c:if>
@@ -163,7 +151,7 @@
 		<c:if test="${not empty plist }">
 			<c:forEach var="p" items="${plist }">
 			<c:if test="${p.place_cate=='숙소' }">
-				 <div id="pList${p.place_num }">
+				 <div id="pList${p.place_num }" class="pList">
 				 	<div id="pimage">
 				 		<img alt="" src="${p.place_photo }" class="p_image" id="p_image${p.place_num }">
 				 	</div>
@@ -173,7 +161,7 @@
 				 	 		<img alt="자세히 보기" src="${path }/resources/images/info.png" width="20px;" height="20px;"
 				 	 			onclick="modal(${p.place_num})"></div><br>
 				 	 	<span>주소</span><br><span class="p_addr" id="p_addr${p.place_num }">${p.place_addr }</span><br>
-				 	 	<span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span>
+				 	 	<div style="display: none;"><span>테마</span><br><span class="p_tag" id="p_tag${p.place_num }">${p.place_tag }</span></div>
 				 	 </div>
 				 </div>
 			</c:if>

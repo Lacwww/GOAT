@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../tool.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="../tool.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -98,56 +99,105 @@
 			return false;
 		}
 	}
+	
+ 	function show(cate) {
+		$('.place_box').hide();
+		$('#'+cate).show();
+	}
 </script>
 <style type="text/css">
-	div #map {text-align: center;}
-	input {	border-radius: 5px;}
-	.date { text-align: center;}
-	#list { margin-left: 3px; height: 65%;}
-	#wrapper {
-		width: 100%; height: 100%;; 
-	} 
+div #map {
+	text-align: center;
+}
+
+input {
+	border-radius: 5px;
+}
+
+.date {
+	text-align: center;
+}
+
+#list {
+	margin-left: 3px;
+	height: 65%;
+}
+
+#wrapper {
+	width: 100%;
+	height: 100%;;
+}
+
+.pList {
+	margin-bottom: 20px;
+}
+
+#pimage {
+	margin-bottom: 20px;
+	float: left;
+}
+
+.cate_select {
+	float: left;
+	height: 20px;
+	width: 50px;
+	text-decoration: underline; 
+	text-underline-position:under;
+	margin-right: 15%;
+	cursor: pointer;
+	font-size: 1.5rem;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h2 class="text text-primary" align="center">여행할 장소를 선택해주세요</h2>
+	<h2 class="text text-primary" align="center">여행할 장소를 선택해주세요</h2>
 	<!-- 여행 일자 선택 -->
 	<div id="wrapper">
-		<div id="outer" style="width: 65%; float: left;">
-		<form action="makeScheduleDetail.do" name="frm" method="post" onsubmit="return chk();"> 
-			<input type="hidden" id="id" name="id" value="">
-			<input type="hidden" name="place_area" value="${place_area }">
-			<div style="width: 100%;">
-				<img alt="calendar" src="${path }/resources/images/calendar.png"
-					 style="width: 60px; height: 70px; padding-bottom : 5px;">
-				<input type="text" name="s_date" id="sdate" class="date">
-				<span class="glyphicon glyphicon-minus" style="padding-left: 15px; padding-right: 15px;">
-				</span><input type="text" name="e_date" id="edate" class="date">
-
-				<!-- 플레이스 검색 -->
-				<div style="float: left;">
-				<select name="search" id="search">
-					<c:forTokens var="sh" items="place_name,place_tag" delims="," varStatus="i">
-						<c:if test="${sh==place.search }">
-							<option value="${sh }" selected="selected">${t[i.index ]}</option>
-						</c:if>
-						<c:if test="${sh!=place.search }">
-							<option value="${sh }">${t[i.index ]}</option>
-						</c:if>
-					</c:forTokens>
-				</select>
-				<input type="text" name="keyword" id="keyword"
-					placeholder="검색어를 입력해주세요" value="">
-				<input type="button" class="btn btn-light" onclick="searchPlace()" value="검색">
+		<form action="makeScheduleDetail.do" name="frm" method="post"
+			onsubmit="return chk();">
+			<div id="navyDiv" style="width: 100%;">
+				<input type="hidden" id="id" name="id" value=""> <input
+					type="hidden" name="place_area" value="${place_area }">
+				<div style="width: 100%;">
+					<img alt="calendar" src="${path }/resources/images/calendar.png"
+						style="width: 60px; height: 70px; padding-bottom: 5px;"> <input
+						type="text" name="s_date" id="sdate" class="date"> <span
+						class="glyphicon glyphicon-minus"
+						style="padding-left: 15px; padding-right: 15px;"> </span><input
+						type="text" name="e_date" id="edate" class="date">
+					<!-- 플레이스 검색 -->
+					<div style="float: right; margin-right:3%;">
+						<div>
+							<select name="search" id="search">
+								<c:forTokens var="sh" items="place_name,place_tag" delims=","
+									varStatus="i">
+									<c:if test="${sh==place.search }">
+										<option value="${sh }" selected="selected">${t[i.index ]}</option>
+									</c:if>
+									<c:if test="${sh!=place.search }">
+										<option value="${sh }">${t[i.index ]}</option>
+									</c:if>
+								</c:forTokens>
+							</select> <input type="text" name="keyword" id="keyword"
+								placeholder="검색어를 입력해주세요" value=""> <input type="button"
+								class="btn btn-light" onclick="searchPlace()" value="검색">
+						</div>
+						<!-- 플레이스 카테고리 선택 -->
+						<div align="center">
+							<div class="cate_select" onclick="show('tour')">관광지</div>
+							<div class="cate_select" onclick="show('food')">식당</div>
+							<div class="cate_select" onclick="show('rest')">숙소</div>
+						</div>
+					</div>
 				</div>
+
 			</div>
-			
-			
-			<!-- 지도 -->
-				<div id="map" style="width:100%;height:60%;"></div>
-				<script type="text/javascript" 
+			<div class="mapDiv" style="width: 65%; float: left;">
+				<!-- 지도 -->
+				<div id="map" style="width: 100%; height: 60%;"></div>
+				<script type="text/javascript"
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
 				<script>
 					var container = document.getElementById('map');
@@ -168,23 +218,34 @@
 					    } 
 					});    
 				</script>
-				<div id="btn">
-					<input type="submit" value="상세일정 작성">
-					<input type="button" value="취소" onclick="location.href='selectArea.do'">
+				<div id="btn" align="center" style="margin-top: 1%;">
+					<input type="submit" value="상세일정 작성" class="btn btn-primary"> <input type="button"
+						value="취소" onclick="location.href='selectArea.do'" class="btn btn-danger">
 				</div>
-					</form>	
 
-				</div>
-	
-				<!-- 플레이스 목록 -->
-				<div id="list"></div>
-				
-				<!-- 플레이스 고른 목록 -->
-				<div id="pick_place" style="align-items: center;">
-					<table class="table table-bordered" id="Ppick" style="align-content: center;"><caption>내가 고른 플레이스 목록</caption>
-						<tr><th>사진</th><th>장소</th><th>주소</th><th>태그</th></tr>
-					</table>
-				</div>
-		</div>
+
+			</div>
+
+			<!-- 플레이스 목록 -->
+			<div id="list" style="top: 100px;"></div>
+
+			<!-- 플레이스 고른 목록 -->
+			<div id="pick_place" style="align-items: center;">
+				<table class="table table-bordered table-striped" id="Ppick"
+					style="align-content: center;">
+					<caption>내가 고른 플레이스 목록</caption>
+					<thead>
+					<tr>
+						<th>사진</th>
+						<th>장소</th>
+						<th>주소</th>
+						<th>태그</th>
+					</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</form>
+	</div>
 </body>
 </html>
