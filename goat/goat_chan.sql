@@ -381,6 +381,8 @@ update place set place_areadetail = '제주시' where place_name = '연미마을
 update place set place_areadetail = '제주시' where place_name = '아홉굿마을 낙천리 농어촌체험마을';
 update place set place_areadetail = '제주시' where place_name = '도령모루';
 
+delete from place where lat = 'null' or lng = 'null';
+
 /* 플레이스 후기 */
 CREATE TABLE PLACE_REVIEW (
 	PREV_NUM NUMBER NOT NULL, /* 후기 번호 */
