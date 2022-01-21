@@ -118,7 +118,8 @@ public class NoticeController {
 		notice.setNo_title(no_title);
 		notice.setNo_content(no_content);
 		int result = ns.update(notice);
-			
+		
+		model.addAttribute("no_num", no_num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("result", result);
 
