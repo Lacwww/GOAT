@@ -83,6 +83,10 @@
 		$('#MoaModal').modal();
 	}
  	
+ 	$(function() {
+		
+	});
+ 	
 </script>
 <style type="text/css">
 	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
