@@ -17,7 +17,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function updatePlace() {
-		if(${not empty admin}){
+		if(${not empty admin}){ 
 			alert("관리자는 플레이스 건의를  할 수 없습니다.");
 			return false;
 		}else if(${empty id}){
@@ -37,7 +37,7 @@
 			alert("로그인 후 이용가능합니다");
 			return false;
 		}
-		$.post("bookMark.do", "place_num="+place_num, function(data) {
+		$.post("${path}/place/bookMark.do", "place_num="+place_num, function(data) {
 			var bookMarkImgSrc = data;
 			if(bookMarkImgSrc.indexOf('no') == -1){
 				alert("북마크에 저장되었습니다");

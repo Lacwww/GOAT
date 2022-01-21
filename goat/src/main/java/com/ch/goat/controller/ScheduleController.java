@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.goat.model.Alert;
 import com.ch.goat.model.Area;
+import com.ch.goat.model.Bookmark;
 import com.ch.goat.model.Place;
 import com.ch.goat.model.Schedule;
 import com.ch.goat.model.ScheduleDetail;
+import com.ch.goat.service.PlaceService;
 import com.ch.goat.service.ScheduleService;
 import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
@@ -28,6 +30,9 @@ import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 public class ScheduleController {
 	@Autowired
 	private ScheduleService ss;
+	@Autowired
+	private PlaceService ps;
+	
 	@RequestMapping("schedule/NewFile")
 	public String newFile() {
 		return "schedule/NewFile";
@@ -40,9 +45,11 @@ public class ScheduleController {
 	}
 
 	@RequestMapping("schedule/selectModal")
-	public String selectModal(Model model, String place_area) {
+	public String selectModal(Model model, String place_area,HttpSession session) {
+		String id=(String) session.getAttribute("m_id");
 		Area area = ss.select(place_area);
 		model.addAttribute("area", area);
+		model.addAttribute("id", id);
 		return "schedule/selectModal";
 	}
 
@@ -263,5 +270,30 @@ public class ScheduleController {
 		ss.deleteSch(sch_num);
 		model.addAttribute("m_num",m_num);
 		return "schedule/deleteSch";
+	}
+	
+	@RequestMapping("schedule/placeModal")
+	public String placeModal(String place_num,HttpSession session, Model model) {
+		int num = Integer.parseInt(place_num);
+		Place place = ps.placeModal(num);
+		float avgScore = ps.avgScore(num);
+		String id = (String) session.getAttribute("id");
+		String bookMarkImgSrc ="";
+		
+		if(id != null) {
+			Bookmark bookMark = ps.bookMarkChk(id, num);
+			if(bookMark != null) {
+				bookMarkImgSrc = "/goat/resources/bookMarkImg/bookmark.png";
+			}else {
+				bookMarkImgSrc = "/goat/resources/bookMarkImg/nobookmark.png";
+			}
+		}else {
+			bookMarkImgSrc = "/goat/resources/bookMarkImg/nobookmark.png";
+		}
+
+		model.addAttribute("bookMarkImgSrc", bookMarkImgSrc);		
+		model.addAttribute("avgScore", avgScore);
+		model.addAttribute("place", place);
+		return "schedule/placeModal";
 	}
 }
