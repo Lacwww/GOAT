@@ -4,9 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript">
 	var places_num1 = '${places_numS}';
 	var places_num=[];
@@ -24,39 +25,38 @@
 			}
 		}
 	}
-
-	$(function() {
-		$("#start").datepicker({
-			showOn : "both",
-			buttonImage : "${path}/resources/images/date.png",
-			buttonImageOnly : "true",
-			dateFormat : "yy-mm-dd",
-			minDate: 0,
-			buttonText : "여행 시작날짜",
-			onClose : function(selectDate) {
-				$("#end").datepicker("option","minDate",selectDate)
-			}
-		});
-		
-		$("#end").datepicker({
-			showOn : "both",
-			buttonImage : "${path}/resources/images/date.png",
-			buttonImageOnly : "true",
-			dateFormat : "yy-mm-dd",
-			minDate: 0,
-			buttonText : "여행 종료날짜",
-			onClose : function(selectDate) {
-				$("#start").datepicker("option","maxDate",selectDate)
-			}
-		});
-	});
 	
 	$(document).ready(function() {
-		var keyword = $('#keyword').val();
-		var search = $('#search option:selected').val()
-		if(keyword==null || keyword==''){
+		var today = new Date();
+		var s_date = $('input[name=s_date]').val()
+		var e_date = $('input[name=e_date]').val()
+	    $('#datepick').daterangepicker({ 
+	    	"locale": { "format": "YYYY-MM-DD", 
+	    	"separator": " ~ ", 
+	    	"applyLabel": "확인", 
+	    	"cancelLabel": "취소", 
+	    	"fromLabel": "From", 
+	    	"toLabel": "To", 
+	    	"customRangeLabel": "Custom", 
+	    	"weekLabel": "W", 
+	    	"daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"], 
+	    	"monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], 
+	    	}, 
+	    	"minDate": new Date(),
+	    	"startDate" : new Date(s_date),
+	    	"endDate": new Date(e_date),
+	    	"drops": "auto" 
+	    	}, function (start, end, label) { 
+	    		$('input[name=s_date]').val(start.format('YYYY-MM-DD'));
+	    		$('input[name=e_date]').val(end.format('YYYY-MM-DD'));
+	    		console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') 
+	    				+ ' (predefined range: ' + label + ')'); });
+		
+		 if(keyword==null || keyword==''){
+			var keyword = $('#keyword').val();
+			var search = $('#search option:selected').val()
 			$('#list').load("placeList.do?place_area=${place_area}");
-		}
+		} 
 	});
 	function searchPlace() {
 		var keyword = $('#keyword').val();
@@ -66,7 +66,7 @@
 	}
 	
 	function chk() {
-		if($('#start').val()==null || $('#start').val()=="" || $('#end').val()==null || $('#end').val()=="") {
+		if($('#sdate').val()==null || $('#sdate').val()=="" || $('#edate').val()==null || $('#edate').val()=="") {
 			alert("여행 일정을 선택해 주세요");
 			return false;
 		}
@@ -137,18 +137,18 @@ input {
 	<h2 class="text text-primary" align="center">여행할 장소를 선택해주세요</h2>
 	<!-- 여행 일자 선택 -->
 	<div id="wrapper">
-		<form action="makeScheduleDetail.do" name="frm" method="post"
+		<form action="updateSchDetail.do" name="frm" method="post"
 			onsubmit="return chk();">
+			<input type="hidden" name="sch_num" value="${sch.sch_num }">
 			<div id="navyDiv" style="width: 100%;">
 				<input type="hidden" id="id" name="id" value=""> <input
 					type="hidden" name="place_area" value="${place_area }">
 				<div style="width: 100%;">
 					<img alt="calendar" src="${path }/resources/images/calendar.png"
-						style="width: 60px; height: 70px; padding-bottom: 5px;"> <input
-						type="text" name="s_date" id="sdate" class="date"> <span
-						class="glyphicon glyphicon-minus"
-						style="padding-left: 15px; padding-right: 15px;"> </span><input
-						type="text" name="e_date" id="edate" class="date">
+						style="width: 60px; height: 70px; padding-bottom: 5px;">
+						<input type="text" id="datepick" value=""> 
+						<input type="hidden" name="s_date" id="sdate" class="date" value="${sch.s_date }">
+						<input type=hidden name="e_date" id="edate" class="date" value="${sch.e_date }">
 					<!-- 플레이스 검색 -->
 					<div style="float: right; margin-right:3%;">
 						<div>
