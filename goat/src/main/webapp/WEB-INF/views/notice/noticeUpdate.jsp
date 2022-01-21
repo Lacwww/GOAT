@@ -7,7 +7,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("공지사항 수정 성공");
-		location.href="noticeList.do?pageNum=${pageNum}";
+		location.href="noticeView.do?no_num=${no_num}&pageNum=${pageNum}";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
