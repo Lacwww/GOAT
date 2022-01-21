@@ -21,6 +21,7 @@
 				<tr>
 					<th>회원번호</th>
 					<th>아이디</th>
+					<th>이름</th>
 					<th>닉네임</th>
 					<th>이메일</th>
 					<th>등록일</th>
@@ -34,6 +35,7 @@
 					<tr>
 						<td>${member.m_num }</td>
 						<td>${member.m_id }</td>
+						<td>${member.m_name }</td>
 						<td>${member.m_nick }</td>
 						<td>${member.m_email }</td>
 						<td>${member.reg_date }</td>
