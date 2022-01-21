@@ -2,6 +2,7 @@ package com.ch.goat.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,7 +124,7 @@ public class CsController {
 	}
 	
 	@RequestMapping("cs/csView")
-	public String csView(Cs cs, String pageNum, Model model) {
+	public String csView(Cs cs, String pageNum, Model model, HttpServletRequest request) {
 		int cs_num = cs.getCs_num();
 		css.updateViewcount(cs_num);  // 조회수 증가
 		Cs cs2 = css.select(cs_num); // 조회
@@ -131,6 +132,9 @@ public class CsController {
 		int m_num = cs2.getM_num();
 		Member member = css.selectM(m_num);
 		
+		String prevUrl = request.getHeader("Referer");
+		prevUrl = prevUrl.substring(27, 33);
+		model.addAttribute("prevUrl", prevUrl);
 		model.addAttribute("member",member);
 		model.addAttribute("pageNum", pageNum);		
 		model.addAttribute("cs", cs2);

@@ -22,9 +22,9 @@
 	<div class="container" align="center" style="display: flex; justify-content: center; width: 100%;">
 		<table style="width: 100%;" id="table">
 			<tr>
-				<td style="border-left: 2px solid; border-right: 2px solid;" align="center" 
+				<td style="border-right: 2px solid;" align="center" 
 					onclick="location.href='/goat/main/home.do'">
-					Logo
+					<img src="/goat/resources/images/logo.png" width="150px" height="150px">
 				</td>
 				<td style="border-right: 2px solid;" align="center"
 					onclick="location.href='/goat/schedule/selectArea.do'">

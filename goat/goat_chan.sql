@@ -80,6 +80,7 @@ ALTER TABLE TRIP
 
 alter table trip drop column t_photo;
 drop table tirp_photo;
+select * from trip;
 
 /* 여행 게시판 댓글 */
 CREATE TABLE TRIP_REPLY (

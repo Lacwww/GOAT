@@ -38,7 +38,12 @@
 			</tr>
 			<tr align="center">
 				<td colspan="2">
-					<a href="csList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
+					<c:if test="${prevUrl == 'member' }">
+						<a href="${path }/member/myCsList.do?m_num=${m_num }" class="btn btn-info">게시글 목록</a>
+					</c:if>
+					<c:if test="${prevUrl != 'member' }">
+						<a href="csList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
+					</c:if>
 				<c:if test="${not empty admin}">
 					<c:if test="${cs.cs_re_step == 0 }">
 						<c:if test="${cs.con == 'n' }">
