@@ -26,7 +26,17 @@
 	width: 100%;
 }
 </style>
-
+<script type="text/javascript">
+	function chk() {
+			if(${empty id }) { 
+				alert("로그인 후 이용해주세요 ");
+				location.href="${path}/member/loginForm.do";
+				return false; 
+			} else {
+				location.href='makeScheduleForm.do?place_area=${area.place_area}';
+			}
+	}
+</script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -51,7 +61,7 @@
 			<div class="foot">
 				<input type="button" class="btn btn-sm btn-success" id="select"
 					value="Go on a Trip"
-					onclick="location.href='makeScheduleForm.do?place_area=${area.place_area}'">
+					onclick="chk()">
 				<button class="btn btn-sm btn-danger pull-right"
 					data-dismiss="modal" id="btnClose">
 					<i class="ace-icon fa fa-times"></i>닫기

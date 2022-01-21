@@ -79,14 +79,20 @@
 	
  	/* 플레이스 상세정보 */
 	function modal(place) {
-		$('#MoaModal .modal-content').load("${path}/place/placeModal.do?place_num=" + place);
+		$('#MoaModal .modal-content').load("placeModal.do?place_num=" + place);
 		$('#MoaModal').modal();
+		$('.modal-footer').hide();
 	}
- 	
+ 	/* 담겨져 있는 플레이스 감추기 */
  	$(function() {
-		
+		for(var i=0; i<id.length; i++) {
+			var idx = id.indexOf(id[i]);
+			if(idx>=0) {
+				$('#pList'+id[i]).hide();
+			}
+		}
 	});
- 	
+	
 </script>
 <style type="text/css">
 	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}

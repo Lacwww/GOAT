@@ -88,53 +88,98 @@
 	}
 </script>
 <style type="text/css">
-	div #map {text-align: center;}
-	input {	border-radius: 5px;}
-	.date { text-align: center;}
-	#list { margin-left: 3px; height: 65%;}
-	#wrapper {
-		width: 100%; height: 100%;; 
-	} 
+div #map {
+	text-align: center;
+}
+
+input {
+	border-radius: 5px;
+}
+
+.date {
+	text-align: center;
+}
+
+#list {
+	margin-left: 3px;
+	height: 65%;
+}
+
+#wrapper {
+	width: 100%;
+	height: 100%;;
+}
+
+.pList {
+	margin-bottom: 20px;
+}
+
+#pimage {
+	margin-bottom: 20px;
+	float: left;
+}
+
+.cate_select {
+	float: left;
+	height: 20px;
+	width: 50px;
+	text-decoration: underline; 
+	text-underline-position:under;
+	margin-right: 15%;
+	cursor: pointer;
+	font-size: 1.5rem;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h2 class="text text-primary" align="center">여행할 장소를 선택해주세요</h2>
+	<h2 class="text text-primary" align="center">여행할 장소를 선택해주세요</h2>
 	<!-- 여행 일자 선택 -->
 	<div id="wrapper">
-		<div id="outer" style="width: 65%; float: left;">
-		<form action="updateSchDetail.do" name="frm" method="post" onsubmit="return chk();"> 
-			<input type="hidden" name="id" value="">
-			<input type="hidden" name="sch_num" value="${sch_num }">
-			<input type="hidden" name="place_area" value="${place_area }">
-			<div style="width: 100%;">
-				<img alt="calendar" src="${path }/resources/images/calendar.png"
-					 style="width: 60px; height: 70px; padding-bottom : 5px;">
-				<input type="text" name="s_date" id="start" class="date" value="${sch.s_date }">
-				<span class="glyphicon glyphicon-minus" style="padding-left: 15px; padding-right: 15px;">
-				</span><input type="text" name="e_date" id="end" class="date" value="${sch.e_date }">
-
-				<!-- 플레이스 검색 -->
-				<div style="float: left;">
-				<select name="search" id="search">
-					<c:forTokens var="sh" items="place_name,place_tag" delims="," varStatus="i">
-						<c:if test="${sh==place.search }">
-							<option value="${sh }" selected="selected">${t[i.index ]}</option>
-						</c:if>
-						<c:if test="${sh!=place.search }">
-							<option value="${sh }">${t[i.index ]}</option>
-						</c:if>
-					</c:forTokens>
-				</select>
-				<input type="text" name="keyword" id="keyword"
-					placeholder="검색어를 입력해주세요" value="">
-				<input type="button" class="btn btn-light" onclick="searchPlace()" value="검색">
+		<form action="makeScheduleDetail.do" name="frm" method="post"
+			onsubmit="return chk();">
+			<div id="navyDiv" style="width: 100%;">
+				<input type="hidden" id="id" name="id" value=""> <input
+					type="hidden" name="place_area" value="${place_area }">
+				<div style="width: 100%;">
+					<img alt="calendar" src="${path }/resources/images/calendar.png"
+						style="width: 60px; height: 70px; padding-bottom: 5px;"> <input
+						type="text" name="s_date" id="sdate" class="date"> <span
+						class="glyphicon glyphicon-minus"
+						style="padding-left: 15px; padding-right: 15px;"> </span><input
+						type="text" name="e_date" id="edate" class="date">
+					<!-- 플레이스 검색 -->
+					<div style="float: right; margin-right:3%;">
+						<div>
+							<select name="search" id="search">
+								<c:forTokens var="sh" items="place_name,place_tag" delims=","
+									varStatus="i">
+									<c:if test="${sh==place.search }">
+										<option value="${sh }" selected="selected">${t[i.index ]}</option>
+									</c:if>
+									<c:if test="${sh!=place.search }">
+										<option value="${sh }">${t[i.index ]}</option>
+									</c:if>
+								</c:forTokens>
+							</select> <input type="text" name="keyword" id="keyword"
+								placeholder="검색어를 입력해주세요" value=""> <input type="button"
+								class="btn btn-light" onclick="searchPlace()" value="검색">
+						</div>
+						<!-- 플레이스 카테고리 선택 -->
+						<div align="center">
+							<div class="cate_select" onclick="show('tour')">관광지</div>
+							<div class="cate_select" onclick="show('food')">식당</div>
+							<div class="cate_select" onclick="show('rest')">숙소</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			
 			
 			<!-- 지도 -->
+				<div class="mapDiv" style="width: 65%; float: left;">
+			
 				<div id="map" style="width:100%;height:60%;"></div>
 				<script type="text/javascript" 
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
@@ -161,7 +206,6 @@
 					<input type="submit" value="상세일정 작성">
 					<input type="button" value="취소" onclick="location.href='selectArea.do'">
 				</div>
-					</form>	
 
 				</div>
 	
@@ -170,15 +214,18 @@
 				
 				<!-- 플레이스 고른 목록 -->
 				<div id="pick_place" style="align-items: center;">
-					<table class="table table-bordered" id="Ppick" style="align-content: center;"><caption>내가 고른 플레이스 목록</caption>
+					<table class="table table-bordered table-striped" id="Ppick" style="align-content: center;"><caption>내가 고른 플레이스 목록</caption>
 						<tr><th>사진</th><th>장소</th><th>주소</th><th>태그</th></tr>
 						<c:forEach var="p" items="${plist }">
-							<tr><tr id="tr${p.place_num }"><td><span onclick='del(${p.place_num})' class='glyphicon glyphicon-remove'></span>
+							<tr><tr id="tr${p.place_num }"><td style='position:relative;' class='column1' align='center'><span onclick='del(${p.place_num})' 
+								class='glyphicon glyphicon-remove' style='position : absolute; top:8%; left:5%;'></span>
 								<img alt='' src="${p.place_photo }" id='p_image' style="align : center; width: 150px; height: 150px;"></td>
 								<td>${p.place_name }</td><td>${p.place_addr }</td><td>${p.place_tag }</td></tr>
 						</c:forEach>
 					</table>
 				</div>
+			</form>	
 		</div>
+		
 </body>
 </html>

@@ -9,61 +9,89 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+document.cookie = "safeCookie1=foo; SameSite=Lax"; 
+document.cookie = "safeCookie2=foo"; 
+document.cookie = "crossCookie=bar; SameSite=None; Secure";
 	var id = [];
 	document.addEventListener('keydown', function(event) {
 	    if (event.keyCode === 13) {
 	        event.preventDefault();
 	    }
 	}, true);
+	
 	$(document).ready(function() {
-		$.datepicker.regional['ko'] = {
-		        closeText: '닫기',
-		        prevText: '이전달',
-		        nextText: '다음달',
-		        currentText: '오늘',
-		        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
-		        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
-		        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
-		        '7월','8월','9월','10월','11월','12월'],
-		        dayNames: ['일','월','화','수','목','금','토'],
-		        dayNamesShort: ['일','월','화','수','목','금','토'],
-		        dayNamesMin: ['일','월','화','수','목','금','토'],
-		        weekHeader: 'Wk',
-		        mindate : 0,
-		        dateFormat: 'yy-mm-dd',
-		        firstDay: 0,
-		        isRTL: false,
-		        showMonthAfterYear: true,
-		        yearSuffix: '',
-		        showOn: 'both',
-		        buttonImage : "${path}/resources/images/date.png",
-				buttonImageOnly : "true",
-		        changeMonth: true,
-		        changeYear: true,
-		        showButtonPanel: true,
-		        yearRange: 'c-99:c+99',
-		    };
-		    
-		    $.datepicker.setDefaults($.datepicker.regional['ko']);
-
-		    $('#sdate').datepicker();
-		    $('#sdate').datepicker("option", "minDate", 0);
-		    $('#sdate').datepicker("option", "maxDate", $("#edate").val());
-		    $('#sdate').datepicker("option", "onClose", function ( selectedDate ) {
-		        $("#edate").datepicker( "option", "minDate", selectedDate );
-		    });
-
-		    $('#edate').datepicker();
-		    $('#edate').datepicker("option", "minDate", $("#sdate").val());
-		    $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
-		        $("#sdate").datepicker( "option", "maxDate", selectedDate );
-		    });
+		$("input[name='s_date']").datepicker({
+	        closeText: '닫기',
+	        prevText: '이전달',
+	        nextText: '다음달',
+	        currentText: '오늘',
+	        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+	        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+	        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+	        '7월','8월','9월','10월','11월','12월'],
+	        dayNames: ['일','월','화','수','목','금','토'],
+	        dayNamesShort: ['일','월','화','수','목','금','토'],
+	        dayNamesMin: ['일','월','화','수','목','금','토'],
+	        weekHeader: 'Wk',
+	        minDate : 0,
+	        dateFormat: 'yy-mm-dd',
+	        firstDay: 0,
+	        isRTL: false,
+	        showMonthAfterYear: true,
+	        yearSuffix: '',
+	        showOn: 'both',
+	        buttonImage : "${path}/resources/images/date.png",
+			buttonImageOnly : "true",
+	        changeMonth: true,
+	        changeYear: true,
+	        showButtonPanel: true,
+	        yearRange: 'c-99:c+99'
+		});
+		$("input[name='e_date']").datepicker({
+	        closeText: '닫기',
+	        prevText: '이전달',
+	        nextText: '다음달',
+	        currentText: '오늘',
+	        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+	        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+	        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+	        '7월','8월','9월','10월','11월','12월'],
+	        dayNames: ['일','월','화','수','목','금','토'],
+	        dayNamesShort: ['일','월','화','수','목','금','토'],
+	        dayNamesMin: ['일','월','화','수','목','금','토'],
+	        weekHeader: 'Wk',
+	        minDate : 0,
+	        dateFormat: 'yy-mm-dd',
+	        firstDay: 0,
+	        isRTL: false,
+	        showMonthAfterYear: true,
+	        yearSuffix: '',
+	        showOn: 'both',
+	        buttonImage : "${path}/resources/images/date.png",
+			buttonImageOnly : "true",
+	        changeMonth: true,
+	        changeYear: true,
+	        showButtonPanel: true,
+	        yearRange: 'c-99:c+99'
+		});
 		
-		var keyword = $('#keyword').val();
-		var search = $('#search option:selected').val()
-		if(keyword==null || keyword==''){
+		$("input[name='s_date']").datepicker( {
+	        onClose : function( selectedDate ) {  // 날짜를 설정 후 달력이 닫힐 때 실행
+	                          $("input[name='e_date']").datepicker("option", "minDate", selectedDate);
+	                  }
+	    });
+	    $("input[name='e_date']").datepicker( {
+	        onClose : function( selectedDate ) {  // 날짜를 설정 후 달력이 닫힐 때 실행
+	                          $("input[name='s_date']").datepicker("option", "maxDate", selectedDate);
+	                  }
+	    });
+
+		
+		/* if(keyword==null || keyword==''){
+			var keyword = $('#keyword').val();
+			var search = $('#search option:selected').val()
 			$('#list').load("placeList.do?place_area=${place_area}");
-		}
+		} */
 	});
 	function searchPlace() {
 		var keyword = $('#keyword').val();
@@ -73,12 +101,6 @@
 	}
 	
 	function chk() {
-		if(${empty id}) { 
-			alert("로그인 후 이용해주세요 ");
-			location.href="${path}/member/loginForm.do";
-			return false;
-		}
-		
 		if($('#sdate').val()==null || $('#sdate').val()=="" || $('#edate').val()==null || $('#edate').val()=="") {
 			alert("여행 일정을 선택해 주세요");
 			return false;
@@ -94,7 +116,7 @@
 		var btMs = endDate.getTime() - stDate.getTime();
 		var days = btMs / (1000*60*60*24)+1;
 		var tbody = table.tBodies[0].rows.length
-		if(tbody-1 < days) {
+		if(tbody < days) {
 			alert("선택한 플레이스가 여행 일수보다 적을 수 없습니다.");
 			return false;
 		}
@@ -141,8 +163,8 @@ input {
 	float: left;
 	height: 20px;
 	width: 50px;
-	text-decoration: underline; 
-	text-underline-position:under;
+	text-decoration: underline;
+	text-underline-position: under;
 	margin-right: 15%;
 	cursor: pointer;
 	font-size: 1.5rem;
@@ -168,7 +190,7 @@ input {
 						style="padding-left: 15px; padding-right: 15px;"> </span><input
 						type="text" name="e_date" id="edate" class="date">
 					<!-- 플레이스 검색 -->
-					<div style="float: right; margin-right:3%;">
+					<div style="float: right; margin-right: 3%;">
 						<div>
 							<select name="search" id="search">
 								<c:forTokens var="sh" items="place_name,place_tag" delims=","
@@ -219,8 +241,9 @@ input {
 					});    
 				</script>
 				<div id="btn" align="center" style="margin-top: 1%;">
-					<input type="submit" value="상세일정 작성" class="btn btn-primary"> <input type="button"
-						value="취소" onclick="location.href='selectArea.do'" class="btn btn-danger">
+					<input type="submit" value="상세일정 작성" class="btn btn-primary">
+					<input type="button" value="취소" onclick="history.back()"
+						class="btn btn-danger">
 				</div>
 
 
@@ -235,12 +258,12 @@ input {
 					style="align-content: center;">
 					<caption>내가 고른 플레이스 목록</caption>
 					<thead>
-					<tr>
-						<th>사진</th>
-						<th>장소</th>
-						<th>주소</th>
-						<th>태그</th>
-					</tr>
+						<tr>
+							<th>사진</th>
+							<th>장소</th>
+							<th>주소</th>
+							<th>태그</th>
+						</tr>
 					</thead>
 					<tbody></tbody>
 				</table>
