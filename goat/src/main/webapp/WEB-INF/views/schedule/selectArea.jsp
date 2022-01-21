@@ -17,7 +17,7 @@
 	padding: 10px;
 }
 
-.area img {
+.area_img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -57,7 +57,7 @@
 				<div class="area" onclick="modal('${area.place_area}')">
 					<div class="areaPhoto">
 						<img alt="${area.place_area }"
-							src="${path}/resources/areaImages/${area.area_photo }">
+							src="${path}/resources/areaImages/${area.area_photo }" class="area_img">
 					</div>
 					<div class="desc">${area.place_area }</div>
 				</div>
