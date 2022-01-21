@@ -19,7 +19,7 @@
 	<form action="schView.do" method="post">
 		<input type="hidden" name="sch_num" value="${sch_num }">
 		<div>
-   			<input type="button" value="메인페이지" onclick="location.href='${path}/main/main.do'">
+   			<input type="button" value="메인페이지" onclick="location.href='${path}/main/home.do'">
 			<input type="submit" name="chkSch" value="스케줄 확인">
 			<input type="button" name="SchList" value="스케줄 목록" onclick="location.href='${path}/member/scheduleList.do?m_num=${m_num }'">
 		</div>
