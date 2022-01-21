@@ -22,6 +22,7 @@
 	}
 	/* 비밀번호 일치 여부 & 중복체크 여부 검사 */
 	function chk() {
+		var getEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 		if(frm.m_pass.value != frm.m_pass2.value) {
 			alert("암호와 암호 확인이 다릅니다");
 			frm.m_pass2.focus();
@@ -40,50 +41,68 @@
 	   	 	alert("이메일 중복체크를 해주세요.");
 	    	return false;
 		}
+		//닉네임 유효성 검사
+		if (!frm.m_nick.value) {
+			alert("닉네임을 입력하세요");
+			frm.m_nick.focus();
+			return false;
+		}
+		//이메일 유효성 검사 
+		if (!frm.m_email.value) {
+			alert("이메일을 입력하세요");
+			frm.m_email.focus();
+			return false;
+		}
+		if(!getEmail.test($("#m_email").val())) { 
+			alert("이메일 형식에 맞게 입력하세요");
+			$("#m_email").focus(); 
+			return false; 
+		}
 	}
 	
 	/* 아이디 중복체크 $ 유효성 검사 */
 	function idChk() {
 		var getCheck= RegExp(/^[a-zA-Z0-9]{0,20}$/);
-		
-		//아이디 유효성검사
-		if(!getCheck.test($("#m_id").val())){ 
-			alert("아이디는 영문자와 숫자만 입력 가능합니다"); 
-			$("#m_id").val(""); 
-			$("#m_id").focus(); 
-			return false; 
+		if(window.event.keyCode != 9 || window.event.keyCode != 8 || window.event.keyCode != 116 || window.event.ctrlKey&&(window.event.keyCode != 82)) {
+			//아이디 유효성검사
+			if(!getCheck.test($("#m_id").val())){ 
+				alert("아이디는 영문자와 숫자만 입력 가능합니다"); 
+				$("#m_id").val(""); 
+				$("#m_id").focus(); 
+				return false; 
+			}
+			if (!frm.m_id.value) {
+				alert("아이디를 입력하세요");
+				frm.m_id.focus();
+				return false;
+			}
+			if (frm.m_id.value.match(/admin/gi)||frm.m_id.value.match(/master/gi)) {
+				alert("아이디에 admin 또는 master 단어를 포함할 수 없습니다");
+				frm.m_id.value = "";
+				frm.m_id.focus();
+				$('#idChk_result').html("");
+				frm.idchk.value == "unChk";
+				return false;
+			}
+			// id 중복체크 ajax
+			$.post('chkId.do', "m_id=" + frm.m_id.value, function(data) {
+	 		 	if(data == 1) {
+	                $('#idChk_result').html("사용 중인 아이디입니다");
+	                $('#idChk_result').css("color","red");
+	                frm.idchk.value="unChk";
+	             }
+	 		 	else {
+	 				$('#idChk_result').html("사용 가능한 아이디입니다");
+	             	$('#idChk_result').css("color","blue");
+	             	frm.idchk.value="chk";
+	            }
+			});
 		}
-		if (!frm.m_id.value) {
-			alert("아이디를 입력하세요");
-			frm.m_id.focus();
-			return false;
-		}
-		if (frm.m_id.value.match(/admin/gi)||frm.m_id.value.match(/master/gi)) {
-			alert("아이디에 admin 또는 master 단어를 포함할 수 없습니다");
-			frm.m_id.value = "";
-			frm.m_id.focus();
-			$('#idChk_result').html("");
-			frm.idchk.value == "unChk";
-			return false;
-		}
-		// id 중복체크 ajax
-		$.post('chkId.do', "m_id=" + frm.m_id.value, function(data) {
- 		 	if(data == 1) {
-                $('#idChk_result').html("사용 중인 아이디입니다");
-                $('#idChk_result').css("color","red");
-                frm.idchk.value="unChk";
-             }
- 		 	else {
- 				$('#idChk_result').html("사용 가능한 아이디입니다");
-             	$('#idChk_result').css("color","blue");
-             	frm.idchk.value="chk";
-            }
-		});
 	}
 	
 	/* 비밀번호 일치 여부 검사 */
 	function passChk() {
-		if (frm.m_pass.value != '' && frm.m_pass2.value != '') {
+		if(window.event.keyCode != 9 && window.event.keyCode != 8) {
 			if (frm.m_pass.value == frm.m_pass2.value) {
 				document.getElementById('same').innerHTML = '비밀번호 일치';
 				document.getElementById('same').style.color = 'blue';
@@ -96,67 +115,52 @@
 		}
 	}
 	
-	/* 닉네임 중복체크 & 닉네임 유효성 검사 */
+	/* 닉네임 중복체크 */
 	function nickChk() {
-		if (!frm.m_nick.value) {
-			alert("닉네임을 입력하세요");
-			frm.m_nick.focus();
-			return false;
+		if(window.event.keyCode != 9 || window.event.keyCode != 8 || window.event.keyCode != 116 || window.event.ctrlKey&&(window.event.keyCode != 82)) {
+			if (frm.m_nick.value.match(/관리자/gi)||frm.m_nick.value.match(/admin/gi)||frm.m_nick.value.match(/master/gi)) {
+				alert("닉네임에 관리자,admin,master 단어를 포함할 수 없습니다");
+				frm.m_nick.value = "";
+				frm.m_nick.focus();
+				$('nickChk_result').html("");
+				frm.nickchk.value == "unChk";
+				return false;
+			}
+			// 변수 id에 입력한 id를 담아서 post방식으로 confirmNick.sun을 실행하고, 그 결과를 받아서
+			// id가 err_nick인 곳에 html 형식으로 보여줘라
+			$.post('chkNick.do', "m_nick=" + frm.m_nick.value, function(data) {
+				 if(data == 1) {
+	                $('#nickChk_result').html("사용 중인 닉네임입니다");
+	                $('#nickChk_result').css("color","red");
+	                frm.nickchk.value="unChk";
+	             }
+	             else {
+	                $('#nickChk_result').html("사용 가능한 닉네임입니다");
+	                $('#nickChk_result').css("color","blue");
+	                frm.nickchk.value="chk";
+	             }
+			});
 		}
-		if (frm.m_nick.value.match(/관리자/gi)||frm.m_nick.value.match(/admin/gi)||frm.m_nick.value.match(/master/gi)) {
-			alert("닉네임에 관리자,admin,master 단어를 포함할 수 없습니다");
-			frm.m_nick.value = "";
-			frm.m_nick.focus();
-			$('nickChk_result').html("");
-			frm.nickchk.value == "unChk";
-			return false;
-		}
-		// 변수 id에 입력한 id를 담아서 post방식으로 confirmNick.sun을 실행하고, 그 결과를 받아서
-		// id가 err_nick인 곳에 html 형식으로 보여줘라
-		$.post('chkNick.do', "m_nick=" + frm.m_nick.value, function(data) {
-			 if(data == 1) {
-                $('#nickChk_result').html("사용 중인 닉네임입니다");
-                $('#nickChk_result').css("color","red");
-                frm.nickchk.value="unChk";
-             }
-             else {
-                $('#nickChk_result').html("사용 가능한 닉네임입니다");
-                $('#nickChk_result').css("color","blue");
-                frm.nickchk.value="chk";
-             }
-		});
 	}
 	
 	/* 이메일 중복체크 & 이메일 유효성 검사 */
 	function emailChk() {
-		var getEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-		
-		//이메일 유효성 검사 
-		if(!getEmail.test($("#m_email").val())) { 
-			alert("이메일 형식에 맞게 입력하세요");
-			$("#m_email").focus(); 
-			return false; 
-		}
-		if (!frm.m_email.value) {
-			alert("이메일을 입력하세요");
-			frm.m_email.focus();
-			return false;
-		}
-
-		// 변수 id에 입력한 id를 담아서 post방식으로 confirmId.sun을 실행하고, 그 결과를 받아서
-		// id가 err_id인 곳에 html 형식으로 보여줘라
-		$.post('chkEmail.do', "m_email=" + frm.m_email.value, function(data) {
- 		 	if(data == 1) {
-                $('#emailChk_result').html("사용 중인 이메일입니다");
-                $('#emailChk_result').css("color","red");
-                frm.emailchk.value="unChk";
-             }
- 		 	else {
- 				$('#emailChk_result').html("사용 가능한 이메일입니다");
-             	$('#emailChk_result').css("color","blue");
-             	frm.emailchk.value="chk";
-              	}
+		if(window.event.keyCode != 9 || window.event.keyCode != 8 || window.event.keyCode != 116 || window.event.ctrlKey&&(window.event.keyCode != 82)) {
+			// 변수 id에 입력한 id를 담아서 post방식으로 confirmId.sun을 실행하고, 그 결과를 받아서
+			// id가 err_id인 곳에 html 형식으로 보여줘라
+			$.post('chkEmail.do', "m_email=" + frm.m_email.value, function(data) {
+	 		 	if(data == 1) {
+	                $('#emailChk_result').html("사용 중인 이메일입니다");
+	                $('#emailChk_result').css("color","red");
+	                frm.emailchk.value="unChk";
+	             }
+	 		 	else {
+	 				$('#emailChk_result').html("사용 가능한 이메일입니다");
+	             	$('#emailChk_result').css("color","blue");
+	             	frm.emailchk.value="chk";
+				}
 			});
+		}
 	}
 	
 // 	프로필 이미지 미리보기
@@ -243,7 +247,7 @@
 						<div id="nickChk_result" class="err"></div>
 					</div>
 					<div>
-						<input type="email" name="m_email" id="m_email" placeholder="Email" required="required" onkeyup="emailChk()">
+						<input type="email" name="m_email" id="m_email" placeholder="Email" required="required" onkeypress="emailChk()">
 						<div id="emailChk_result" class="err"></div>
 					</div>
 					<div>

@@ -351,7 +351,9 @@ public class MemberController {
 	@RequestMapping("member/myCsList")
 	public String myCsList(int m_num, Model model) {
 		List<Cs> list = ms.myCsList(m_num);
+		int no = list.size();
 		model.addAttribute("list", list);
+		model.addAttribute("no", no);
 		return "member/myCsList";
 	}
 	@RequestMapping("member/scheduleList")

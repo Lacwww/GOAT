@@ -53,16 +53,17 @@
 		select * from place where place_num=#{temp}
 	</select>
 	<select id="myCsList" parameterType="integer" resultType="cs">
-		select c.*, m.* from cs c, member m where c.m_num=m.m_num and c.m_num=#{m_num} and c.del='n'
+		select c.*, m.* from cs c, member m where c.m_num=m.m_num and cs_ref in (select cs_ref from cs where m_num=#{m_num}) and
+        c.del='n' order by c.cs_ref desc, c.cs_re_step
 	</select>
 	<select id="confirm" parameterType="integer" resultType="alert">
 		select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title, t_like, t_reply from alert where m_num=#{m_num}
 	</select>
 	<select id="myScList" parameterType="integer" resultType="sc">
-		select * from schedule where m_num=#{m_num} order by sch_num
+		select * from schedule where m_num=#{m_num} order by sch_num desc
 	</select>
 	<select id="myTripList" parameterType="integer" resultType="trip">
-		select * from trip where m_num=#{m_num} and del='n'
+		select * from trip where m_num=#{m_num} and del='n' order by reg_date desc
 	</select>
 	<delete id="alertTp" parameterType="integer">
 		delete from alert where ale_num=#{ale_num}
