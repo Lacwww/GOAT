@@ -56,4 +56,6 @@ public interface MemberDao {
 
 	void alertTr(int ale_num);
 
+	void alertSch(int ale_num);
+
 }

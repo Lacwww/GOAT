@@ -57,4 +57,6 @@ public interface MemberService {
 
 	void alertTr(int ale_num);
 
+	void alertSch(int ale_num);
+
 }

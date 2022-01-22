@@ -387,4 +387,10 @@ public class MemberController {
 		model.addAttribute("t_num", t_num);
 		return "member/alertTr";
 	}
+	@RequestMapping("member/alertSch")
+	public String alertSch(int ale_num, int sch_num, Model model) {
+		ms.alertSch(ale_num);
+		model.addAttribute("sch_num", sch_num);
+		return "member/alertSch";
+	}
 }

@@ -88,5 +88,9 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		sst.delete("schedulens.deleteSch",sch_num);
 	}
 
+	public void updateSchAlert(Schedule sch) {
+		sst.update("schedulens.updateSchAlert", sch);
+	}
+
 
 }

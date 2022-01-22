@@ -102,7 +102,7 @@
 	
 	/* 비밀번호 일치 여부 검사 */
 	function passChk() {
-		if(window.event.keyCode != 9 && window.event.keyCode != 8) {
+		if(window.event.keyCode != 9 || window.event.keyCode != 8 || window.event.keyCode != 116 || window.event.ctrlKey&&(window.event.keyCode != 82)) {
 			if (frm.m_pass.value == frm.m_pass2.value) {
 				document.getElementById('same').innerHTML = '비밀번호 일치';
 				document.getElementById('same').style.color = 'blue';

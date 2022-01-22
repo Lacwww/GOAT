@@ -90,4 +90,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 		sd.deleteSch(sch_num);
 	}
 
+	@Override
+	public void updateSchAlert(Schedule sch) {
+		sd.updateSchAlert(sch);
+	}
+
 }
