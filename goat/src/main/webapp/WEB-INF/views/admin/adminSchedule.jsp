@@ -6,69 +6,74 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+a {
+	color: rgb(64, 123, 37);
+}
+</style>
 </head>
 <body>
-	<div>
-		<h2 style="color: rgb(64,123,37);">스케쥴 목록</h2>
-		<button onclick="location.href='admin.do'">돌아가기</button>
-		<br><br>
-		<div style="width:100%;" class="div1">
+	<div style="padding-top: 5%; padding-left: 20%; width: 80%">
+		<br> <br>
+		<div style="width: 100%;">
+			<h2 style="display: inline;">
+				<a href="adminSchedule.do">스케쥴 목록</a>
+			</h2>
+			<button class="btn pull-right" style="height: 30px;"
+				onclick="location.href='admin.do'">돌아가기</button>
+		</div>
+		<br> <br>
+		<div style="padding-top: 5%;">
 			<table class="table table-hover table-striped">
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>스케쥴명</th>
-					<th>출발일</th>
-					<th>도착일</th>
-					<th>회원명</th>
-				</tr>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>스케쥴명</th>
+						<th>출발일</th>
+						<th>도착일</th>
+						<th>회원명</th>
+					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="schedule" items="${list }">
-					<tr>
-						<td>${schedule.sch_num }</td>
-						<td>${schedule.sch_name }</td>
-						<td>${schedule.s_date }</td>
-						<td>${schedule.e_date }</td>
-						<td>${schedule.m_name }</td>
-					</tr>
-				</c:forEach>
+					<c:forEach var="schedule" items="${list }">
+						<tr>
+							<td>${schedule.sch_num }</td>
+							<td>${schedule.sch_name }</td>
+							<td>${schedule.s_date }</td>
+							<td>${schedule.e_date }</td>
+							<td>${schedule.m_name }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-		<br><br>
+		<br> <br>
 		<div align="center" style="clear: both;">
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${startPage > pagePerBlock }">
-					<li><a
-						href="adminSchedule.do?pageNum=1">
-							<span class="glyphicon glyphicon-backward"></span>
+					<li><a href="adminSchedule.do?pageNum=1"> <span
+							class="glyphicon glyphicon-backward"></span>
 					</a></li>
-					<li><a
-						href="adminSchedule.do?pageNum=${startPage-1}">
-							<span class="glyphicon glyphicon-triangle-left"></span>
+					<li><a href="adminSchedule.do?pageNum=${startPage-1}"> <span
+							class="glyphicon glyphicon-triangle-left"></span>
 					</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
 					<c:if test="${currentPage==i }">
-						<li class="active"><a
-							href="adminSchedule.do?pageNum=${i}">${i}</a></li>
+						<li class="active"><a href="adminSchedule.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${currentPage!=i }">
-						<li><a
-							href="adminSchedule.do?pageNum=${i}">${i}</a></li>
+						<li><a href="adminSchedule.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 것이 남아있는 경우에는 endPage보다 totalPage가 큰경우 -->
 				<c:if test="${endPage < totalPage }">
-					<li><a
-						href="adminSchedule.do?pageNum=${endPage+1}">
-							<span class="glyphicon glyphicon-triangle-right"></span>
+					<li><a href="adminSchedule.do?pageNum=${endPage+1}"> <span
+							class="glyphicon glyphicon-triangle-right"></span>
 					</a></li>
-					<li><a
-						href="adminSchedule.do?pageNum=${totalPage}">
-							<span class="glyphicon glyphicon-forward"></span>
+					<li><a href="adminSchedule.do?pageNum=${totalPage}"> <span
+							class="glyphicon glyphicon-forward"></span>
 					</a></li>
 				</c:if>
 			</ul>

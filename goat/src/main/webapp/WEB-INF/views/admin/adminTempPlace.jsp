@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+a {
+	color: rgb(64, 123, 37);
+}
 </style>
 <script type="text/javascript">
 	function opn(temp_num) {
@@ -16,11 +18,18 @@
 </script>
 </head>
 <body>
-	<div>
-		<h2 style="color: rgb(64,123,37);">플레이스 등록 요청 목록</h2>
-		<br><br>
-		<button onclick="location.href='admin.do'">돌아가기</button>
-		<div>
+	<div style="padding-top: 5%; padding-left: 20%; width: 80%">
+		<br> <br>
+		<div style="width: 100%;">
+			<h2 style="display: inline;">
+				<a href="adminTempPlace.do">플레이스 등록 요청 목록</a>
+			</h2>
+			<button class="btn pull-right" style="height: 30px;"
+				onclick="location.href='admin.do'">돌아가기</button>
+		</div>
+		<br>
+		<br>
+		<div style="padding-top: 5%;">
 			<table class="table table-hover table-striped">
 				<thead>
 					<tr>
@@ -50,7 +59,7 @@
 				</tbody>
 			</table>
 		</div>
-		<br><br>
+		<br> <br>
 		<div align="center" style="clear: both;">
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
