@@ -74,4 +74,7 @@
 	<delete id="alertTr" parameterType="integer">
 		delete from alert where ale_num=#{ale_num}
 	</delete>
+	<delete id="alertSch" parameterType="integer">
+		delete from alert where ale_num=#{ale_num}
+	</delete>
 </mapper>

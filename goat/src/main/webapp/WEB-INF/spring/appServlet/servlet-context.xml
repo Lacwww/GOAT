@@ -24,7 +24,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<!-- Tiles 3 Configurer -->
+	<!-- Tiles 3 Configurer
 	<beans:bean id="tilesViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass"
@@ -38,7 +38,7 @@
 				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
 			</beans:list>
 		</beans:property>
-	</beans:bean>
+	</beans:bean> -->
 
 	<context:component-scan
 		base-package="com.ch.goat" />

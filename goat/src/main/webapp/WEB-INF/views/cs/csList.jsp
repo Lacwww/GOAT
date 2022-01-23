@@ -15,6 +15,33 @@
 	height: 30px;
 }
 </style>
+<!-- Simple line icons-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${path }/resources/css/styles2.css" rel="stylesheet" />
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="${path }/resources/js/scripts2.js"></script>
+
+<!-- Core theme JS-->
+<script src="${path }/resources/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Varela+Round"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${path }/resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript">
 	function sessionChk() {
 		if (${empty id && empty admin}) {
@@ -27,6 +54,54 @@
 </script>
 </head>
 <body>
+<div style="display: flex; float: left;">
+	<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				Menu <svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com -->
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="/goat/main.home.do#map">Map</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/goat/trip/tripList.do">Board</a></li>
+					<c:if test="${empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
+					</c:if>
+					<c:if test="${not empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/myPage.do"><img
+								title="MyPage" style="border-radius: 50%;"
+								src="/goat/resources/m_photo/${m_img }" width="70px"
+								height="70px" /></a></li>						
+					</c:if>
+					<c:if test="${empty id && not empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	 <!-- Navigation-->
+	 	<div style="z-index: 1111111;">
+        <a class="menu-toggle rounded" href="#" style="display: flex; justify-content: center; align-items: center;"><i class="fas fa-bars"></i></a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="/goat/trip/tripList.do">Board</a></li>
+                <li class="sidebar-nav-item"><a href="/goat/trip/tripList.do">Trip</a></li>
+                <li class="sidebar-nav-item"><a href="/goat/notice/noticeList.do">Notice</a></li>
+                <li class="sidebar-nav-item"><a href="/goat/cs/csList.do">Service</a></li>
+            </ul>
+        </nav>
+        </div>
+        </div>
+	<section class="about-section text-center"
+		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
 	<div align="center">
 		<h2>고객문의</h2>
 		<table class="table table-hover table-striped">
@@ -110,5 +185,6 @@
 			<input type="button" onclick="sessionChk()" value="게시글 입력">
 		</div>
 	</div>
+	</section>
 </body>
 </html>

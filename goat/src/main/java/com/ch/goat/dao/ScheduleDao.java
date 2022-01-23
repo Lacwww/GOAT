@@ -47,6 +47,8 @@ public interface ScheduleDao {
 
 	void deleteSch(int sch_num);
 
+	void updateSchAlert(Schedule sch);
+
 
 }
   

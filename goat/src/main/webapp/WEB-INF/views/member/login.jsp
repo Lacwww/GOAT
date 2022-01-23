@@ -26,7 +26,9 @@
 				location.href="/goat/main/home.do"
 			} else if("${prevUrl}" == "/goat/member/delete.do") {
 				location.href="/goat/main/home.do"
-			} else {
+			} else if("${prevUrl}" == "") {
+				location.href="/goat/main/home.do"
+			}  else {
 				location.href="${prevUrl}";
 			}
 		</script>

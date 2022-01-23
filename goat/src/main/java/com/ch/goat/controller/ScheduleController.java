@@ -230,16 +230,14 @@ public class ScheduleController {
 		scd.setSch_num(sch_num);
 		
 		int results=ss.updateSch(sch);
+		
 		// 알람
-		ss.schAlert(sch);
+		ss.updateSchAlert(sch);
 		List<Alert> alert = ss.alertCon(m_num);
 		session.removeAttribute("alert");
 		session.setAttribute("alert", alert);
-		
-		
-		
-
 		List<String> list = new ArrayList<String>();
+
 		String[] result = result_day.split(",day");
 		for (int i = 0; i < result.length; i++) {
 			String[] arr = result[i].split(",");
