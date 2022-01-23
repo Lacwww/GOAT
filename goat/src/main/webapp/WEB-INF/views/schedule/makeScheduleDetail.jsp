@@ -5,6 +5,17 @@
 <html>
 <head>
 <style type="text/css">
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#sch_date {
+	font-family: 'GmarketSansMedium';
+}
+
 div #p_list {
 	overflow: auto;
 	float: right;
@@ -40,6 +51,32 @@ div #p_list {
 td #lat, td #lng {
 	display:none;
 }
+.btn>input {
+	width: 200px;
+	height: 32px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+}
+
+#polyDay {
+	width : 13rem;
+	background: linear-gradient(to bottom, #ffffff 5%, #ffffff 100%);
+	background-color: #ffffff;
+	border-radius: 23px;
+	border: 1px solid black;
+	display: inline-block;
+	cursor: pointer;
+	color: black;
+	font-family: Arial;
+	padding: 9px 14px;
+	text-decoration: none;
+	font-size: 1.5rem;
+	margin-bottom: 2%;
+}
+
 </style>
 <script type="text/javascript"
 	src="${path }/resources/bootstrap/js/jquery-ui.min.js"></script>
@@ -205,7 +242,7 @@ td #lat, td #lng {
 		var p = {
 		        content: '<div style="width:150px;text-align:center;padding:6px 0;">${i.place_name}</div>', 
 		        latlng: new kakao.maps.LatLng(${i.lat}, ${i.lng})
-			}; 
+			};  
 		positions.push(p);
 	</script>
 </c:forEach>
@@ -227,7 +264,8 @@ td #lat, td #lng {
 		<div id="wrapper">
 			<div>
 				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요">
-				<p>${s_date } ~ ${e_date }
+				<p id="sch_date"><img src="${path }/resources/images/calendar.png" style="width: 60px; height: 70px; padding-bottom: 5px;">
+				 ${s_date } ~ ${e_date }</p>
 			</div>
 			<!-- 지도 -->
 			<div id="map" style="width: 65%; height: 60%; float: left;"></div>
@@ -296,11 +334,11 @@ td #lat, td #lng {
 				</c:forEach>
 			</div>
 			<div class="selected_day">
-				<div style="float: left;" id="group0" class="group"
-					onclick="disp(0)">전체 일정</div>
+				<input type="button" style="float: left;" id="group0" class="group"
+					onclick="disp(0)" value="전체 일정">
 				<c:forEach var="d" begin="1" end="${days }">
-					<div style="float: left;" id="group${d }" class="group"
-						onclick="disp(${d})">${d }일차</div>
+					<input type="button" style="float: left;" id="group${d }" class="group"
+						onclick="disp(${d})" value="${d }일차">
 				</c:forEach>
 			</div>
 			<div class="selected_list">
@@ -316,17 +354,19 @@ td #lat, td #lng {
 							</tr>
 						</table>
 					</div>
-				</c:forEach>
+				</c:forEach>	
 			</div>
-			<div class="btn">
-				<select name="polyDay">
-					<c:forEach var="polyday" begin="1" end="${days }">
-						<option value="${polyday }">${polyday }</option>
-					</c:forEach>
-				</select>
-				<input type="button" onclick="preview()" value="경로 그리기">
-				<input type="submit" value="확인" class="btn btn-success"> <input
-					type="button" onclick="back()" value="이전" class="btn btn-cancel">
+			<div class="btn" style="width: 100%;" align="center"  style="display: flex;">
+				<div>
+					<select name="polyDay" id="polyDay">
+						<c:forEach var="polyday" begin="1" end="${days }">
+							<option value="${polyday }">${polyday }일차</option>
+						</c:forEach>
+					</select>
+					<input type="button" onclick="preview()" value="경로 그리기" class="btn btn-primary" style="margin-right: 4%;">
+					<input type="submit" value="확인" class="btn btn-success"> <input
+						type="button" onclick="back()" value="이전" class="btn btn-cancel">
+				</div>
 			</div>
 		</div>
 	</form>
