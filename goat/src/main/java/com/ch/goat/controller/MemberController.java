@@ -95,21 +95,15 @@ public class MemberController {
 			String fileName1 = member.getFile().getOriginalFilename();
 			String fileName="";
 			if (fileName1==null||fileName1.equals("")) {
-				System.out.println("getFile = " + member.getFile().getOriginalFilename());
 				fileName = "goat6.png";
-				System.out.println("file Name = " + fileName);
 			} else {
-				System.out.println("getFile = " + member.getFile().getOriginalFilename());
 				// 파일명을 변경해야 할 때 : UUID 임의의 문자열로 변경 Mac은 파일명이 한글이면 깨짐
 				UUID uuid = UUID.randomUUID();
 				fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
-				System.out.println("file Name = " + fileName);
 				// 실제 파일 저장 경로
 				String real = session.getServletContext().getRealPath("/resources/m_photo");
-				System.out.println("real = " + real);
 				// 파일 저장			
 				FileOutputStream fos = new FileOutputStream(new File(real + "/" + fileName));
-				System.out.println("real + fileName = " + real+ "/" + fileName);
 				fos.write(member.getFile().getBytes());
 				fos.close();
 			}
@@ -141,6 +135,7 @@ public class MemberController {
 				result = 1; // 성공 id와 암호가 일치
 				if (member2.getAdmin().equals("n")) {
 					session.setAttribute("id", member.getM_id());
+					model.addAttribute("m_id", member2.getM_id());
 				} else {
 					session.setAttribute("adminid", member.getM_id());
 				}
@@ -151,13 +146,15 @@ public class MemberController {
 			}
 		}
 		model.addAttribute("result", result);
-		if (prevUrl.length() > 22) {
-			String prevUrl2 = prevUrl.substring(0,22);
-			if (prevUrl2.equals("/goat/member/delete.do")) {
-				prevUrl = prevUrl2;
+		if (!prevUrl.equals("")) {
+			if (prevUrl.length() > 22) {
+				String prevUrl2 = prevUrl.substring(0,22);
+				if (prevUrl2.equals("/goat/member/delete.do")) {
+					prevUrl = prevUrl2;
+				}
 			}
+			model.addAttribute("prevUrl", prevUrl);
 		}
-		model.addAttribute("prevUrl", prevUrl);
 		return "member/login";
 	}
 	@RequestMapping(value = "member/chkAlert")

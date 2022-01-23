@@ -90,7 +90,7 @@ body {
 					<h1 class="bolder">G.O.A.T</h1>
 				</div>
 				<br><br>
-				<button type="button" id="button" class="btn btn-lg" onclick="location.href='home.do'">들어가기</button>
+				<button type="button" id="button" class="btn btn-lg" onclick="location.href='home.do#page-top'">들어가기</button>
 			</div>
 		</div>
 	</div>

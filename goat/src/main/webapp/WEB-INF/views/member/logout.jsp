@@ -13,7 +13,7 @@
 		if("${prevUrl}" == "/goat/main/main.do") {
 			location.href="/goat/main/main.do"
 		} else {
-			location.href="/goat/main/home.do"
+			location.href="/goat/main/home.do#page-top"
 		}
 	</script>
 </body>
