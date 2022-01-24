@@ -42,6 +42,11 @@
 }
 </style>
 <script type="text/javascript">
+	$(function() {
+		$('#MoaModal .modal-content').load("selectModal.do?place_area=제주도");
+		$('#MoaModal').modal();		
+	});
+
 	function modal(area) {
 		$('#MoaModal .modal-content').load("selectModal.do?place_area=" + area);
 		$('#MoaModal').modal();

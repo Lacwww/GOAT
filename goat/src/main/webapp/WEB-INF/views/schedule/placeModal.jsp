@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../tool.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.css">
+<script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
 	.placeImg {width: 100%; height: 100%; padding-right: 2px;}
 	.area_photo { float: left; width: 30%; height: 30%;}
@@ -64,23 +73,18 @@
 			<h3>${place.place_area }</h3>
 		</div>
 		<div class="modal-body">
-			<div class="container" id="inner_content" style="width: 100%;">
-				<div class="bookmark"><img style="border-radius:10px; width: 50px;" class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div>
-				<div class="area_photo">
+		<table style="width: 100%; height: 200px;">
+			<tr><td rowspan="5" style="width: 40%;"><div class="area_photo" style="float: left; width: 100%; height: 100%;">
 					<img class="placeImg" alt=""	src="${place.place_photo }">
-				</div>
-				<div class="area_text">
-					<h3>${place.place_name}</h3>
-					<br>
-					<h4>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"/></h4>
-					<h5>태그 : ${place.place_tag }</h5>
-					<br>
-					<h5>${place.place_content }</h5>
-				</div>
-			</div>
+				</div></td></tr>
+			<tr><td><h3 style="display: inline;">${place.place_name}</h3><div class="bookmark"><img style="border-radius:10px; width: 50px;" class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div></td></tr>
+			<tr><td><h4>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"/></h4></td></tr>
+			<tr><td><h5>태그 : ${place.place_tag }</h5></td></tr>
+			<tr><td><h5>${place.place_content }</h5></td></tr>
+		</table>
 		</div>
-		<div class="modal-footer">
-			<div class="pull-left"><a onclick="updatePlace()">플레이스 건의</a></div>
+		<div class="modal-footer" >
+			<a style="padding-left: 2%; margin-right: 66%;" class="pull-left" onclick="updatePlace()">플레이스 건의</a>
 			<input type="button" class="btn btn-sm btn-success" id="select" value="상세보기"
 				onclick="window.open('${path }/place/prevDetailView.do?place_num=${place.place_num}')">
 			<button class="btn btn-sm btn-danger pull-right"

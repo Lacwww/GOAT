@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../tool.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/bootstrap/css/bootstrap.css">
+<script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
