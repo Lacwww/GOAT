@@ -8,10 +8,18 @@
 	.placeImg {width: 100%; height: 100%; padding-right: 2px;}
 	.area_photo { float: left; width: 30%; height: 30%;}
 	.area_photo img { border-radius: 10px;}
-	.area_text {margin-left: 35%;}
 	a {cursor: pointer; }
 	.bookmark {float: right;}
-	`.bmChk { cursor: pointer;}
+	.bmChk { cursor: pointer;}
+	.modal-backdrop {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  z-index: -1;
+		  width: 100vw;
+		  height: 100vh;
+		  background-color: #000;
+	}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -60,7 +68,7 @@
 				<div class="area_photo">
 					<img class="placeImg" alt=""	src="${place.place_photo }">
 				</div>
-				<div class="area_text">
+				<div>
 					<h3>${place.place_name}</h3>
 					<br>
 					<h4>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"/></h4>

@@ -5,26 +5,35 @@
 <html>
 <head>
 <style type="text/css">
-.area_img {
-	width: 100%;
-	height: 100%;
-	padding-right: 2px;
-}
-
-.area_photo {
-	float: left;
-	width: 30%;
-	height: 30%;
-}
-
-.area_text {
-	margin-left : 3%;
-	width: 90%;
-	padding: 5px;
-}
-#inner_content {
-	width: 100%;
-}
+	.area_img {
+		width: 100%;
+		height: 100%;
+		padding-right: 2px;
+	}
+	
+	.area_photo {
+		float: left;
+		width: 30%;
+		height: 30%;
+	}
+	
+	.area_text {
+		margin-left : 3%;
+		width: 90%;
+		padding: 5px;
+	}
+	#inner_content {
+		width: 100%;
+	}
+	.modal-backdrop {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  z-index: -1;
+		  width: 100vw;
+		  height: 100vh;
+		  background-color: #000;
+	}
 </style>
 <script type="text/javascript">
 	function chk() {

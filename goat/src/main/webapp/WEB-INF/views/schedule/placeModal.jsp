@@ -11,7 +11,16 @@
 	.area_text {margin-left: 35%;}
 	a {cursor: pointer; }
 	.bookmark {float: right;}
-	`.bmChk { cursor: pointer;}
+	.bmChk { cursor: pointer;}
+	.modal-backdrop {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  z-index: -1;
+		  width: 100vw;
+		  height: 100vh;
+		  background-color: #000;
+	}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
