@@ -5,43 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>GOAT</title>
-<style type="text/css">
-.tl {
-	border-bottom: 1px solid black;
-}
-
-.td1, .td2, .td3, .td4, .td5 {
-	height: 30px;
-}
-.hotTrip {
-	width : 250px;
-	text-align: center;
-	border-radius: 10px; 
-	border: 1px solid black;
-	margin: 15px;
-	padding : 15px;
-}
-.hotTrip img {
-	margin-bottom: 10px;
-}
-.hotLikeContainer {
-	display: flex;
-	margin : 0px auto;
-	justify-content: center;
-}
-svg {
-	vertical-align: middle;
-}
-</style>
-<!-- Simple line icons-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
 <!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="${path }/resources/js/scripts.js"></script>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
@@ -49,6 +20,36 @@ svg {
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<style type="text/css">
+	#mainNav {position: fixed;}
+	.mainBody {margin-top: 70px;}
+	.tl {
+		border-bottom: 1px solid black;
+	}
+	
+	.td1, .td2, .td3, .td4, .td5 {
+		height: 30px;
+	}
+	.hotTrip {
+		width : 250px;
+		text-align: center;
+		border-radius: 10px; 
+		border: 1px solid black;
+		margin: 15px;
+		padding : 15px;
+	}
+	.hotTrip img {
+		margin-bottom: 10px;
+	}
+	.hotLikeContainer {
+		display: flex;
+		margin : 0px auto;
+		justify-content: center;
+	}
+	svg {
+		vertical-align: middle;
+	}
+</style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
 	crossorigin="anonymous"></script>
@@ -61,6 +62,14 @@ svg {
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${path }/resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript">
+	$(function() {
+		$('#mainNav').addClass('navbar-shrink');
+		$('#active').addClass('active');
+	});
+	$(window).scroll(function(event) {
+		$('#mainNav').addClass('navbar-shrink');
+		$('#active').addClass('active');
+	});
 	function sessionChk() {
 		if (${empty id && empty admin}) {
 			alert("로그인후 이용할 수 있습니다");
@@ -71,7 +80,7 @@ svg {
 	}
 </script>
 </head>
-<body>
+<body id="page-top">
 <div style="display: flex;">
 	<!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -82,7 +91,7 @@ svg {
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="/goat/main.home.do#map">Map</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
@@ -108,9 +117,8 @@ svg {
 		</div>
 	</nav>
         </div>
-	<section class="about-section text-center"
-		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
-	<div align="center">
+	<section class="about-section text-center">
+	<div class="mainBody" align="center">
 		<h1>Trip</h1>
 		<h4>좋아요 HOT 게시물<small>&nbsp;(*공감수 많은순)</small></h4>
 		<div>
@@ -132,7 +140,7 @@ svg {
 			</c:if>
 		</div>
 		
-		<table class="table table-hover table-striped">
+		<table class="table">
 		<thead>
 			<tr>
 				<th class="tl">번호</th>
@@ -162,7 +170,7 @@ svg {
 			</c:if>
 			</tbody>
 		</table>
-		<div align="center">
+		<div style="display: flex; justify-content: center;">
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
@@ -216,8 +224,6 @@ svg {
 			<input type="button" onclick="sessionChk()" value="게시글 입력">
 		</div>
 	</div>
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 	</section>
 </body>
 </html>

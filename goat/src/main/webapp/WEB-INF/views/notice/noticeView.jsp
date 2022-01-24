@@ -5,12 +5,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>GOAT</title>
+<!-- Bootstrap core JS-->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="${path }/resources/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Varela+Round"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${path }/resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript">
 	$(function() {
-		$('#mainNav').addClass('navbar-shrink')
-		$('#active').addClass('active')
+		$('#mainNav').addClass('navbar-shrink');
+		$('#active').addClass('active');
 	});
+	$(window).scroll(function(event) {
+		$('#mainNav').addClass('navbar-shrink');
+		$('#active').addClass('active');
+	});
+	
 	function noBack() {
 		window.history.forward();
 	}
@@ -50,33 +80,14 @@
 	});
 </script>
 <style type="text/css">
-	#noticeTable td { width: 11.1%; height: 70px; font-size: 15px; cursor: pointer; }
+	.nav-link { tlist-style-type: none; }
+	#mainNav {position: fixed;}
+	#noticeTable td {width:0 auto; height: 70px; font-size: 15px; cursor: pointer; }
+	.mainBody {margin-top: 150px;}
 </style>
-<!-- Simple line icons-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core theme JS-->
-<script src="${path }/resources/js/scripts.js"></script>
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<!-- * *                               SB Forms JS                               * *-->
-<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
-	crossorigin="anonymous"></script>
-<!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Varela+Round"
-	rel="stylesheet" />
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${path }/resources/css/styles.css" rel="stylesheet" />
 </head>
-<body>
+<body id="page-top">
+
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container px-4 px-lg-5">
@@ -97,11 +108,11 @@
 						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>
 					</c:if>
 					<c:if test="${not empty id && empty admin }">
-						<li class="nav-item"><a class="nav-link" href="#signup"><img
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/myPage.do"><img
 								title="MyPage" style="border-radius: 50%;"
 								src="/goat/resources/m_photo/${m_img }" width="70px"
 								height="70px" /></a></li>
-						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
 					</c:if>
 					<c:if test="${empty id && not empty admin }">
 						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
@@ -112,8 +123,8 @@
 		</div>
 	</nav>
 
-	<div align="center">
-		<h2 class="text-primary">공지 사항 상세 조회</h2>
+	<div class="mainBody" align="center">
+		<h2>공지 사항 상세 조회</h2>
 		<table id="noticeTable">
 			<tr>
 				<th>제목</th>
@@ -132,11 +143,11 @@
 				<td colspan="3" style="white-space:pre; overflow:auto;">${notice.no_content}</td>
 			</tr>
 			<tr align="center">
-				<td colspan="2">
-					<a href="noticeList.do?pageNum=${pageNum }" class="btn btn-info">게시글 목록</a>
+				<td colspan="4">
+					<input type="button" onclick="location.href='noticeList.do?pageNum=${pageNum }'" value="게시글 목록">
 				<c:if test="${not empty admin}">
-					<a href="noticeUpdateForm.do?no_num=${notice.no_num}&pageNum=${pageNum }" class="btn btn-success">수정</a>
-					<input type="button" onclick="delCs()" class="btn btn-danger" value="삭제">
+					<input type="button" onclick="location.href='noticeUpdateForm.do?no_num=${notice.no_num}&pageNum=${pageNum }'" value="수정">
+					<input type="button" onclick="delCs()" value="삭제">
 				</c:if>
 				</td>
 			</tr>
