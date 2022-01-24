@@ -108,7 +108,6 @@
 </head>
 <body>
 <c:if test="${not empty list }">
-	<h3 class="text-primary"><b>장소 평가</b></h3>
 	<br>
 <c:forEach var="prev" items="${list }">
 	<c:if test="${prev.del != 'y' }">

@@ -101,6 +101,13 @@
 		$('#active').addClass('active')
 	});
 </script>
+<script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- Navigation-->
@@ -321,7 +328,7 @@
 			<input type="hidden" name="lat" value="${place.lat }">
 			<input type="hidden" name="lng" value="${place.lng }">
 			<div align="center" style="width: 77%; margin-left: 8%;">
-			<table style="width: 90%;">
+			<table style="width: 90%; margin-top: 10px;">
 				<tr><td style="width: 25%; margin-left: 3%;">
 					<input type="file" name="file" class="form-control" id="temp_photo"></td>
 					<td class="bgcolor" align="center" style="width: 10%;">장소 검색</td>
@@ -336,7 +343,7 @@
 						<input type="text" class="form-control" style="width: 50%; margin-left: 10px;" name="temp_name" autofocus="autofocus" required="required"
 											value="${place.place_name }"></td></tr>
 				<tr><td class="bgcolor" align="center">카테고리 </td><td>
-						<select name="temp_cate"  class="form-control" style="width: 18%; margin-left: 10px;">
+						<select name="temp_cate"  class="form-control" style="text-align:center; width: 18%; margin-left: 10px;">
 							<c:if test="${place.place_cate == '관광지' }">
 								<option value="관광지" selected="selected">관광지</option>
 								<option value="숙소">숙소</option>
