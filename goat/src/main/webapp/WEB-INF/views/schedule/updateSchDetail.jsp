@@ -5,6 +5,17 @@
 <html>
 <head>
 <style type="text/css">
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#sch_date {
+	font-family: 'GmarketSansMedium';
+}
+
 div #p_list {
 	overflow: auto;
 	float: right;
@@ -39,6 +50,46 @@ div #p_list {
 }
 td #lat, td #lng {
 	display:none;
+}
+.btn>input {
+	width: 200px;
+	height: 32px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+}
+
+#polyDay {
+	width : 13rem;
+	background: linear-gradient(to bottom, #ffffff 5%, #ffffff 100%);
+	background-color: #ffffff;
+	border-radius: 23px;
+	border: 1px solid black;
+	display: inline-block;
+	cursor: pointer;
+	color: black;
+	font-family: Arial;
+	padding: 9px 14px;
+	text-decoration: none;
+	font-size: 1.5rem;
+	margin-bottom: 2%;
+}
+#wrapper {
+	width: 65%;
+	height: 100%;
+	margin: auto;
+}
+#sch_name {
+	width: 350px;
+	height: 42px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
 }
 </style>
 <script type="text/javascript"
@@ -232,9 +283,9 @@ td #lat, td #lng {
 		<input type="hidden" name="s_date" value="${s_date }">
 		<input type="hidden" name="e_date" value="${e_date }">
 		<div id="wrapper">
-			<div>
-				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요" value="${sch.sch_name }">
-				<p>${s_date } ~ ${e_date }
+			<div style="display:flex;align-items: flex-start;flex-direction: column;">
+				<input type="text" id="sch_name" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요" value="${sch.sch_name }">
+				<p id="sch_date">${s_date } ~ ${e_date }</p>
 			</div>
 			<!-- 지도 -->
 			<div id="map" style="width: 65%; height: 60%; float: left;"></div>

@@ -25,6 +25,10 @@
 
 	$(document).ready(
 			function() {
+				if(${m_num==null}) {
+					alert("로그인 후 이용해주세요");
+					location.href='${path}/member/loginForm.do';
+				}
 				var today = new Date();
 				$('#datepick').daterangepicker(
 						{
@@ -166,12 +170,11 @@ select::-ms-expand {
 	cursor: pointer;
 	color: #ffffff;
 	font-family: Arial;
-	font-weight: bold;
 	padding: 9px 17px;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #5b8a3c;
 	margin-right: 5%;
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	margin-bottom: 2%;
 }
 

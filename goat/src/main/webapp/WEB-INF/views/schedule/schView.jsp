@@ -6,10 +6,76 @@
 <html>
 <head>
 <style type="text/css">
+	@font-face {
+	    font-family: 'GmarketSansMedium';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
 	#div1 { display: flex; align-items: center;}
 	 {border: 2px;}
-	#day_box {background: gray; border: 2px;}
+	#day_box {border: 2px;}
 	.lst { display: none;}
+	#sch_name {
+		width: 300px;
+		height: 40px;
+		font-size: 15px;
+		border: 0;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+		border-bottom: 3px solid black;
+	}
+	#sch_date{
+		font-family: 'GmarketSansMedium';
+	}
+	@font-face {
+	    font-family: 'GmarketSansMedium';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	.span_day{
+		font-family: 'GmarketSansMedium';
+	}
+	/* 직선경로 버튼 CSS */
+	.day_route{
+	  background:#1AAB8A;
+	  color:#fff;
+	  border:none;
+	  position:relative;
+	  height:20px;
+	  font-size:0.6em;
+	  padding:0 2em;
+	  cursor:pointer;
+	  transition:800ms ease all;
+	  outline:none;
+	}
+	.day_route:hover{
+	  background:#fff;
+	  color:#1AAB8A;
+	}
+	.day_route:before,.day_route:after{
+	  content:'';
+	  position:absolute;
+	  top:0;
+	  right:0;
+	  height:2px;
+	  width:0;
+	  background: #1AAB8A;
+	  transition:400ms ease all;
+	}
+	.day_route:after{
+	  right:inherit;
+	  top:inherit;
+	  left:0;
+	  bottom:0;
+	}
+	.day_route:hover:before,.day_route:hover:after{
+	  width:100%;
+	  transition:800ms ease all;
+	}
 </style>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
@@ -97,7 +163,7 @@
 		// 지도에 선을 표시합니다 
 		polyline.setMap(map); 
 	}
-	function rout(day,d) {
+	function route(day,d) {
 		var count_place = $('#schedule_day'+day).children().length;
 		var place_name1 = $('#schedule_day'+day).children('.place').eq(d-1).find('span').html();
 		var lat1 = $("input[name=plat"+day+"]").eq(d-1).val();
@@ -121,10 +187,16 @@
 </head>
 <body>
 <div class="container">
-	<div id="sch1">
-		${sch.sch_name }<p>
-		<img alt="calendar" src="${path }/resources/images/calendar.png"
-					 style="width: 60px; height: 70px; padding-bottom : 5px;">${sch.s_date } ~ ${sch.e_date }
+	<div id="sch1" style="display: flex;flex-direction: column;align-items: flex-start;">
+		<div>
+			<img alt="trip" src="${path }/resources/images/logo.png"
+					style="width: 60px; height: 70px; padding-bottom : 5px;">
+					<input type="text" id="sch_name" value="${sch.sch_name }" readonly="readonly">
+		</div>
+		<div id="sch_date">
+				<img alt="calendar" src="${path }/resources/images/calendar.png"
+					style="width: 60px; height: 70px; padding-bottom : 5px;">${sch.s_date } ~ ${sch.e_date }
+		</div>
 	</div>
 	<div id="sch2" class="row" align="center">
 		<div class="col-md-9" id="map" style="height: 80%;">
@@ -148,24 +220,29 @@
 					});
 				</script>
 		</div>
-		<div class="col-md-3" id="day_box" style="height: 80%;">
+		<div class="col-md-3" style="height: 80%; border: 1px solid black;">
          <c:forEach var="day" begin="1" end="${days }">
          	<c:set var="d" value="1"/>
-            <div class="row" id="div1">
-               <div class="col-md-5 day" style="height: 100%;">
+            <div class="row" id="div1" style="border: 0.3px solid black; margin-bottom: 2%; border-left: none; border-right: none;">
+               <div class="col-md-5 day" id="day_box" style="height: 100%;">
                   <div>
-	                  <span>Day${day }</span><p>
-	                  <input type="button" id="prev${day }" value="직선경로 보기" onclick="make_marker(${day})">
+	                  <span class="span_day">Day${day }</span><p>
+	                  <input class="day_route" type="button" id="prev${day }" value="직선경로 보기" onclick="make_marker(${day})">
                   </div>
                </div>
-               <div class="col-md-7 cont" id="schedule_day${day }" style="background: white; height: 100%">
+               <div class="col-md-7 cont route_place" id="schedule_day${day }" style="background: white; height: 100%;">
                   <c:forEach var="scd" items="${list }">
                      <c:if test="${scd.day==day }">
 	                    <div class="place">
-                              <span>${scd.place_name }</span>
+                              <div>${scd.place_name }</div>
                               <input type="hidden" name="plat${scd.day}" id="${d }" value="${scd.lat }">
-                              <input type="hidden" name="plng${scd.day}" id="${d }" value="${scd.lng }"><br>
-                              <input type="button" class="rout" value="상세경로" onclick="rout(${day },${d})">
+                              <input type="hidden" name="plng${scd.day}" id="${d }" value="${scd.lng }">
+                              <div class="rout" style="margin-left: 15%;">
+                              <span class="glyphicon glyphicon-menu-down"
+									style="width: 30px; height: 20px;"></span>
+                              <img alt="상세경로" src="${path }/resources/images/route.png" onclick="route(${day },${d})"
+                              	height="20px" width="20px" style="cursor: pointer;">
+                              </div>
                               <c:set var="d" value="${d+1 }"/>
                      	</div>
                      </c:if>
@@ -175,10 +252,10 @@
          </c:forEach>
          </div>
    </div>
-   <div id="btns">
-		<input type="button" name="SchList" value="스케줄 목록" onclick="location.href='${path}/member/scheduleList.do?m_num=${m_num }'">
-   		<input type="button" value="수정" onclick="location.href='updateSchForm.do?sch_num=${sch_num}'">
-   		<input type="button" value="삭제" onclick="del(${sch_num})">
+   <div id="btns" align="center" style="margin-top: 2%;">
+		<input type="button" name="SchList" value="스케줄 목록" class="btn btn-info" onclick="location.href='${path}/member/scheduleList.do?m_num=${m_num }'">
+   		<input type="button" value="수정" class="btn btn-primary" onclick="location.href='updateSchForm.do?sch_num=${sch_num}'">
+   		<input type="button" value="삭제" class="btn btn-danger" onclick="del(${sch_num})">
    </div>
 </div>
 </body>
