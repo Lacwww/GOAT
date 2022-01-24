@@ -52,7 +52,7 @@
 			return false;
 		}
 		if(${not empty admin}) {
-			alert("관리자는 공감 막음");
+			alert("관리자는 공감 버튼이 막혀있습니다.");
 			return false;
 		}
 		

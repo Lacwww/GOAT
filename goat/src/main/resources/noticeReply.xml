@@ -33,7 +33,7 @@
 	</update>
 	
 	<update id="update" parameterType="nr">
-		update notice_reply set nor_content=#{nor_content}, reg_date=sysdate
+		update notice_reply set nor_content=#{nor_content}
 			where nor_num=#{nor_num}
 	</update>
 	

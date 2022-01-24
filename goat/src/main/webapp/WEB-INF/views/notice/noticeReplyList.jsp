@@ -74,7 +74,7 @@
 </script>
 </head><body>
 <div>
-	<c:if test="${empty nrList }">댓글 업졍~</c:if>
+	<c:if test="${empty nrList }">댓글이 없습니다. 여러분의 소중한 댓글을 입력해주세요</c:if>
 	<c:if test="${not empty nrList}">
 		<h3 class="text-primary">댓 글 목 록</h3>
 	
