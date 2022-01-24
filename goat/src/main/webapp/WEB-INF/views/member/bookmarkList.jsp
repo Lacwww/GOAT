@@ -5,36 +5,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GOAT</title>
+<title>Insert title here</title>
 <style type="text/css">
-	#cpList { margin: 0px; }
-	#cpList tr { width: 100%; }
+#sch {
+	margin-bottom: 80px;
+}
+
+.area {
+	width: 25%;
+	height: 40%;
+	float: left;
+	position: relative;
+	padding: 10px;
+}
+
+.area img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 7px;
+}
+
+.desc {
+	padding: 20px;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	background-color: #5e5a5a;
+	opacity: 0.8;
+	position: relative;
+	bottom: 24%;
+	color: #ffffff;
+	border-radius: 7px;
+}
 </style>
 <script type="text/javascript">
-	/* 삭제 */
-	function del(temp_num, m_num, del) {
-		if (del == 'c') {
-			alert("취소된 건의입니다");
-			return;
-		} else if (del == 'y') {
-			alert("완료된 건의입니다");
-			return;
-		} else {
-			var con = confirm("정말로 취소하시겠습니까?");
-			if (con) {
-				location.href="cpDelete.do?temp_num=" + temp_num + '&m_num=' + m_num;
-			} else {
-				alert("건의 취소가 취소되었습니다");
-				return;
-			}	
-		}
-	}
-	function updateSuggestion(temp_num) {
-		var con = confirm("수정하시겠습니까?");
-		if(con){
-			location.href="/goat/place/updateFormSuggestion.do?temp_num=" + temp_num;
-		}
-	}
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
 </script>
 <script type="text/javascript">
 	$(function() {
@@ -44,13 +54,6 @@
 	$(window).scroll(function(event) {
 		$('#mainNav').addClass('navbar-shrink')
 		$('#active').addClass('active')
-	});
-</script>
-<script type="text/javascript">
-	$(function() {
-		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
-			console.log(alert);
-		});
 	});
 </script>
 <!-- Font Awesome icons (free version)-->
@@ -161,104 +164,25 @@
 		</div>
 	</nav>
 	<div class="container" align="center" style="width: 100%; height: 100%; padding-top: 200px;">
-		<h1 style="margin-bottom: 50px;">Create Place</h1>
-		<table class="table" id="cpList">
-			<tr style="width: 100%;">
-				<td align="center">
-					번호
-				</td>
-				<td align="center">
-					이름
-				</td>
-				<td align="center">
-					분류
-				</td>
-				<td align="center">
-					주소
-				</td>
-				<td align="center">
-					상세 주소
-				</td>
-				<td align="center">
-					요청
-				</td>
-				<td align="center">
-					요청 일자
-				</td>
-				<td align="center">
-					처리 상태
-				</td>
-				<td align="center">
-					수정
-				</td>
-				<td align="center">
-					삭제
-				</td>
-			</tr>
-			<c:if test="${empty place }">
-				<tr>
-					<td colspan="10">
-						건의한 플레이스 내역이 없습니다
-					</td>
-				</tr>
-			</c:if>
-			<c:if test="${not empty place }">
-				<c:forEach var="list" items="${place }">
-					<tr onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">	
-						<td align="center">
-							${list.temp_num }
-						</td>
-						<td align="center">
-							${list.temp_name }
-						</td>
-						<td align="center">
-							${list.temp_cate }
-						</td>
-						<td align="center">
-							${list.temp_addr }
-						</td>
-						<td align="center">
-							${list.temp_addrd }
-						</td>
-						<td align="center">
-							${list.temp_crud }
-						</td>
-						<td align="center">
-							${list.reg_date }
-						</td>
-						<td align="center">
-							<c:if test="${list.del=='n' }">
-								처리 중
-							</c:if>
-							<c:if test="${list.del=='y' }">
-								승인 완료
-							</c:if>
-							<c:if test="${list.del=='d' }">
-								승인 거부
-							</c:if>
-							<c:if test="${list.del=='c' }">
-								건의 취소
-							</c:if>
-						</td>
-						<td align="center">
-						<c:if test="${list.del == 'n' }">
-							<button class="btn btn-success btn-sm" onclick="updateSuggestion('${list.temp_num}')">수정</button>
-						</c:if>	
-						</td>
-						<td align="center">
-						<c:if test="${list.del == 'n' }">
-							<button class="btn btn-warning btn-sm" onclick="del('${list.temp_num}', '${list.m_num }', '${list.del }')">취소</button>
-						</c:if>	
-						</td>
-					</tr>
+		<h1 style="margin-bottom: 50px;">Bookmark Place</h1>
+		<c:if test="${empty list }">
+			<h2 align="center">북마크가 없습니다</h2>
+		</c:if>
+		<c:if test="${not empty list }">
+			<div class="container" align="center">
+				<c:forEach var="place" items="${list }">
+					<div class="area" onclick="location.href='${path }/place/prevDetailView.do?place_num=${place.place_num }'">
+						<div class="areaPhoto">
+							<img alt="${place.place_name }" src="${place.place_photo }">	
+						</div>
+						<div class="desc">${place.place_name }</div>
+					</div>
 				</c:forEach>
-			</c:if>
-			<tr>
-				<td style="border: 0px;" align="center" colspan="10">
-					<button style="margin-top: 20px;" class="btn btn-success" onclick="history.back()">MyPage</button>
-				</td>
-			</tr>
-		</table>
+			</div>
+			<div>
+				<button style="margin-top: 20px;" class="btn btn-success" onclick="history.back()">MyPage</button>
+			</div>
+		</c:if>	
 	</div>
 </body>
 </html>

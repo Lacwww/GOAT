@@ -15,6 +15,17 @@
 		$('#mainNav').addClass('navbar-shrink')
 		$('#active').addClass('active')
 	})
+	$(window).scroll(function(event) {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#active').addClass('active')
+	});
+</script>
+<script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
 </script>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"

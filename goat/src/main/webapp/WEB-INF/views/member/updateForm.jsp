@@ -268,6 +268,13 @@
 </script>
 <script type="text/javascript">
 	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(function() {
 		$('#mainNav').addClass('navbar-shrink')
 		$('#active').addClass('active')
 	})
