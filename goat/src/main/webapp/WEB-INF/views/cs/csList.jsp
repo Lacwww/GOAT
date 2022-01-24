@@ -63,7 +63,7 @@
 					<li class="nav-item"><a class="nav-link" href="/goat/main.home.do#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
-					<li class="nav-item"><a class="nav-link active" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" id="active" href="/goat/cs/csList.do">Service</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
 					<c:if test="${empty id && empty admin }">
