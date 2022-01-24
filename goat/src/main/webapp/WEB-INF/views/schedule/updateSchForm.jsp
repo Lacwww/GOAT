@@ -90,6 +90,9 @@
  	function show(cate) {
 		$('.place_box').hide();
 		$('#'+cate).show();
+		$('.cate_select2').addClass('cate_select');
+		$('.cate_select2').removeClass('cate_select2');
+		$('#cate_' + cate).addClass('cate_select2');
  	}
 </script>
 <style type="text/css">
@@ -98,7 +101,7 @@ div #map {
 }
 
 input {
-	border-radius: 5px;
+	border-radius: 3px;
 }
 
 .date {
@@ -111,8 +114,9 @@ input {
 }
 
 #wrapper {
-	width: 100%;
-	height: 100%;;
+	width: 65%;
+	height: 100%;
+	margin: auto;
 }
 
 .pList {
@@ -124,15 +128,90 @@ input {
 	float: left;
 }
 
+select {
+	width: 80px;
+	height: 40px;
+	padding: .8em .5em;
+	border: 1px solid #999;
+	font-family: inherit;
+	font-size: 14px;
+	background: url('${path}/resources/images/arrow.jpg') no-repeat 95% 50%;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
 .cate_select {
-	float: left;
-	height: 20px;
-	width: 50px;
-	text-decoration: underline; 
-	text-underline-position:under;
-	margin-right: 15%;
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	background-color: #77b55a;
+	border-radius: 28px;
+	border: 1px solid #4b8f29;
+	display: inline-block;
 	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	padding: 9px 17px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #5b8a3c;
+	margin-right: 5%;
+	font-size: 1.3rem;
+	margin-bottom: 2%;
+}
+
+.cate_select:hover {
+	background: linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+	background-color: #72b352;
+}
+
+.cate_select:active {
+	position: relative;
+	top: 1px;
+}
+
+.cate_select2 {
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+	background-color: #0688fa;
+	border-radius: 28px;
+	border: 1px solid #4b8f29;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: bold;
+	padding: 9px 17px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #5b8a3c;
+	margin-right: 5%;
 	font-size: 1.5rem;
+	margin-bottom: 2%;
+}
+
+.cate_select2:hover {
+	background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+	background-color: #0688fa;
+}
+
+.cate_select2:active {
+	position: relative;
+	top: 1px;
+}
+
+#datepick {
+	width: 200px;
+	height: 32px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
 }
 </style>
 <meta charset="UTF-8">
@@ -146,7 +225,7 @@ input {
 			onsubmit="return chk();">
 			<input type="hidden" name="sch_num" value="${sch.sch_num }">
 			<div id="navyDiv" style="width: 100%;">
-				<input type="text" id="id" name="id" value=""> 
+				<input type="hidden" id="id" name="id" value=""> 
 				<input type="hidden" name="place_area" value="${place_area }">
 				<div style="width: 100%;">
 					<img alt="calendar" src="${path }/resources/images/calendar.png"
@@ -168,14 +247,15 @@ input {
 									</c:if>
 								</c:forTokens>
 							</select> <input type="text" name="keyword" id="keyword"
-								placeholder="검색어를 입력해주세요" value=""> <input type="button"
-								class="btn btn-light" onclick="searchPlace()" value="검색">
+								placeholder="검색어를 입력해주세요" value="" style="width: 200px; height: 40px;"> 
+								<input type="button"class="btn btn-light" onclick="searchPlace()"
+									value="검색"  style="width: 60px; height: 40px;">
 						</div>
 						<!-- 플레이스 카테고리 선택 -->
 						<div align="center">
-							<div class="cate_select" onclick="show('tour')">관광지</div>
-							<div class="cate_select" onclick="show('food')">식당</div>
-							<div class="cate_select" onclick="show('rest')">숙소</div>
+							<div class="cate_select2" id="cate_tour" onclick="show('tour')">관광지</div>
+							<div class="cate_select" id="cate_food" onclick="show('food')">식당</div>
+							<div class="cate_select" id="cate_rest" onclick="show('rest')">숙소</div>
 						</div>
 					</div>
 				</div>
@@ -207,9 +287,10 @@ input {
 					    } 
 					});    
 				</script>
-				<div id="btn">
-					<input type="submit" value="상세일정 작성">
-					<input type="button" value="취소" onclick="location.href='selectArea.do'">
+				<div id="btn" align="center" style="margin-top: 1%;">
+					<input type="submit" value="상세일정 작성" class="btn btn-primary">
+					<input type="button" value="취소" onclick="history.back()"
+							class="btn btn-danger">
 				</div>
 
 				</div>
@@ -220,13 +301,17 @@ input {
 				<!-- 플레이스 고른 목록 -->
 				<div id="pick_place" style="align-items: center;">
 					<table class="table table-bordered table-striped" id="Ppick" style="align-content: center;"><caption>내가 고른 플레이스 목록</caption>
-						<tr><th>사진</th><th>장소</th><th>주소</th><th>태그</th></tr>
-						<c:forEach var="p" items="${plist }">
-							<tr><tr id="tr${p.place_num }"><td style='position:relative;' class='column1' align='center'><span onclick='del(${p.place_num})' 
-								class='glyphicon glyphicon-remove' style='position : absolute; top:8%; left:5%;'></span>
-								<img alt='' src="${p.place_photo }" id='p_image' style="align : center; width: 150px; height: 150px;"></td>
-								<td>${p.place_name }</td><td>${p.place_addr }</td><td>${p.place_tag }</td></tr>
-						</c:forEach>
+						<thead>
+							<tr><th>사진</th><th>장소</th><th>주소</th><th>태그</th></tr>
+						</thead>
+						<tbody>
+							<c:forEach var="p" items="${plist }">
+								<tr><tr id="tr${p.place_num }"><td style="position:relative;" class='column1' align='center'><span onclick='del(${p.place_num})' 
+									class='glyphicon glyphicon-remove' style='position : absolute; top:8%; left:5%;'></span>
+									<img alt='' src="${p.place_photo }" id='p_image' style="align : center; width: 150px; height: 150px;"></td>
+									<td>${p.place_name }</td><td>${p.place_addr }</td><td>${p.place_tag }</td></tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</form>	

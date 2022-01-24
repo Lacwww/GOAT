@@ -136,6 +136,7 @@ public class ScheduleController {
 			}
 			list.clear();
 		}
+		model.addAttribute("results", results);
 		model.addAttribute("m_num",m_num);
 		model.addAttribute("sch_num",sch_num);
 		return "schedule/insertSchedule";

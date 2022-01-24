@@ -76,7 +76,21 @@ td #lat, td #lng {
 	font-size: 1.5rem;
 	margin-bottom: 2%;
 }
-
+#wrapper {
+	width: 65%;
+	height: 100%;
+	margin: auto;
+}
+#sch_name {
+	width: 350px;
+	height: 42px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+}
 </style>
 <script type="text/javascript"
 	src="${path }/resources/bootstrap/js/jquery-ui.min.js"></script>
@@ -261,9 +275,9 @@ td #lat, td #lng {
 		<input type="hidden" name="result_day" id="result_day">
 		<input type="hidden" name="s_date" value="${s_date }">
 		<input type="hidden" name="e_date" value="${e_date }">
-		<div id="wrapper">
-			<div>
-				<input type="text" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요">
+		<div id="wrapper"">
+			<div style="display:flex;align-items: flex-start;flex-direction: column;">
+				<input type="text" id="sch_name" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요">
 				<p id="sch_date"><img src="${path }/resources/images/calendar.png" style="width: 60px; height: 70px; padding-bottom: 5px;">
 				 ${s_date } ~ ${e_date }</p>
 			</div>
@@ -334,10 +348,10 @@ td #lat, td #lng {
 				</c:forEach>
 			</div>
 			<div class="selected_day">
-				<input type="button" style="float: left;" id="group0" class="group"
+				<input type="button" style="float: left;" id="group0" class="group btn btn-primary"
 					onclick="disp(0)" value="전체 일정">
 				<c:forEach var="d" begin="1" end="${days }">
-					<input type="button" style="float: left;" id="group${d }" class="group"
+					<input type="button" style="float: left;" id="group${d }" class="group btn btn-light"
 						onclick="disp(${d})" value="${d }일차">
 				</c:forEach>
 			</div>
