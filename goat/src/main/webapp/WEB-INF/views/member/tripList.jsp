@@ -52,22 +52,14 @@
 					<li class="nav-item"><a class="nav-link" href="#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
-					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Board</a></li>
-					<c:if test="${empty id && empty admin }">
-						<li class="nav-item"><a class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
-						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
-					</c:if>
-					<c:if test="${not empty id && empty admin }">
-						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
-						<li class="nav-item"><a id="active" class="nav-link" href="/goat/member/myPage.do"><img
-								title="MyPage" style="border-radius: 50%;"
-								src="/goat/resources/m_photo/${m_img }" width="70px"
-								height="70px" /></a></li>						
-					</c:if>
-					<c:if test="${empty id && not empty admin }">
-						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
-						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
-					</c:if>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+					<li class="nav-item"><a id="active" class="nav-link" href="/goat/member/myPage.do"><img
+							title="MyPage" style="border-radius: 50%;"
+							src="/goat/resources/m_photo/${m_img }" width="70px"
+							height="70px" /></a></li>						
 				</ul>
 			</div>
 		</div>

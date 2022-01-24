@@ -240,7 +240,7 @@ sup {
 
 a {
   color: #64a19d;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: #50817e;
@@ -4362,6 +4362,7 @@ textarea.form-control-lg {
   .navbar-expand-lg .navbar-collapse {
     display: flex !important;
     flex-basis: auto;
+   	justify-content: flex-end;
   }
   .navbar-expand-lg .navbar-toggler {
     display: none;

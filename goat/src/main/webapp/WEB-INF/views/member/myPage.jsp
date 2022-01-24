@@ -21,7 +21,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <style type="text/css">
-	#myPage a { text-decoration: underline; color: #2F9D27; }
+	#myPage a { text-decoration: none; color: #2F9D27; }
 	#myPage a:active { text-decoration: none; }
 	#myPage a:hover { text-decoration: none; color: #FFCD12; }
 	#myPage a:visited { text-decoration: none; }
@@ -71,19 +71,11 @@
 					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
-					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Board</a></li>
-					<c:if test="${empty id && empty admin }">
-						<li class="nav-item"><a class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
-						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
-					</c:if>
-					<c:if test="${not empty id && empty admin }">
-						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
-						<li class="nav-item"><a id="myPage" class="nav-link" href="/goat/member/myPage.do">MyPage</a></li>						
-					</c:if>
-					<c:if test="${empty id && not empty admin }">
-						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
-						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
-					</c:if>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+					<li class="nav-item"><a id="myPage" class="nav-link" href="/goat/member/myPage.do">MyPage</a></li>						
 				</ul>
 			</div>
 		</div>
