@@ -4176,6 +4176,7 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  align-items: center;
 }
 .navbar-nav .nav-link {
   padding-right: 0;
@@ -4359,7 +4360,7 @@ textarea.form-control-lg {
     overflow: visible;
   }
   .navbar-expand-lg .navbar-collapse {
-    display: flex   ;
+    display: flex !important;
     flex-basis: auto;
   }
   .navbar-expand-lg .navbar-toggler {
@@ -11474,6 +11475,8 @@ body {
 #mainNav {
   min-height: 3.5rem;
   background-color: #fff;
+  height: 101px;
+  font-size: 15px;
 }
 #mainNav .navbar-toggler {
   font-size: 80%;
@@ -11488,6 +11491,9 @@ body {
   color: #000;
   font-weight: 700;
   padding: 0.9rem 0;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
 }
 #mainNav .navbar-nav .nav-item:hover {
   color: fade(#fff, 80%);
@@ -11572,7 +11578,7 @@ body {
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.8rem;
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
           background-clip: text;

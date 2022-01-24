@@ -35,10 +35,16 @@
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${path }/resources/css/styles.css" rel="stylesheet" />
+<script type="text/javascript">
+	$(function() {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#active').addClass('active')
+	})
+</script>
 </head>
 <body id="page-top">
 <!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -54,7 +60,7 @@
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Board</a></li>
 					<c:if test="${empty id && empty admin }">
-						<li class="nav-item"><a class="nav-link active" href="/goat/member/loginForm.do">Login</a></li>
+						<li class="nav-item"><a id="active" class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
 						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
 					</c:if>
 					<c:if test="${not empty id && empty admin }">
@@ -73,14 +79,13 @@
 		</div>
 	</nav>
 	<section class="about-section text-center"
-		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
-	<div class="container" align="center" style="height: 100%;">
+		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 1) 90%); height: 100%;">
+	<div class="container" align="center">
 		<div align="center"
-			style="height: 100%; display: flex; justify-content: center; align-items: center;">
+			style="height: 100%;display: flex; justify-content: center; align-items: center;">
 			<div>
 				<h2 style="margin-bottom: 50px;">Login</h2>
 				<form action="${path }/member/login.do?prevUrl=${prevUrl }" method="post">
-					<div style="width: 400px; height: 300px;"><img width="400px" height="300px" src="${path }/resources/assets/img/tree.jpg"></div>
 					<div align="center">
 						<input type="text" name="m_id" placeholder="ID"
 							required="required" autofocus="autofocus">
