@@ -46,7 +46,9 @@ public class MemberController {
 		return "main/main";
 	}
 	@RequestMapping("main/home")
-	public String home() {
+	public String home(HttpSession session, Model model) {
+		List<Alert> alert = (List<Alert>) session.getAttribute("alert");
+		model.addAttribute("alert", alert);
 		return "main/home";
 	}
 	@RequestMapping("main/homeModal")
@@ -366,27 +368,43 @@ public class MemberController {
 		return "member/tripList";
 	}
 	@RequestMapping("member/alertTp")
-	public String alertTp(int ale_num, int temp_num, int place_num, Model model) {
+	public String alertTp(HttpSession session, int ale_num, int temp_num, int place_num, Model model) {
 		ms.alertTp(ale_num);
+		int m_num = (Integer) session.getAttribute("m_num");
+		List<Alert> alert = ms.confirm(m_num);
+		session.removeAttribute("alert");
+		session.setAttribute("alert", alert);
 		model.addAttribute("temp_num", temp_num);
 		model.addAttribute("place_num", place_num);
 		return "member/alertTp";
 	}
 	@RequestMapping("member/alertCs")
-	public String alertCs(int ale_num, int cs_num, Model model) {
+	public String alertCs(HttpSession session, int ale_num, int cs_num, Model model) {
 		ms.alertCs(ale_num);
+		int m_num = (Integer) session.getAttribute("m_num");
+		List<Alert> alert = ms.confirm(m_num);
+		session.removeAttribute("alert");
+		session.setAttribute("alert", alert);
 		model.addAttribute("cs_num", cs_num);
 		return "member/alertCs";
 	}
 	@RequestMapping("member/alertTr")
-	public String alertTr(int ale_num, int t_num, Model model) {
+	public String alertTr(HttpSession session, int ale_num, int t_num, Model model) {
 		ms.alertTr(ale_num);
+		int m_num = (Integer) session.getAttribute("m_num");
+		List<Alert> alert = ms.confirm(m_num);
+		session.removeAttribute("alert");
+		session.setAttribute("alert", alert);
 		model.addAttribute("t_num", t_num);
 		return "member/alertTr";
 	}
 	@RequestMapping("member/alertSch")
-	public String alertSch(int ale_num, int sch_num, Model model) {
+	public String alertSch(HttpSession session, int ale_num, int sch_num, Model model) {
 		ms.alertSch(ale_num);
+		int m_num = (Integer) session.getAttribute("m_num");
+		List<Alert> alert = ms.confirm(m_num);
+		session.removeAttribute("alert");
+		session.setAttribute("alert", alert);
 		model.addAttribute("sch_num", sch_num);
 		return "member/alertSch";
 	}

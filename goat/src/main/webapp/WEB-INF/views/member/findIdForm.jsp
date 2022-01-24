@@ -9,6 +9,8 @@
 <style type="text/css">
 	.divtext>a {text-decoration: none; }
 	.divtext>a:hover{color: #2F9D27; }
+	.divtext { display: flex; justify-content: space-evenly; width: 25%; }
+	.data { width: 20%; height: 35px; margin: 10px; font-size: 15px; }	
 </style>
 <script type="text/javascript">
 $(function() {
@@ -53,19 +55,21 @@ $(function() {
 			</div>
 		</div>
 	</nav>
+	<section class="about-section text-center"
+		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 1) 90%); height: 100%;">
 	<div class="container" align="center" style="height: 100%;">
 		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
-			<div>
-				<h1 style="margin-bottom: 100px;">Find ID</h1>
+			<div style="width: 100%;">
+				<h1 style="margin-bottom: 50px;">Find ID</h1>
 			 	<form action="findIdResult.do" method="post">
 			 		<div align="center">
-			 			<input type="text" name="m_name" placeholder="Name" required="required" autofocus="autofocus">
+			 			<input type="text" name="m_name" placeholder="Name" required="required" autofocus="autofocus" class="data">
 			 		</div>
 			 		<div align="center">
-			 			<input type="email" name="m_email" placeholder="Email" required="required">
+			 			<input type="email" name="m_email" placeholder="Email" required="required" class="data">
 			 		</div>
 			 		<div align="center">
-			 			<input type="submit" value="Find ID" class="btn btn-success" style="width: 145.5px;">
+			 			<input type="submit" value="Find ID" class="btn btn-success" style="margin: 10px; width: 145.5px;">
 			 		</div>
 			 		<div align="center" class="divtext">
 		           		 <a href="findPassForm.do">비밀번호 찾기</a> | <a href="loginForm.do">로그인</a> | <a href="joinForm.do">회원가입</a>
@@ -74,5 +78,6 @@ $(function() {
 			</div>
 		</div>
 	</div>
+	</section>
 </body>
 </html>

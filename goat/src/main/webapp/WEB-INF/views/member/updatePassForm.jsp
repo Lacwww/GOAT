@@ -22,6 +22,12 @@
 		$('#active').addClass('active')
 	})
 </script>
+<style type="text/css">
+	.data { width: 20%; height: 35px; margin: 10px; font-size: 15px; }
+	.divtext>a {text-decoration: none; }
+	.divtext>a:hover{color: #2F9D27; }
+	.divtext { display: flex; justify-content: space-evenly; width: 25%; }
+</style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
 	crossorigin="anonymous"></script>
@@ -59,30 +65,32 @@
 			</div>
 		</div>
 	</nav>
+	<section class="about-section text-center"
+		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 1) 90%); height: 100%;">
 	<div class="container" align="center" style="height: 100%;">
 		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
-			<div>
-				<h2 style="margin-bottom: 30px;">Update Password</h2>
-		 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
+			<div style="width: 100%;">
+				<h2 style="margin-bottom: 50px;">Update Password</h2>
 				<div align="center">
 					<form action="updatePassResult.do" method="post" name="frm" onsubmit="return chk()">
 						<input type="hidden" name="m_id" value="${member.m_id }">
-						<div class="divtext" align="center">
-							<input type="password" name="m_pass" required="required" autofocus="autofocus" placeholder="New Password">
+						<div align="center">
+							<input type="password" name="m_pass" required="required" autofocus="autofocus" placeholder="New Password" class="data">
 						</div>
-						<div class="divtext" align="center">
-				            <input type="password" name="m_pass2"required="required" placeholder="New Password Confirm">
+						<div align="center">
+				            <input type="password" name="m_pass2"required="required" placeholder="New Password Confirm" class="data">
 				        </div>
-						<div class="divtext" align="center">
-				            <input type="submit" value="Find Pass" class="btn btn-success">
+						<div align="center">
+				            <input type="submit" value="Find Pass" class="btn btn-success" style="margin: 10px; width: 145.5px;">
 				        </div>
 		       		</form>
 				</div>
-				<div class="divtext" align="center" style="margin-top: 20px;">
+				<div class="divtext" align="center">
 					<a href="findIdForm.do">아이디 찾기</a> | <a href="loginForm.do">로그인</a> | <a href="joinForm.do">회원가입</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	</section>
 </body>
 </html>
