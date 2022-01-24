@@ -40,6 +40,7 @@
 #mainNav .navbar-brand {
 	color: black;
 }
+#mainNav {position: fixed;}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -82,7 +83,7 @@
 </head>
 <body id="page-top">
 	<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav" style="margin-bottom: 0px;">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,7 +119,7 @@
 		<section class="about-section text-center"
 		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
 	<!-- 지역 리스트 -->
-	<div class="container" align="center">
+	<div class="container" align="center" style="margin-top: 5%;">
 		<h1 id="sch">Schedule</h1>  
 		<h3 style="color: white; margin-bottom: 40px;">어디로 가볼까요?</h3>
 		<div class="container" align="center">

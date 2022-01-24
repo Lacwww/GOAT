@@ -57,8 +57,8 @@ $(function() {
 	$('#mainNav').addClass('navbar-shrink')
 	$('#active').addClass('active')
 })
-	function opn(temp_num) {
-		 window.open('/goat/place/tempDetailView.do?temp_num='+temp_num,"","");
+	function opn(temp_num, place_num) {
+		 window.open('/goat/place/tempDetailView.do?temp_num='+temp_num+'&place_num='+place_num);
 	}
 </script>
 </head>
@@ -142,7 +142,7 @@ $(function() {
 					<c:forEach var="temp" items="${list }">
 						<tr style="cursor: pointer;">
 							<td>${temp.temp_num }</td>
-							<td><span onclick="opn(${temp.temp_num})">${temp.temp_name }</span></td>
+							<td><span onclick="opn(${temp.temp_num},${temp.place_num })">${temp.temp_name }</span></td>
 							<td>${temp.temp_cate }</td>
 							<td>${temp.temp_addr }</td>
 							<td>${temp.temp_addrd }</td>

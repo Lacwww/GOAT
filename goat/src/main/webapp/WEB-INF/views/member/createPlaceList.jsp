@@ -204,29 +204,29 @@
 			</c:if>
 			<c:if test="${not empty place }">
 				<c:forEach var="list" items="${place }">
-					<tr onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">	
-						<td align="center">
+					<tr>	
+						<td align="center" onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">
 							${list.temp_num }
 						</td>
-						<td align="center">
+						<td align="center" onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">
 							${list.temp_name }
 						</td>
-						<td align="center">
+						<td align="center" onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">
 							${list.temp_cate }
 						</td>
-						<td align="center">
+						<td align="center" onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">
 							${list.temp_addr }
 						</td>
-						<td align="center">
+						<td align="center" onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">
 							${list.temp_addrd }
 						</td>
-						<td align="center">
+						<td align="center" onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">
 							${list.temp_crud }
 						</td>
-						<td align="center">
+						<td align="center" onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">
 							${list.reg_date }
 						</td>
-						<td align="center">
+						<td align="center" onclick="location.href='${path }/place/tempDetailView.do?temp_num=${list.temp_num }&place_num=${list.place_num}'">
 							<c:if test="${list.del=='n' }">
 								처리 중
 							</c:if>

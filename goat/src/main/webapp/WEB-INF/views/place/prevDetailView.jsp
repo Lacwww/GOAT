@@ -299,8 +299,9 @@
 		</table>	
 	</div>
 	<br>
-	<hr>
+	<hr style="margin-left: 10%; width: 80%;">
 	<div style="width: 100%; margin-left: 4%;" align="center">
+		<h3 class="text-primary" style="margin-right:50%;"><b>장소 평가</b></h3>
 	<div id="prevListDisp" align="center" style="width: 75%;"></div>
 	</div>
 	<br>
@@ -312,7 +313,7 @@
 				<div style="margin-right:20%; color:red"><b>* 제목은 최대 10글자</b></div>
 			<table style="width: 35%;">
 				<tr>
-					<td align="center" style="width: 14%;"  class="bgcolor">제목</td><td style="width: 30%;">
+					<td align="center" style="width: 14.5%;"  class="bgcolor">제목</td><td style="width: 29.5%;">
 						<input type="text" class="form-control" style="width: 90%; margin-left: 5%;" maxlength="10" name="prev_title" required="required"></td>
 					<td align="center" style="width: 14%;"  class="bgcolor">평점</td><td>
 						<div class="star-box" style="padding-left: 10px; padding-right: 10px;">
@@ -332,9 +333,9 @@
 					
 			<table style="width:35%; margin-top: 2px;" >
 					<tr>
-						<td align="center" style="width: 14%;" class="bgcolor">내용</td>
+						<td align="center" style="width: 15%;" class="bgcolor">내용</td>
 						<td style="padding-left: 10px;">
-							<textarea rows="4" cols="60" name="prev_content" required="required"></textarea>
+							<textarea rows="4" cols="59" name="prev_content" required="required"></textarea>
 						</td>
 						<td><input style="float: right;" type="button" class="btn" value="등록" id="insertprev"></td>
 					</tr>	

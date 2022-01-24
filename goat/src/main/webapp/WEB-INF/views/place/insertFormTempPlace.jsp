@@ -103,6 +103,13 @@
 		}
 	}
 </script>
+<script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav" style="margin-bottom: 0px;">
@@ -313,7 +320,7 @@
 			<input type="hidden" name="lat">
 			<input type="hidden" name="lng">
 			<div align="center" style="width: 77%; margin-left: 8%;">
-			<table style="width: 90%;">
+			<table style="width: 90%; margin-top: 10px;">
 				<tr><td style="width: 25%; margin-right: 3%;">
 				<input type="file" name="file" class="form-control" id="temp_photo"></td>
 					<td class="bgcolor" align="center" style="width: 10%;">장소 검색</td>
