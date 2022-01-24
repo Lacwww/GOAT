@@ -13,7 +13,7 @@
 
 .area {
 	width: 23%;
-	height: 30%;
+	height: 40%;
 	float: left;
 	position: relative;
 	padding: 10px;
