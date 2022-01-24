@@ -100,6 +100,14 @@ td #lat, td #lng {
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
+<script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+</script>
+
 <script type="text/javascript"> 
 	var positions = [];
 	var result_day = [];
@@ -285,7 +293,8 @@ td #lat, td #lng {
 		<div id="wrapper">
 			<div style="display:flex;align-items: flex-start;flex-direction: column;">
 				<input type="text" id="sch_name" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요" value="${sch.sch_name }">
-				<p id="sch_date">${s_date } ~ ${e_date }</p>
+				<p id="sch_date"><img src="${path }/resources/images/calendar.png" style="width: 60px; height: 70px; padding-bottom: 5px;">
+				${s_date } ~ ${e_date }</p>
 			</div>
 			<!-- 지도 -->
 			<div id="map" style="width: 65%; height: 60%; float: left;"></div>
@@ -354,11 +363,11 @@ td #lat, td #lng {
 				</c:forEach>
 			</div>
 			<div class="selected_day">
-				<div style="float: left;" id="group0" class="group"
-					onclick="disp(0)">전체 일정</div>
+				<input type="button" style="float: left;" id="group0" class="group btn btn-primary"
+					onclick="disp(0)" value="전체 일정">
 				<c:forEach var="d" begin="1" end="${days }">
-					<div style="float: left;" id="group${d }" class="group"
-						onclick="disp(${d})">${d }일차</div>
+					<input type="button" style="float: left;" id="group${d }" class="group btn btn-light"
+						onclick="disp(${d})" value="${d }일차">
 				</c:forEach>
 			</div>
 			<div class="selected_list">
@@ -376,15 +385,17 @@ td #lat, td #lng {
 					</div>
 				</c:forEach>
 			</div>
-			<div class="btn">
-				<select name="polyDay">
-					<c:forEach var="polyday" begin="1" end="${days }">
-						<option value="${polyday }">${polyday }</option>
-					</c:forEach>
-				</select>
-				<input type="button" onclick="preview()" value="경로 그리기">
-				<input type="submit" value="확인" class="btn btn-success"> <input
-					type="button" onclick="back()" value="이전" class="btn btn-cancel">
+			<div class="btn" style="width: 100%;" align="center"  style="display: flex;">
+				<div>
+					<select name="polyDay" id="polyDay">
+						<c:forEach var="polyday" begin="1" end="${days }">
+							<option value="${polyday }">${polyday }</option>
+						</c:forEach>
+					</select>
+					<input type="button" onclick="preview()" value="경로 그리기" class="btn btn-primary" style="margin-right: 4%;">
+					<input type="submit" value="확인" class="btn btn-success"> <input
+						type="button" onclick="back()" value="이전" class="btn btn-cancel">
+				</div>
 			</div>
 		</div>
 	</form>

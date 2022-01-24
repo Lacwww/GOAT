@@ -80,6 +80,7 @@ td #lat, td #lng {
 	width: 65%;
 	height: 100%;
 	margin: auto;
+	margin-top: 7%;
 }
 #sch_name {
 	width: 350px;
@@ -100,6 +101,14 @@ td #lat, td #lng {
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
+<script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+</script>
+
 <script type="text/javascript"> 
 	var positions = [];
 	var result_day = [];
@@ -265,6 +274,40 @@ td #lat, td #lng {
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				Menu <svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com -->
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/goat/schedule/selectArea.do">Schedule</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
+					<c:if test="${empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
+					</c:if>
+					<c:if test="${not empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/myPage.do"><img
+								title="MyPage" style="border-radius: 50%;"
+								src="/goat/resources/m_photo/${m_img }" width="70px"
+								height="70px" /></a></li>						
+					</c:if>
+					<c:if test="${empty id && not empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
 	<form action="insertSchedule.do" method="post" name="frm"
 		onsubmit="return chk();">
 		<c:forEach var="detail" begin="1" end="${days }">
@@ -275,7 +318,7 @@ td #lat, td #lng {
 		<input type="hidden" name="result_day" id="result_day">
 		<input type="hidden" name="s_date" value="${s_date }">
 		<input type="hidden" name="e_date" value="${e_date }">
-		<div id="wrapper"">
+		<div id="wrapper">
 			<div style="display:flex;align-items: flex-start;flex-direction: column;">
 				<input type="text" id="sch_name" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요">
 				<p id="sch_date"><img src="${path }/resources/images/calendar.png" style="width: 60px; height: 70px; padding-bottom: 5px;">

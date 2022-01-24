@@ -80,6 +80,14 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95df7b638398d433401d5b74ea1f4fb0&libraries=services"></script>
 <script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+</script>
+
+<script type="text/javascript">
 	var positions = [];
 	var markers = [];
 	var linePath = [];
@@ -165,11 +173,11 @@
 	}
 	function route(day,d) {
 		var count_place = $('#schedule_day'+day).children().length;
-		var place_name1 = $('#schedule_day'+day).children('.place').eq(d-1).find('span').html();
+		var place_name1 = $('#schedule_day'+day).children('.place').eq(d-1).find('div').eq(0).text();
 		var lat1 = $("input[name=plat"+day+"]").eq(d-1).val();
 		var lng1 = $("input[name=plng"+day+"]").eq(d-1).val();
 		
-		var place_name2 = $('#schedule_day'+day).children('.place').eq(d).find('span').html();
+		var place_name2 = $('#schedule_day'+day).children('.place').eq(d).find('div').eq(0).text();
 		var lat2 = $("input[name=plat"+day+"]").eq(d).val();
 		var lng2 = $("input[name=plng"+day+"]").eq(d).val();
 		
