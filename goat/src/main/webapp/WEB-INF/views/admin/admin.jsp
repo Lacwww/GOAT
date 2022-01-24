@@ -11,6 +11,16 @@
 <meta name="author" content="" />
 <title>GOAT</title>
 <!-- Bootstrap core JS-->
+<script type="text/javascript">
+	$(function() {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#active').addClass('active')
+	})
+	$(window).scroll(function(event) {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#active').addClass('active')
+	});
+</script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
@@ -31,6 +41,32 @@
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${path }/resources/css/styles.css" rel="stylesheet" />
+<style type="text/css">
+#myPage a {
+	text-decoration: underline;
+	color: #2F9D27;
+}
+
+#myPage a:active {
+	text-decoration: none;
+}
+
+#myPage a:hover {
+	text-decoration: none;
+	color: #FFCD12;
+}
+
+#myPage a:visited {
+	text-decoration: none;
+}
+
+#myPage td {
+	width: 11.1%;
+	height: 70px;
+	font-size: 15px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body id="page-top">
 	<!-- Navigation-->
@@ -55,7 +91,11 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/goat/schedule/selectArea.do">Schedule</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/goat/trip/tripList.do">Board</a></li>
+						href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/goat/trip/tripList.do">Trip</a></li>
 					<c:if test="${empty id && empty admin }">
 						<li class="nav-item"><a class="nav-link"
 							href="/goat/member/loginForm.do">Login</a></li>
@@ -74,37 +114,36 @@
 					<c:if test="${empty id && not empty admin }">
 						<li class="nav-item"><a class="nav-link"
 							href="/goat/member/logout.do">Logout</a></li>
-						<li class="nav-item"><a class="nav-link active"
+						<li class="nav-item"><a id="active" class="nav-link active"
 							href="/goat/admin/admin.do">AdminPage</a></li>
 					</c:if>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<section class="about-section text-center"
-		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
-
-		<div style="padding-top: 200px;">
-			<h1>관리자 페이지</h1>
-			<br> <br> <br>
-
-
-			<h2>
-				<a href="adminPlace.do?pageNum=1">플레이스 목록</a>
-			</h2>
-			<br>
-			<h2>
-				<a href="adminTempPlace.do">플레이스 등록 요청 목록</a>
-			</h2>
-			<br>
-			<h2>
-				<a href="adminSchedule.do?pageNum=1">스케줄 목록</a>
-			</h2>
-			<br>
-			<h2>
-				<a href="adminMember.do?pageNum=1">회원 목록</a>
-			</h2>
+	<div class="container" align="center"
+		style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<h1 style="margin-bottom: 50px;">Admin Page</h1>
+		<img alt="" src="${path }/resources/kwon_image/adminImage.jpg"
+			id="preview" style="border-radius: 50%;" width="200px;"
+			height="200px;">
+		<h2>Admin</h2>
+		<div style="width: 50%;">
+			<table id="myPage">
+				<tr>
+					<td align="center"><a href="adminPlace.do?pageNum=1">플레이스
+							목록</a></td>
+					<td align="center"><a href="adminTempPlace.do">플레이스 등록 요청
+							목록</a></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="adminSchedule.do?pageNum=1">스케줄
+							목록</a></td>
+					<td align="center"><a href="adminMember.do?pageNum=1">회원
+							목록</a></td>
+				</tr>
+			</table>
 		</div>
-	</section>
+	</div>
 </body>
 </html>

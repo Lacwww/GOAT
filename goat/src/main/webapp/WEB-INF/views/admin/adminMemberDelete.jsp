@@ -10,13 +10,13 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("삭제 성공");
+			alert("탈퇴 성공");
 			location.href="adminMember.do?m_id=${m_id }&pageNum=${pageNum }";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("삭제 실패");
+			alert("탈퇴 실패");
 			history.back();
 		</script>
 	</c:if>
