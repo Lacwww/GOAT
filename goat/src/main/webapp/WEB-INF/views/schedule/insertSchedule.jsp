@@ -8,6 +8,14 @@
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+</script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

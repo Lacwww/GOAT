@@ -257,6 +257,7 @@ public class ScheduleController {
 			}
 			list.clear();
 		}
+		model.addAttribute("results",results);
 		model.addAttribute("sch_num",sch_num);
 		model.addAttribute("m_num",m_num);
 		return "schedule/updateSch";

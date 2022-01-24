@@ -13,6 +13,14 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+</script>
+
+<script type="text/javascript">
 	document.cookie = "safeCookie1=foo; SameSite=Lax";
 	document.cookie = "safeCookie2=foo";
 	document.cookie = "crossCookie=bar; SameSite=None; Secure";
@@ -131,6 +139,7 @@ input {
 	width: 65%;
 	height: 100%;
 	margin: auto;
+	margin-top: 7%;
 }
 
 .pList {
@@ -232,13 +241,47 @@ select::-ms-expand {
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="width: 100%;">
+	<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				Menu <svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com -->
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/goat/schedule/selectArea.do">Schedule</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
+					<c:if test="${empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
+					</c:if>
+					<c:if test="${not empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/myPage.do"><img
+								title="MyPage" style="border-radius: 50%;"
+								src="/goat/resources/m_photo/${m_img }" width="70px"
+								height="70px" /></a></li>						
+					</c:if>
+					<c:if test="${empty id && not empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div style="width: 100%; height: 100%; margin-top: 150px;">
 		<h2 class="text text-primary" align="center">여행할 장소를 선택해주세요</h2>
 		<!-- 여행 일자 선택 -->
 		<div id="wrapper">
 			<form action="makeScheduleDetail.do" name="frm" method="post"
 				onsubmit="return chk();">
-				<div id="navyDiv" style="width: 100%; height: 10%;">
+				<div id="navyDiv" style="width: 100%; height: 13%;">
 					<input type="hidden" id="id" name="id" value=""> <input
 						type="hidden" name="place_area" value="${place_area }">
 					<div style="width: 100%; display:flex;align-items: center;justify-content: space-between;">
@@ -277,6 +320,7 @@ select::-ms-expand {
 					</div>
 
 				</div>
+				<div>
 				<div class="mapDiv" style="width: 65%; float: left;">
 					<!-- 지도 -->
 					<div id="map" style="width: 100%; height: 60%;"></div>
@@ -331,6 +375,7 @@ select::-ms-expand {
 						</thead>
 						<tbody></tbody>
 					</table>
+				</div>
 				</div>
 			</form>
 		</div>
