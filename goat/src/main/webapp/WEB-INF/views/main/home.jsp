@@ -324,7 +324,7 @@
 				aria-label="Toggle navigation">
 				Menu <i class="fas fa-bars"></i>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<div class="collapse navbar-collapse" id="navbarResponsive" style="display: flex !important;">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item"><a class="nav-link" href="#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
@@ -359,7 +359,7 @@
 					<h2 class="text-white-50 mx-auto mt-2 mb-5">Go On A Trip</h2>
 					<a class="btn btn-primary" href="#map">Get Started</a>
 					<video muted="" autoplay="" loop=""
-						style="height: 100vh; max-width: none" id="mainVideo">
+						style="max-width: none" id="mainVideo">
 						<source src="${path }/resources/assets/img/video1.mp4"
 							type="video/mp4">
 					</video>
@@ -370,7 +370,7 @@
 	</header>
 	<p id="map"></p>
 	<section class="about-section text-center"
-		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
+		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 1) 90%);">
 		<div class="container px-4 px-lg-5">
 			<div class="row gx-4 gx-lg-5 justify-content-center">
 				<div class="col-lg-8">

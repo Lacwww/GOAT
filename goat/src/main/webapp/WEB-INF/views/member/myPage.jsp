@@ -38,6 +38,10 @@
 			return;
 		}
 	}
+	$(function() {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#myPage').addClass('active')
+	})
 </script>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -53,7 +57,7 @@
 </head>
 <body id="page-top">
 <!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -62,7 +66,7 @@
 				aria-label="Toggle navigation">
 				Menu <i class="fas fa-bars"></i>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<div class="collapse navbar-collapse" id="navbarResponsive" style="display: flex !important;">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
@@ -74,7 +78,7 @@
 					</c:if>
 					<c:if test="${not empty id && empty admin }">
 						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
-						<li class="nav-item"><a class="nav-link active" href="/goat/member/myPage.do">MyPage</a></li>						
+						<li class="nav-item"><a id="myPage" class="nav-link" href="/goat/member/myPage.do">MyPage</a></li>						
 					</c:if>
 					<c:if test="${empty id && not empty admin }">
 						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
@@ -84,13 +88,11 @@
 			</div>
 		</div>
 	</nav>
-	<section class="about-section text-center"
-		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
-	<div class="container" align="center" style="width: 100%;">
-		<h2 style="margin-bottom: 50px;">My Page</h2>
+	<div class="container" align="center" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<h1 style="margin-bottom: 50px;">My Page</h1>
 			<img alt="" src="${path }/resources/m_photo/${member.m_photo }" id="preview"
 				style = "border-radius:50%;" width="200px;" height="200px;">
-		<h3>${member.m_id }</h3>
+		<h2>${member.m_id }</h2>
 		<div style="width: 50%;">
 			<table id="myPage">
 				<tr>
@@ -117,11 +119,10 @@
 				</tr>
 				<tr>
 					<td colspan="3" align="center">
-						<input type="button" value="Delete" class="btn btn-warning" onclick="del('${member.m_id}')">
+						<input type="button" value="Delete" class="btn btn-danger" onclick="del('${member.m_id}')">
 					</td>
 			</table>
 		</div>
 	</div>
-	</section>
 </body>
 </html>

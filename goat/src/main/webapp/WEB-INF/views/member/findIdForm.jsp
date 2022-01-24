@@ -10,14 +10,62 @@
 	.divtext>a {text-decoration: none; }
 	.divtext>a:hover{color: #2F9D27; }
 </style>
+<script type="text/javascript">
+$(function() {
+	$('#mainNav').addClass('navbar-shrink')
+	$('#myPage').addClass('active')
+})
+</script>
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Varela+Round"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${path }/resources/css/styles.css" rel="stylesheet" />
 </head>
-<body>
-	<div class="container" align="center" style="height: 50%;">
+<body id="page-top">
+<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive" style="display: flex !important;">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Board</a></li>
+					<c:if test="${empty id && empty admin }">
+						<li class="nav-item"><a id="active" class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
+					</c:if>
+					<c:if test="${not empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a id="myPage" class="nav-link" href="/goat/member/myPage.do">MyPage</a></li>						
+					</c:if>
+					<c:if test="${empty id && not empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container" align="center" style="height: 100%;">
 		<div align="center" style="height: 100%; display: flex; justify-content:center; align-items: center;">
 			<div>
-				<h2 style="margin-bottom: 30px;">Find ID</h2>
+				<h1 style="margin-bottom: 100px;">Find ID</h1>
 			 	<form action="findIdResult.do" method="post">
-			 		<div style="background: gray; width: 300px; height: 100px;">LOGO</div>
 			 		<div align="center">
 			 			<input type="text" name="m_name" placeholder="Name" required="required" autofocus="autofocus">
 			 		</div>
