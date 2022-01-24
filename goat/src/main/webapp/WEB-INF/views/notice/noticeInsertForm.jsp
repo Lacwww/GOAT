@@ -3,26 +3,15 @@
 <%@ include file="../tool.jsp"%>
 <!DOCTYPE html>
 <html>
-<head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript">
-	$(function() {
-		$('#mainNav').addClass('navbar-shrink')
-		$('#active').addClass('active')
-	});
-	function noBack() {
-		window.history.forward();
-	}
-</script>
-<style type="text/css">
-	
-</style>
-<!-- Simple line icons-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>GOAT</title>
 <!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="${path }/resources/js/scripts.js"></script>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
@@ -30,6 +19,10 @@
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<style type="text/css">
+	.divtext>a {text-decoration: none; }
+	.divtext>a:hover{color: #2F9D27; }
+</style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
 	crossorigin="anonymous"></script>
@@ -41,9 +34,25 @@
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${path }/resources/css/styles.css" rel="stylesheet" />
+<script type="text/javascript">
+	$(function() {
+		$('#mainNav').addClass('navbar-shrink');
+		$('#active').addClass('active');
+	});
+	$(window).scroll(function(event) {
+		$('#mainNav').addClass('navbar-shrink');
+		$('#active').addClass('active');
+	});
+	function noBack() {
+		window.history.forward();
+	}
+</script>
+<style type="text/css">
+	#mainNav {position: fixed;}
+	.mainBody {margin-top: 150px;}
+</style>
 </head>
-<body>
-
+<body id="page-top">
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container px-4 px-lg-5">
@@ -78,9 +87,8 @@
 			</div>
 		</div>
 	</nav>
-
         
-	<div align="center">
+	<div class="mainBody" align="center">
 		<h3>공지사항 등록</h3><hr>
 		<form action="noticeInsert.do?" method="post" name="frm">
 			<input type="hidden" name="pageNum" value="${pageNum}"> 
@@ -104,8 +112,10 @@
 							required="required" id="no_content"></textarea>
 					</td>
 				</tr>
-				<tr>
-					<td align="center" colspan="2"><input type="submit" value="등록하기"></td>
+				<tr align="center">
+					<td colspan="2">
+						<input type="submit" value="등록하기">
+						<input type="button" onclick="location.href='noticeList.do?pageNum=${pageNum}'" value="취소"></td>
 				</tr>
 			</table>
 		</form>
