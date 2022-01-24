@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GOAT</title>
 <style type="text/css">
 	.divtext>a {text-decoration: none; }
 	.divtext>a:hover{color: #2F9D27; }
@@ -13,7 +13,7 @@
 <script type="text/javascript">
 $(function() {
 	$('#mainNav').addClass('navbar-shrink')
-	$('#myPage').addClass('active')
+	$('#active').addClass('active')
 })
 </script>
 <!-- Font Awesome icons (free version)-->
@@ -44,19 +44,11 @@ $(function() {
 					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
-					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Board</a></li>
-					<c:if test="${empty id && empty admin }">
-						<li class="nav-item"><a id="active" class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
-						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
-					</c:if>
-					<c:if test="${not empty id && empty admin }">
-						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
-						<li class="nav-item"><a id="myPage" class="nav-link" href="/goat/member/myPage.do">MyPage</a></li>						
-					</c:if>
-					<c:if test="${empty id && not empty admin }">
-						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
-						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
-					</c:if>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
+					<li class="nav-item"><a id="active" class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>
 				</ul>
 			</div>
 		</div>
@@ -73,7 +65,7 @@ $(function() {
 			 			<input type="email" name="m_email" placeholder="Email" required="required">
 			 		</div>
 			 		<div align="center">
-			 			<input type="submit" value="Find ID" class="btn btn-success">
+			 			<input type="submit" value="Find ID" class="btn btn-success" style="width: 145.5px;">
 			 		</div>
 			 		<div align="center" class="divtext">
 		           		 <a href="findPassForm.do">비밀번호 찾기</a> | <a href="loginForm.do">로그인</a> | <a href="joinForm.do">회원가입</a>
