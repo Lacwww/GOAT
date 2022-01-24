@@ -73,8 +73,10 @@
 <link href="${path }/resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript">
 	function modal(place_area) {
-		$('#MoaModal .modal-content').load("placeAreaModal.do?place_area=" + place_area);
-		$('#MoaModal').modal();
+ 		$('#MoaModal .modal-content').load("placeAreaModal.do?place_area=" + place_area);
+ 		$('#MoaModal').modal();
+		
+
 	}
 	
 	
@@ -91,8 +93,14 @@
 		location.href='insertFormTempPlace.do';
 	}
 </script>
+<script type="text/javascript">
+	$(function() {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#active').addClass('active')
+	})
+</script>
 </head>
-<body id="page-top">
+<body id="page-top">	
 	<!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
 		<div class="container px-4 px-lg-5">
@@ -102,8 +110,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="/goat/main.home.do#map">Map</a></li>
-					<li class="nav-item"><a class="nav-link active" href="/goat/place/placeList.do">Place</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
+					<li class="nav-item"><a id="active" class="nav-link active" href="/goat/place/placeList.do">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Board</a></li>
 					<c:if test="${empty id && empty admin }">
@@ -132,7 +140,7 @@
 		<h2 id="sch">플레이스 지역 선택</h2>
 		<h3 class="text-primary">어디로 가볼까요?</h3>
 		<div align="center"> 
-			<input type="button" class="btn" value="플레이스 등록" onclick="insertPlace()"> 
+			<input type="button" class="btn btn1" value="플레이스 등록" onclick="insertPlace()"> 
 		</div>
 		<div class="container" align="center" style="margin-left: 1%;">
 			<c:forEach var="area" items="${list }">
@@ -149,12 +157,14 @@
 	</div>
 	</section>
 	
-	<!-- 장소모달 -->
-	<div class="modal" id="MoaModal" tabindex="-1" role="dialog"
-		aria-labelledby="historyModalLabel" aria-hidden="true">
+		<!-- 장소모달 -->
+	<div class="modal fade" id="MoaModal" tabindex="-1" role="dialog"
+		aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="true">
 		<div class="modal-dialog modal-lg" role="document" style="margin-top: 20%;">
 			<div class="modal-content"></div>
 		</div>
 	</div>	
+
+
 </body>
 </html>
