@@ -87,7 +87,7 @@ svg {
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
-					<li class="nav-item"><a class="nav-link active" href="/goat/trip/tripList.do">Trip</a></li>
+					<li class="nav-item"><a class="nav-link" id="active" href="/goat/trip/tripList.do">Trip</a></li>
 					<c:if test="${empty id && empty admin }">
 						<li class="nav-item"><a class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
 						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
