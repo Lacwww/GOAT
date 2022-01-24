@@ -43,10 +43,6 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-sm btn-danger pull-right"
-				data-dismiss="modal" id="btnClose">
-				닫기
-			</button>
 		</div>
 	</div>
 </body>

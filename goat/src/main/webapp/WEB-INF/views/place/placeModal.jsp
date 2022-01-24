@@ -63,29 +63,26 @@
 			<h3>${place.place_area }</h3>
 		</div>
 		<div class="modal-body">
-			<div class="container" id="inner_content" style="width: 100%;">
-				<div class="bookmark"><img style="border-radius:10px; width: 50px;" class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div>
-				<div class="area_photo">
+		<table style="width: 100%; height: 200px;">
+			<tr><td rowspan="5" style="width: 40%;"><div class="area_photo" style="float: left; width: 100%; height: 100%;">
 					<img class="placeImg" alt=""	src="${place.place_photo }">
-				</div>
-				<div>
-					<h3>${place.place_name}</h3>
-					<br>
-					<h4>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"/></h4>
-					<h5>태그 : ${place.place_tag }</h5>
-					<br>
-					<h5>${place.place_content }</h5>
-				</div>
-			</div>
+				</div></td></tr>
+		<tr><td><h3 style="display: inline;">${place.place_name}</h3><div class="bookmark"><img style="border-radius:10px; width: 50px;" class="bmChk" onclick="bookMarkChk(${place.place_num})" src="${bookMarkImgSrc }"> </div></td></tr>
+		<tr><td><h4>평점 : <fmt:formatNumber value="${avgScore }" pattern="0.00"/></h4></td></tr>
+		<tr><td><h5>태그 : ${place.place_tag }</h5></td></tr>
+		<tr><td><h5>${place.place_content }</h5></td></tr>
+		
+		</table>
 		</div>
-		<div class="modal-footer">
-			<div class="pull-left"><a onclick="updatePlace()">플레이스 건의</a></div>
-			<input type="button" class="btn btn-sm btn-success" id="select" value="상세보기"
-				onclick="location.href='prevDetailView.do?place_num=${place.place_num}'">
+		<div class="modal-footer" style="display: inline;">
+			<a style="padding-left: 2%;" class="pull-left" onclick="updatePlace()">플레이스 건의</a>
 			<button class="btn btn-sm btn-danger pull-right"
-				data-dismiss="modal" id="btnClose">
+				data-dismiss="modal" id="btnClose" style="margin-right: 2%;">
 				닫기
 			</button>
+			<input type="button" class="btn btn-sm btn-success pull-right" id="select" value="상세보기"
+				onclick="location.href='prevDetailView.do?place_num=${place.place_num}'">
+
 		</div>
 	</div>
 </body>
