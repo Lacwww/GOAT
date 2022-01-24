@@ -5,14 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GOAT</title>
 <style type="text/css">
 #sch {
 	margin-bottom: 80px;
 }
 
 .area {
-	width: 23%;
+	width: 25%;
 	height: 30%;
 	float: left;
 	position: relative;
@@ -111,6 +111,7 @@
 		</c:if>
 		<c:if test="${not empty list }">
 			<div class="container" align="center">
+				<div>
 				<c:forEach var="place" items="${list }">
 					<div class="area" onclick="location.href='${path }/place/prevDetailView.do?place_num=${place.place_num }'">
 						<div class="areaPhoto">
@@ -119,6 +120,10 @@
 						<div class="desc">${place.place_name }</div>
 					</div>
 				</c:forEach>
+				</div>
+					<div style="width: 100%; display: flex; justify-content: center;">
+						<button style="margin-top: 20px;" class="btn btn-success" onclick="history.back()">MyPage</button>
+					</div>
 			</div>
 		</c:if>	
 	</div>

@@ -239,12 +239,17 @@
 <link href="${path }/resources/css/styles.css" rel="stylesheet" />
 <style type="text/css">
 	#chooseFile { display: none; }
+	.data { width: 30%; height: 35px; margin: 10px; font-size: 15px; } }
 </style>
 <script type="text/javascript">
 	$(function() {
 		$('#mainNav').addClass('navbar-shrink')
 		$('#active').addClass('active')
 	})
+	$(window).scroll(function(event) {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#active').addClass('active')
+	});
 </script>
 </head>
 <body id="page-top">
@@ -263,7 +268,9 @@
 					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
-					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Board</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
 					<c:if test="${empty id && empty admin }">
 						<li class="nav-item"><a class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
 						<li class="nav-item"><a id="active" class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
@@ -284,15 +291,15 @@
 		</div>
 	</nav>
 	<section class="about-section text-center"
-		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 1) 90%); height: 100%;">
-			<div class="container" align="center">
-		<div align="center" style="display: flex; justify-content:center; height: 100%; align-items: center;">
+		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 1) 90%); height: 100%; margin-top: 104px;">
+			<div class="container" align="center" style="margin-top: 70px;">
+		<div class="container" align="center" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
 			<div>
 				<h2 style="margin-bottom: 50px;">Join</h2>
 				<label for="chooseFile">
 					<img alt="" src="${path }/resources/m_photo/goat6.png" id="preview"
 						style = "border-radius:50%; border: 1px solid black;" width="200px;" height="200px;">
-					<p>프로필 수정</p>
+					<p style="margin: 0px;">프로필 수정</p>
 				</label>
 				<div id="thumbnails"></div>
 				<form action="${path }/member/join.do" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
@@ -300,44 +307,44 @@
 			    	<input type="hidden" name="nickchk" value="unChk">
 			    	<input type="hidden" name="emailchk" value="unChk">
 					<div>
-						<input type="text" name="m_id" id="m_id" placeholder="ID" required="required" autofocus="autofocus" onkeyup="idChk()">
+						<input class="data" type="text" name="m_id" id="m_id" placeholder="ID" required="required" autofocus="autofocus" onkeyup="idChk()">
 						<div id="idChk_result" class="err"></div>
 					</div>
 					<div>
-						<input type="password" name="m_pass" placeholder="Password" required="required">
+						<input class="data" type="password" name="m_pass" placeholder="Password" required="required">
 					</div>
 					<div>
-						<input type="password" name="m_pass2" placeholder="Password Confirm" required="required" onkeyup="passChk()">
+						<input class="data" type="password" name="m_pass2" placeholder="Password Confirm" required="required" onkeyup="passChk()">
 						<div id="same"></div>
 					</div>
 					<div>
-						<input type="text" name="m_nick" placeholder="Nickname" required="required" onkeyup="nickChk()">
+						<input class="data" type="text" name="m_nick" placeholder="Nickname" required="required" onkeyup="nickChk()">
 						<div id="nickChk_result" class="err"></div>
 					</div>
 					<div>
-						<input type="email" name="m_email" id="m_email" placeholder="Email" required="required" onkeypress="emailChk()">
+						<input class="data" type="email" name="m_email" id="m_email" placeholder="Email" required="required" onkeypress="emailChk()">
 						<div id="emailChk_result" class="err"></div>
 					</div>
 					<div>
-						<input type="text" name="m_name" placeholder="Name" required="required">
+						<input class="data" type="text" name="m_name" placeholder="Name" required="required">
 					</div>
 					<div>
-						<input type="tel" name="m_tel" pattern="010-\d{3,4}-\d{4}" title="010-0000-0000"
+						<input class="data" type="tel" name="m_tel" pattern="010-\d{3,4}-\d{4}" title="010-0000-0000"
 							placeholder="Tel" required="required">
 					</div>
 					<div>
-						<input type="date" name="m_birth" id="birth" placeholder="Birth" required="required" max="">
+						<input class="data" type="date" name="m_birth" id="birth" placeholder="Birth" required="required" max="">
 					</div>
 					<div>
-						<input type="text" name="m_addr" id="address_kakao" placeholder="Address" required="required">
+						<input class="data" type="text" name="m_addr" id="address_kakao" placeholder="Address" required="required" readonly="readonly">
 					</div>
 					<div>
-						<input type="text" name="m_addrd" placeholder="Address Detail" required="required">
+						<input class="data" type="text" name="m_addrd" placeholder="Address Detail" required="required">
 					</div>
 					<div>
-					<input type="file" name="file" id="chooseFile" class="data">
+					<input type="file" name="file" id="chooseFile">
 				</div>
-					<div>
+					<div style="font-size: 15px;">
 						<input type="submit" value="확인" class="btn btn-success">
 						<input type="button" value="취소" onclick="history.back()" class="btn btn-warning">
 					</div>

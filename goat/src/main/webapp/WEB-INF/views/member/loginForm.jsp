@@ -23,6 +23,8 @@
 <style type="text/css">
 	.divtext>a {text-decoration: none; }
 	.divtext>a:hover{color: #2F9D27; }
+	.divtext { display: flex; justify-content: space-evenly; width: 25%; }
+	.data { width: 20%; height: 35px; margin: 10px; font-size: 15px; }
 </style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -58,7 +60,9 @@
 					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/place/placeList.do">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
-					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Board</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
 					<c:if test="${empty id && empty admin }">
 						<li class="nav-item"><a id="active" class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
 						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
@@ -83,18 +87,18 @@
 	<div class="container" align="center">
 		<div align="center"
 			style="height: 100%;display: flex; justify-content: center; align-items: center;">
-			<div>
-				<h2 style="margin-bottom: 50px;">Login</h2>
+			<div style="width: 100%;">
+				<h1 style="margin-bottom: 50px;">Login</h1>
 				<form action="${path }/member/login.do?prevUrl=${prevUrl }" method="post">
 					<div align="center">
 						<input type="text" name="m_id" placeholder="ID"
-							required="required" autofocus="autofocus">
+							required="required" autofocus="autofocus" class="data">
 					</div>
 					<div align="center">
-						<input type="password" name="m_pass" placeholder="Password"
+						<input type="password" name="m_pass" placeholder="Password" class="data"
 							required="required">
 					</div>
-					<div align="center">
+					<div align="center" style="margin: 10px; width: 145.5px;">
 						<input type="submit" value="Login" class="btn btn-success">
 					</div>
 					<div align="center" class="divtext">
