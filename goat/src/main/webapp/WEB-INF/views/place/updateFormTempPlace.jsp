@@ -5,7 +5,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>GOAT</title>
+<!-- Bootstrap core JS-->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="${path }/resources/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Varela+Round"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link rel="stylesheet" href="${path }/resources/css/styles.css" />
 <style type="text/css">
 	#imgpreview { float: left; }
 	.bgcolor{	
@@ -13,8 +38,15 @@
 		color: white; 
 		border-radius: 5px;
 	}	
-		
+	#mainNav {position: fixed;}
 	td { border-bottom: 1px solid white; height: 40px;}
+	.btn1 {
+	background-color: rgb(64,123,37);
+	color: white;
+	}
+	.btn1:hover {
+		background-color: rgb(114,201,75);
+	}
 </style>
 <script>
 	window.history.forward();
@@ -59,13 +91,116 @@
 		}
 	}
 </script>
+<script type="text/javascript">
+	$(function() {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#active').addClass('active')
+	})
+	$(window).scroll(function(event) {
+		$('#mainNav').addClass('navbar-shrink')
+		$('#active').addClass('active')
+	});
+</script>
 </head>
 <body>
-<div align="center"><h2 class="text-primary" style="color: green;"><b>장소 수정 건의</b></h2></div>
+	<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav" style="margin-bottom: 0px;">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				Menu <svg class="svg-inline--fa fa-bars fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com -->
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
+					<li class="nav-item"><a id="active" class="nav-link active" href="/goat/place/placeList.do">Place</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
+					<c:if test="${empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/loginForm.do">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/joinForm.do">Join</a></li>	
+					</c:if>
+					<c:if test="${not empty id && empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/member/myPage.do"><img
+								title="MyPage" style="border-radius: 50%;"
+								src="/goat/resources/m_photo/${m_img }" width="70px"
+								height="70px" /></a></li>						
+					</c:if>
+					<c:if test="${empty id && not empty admin }">
+						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
+					</c:if>
+					<c:if test="${not empty id && empty admin }">
+					<li class="nav-item">
+						<ul class="dropdown">
+							<c:if test="${empty alert}">
+								<img src="/goat/resources/images/notice.png" title="notice" width="40px" height="40px">
+							</c:if>
+							<c:if test="${not empty alert }">
+								<img data-toggle="dropdown" alt="" src="/goat/resources/images/notice2.png"
+									title="notice" width="40px" height="40px">
+								<ul class="dropdown-menu" role="menu" style="margin-top: 20px;">
+									<c:forEach var="list" items="${alert }">
+										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
+											<c:if test="${list.day == 0 }">
+												<li role="presentation">
+													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+												</li>
+											</c:if>
+											<c:if test="${list.day != 0 }">
+												<li role="presentation">
+													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+												</li>
+											</c:if>
+										</c:if>
+										<c:if test="${list.temp_num!=0 && list.t_num==0 && list.sch_num==0 && list.cs_num==0}">
+											<li role="presentation">
+												<a role="menuitem" href="${path }/member/alertTp.do?ale_num=${list.ale_num}&temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_name }에 대한 ${list.temp_crud } 요청이 
+													<c:if test="${list.del == 'y' }">
+														승인 완료되었습니다
+													</c:if>
+													<c:if test="${list.del == 'd' }">
+														승인 거절되었습니다
+													</c:if>
+												</a>
+											</li>
+										</c:if>
+										<c:if test="${list.cs_num!=0 && list.temp_num==0 && list.t_num==0 && list.sch_num==0}">
+											<li role="presentation">
+												<a role="menuitem" href="${path }/member/alertCs.do?ale_num=${list.ale_num}&cs_num=${list.cs_num}">${list.cs_title }에 답변이 달렸습니다 </a>
+											</li>
+										</c:if>
+										<c:if test="${list.t_num!=0 && list.cs_num==0 && list.temp_num==0 && list.sch_num==0}">
+											<li role="presentation">
+												<c:if test="${list.t_like==1 && list.t_reply==0}">
+													<a role="menuitem" href="${path }/member/alertTr.do?ale_num=${list.ale_num}&t_num=${list.t_num}">${list.t_title }에 좋아요를 눌렀습니다 </a>
+												</c:if>
+												<c:if test="${list.t_reply==1 && list.t_like==0}">
+													<a role="menuitem" href="${path }/member/alertTr.do?ale_num=${list.ale_num}&t_num=${list.t_num}">${list.t_title }에 댓글이 달렸습니다 </a>
+												</c:if>
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</c:if>
+							</ul>
+						</li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
+<div align="center"><h2 class="text-primary" style="color: green; margin-top: 10%;"><b>장소 수정 건의</b></h2></div>
 <br>
-<div class="container" style="margin-left: 9%; width: 85%;">
+<div style="width: 100%;">
+<div align="center" class="container" style="width: 85%;">
+	<div style="display: flex; justify-content: center;">
 		<div><img id="imgpreview" style="width:450px; height: 400px;" src="${place.place_photo }"> </div>
 		<div id="map" style="width:450px; height: 400px;"></div>
+	</div>	
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9&libraries=services"></script>
 		<script>
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -185,14 +320,14 @@
 			<input type="hidden" name="place_num" value="${place.place_num }">
 			<input type="hidden" name="lat" value="${place.lat }">
 			<input type="hidden" name="lng" value="${place.lng }">
-			<div align="center">
-			<table style="width: 93%;">
-				<tr><td style="width: 38%;">
+			<div align="center" style="width: 77%; margin-left: 8%;">
+			<table style="width: 90%;">
+				<tr><td style="width: 25%; margin-left: 3%;">
 					<input type="file" name="file" class="form-control" id="temp_photo"></td>
 					<td class="bgcolor" align="center" style="width: 10%;">장소 검색</td>
 					<td style="width: 34%;">
-					<input type="text" class="form-control" style="width: 80%; display: inline;margin-left:5px; margin-right: 5px;" name="mapSearch">
-					<input type="button" class="btn btn-primary" style="width: 16%; height: 40px;" onclick="PS()" value="검색"></td></tr>
+					<input type="text" class="form-control" style="width: 60%; display: inline;margin-left:5px; margin-right: 5px;" name="mapSearch">
+					<input type="button" class="btn btn1" style="width: 16%; height: 40px;" onclick="PS()" value="검색"></td></tr>
 			</table>
 			<br>
 			<table style="width: 75%;">
@@ -230,13 +365,14 @@
 				<tr><td class="bgcolor" align="center">건의 이유</td>
 				<td><textarea rows="5" cols="50" style="margin-left: 10px;" class="form-control" name="temp_explanation" required="required"></textarea></td></tr>
 				<tr><td colspan="3" align="center">
-					<input type="submit" class="btn btn-primary" value="수정신청">
-					<input type="button" class="btn btn-warning" onclick="history.back()" value="취소">
+					<input type="submit" style="margin-top: 5px;" class="btn btn1" value="수정신청">
+					<input type="button" style="margin-top: 5px;" class="btn btn-danger" onclick="history.back()" value="취소">
 				</td></tr>
 			</table>
 			</div>
 			
 		</form>
 	</div>
+</div>
 </body>
 </html>
