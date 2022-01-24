@@ -33,7 +33,7 @@
 	</update>
 	
 	<update id="update" parameterType="tr">
-		update trip_reply set tre_content=#{tre_content}, reg_date=sysdate
+		update trip_reply set tre_content=#{tre_content}
 			where tre_num=#{tre_num}
 	</update>
 	

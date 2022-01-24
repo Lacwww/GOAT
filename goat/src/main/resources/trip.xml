@@ -35,7 +35,7 @@
 	</update>
 	
 	<update id="update" parameterType="trip">
-		update trip set t_title=#{t_title},t_content=#{t_content},reg_date=sysdate where t_num = #{t_num}
+		update trip set t_title=#{t_title},t_content=#{t_content} where t_num = #{t_num}
 	</update>
 	
 	<!-- 좋아요(추천수) -->
@@ -104,11 +104,11 @@
 	
 	
 	<select id="hotLike" parameterType="trip" resultType="trip">
-        select b.*, t.*, m.m_name from  
+       select b.*, t.*, m.m_name from  
     		(select a.*, rowNum rn from  
         		(select tl.t_num, count(*) cnt from 
-        			trip_like tl, trip tr where tl.t_num=tr.t_num and tr.del !='y' group by tl.t_num order by cnt desc)a)b,
-           				trip t, member m where b.t_num=t.t_num and m.m_num=t.m_num and rn between 1 and 3
+            		trip_like tl, trip tr where tl.t_num=tr.t_num and tr.del !='y' group by tl.t_num order by cnt desc)a)b,
+               			trip t, member m where b.t_num=t.t_num and m.m_num=t.m_num and rn between 1 and 3 order by rn
 	</select>
 	
 	<select id="getTitle" parameterType="integer" resultType="string">

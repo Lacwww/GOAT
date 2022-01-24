@@ -17,12 +17,8 @@
 </style>
 <!-- Simple line icons-->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${path }/resources/css/styles2.css" rel="stylesheet" />
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="${path }/resources/js/scripts2.js"></script>
 
 <!-- Core theme JS-->
 <script src="${path }/resources/js/scripts.js"></script>
@@ -57,7 +53,9 @@
 					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#map">Map</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#projects">Place</a></li>
 					<li class="nav-item"><a class="nav-link" href="/goat/schedule/selectArea.do">Schedule</a></li>
-					<li class="nav-item"><a class="nav-link active" href="/goat/trip/tripList.do">Board</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/cs/csList.do">Service</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/goat/notice/noticeList.do">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="/goat/trip/tripList.do">Trip</a></li>
 					<c:if test="${empty id && empty admin }">
 						<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#join">Join</a></li>
 						<li class="nav-item"><a class="nav-link" href="/goat/main/home.do#login">Login</a></li>
@@ -77,18 +75,6 @@
 			</div>
 		</div>
 	</nav>
-	 <!-- Navigation-->
-	 	<div style="z-index: 1111111;">
-        <a class="menu-toggle rounded" href="#" style="display: flex; justify-content: center; align-items: center;"><i class="fas fa-bars"></i></a>
-        <nav id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="/goat/trip/tripList.do">Board</a></li>
-                <li class="sidebar-nav-item"><a href="/goat/trip/tripList.do">Trip</a></li>
-                <li class="sidebar-nav-item"><a href="/goat/notice/noticeList.do">Notice</a></li>
-                <li class="sidebar-nav-item"><a href="/goat/cs/csList.do">Service</a></li>
-            </ul>
-        </nav>
-        </div>
         </div>
 	<section class="about-section text-center"
 		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
