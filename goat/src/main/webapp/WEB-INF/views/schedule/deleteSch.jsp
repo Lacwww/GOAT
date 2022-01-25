@@ -12,17 +12,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-	<div>
-		<h2>여행 일정이 삭제되었습니다</h2>	
-	</div>
-	<form action="schView.do" method="post">
-		<input type="hidden" name="m_num" value="${m_num }">
-		<div>
-   			<input type="button" value="메인페이지" onclick="location.href='${path}/main/main.do'">
-			<input type="button" name="SchList" value="스케줄 목록" onclick="location.href='${path}/member/scheduleList.do?m_num=${m_num }'">
-		</div>
-	</form>
-</div>
+<c:if test="${result >0 }">
+	<script type="text/javascript">
+		alert("여행 일정이 삭제되었습니다");
+		location.href = '${path}/member/scheduleList.do?m_num=${m_num}';
+	</script>
+</c:if>
+<c:if test="${result >0 }">
+	<script type="text/javascript">
+		alert("스케줄 삭제에 실패하였습니다");
+		history.back();
+	</script>
+</c:if>
 </body>
 </html>

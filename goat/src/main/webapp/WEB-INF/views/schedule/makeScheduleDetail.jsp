@@ -6,6 +6,7 @@
 <html>
 <head>
 <style type="text/css">
+body { font-size: 15px;}
 @font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -35,6 +36,7 @@ div #p_list {
 	height: 140px;
 	float: left;
 	position: relative;
+	margin-right: 3%;
 }
 
 #plist {
@@ -96,6 +98,7 @@ td #lat, td #lng {
 .group {
 	margin-right: 1.5%;
 }
+#pdesc {font-size: 13px;}
 </style>
 <script type="text/javascript"
 	src="${path }/resources/bootstrap/js/jquery-ui.min.js"></script>
@@ -392,7 +395,7 @@ td #lat, td #lng {
 					</div>
 				</c:forEach>
 			</div>
-			<div class="selected_day">
+			<div class="selected_day" style="margin-top:3%; margin-bottom: 1%; height: 5%;">
 				<input type="button" style="float: left;" id="group0" class="group btn btn-primary"
 					onclick="disp(0)" value="전체 일정">
 				<c:forEach var="d" begin="1" end="${days }">
@@ -404,7 +407,7 @@ td #lat, td #lng {
 				<c:forEach var="d" begin="1" end="${days }">
 					<div id="day${d }">
 						<table class="table talbe-striped" id="table-${d }">
-							<caption>DAY ${d }</caption>
+							<caption style="caption-side: top;">DAY ${d }</caption>
 							<tr>
 								<th>여행 순서</th>
 								<th>장소명</th>
@@ -416,15 +419,20 @@ td #lat, td #lng {
 				</c:forEach>	
 			</div>
 			<div class="btn" style="width: 100%;" align="center"  style="display: flex;">
-				<div>
-					<select name="polyDay" id="polyDay">
-						<c:forEach var="polyday" begin="1" end="${days }">
-							<option value="${polyday }">${polyday }일차</option>
-						</c:forEach>
-					</select>
-					<input type="button" onclick="preview()" value="경로 그리기" class="btn btn-primary" style="margin-right: 4%;">
-					<input type="submit" value="확인" class="btn btn-success"> <input
-						type="button" onclick="back()" value="이전" class="btn btn-cancel">
+				<div style="display:flex;align-items: center;justify-content: space-between;">
+					<div>
+						<select name="polyDay" id="polyDay">
+							<c:forEach var="polyday" begin="1" end="${days }">
+								<option value="${polyday }">${polyday }일차</option>
+							</c:forEach>
+						</select>
+						<input type="button" onclick="preview()" value="경로 그리기" class="btn btn-primary" style="margin-right: 4%;">
+					</div>
+					<div style="margin-right:15%;">
+						<input type="submit" value="확인" class="btn btn-success"> 
+						<input type="button" onclick="back()" value="이전" class="btn btn-cancel">
+					</div>
+					<div></div>
 				</div>
 			</div>
 		</div>
