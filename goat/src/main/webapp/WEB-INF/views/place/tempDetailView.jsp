@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../tool.jsp" %>
+<%@ include file="../tool3.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -206,10 +207,10 @@
 <c:if test="${not empty place  && tp.del == 'n'}">
 	<div align="center">
 	<table style=" width: 50%">
-		<tr><th class="bgcolor textTh1"><h4>사진</h4></th>
-			<th><img alt="" src="${place.place_photo }" style="width: 390px; height: 380px;"></th>
-			<th><img alt="" src="${tp.temp_photo }" style="width: 390px; height: 380px;"></th></tr>
-		<tr><th class="bgcolor textTh1"><h4>위치</h4></th><th>
+		<tr><td class="bgcolor textTh1"><h4>사진</h4></td>
+			<td><img alt="" src="${place.place_photo }" style="width: 390px; height: 380px;"></td>
+			<td><img alt="" src="${tp.temp_photo }" style="width: 390px; height: 380px;"></td></tr>
+		<tr><td class="bgcolor textTh1"><h4>위치</h4></td><td>
 				<div id="map" class="top" style="width:390px; height: 380px;"></div>
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9"></script>
 					<script>
@@ -232,8 +233,8 @@
 						map.setDraggable(false); 
 						// 마커가 지도 위에 표시되도록 설정합니다
 						marker.setMap(map);
-					</script></th>
-				<th>
+					</script></td>
+				<td>
 					<div id="map1" class="top" style="width:390px; height: 380px;"></div>
 						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6793d5f5043220bc08d64cb771c6c5b9"></script>
 						<script>
@@ -256,34 +257,34 @@
 							map.setDraggable(false); 
 							// 마커가 지도 위에 표시되도록 설정합니다
 							marker.setMap(map);
-						</script></th>
+						</script></td>
 			</tr>
-			<tr><th class="bgcolor textTh1"><h4>요청사항</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>요청사항</h4></td>
 				<td colspan="2" class="lpad">${tp.temp_crud }</td></tr>
-			<tr><th class="bgcolor textTh1"><h4>건의자</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>건의자</h4></td>
 				<td colspan="2" class="lpad">${member.m_name }</td></tr>
-			<tr><th></th>
+			<tr><td></td>
 				<td class="bgcolor textTh1">수정 전</td>
 				<td class="bgcolor textTh1">수정 후</td></tr>
-			<tr><th class="bgcolor textTh1"><h4>장소 이름</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>장소 이름</h4></td>
 				<td class="lpad rblack">${place.place_name }</td>
 				<td class="lpad">${tp.temp_name }</td></tr>
-			<tr><th class="bgcolor textTh1"><h4>카테고리</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>카테고리</h4></td>
 				<td class="lpad rblack">${place.place_cate }</td>
 				<td class="lpad">${tp.temp_cate }</td></tr>
-			<tr><th class="bgcolor textTh1"><h4>장소 태그</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>장소 태그</h4></td>
 				<td class="lpad rblack">${place.place_tag }</td>
 				<td class="lpad">${tp.temp_tag }</td></tr>
-			<tr><th class="bgcolor textTh1"><h4>지번 주소</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>지번 주소</h4></td>
 				<td class="lpad rblack">${place.place_addr }</td>
 				<td class="lpad">${tp.temp_addr }</td></tr>
-			<tr><th class="bgcolor textTh1"><h4>도로명 주소</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>도로명 주소</h4></td>
 				<td class="lpad rblack">${place.place_addrd }</td>
 				<td class="lpad">${tp.temp_addrd }</td></tr>			
-			<tr><th class="bgcolor textTh1"><h4>장소 내용</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>장소 내용</h4></td>
 				<td class="lpad rblack">${place.place_content }</td>
 				<td class="lpad">${tp.temp_content }</td></tr>
-			<tr><th class="bgcolor textTh1"><h4>건의 이유</h4></th>
+			<tr><td class="bgcolor textTh1"><h4>건의 이유</h4></td>
 				<td colspan="2" class="lpad">${tp.temp_explanation }</td></tr>
 					
 		</table>
