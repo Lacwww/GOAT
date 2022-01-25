@@ -22,7 +22,10 @@
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <style type="text/css">
 	#mainNav {position: fixed;}
-	.mainBody {margin-top: 70px;}
+	.mainBody {
+		margin-top: 70px;
+		width: 60%; 
+		}
 	.tl {
 		border-bottom: 1px solid black;
 	}
@@ -178,10 +181,9 @@
 		</div>
 	</nav>
         </div>
-	<section class="about-section text-center">
+	<section class="about-section text-center" style="display: flex; justify-content: center;">
 	<div class="mainBody" align="center">
-	
-		<h2>여행 게시판</h2>
+	<h1>Trip</h1>
 		<c:if test="${trip.keyword== '' }">
 		<h4>좋아요 HOT 게시물<small>&nbsp;(*공감수 많은순)</small></h4>
 			<div>
@@ -205,14 +207,14 @@
 		</c:if>
 		
 		
-		<table class="table">
+		<table class="table table-hover" style="margin-top: 2%;">
 		<thead>
-			<tr>
-				<th class="tl">번호</th>
-				<th class="tl">제목</th>
-				<th class="tl">작성자</th>
-				<th class="tl">조회수</th>
-				<th class="tl">작성일</th>
+			<tr style="background: #CEE3E6;">
+				<th class="tl" style="width:8%; text-align: center;">번호</th>
+				<th class="tl" style="width:40%;">제목</th>
+				<th class="tl" style="width:8%; text-align: center;">작성자</th>
+				<th class="tl" style="width:8%; text-align: center;">조회수</th>
+				<th class="tl" style="width:13%; text-align: center;">작성일</th>
 			</tr>
 			<c:if test="${empty searchList}">
 				<tr>
@@ -224,14 +226,12 @@
 			<c:if test="${not empty searchList}">
 				<c:forEach var="trip2" items="${searchList }">
 					<c:if test="${trip2.del != 'y' }">
-						<tr>
-							<td class="td1">${no}<c:set var="no" value="${no - 1}"></c:set></td>
-							<td class="td2">
-								<a href="tripView.do?t_num=${trip2.t_num}&pageNum=${pb.currentPage}&search=${trip.search}&keyword=${trip.keyword}">${trip2.t_title}</a>
-							</td>
-							<td class="td3">${trip2.m_name }</td>
-							<td class="td4">${trip2.t_view }</td>
-							<td class="td5">${trip2.reg_date }</td>
+						<tr onclick="location.href='tripView.do?t_num=${trip2.t_num}&pageNum=${pb.currentPage}&search=${trip.search}&keyword=${trip.keyword}'">
+							<td class="td1" style="text-align: center;">${no}<c:set var="no" value="${no - 1}"></c:set></td>
+							<td class="td2">${trip2.t_title}</td>
+							<td class="td3" style="text-align: center;">${trip2.m_name }</td>
+							<td class="td4" style="text-align: center;">${trip2.t_view }</td>
+							<td class="td5" style="text-align: center;">${trip2.reg_date }</td>
 						</tr>
 					</c:if>
 				</c:forEach>
@@ -271,7 +271,7 @@
 		
 		<div>
 		<form method="post" action="tripSearch.do">
-			<select name="search" class="form-selectcate">
+			<select name="search" class="form-selectcate" style="font-size: 15px; height: 40px;">
 				<c:forTokens var="sh" items="t_title,t_content,subcon" delims="," varStatus="i">
 					<c:if test="${sh==trip.search }">
 						<option value="${sh}" selected="selected">${title[i.index]}</option>
@@ -281,13 +281,13 @@
 					</c:if>
 				</c:forTokens>
 			</select>
-		<input type="text" name="keyword" class="form-controllogin" value="${trip.keyword }" />
-		<input type="submit" value="검색" class="btn btn-primary mar"/> 
+		<input type="text" name="keyword" class="form-controllogin" value="${trip.keyword }"  style="height: 40px; font-size: 15px;"/>
+		<input type="submit" value="검색" class="btn btn-primary mar" style="font-size: 13px; height: 40px; margin-bottom: 5px;"/> 
 		</form>
 		</div>
 		
 		<div align="center">
-			<input type="button" onclick="sessionChk()" value="게시글 입력">
+			<input type="button" class="btn btn-primary" onclick="sessionChk()" value="게시글 입력" style="font-size: 15px;">
 		</div>
 	</div>
 	</section>

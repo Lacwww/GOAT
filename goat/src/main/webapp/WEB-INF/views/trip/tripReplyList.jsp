@@ -92,14 +92,14 @@
 	}
 </script>
 </head><body>
-<div>
+<div style="margin: auto;">
 	<c:if test="${empty trList }">댓글이 없습니다. 여러분의 소중한 댓글을 입력해주세요</c:if>
 	<c:if test="${not empty trList}">
 		<h3 class="text-primary">댓 글 목 록</h3>
 	
 		<c:forEach var="tr" items="${trList }">
 			<c:if test="${tr.del == 'y' }">
-				<tr><td colspan="2">삭제된 댓글입니다.</td></tr>
+				<tr><td colspan="2" align="left">삭제된 댓글입니다.</td></tr>
 			</c:if>
 
 			<c:if test="${tr.del != 'y' }">
@@ -108,12 +108,12 @@
 				<c:if test="${tr.tre_re_level > 0 }">
 					<!-- 답변글 레벨당 10px들여 쓰기 -->
 					<img alt="" src="${path}/resources/csImages/level.gif"
-						width="${tr.tre_re_level * 25 }">
+						width="${tr.tre_re_level * 25 }" style="float: left;">
 					<img alt="" src="${path}/resources/csImages/reply.png"
 						height="20" width="20">
 					</c:if>
 				</div>
-			<table style="width:50%; float: inherit;">
+			<table style="width:50%; margin-top: 0;">
 					
 				<tr><td>${tr.m_name }</td>
 					<td><fmt:formatDate value="${tr.reg_date }" pattern="yyyy/MM/dd HH:mm:ss"/></td></tr>
