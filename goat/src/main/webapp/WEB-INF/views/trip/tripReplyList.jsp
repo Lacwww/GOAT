@@ -129,7 +129,7 @@
 						<tr><td colspan="2" class="reply_${tr.tre_num }" style="height:0px; border-bottom: 1px dashed;"></td></tr>
 					</c:if>
 					<c:if test="${m_num != tr.m_num }">
-						<input type="button" value="답글쓰기" onclick="rpInsert(${tr.tre_num},${tr.t_num})">
+						<input type="button" class="btn btn-outline-primary" value="답글쓰기" onclick="rpInsert(${tr.tre_num},${tr.t_num})">
 						<tr><td colspan="2" class="reply_${tr.tre_num }" style="height:0px; border-bottom: 1px dashed;"></td></tr>
 					</c:if>
 				</td><tr>
