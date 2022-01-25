@@ -84,8 +84,8 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	public void deleteScd(int sch_num) {
 		sst.delete("schedulens.deleteScd",sch_num);
 	}
-	public void deleteSch(int sch_num) {
-		sst.delete("schedulens.deleteSch",sch_num);
+	public int deleteSch(int sch_num) {
+		return sst.delete("schedulens.deleteSch",sch_num);
 	}
 
 	public void updateSchAlert(Schedule sch) {

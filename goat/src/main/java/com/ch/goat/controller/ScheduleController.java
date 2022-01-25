@@ -267,8 +267,9 @@ public class ScheduleController {
 	public String deleteSch(Model model, int sch_num, HttpSession session) {
 		int m_num = (Integer) session.getAttribute("m_num");
 		ss.deleteScd(sch_num);
-		ss.deleteSch(sch_num);
+		int result = ss.deleteSch(sch_num);
 		model.addAttribute("m_num",m_num);
+		model.addAttribute("result",result);
 		return "schedule/deleteSch";
 	}
 	

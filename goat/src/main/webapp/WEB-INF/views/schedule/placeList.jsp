@@ -84,7 +84,12 @@ document.cookie = "crossCookie=bar; SameSite=None; Secure";
 			frm.id.value=id;
 				}				
 			}
-	
+	$(function() {
+		$('#MoaModal .modal-content').load("placeModal.do?place_num=1");
+		$('#MoaModal').modal();
+		$('.modal-footer').hide();
+	});
+ 	
  	/* 플레이스 상세정보 */
 	function modal(place) {
 		$('#MoaModal .modal-content').load("placeModal.do?place_num=" + place);
@@ -105,7 +110,7 @@ document.cookie = "crossCookie=bar; SameSite=None; Secure";
 <style type="text/css">
 	div #p_list {overflow : auto; float: right; width: 30%; height: 100%; top: 20px;}
 	.p_image { width: 100%; height: 100%;}
-	#pimage { width: 160px; height: 140px; float: left; position: relative;}
+	#pimage { width: 160px; height: 140px; float: left; position: relative; margin-right: 5%;}
 	#plist { margin: 10px;} 
 	#p_image{ width: 150px; height: 150px;}
 	.place_box { background: #EFFBFB;}

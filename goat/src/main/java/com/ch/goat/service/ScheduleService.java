@@ -44,7 +44,7 @@ public interface ScheduleService {
 
 	void deleteScd(int sch_num);
 
-	void deleteSch(int sch_num);
+	int deleteSch(int sch_num);
 
 	void updateSchAlert(Schedule sch);
 

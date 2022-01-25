@@ -29,7 +29,7 @@
 			event.preventDefault();
 		}
 	}, true);
-
+	
 	$(document).ready(
 			function() {
 				if(${m_num==null}) { 
@@ -116,6 +116,7 @@
 	}
 </script>
 <style type="text/css">
+body {	font-size: 15px;}
 div #map {
 	text-align: center;
 }

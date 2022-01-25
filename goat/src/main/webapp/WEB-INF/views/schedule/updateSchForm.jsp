@@ -104,6 +104,7 @@
  	}
 </script>
 <style type="text/css">
+body {font-size: 15px;}
 div #map {
 	text-align: center;
 }

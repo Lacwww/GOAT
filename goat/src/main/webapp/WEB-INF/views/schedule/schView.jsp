@@ -7,6 +7,7 @@
 <html>
 <head>
 <style type="text/css">
+	body { font-size: 15px;}
 	@font-face {
 	    font-family: 'GmarketSansMedium';
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -339,8 +340,8 @@
                               <div class="rout" style="margin-left: 15%;">
                               <span class="glyphicon glyphicon-menu-down"
 									style="width: 30px; height: 20px;"></span>
-                              <img alt="상세경로" src="${path }/resources/images/route.png" onclick="route(${day },${d})"
-                              	height="20px" width="20px" style="cursor: pointer;">
+                              <img alt="상세경로" title="상세경로" src="${path }/resources/images/route.png" onclick="route(${day },${d})"
+                              	height="30px" width="30px" style="cursor: pointer;">
                               </div>
                               <c:set var="d" value="${d+1 }"/>
                      	</div>
