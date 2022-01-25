@@ -145,26 +145,27 @@
         </div>
 	<section class="about-section text-center">
 	<div class="mainBody" align="center">
-		<h3>여행이야기 수정</h3><hr>
+		<h1>여행이야기 수정</h1>
+		<br><br>
 		<form action="tripUpdate.do?" method="post" name="frm">
 			<input type="hidden" name="pageNum" value="${pageNum}">
 			<input type="hidden" name="t_num" value="${trip.t_num}">
 			
 			<table>
-				<tr>
+				<tr style="height: 2.5em;">
 					<th>제목</th>
-					<td><input type="text" name="t_title" required="required"
+					<td style="padding-left: 1em;"><input type="text" name="t_title" required="required"
 						autofocus="autofocus" value="${trip.t_title }"></td>
 				</tr>
 
-				<tr>
+				<tr style="height: 2.5em;">
 					<th>작성자</th>
-					<td><c:if test="${not empty id && empty admin}">${member.m_name }</c:if>
+					<td style="padding-left: 1em;"><c:if test="${not empty id && empty admin}">${member.m_name }</c:if>
 						<c:if test="${not empty admin && empty id}">${adminInfo.m_name }</c:if></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td>
+					<td style="padding-left: 1em;">
 					<textarea class="form-control" name="t_content" id="t_content">${trip.t_content }</textarea>
 					<script type="text/javascript">
  						CKEDITOR.replace('t_content'
@@ -175,9 +176,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="center" colspan="2">
-						<input type="submit" value="수정하기">
-						<input type="button" value="취소" onclick="location.href='tripView.do?t_num=${trip.t_num}&pageNum=${pageNum }'"></td>
+					<td style="height: 5em;"align="center" colspan="2">
+						<input class="btn btn-primary" type="submit" value="수정하기">
+						<input class="btn btn-danger" type="button" value="취소" onclick="location.href='tripView.do?t_num=${trip.t_num}&pageNum=${pageNum }'"></td>
 				</tr>
 			</table>
 		</form>
