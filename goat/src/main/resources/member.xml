@@ -57,7 +57,7 @@
         c.del='n' order by c.cs_ref desc, c.cs_re_step
 	</select>
 	<select id="confirm" parameterType="integer" resultType="alert">
-		select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title, t_like, t_reply from alert where m_num=#{m_num} and s_date-sysdate+1 <![CDATA[ < ]]> 8
+		select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title, t_like, t_reply from alert where m_num=#{m_num} and s_date-sysdate+1 <![CDATA[ < ]]> 8 or m_num=#{m_num} and t_num!=0 or m_num=#{m_num} and temp_num!=0 or m_num=#{m_num} and cs_num!=0
 	</select>
 	<select id="myScList" parameterType="integer" resultType="sc">
 		select * from schedule where m_num=#{m_num} order by sch_num desc

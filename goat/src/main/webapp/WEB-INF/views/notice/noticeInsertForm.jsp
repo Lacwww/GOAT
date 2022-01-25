@@ -49,7 +49,8 @@
 </script>
 <style type="text/css">
 	#mainNav {position: fixed;}
-	.mainBody {margin-top: 150px;}
+	.mainBody {margin-top: 70px; width: 60%; }
+	thead, tbody, tfoot, tr, td, th { padding: 8px 0; }
 </style>
 </head>
 <body id="page-top">
@@ -143,38 +144,37 @@
 			</div>
 		</div>
 	</nav>
-        
+    <section class="about-section text-center" style="display: flex; justify-content: center;">
 	<div class="mainBody" align="center">
-		<h3>공지사항 등록</h3><hr>
+		<h1 style="margin-bottom:35px;">공지사항 등록</h1>
 		<form action="noticeInsert.do?" method="post" name="frm">
 			<input type="hidden" name="pageNum" value="${pageNum}"> 
 			<input type="hidden" name="m_num" value="${adminInfo.m_num }">
-			
-			<table>
+			<table style="margin-bottom: 30px;">
 				<tr>
-					<th>제목</th>
+					<th style="width:15%;">제목</th>
 					<td><input type="text" name="no_title" required="required"
-						autofocus="autofocus"></td>
+						autofocus="autofocus" size="50"></td>
 				</tr>
 
 				<tr>
 					<th>작성자</th>
 					<td>${adminInfo.m_name }</td>
 				</tr>
-				<tr>
+				<tr style="vertical-align: top;">
 					<th>내용</th>
 					<td>
-					<textarea rows="10" cols="80" name="no_content"
+					<textarea rows="20" cols="80" name="no_content"
 							required="required" id="no_content"></textarea>
 					</td>
 				</tr>
-				<tr align="center">
-					<td colspan="2">
-						<input type="submit" value="등록하기">
-						<input type="button" onclick="location.href='noticeList.do?pageNum=${pageNum}'" value="취소"></td>
-				</tr>
 			</table>
+			<div align="center" style="font-size: 15px;">
+				<input type="submit" class="btn btn-primary" value="등록하기">
+				<input type="button" class="btn btn-warning" onclick="location.href='noticeList.do?pageNum=${pageNum}'" value="취소"></td>
+			</div>
 		</form>
 	</div>
+	</section>
 </body>
 </html>
