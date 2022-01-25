@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../tool.jsp"%>
+<%@ include file="../tool3.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -205,7 +206,6 @@
 	<!-- 지역 리스트 -->
 	<div class="container" align="center" style="margin-top: 6%;">
 		<h2 id="sch">플레이스 지역 선택</h2>
-		<h3 class="text-primary">어디로 가볼까요?</h3>
 		<div align="center"> 
 			<input type="button" class="btn btn1" value="플레이스 등록" onclick="insertPlace()"> 
 		</div>
