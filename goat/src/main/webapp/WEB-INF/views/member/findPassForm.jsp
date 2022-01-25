@@ -9,7 +9,7 @@
 <style type="text/css">
 	.divtext>a {text-decoration: none; }
 	.divtext>a:hover{color: #2F9D27; }
-	.divtext { display: flex; justify-content: space-evenly; width: 25%; }
+	.divtext { display: flex; justify-content: space-evenly; width: 25%; font-size: 15px; }
 	.data { width: 20%; height: 35px; margin: 10px; font-size: 15px; }	
 </style>
 <script type="text/javascript">

@@ -28,7 +28,7 @@
 	.data { width: 20%; height: 35px; margin: 10px; font-size: 15px; }
 	.divtext>a {text-decoration: none; }
 	.divtext>a:hover{color: #2F9D27; }
-	.divtext { display: flex; justify-content: space-evenly; width: 25%; }
+	.divtext { display: flex; justify-content: space-evenly; width: 25%; font-size: 15px; }
 </style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
