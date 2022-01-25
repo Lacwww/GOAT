@@ -118,11 +118,11 @@ $(function() {
 			</div>
 		</div>
 	</nav>
-	<div style="padding-top: 10%; padding-left: 20%; width: 80%">
+	<div style="padding-top: 10%; padding-left: 15%; width: 85%">
 		<br> <br>
 		<div align="center" style="width: 100%;">
 			<h1>
-				<a href="adminTempPlace.do">플레이스 등록 요청 목록</a>
+				<a style="font-size: 3rem;" href="adminTempPlace.do">플레이스 등록 요청 목록</a>
 			</h1>
 			<button id="graybutton" class="btn pull-right" style="font-size: 1.2rem; font-weight: bold; color: white;"
 				onclick="location.href='admin.do'">돌아가기</button>
@@ -132,9 +132,9 @@ $(function() {
 			<table class="table table-hover table-striped">
 				<thead>
 					<tr>
-						<th width="50">번호</th>
+						<th style=" text-align:center;">번호</th>
 						<th>플레이스명</th>
-						<th>카테고리</th>
+						<th style=" text-align:center;">카테고리</th>
 						<th>주소</th>
 						<th>상세주소</th>
 						<th>요청일</th>
@@ -145,9 +145,9 @@ $(function() {
 				<tbody>
 					<c:forEach var="temp" items="${list }">
 						<tr style="cursor: pointer;" onclick="opn(${temp.temp_num},${temp.place_num })">
-							<td>${temp.temp_num }</td>
+							<td style=" text-align:center;">${temp.temp_num }</td>
 							<td>${temp.temp_name }</td>
-							<td>${temp.temp_cate }</td>
+							<td style=" text-align:center;">${temp.temp_cate }</td>
 							<td>${temp.temp_addr }</td>
 							<td>${temp.temp_addrd }</td>
 							<td>${temp.reg_date }</td>

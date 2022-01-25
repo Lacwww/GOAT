@@ -127,11 +127,11 @@ a {
 			</div>
 		</div>
 	</nav>
-	<div style="padding-top: 10%; padding-left: 20%; width: 80%">
+	<div style="padding-top: 10%; padding-left: 15%; width: 85%">
 		<br> <br>
 		<div align="center" style="width: 100%;">
 			<h1>
-				<a href="adminMember.do">회원 목록</a>
+				<a style="font-size: 3rem;" href="adminMember.do">회원 목록</a>
 			</h1>
 			<button id="graybutton" class="btn pull-right" style="font-size: 1.2rem; font-weight: bold; color: white;"
 				onclick="location.href='admin.do'">돌아가기</button>
@@ -141,7 +141,7 @@ a {
 			<table class="table table-hover table-striped">
 				<thead>
 					<tr>
-						<th>회원번호</th>
+						<th style="width: 7%; text-align:center;">회원번호</th>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>닉네임</th>
@@ -155,7 +155,7 @@ a {
 				<tbody>
 					<c:forEach var="member" items="${list }">
 						<tr id="tdcenter">
-							<td style="vertical-align: middle;">${member.m_num }</td>
+							<td style="text-align:center; vertical-align: middle;">${member.m_num }</td>
 							<td style="vertical-align: middle;">${member.m_id }</td>
 							<td style="vertical-align: middle;">${member.m_name }</td>
 							<td style="vertical-align: middle;">${member.m_nick }</td>
