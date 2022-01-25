@@ -10,10 +10,19 @@
 <style type="text/css">
 	td {height: 30px; font-size: 15px;}
 	.bgcolor{	
-		background-color: rgb(64,123,37);
-		color: white; 
+		  color: #fff;
+		  background-color: #64a19d;
 		border-radius: 5px;
 	}	
+	.btn1 {
+	  color: #fff;
+	  background-color: #64a19d;
+	  border-color: #64a19d;
+	}
+	.btn1:hover {
+		background-color: white;
+		color: black;
+	}
 	.starDiv{
 		display: inline-block;
 		direction: rtl;

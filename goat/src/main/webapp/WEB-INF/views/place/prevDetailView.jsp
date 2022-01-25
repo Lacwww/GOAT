@@ -54,16 +54,19 @@
 	  background-size: 30px;
 	}
 	input[type=radio] {display: none; } 
-	.btn {
-	background-color: rgb(64,123,37);
-	color: white;
+	.btn1 {
+	  color: #fff;
+	  background-color: #64a19d;
+	  border-color: #64a19d;
 	}
-	.btn:hover {
-		background-color: rgb(114,201,75);
+	.btn1:hover {
+		background-color: white;
+		color: black;
 	}
 	.bgcolor{	
-		background-color: rgb(64,123,37);
-		color: white; 
+		  color: #fff;
+		  background-color: #64a19d;
+		  border-color: #64a19d;
 		border-radius: 5px;
 	}	
 	.bmChk { cursor: pointer;}
@@ -338,7 +341,7 @@
 						<td style="padding-left: 10px;">
 							<textarea rows="4" cols="59" name="prev_content" required="required"></textarea>
 						</td>
-						<td><input style="float: right;" type="button" class="btn" value="등록" id="insertprev"></td>
+						<td><input type="button" class="btn btn1" value="등록" id="insertprev"></td>
 					</tr>	
 			</table>
 		</form>
