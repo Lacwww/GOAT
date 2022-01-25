@@ -19,6 +19,11 @@
 			console.log(alert);
 		});
 	});
+	$(function() {
+		$('#MoaModal .modal-content').load("placeModal.do?place_num=1");
+		$('#MoaModal').modal();
+		$('.modal-footer').hide();
+	});
 </script>
 
 <script type="text/javascript">
@@ -376,6 +381,13 @@ select::-ms-expand {
 				</div>
 				</div>
 			</form>
+		</div>
+	</div>
+	<!-- 플레이스 모달 -->
+	<div class="modal fade" id="MoaModal" tabindex="-1" role="dialog"
+		aria-labelledby="historyModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content"></div>
 		</div>
 	</div>
 </body>
