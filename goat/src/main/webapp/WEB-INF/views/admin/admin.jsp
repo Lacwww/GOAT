@@ -45,6 +45,7 @@
 #myPage a {
 	text-decoration: none;
 	color: #2F9D27;
+	font-size: 2rem;
 }
 
 #myPage a:active {
