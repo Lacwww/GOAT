@@ -206,8 +206,8 @@
 					style="width: 60px; height: 70px; padding-bottom : 5px;">${sch.s_date } ~ ${sch.e_date }
 		</div>
 	</div>
-	<div id="sch2" class="row" align="center">
-		<div class="col-md-9" id="map" style="height: 80%;">
+	<div id="sch2" class="row" align="center" style="height: 80%;">
+		<div class="col-md-9" id="map">
 			<script>
 					var container = document.getElementById('map');
 					var options = {
@@ -228,7 +228,7 @@
 					});
 				</script>
 		</div>
-		<div class="col-md-3" style="height: 80%; border: 1px solid black;">
+		<div class="col-md-3" style="height: 100%; border: 1px solid black;">
          <c:forEach var="day" begin="1" end="${days }">
          	<c:set var="d" value="1"/>
             <div class="row" id="div1" style="border: 0.3px solid black; margin-bottom: 2%; border-left: none; border-right: none;">

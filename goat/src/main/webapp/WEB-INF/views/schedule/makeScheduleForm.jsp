@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../tool.jsp"%>
+<%@ include file="../tool3.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,9 +113,9 @@
 	function show(cate) {
 		$('.place_box').hide();
 		$('#' + cate).show();
-		$('.cate_select2').addClass('cate_select');
-		$('.cate_select2').removeClass('cate_select2');
-		$('#cate_' + cate).addClass('cate_select2');
+		$('.btn btn-success').removeClass('btn btn-success');
+		$('#cate_'+cate).addClass('btn btn-success');
+		$('#cate_' + cate).removeClass('btn btn-info');
 	}
 </script>
 <style type="text/css">
@@ -139,7 +140,7 @@ input {
 	width: 65%;
 	height: 100%;
 	margin: auto;
-	margin-top: 7%;
+	margin-top: 4%;
 }
 
 .pList {
@@ -167,63 +168,6 @@ select {
 
 select::-ms-expand {
 	display: none;
-}
-
-.cate_select {
-	box-shadow: 0px 10px 14px -7px #3e7327;
-	background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
-	background-color: #77b55a;
-	border-radius: 28px;
-	border: 1px solid #4b8f29;
-	display: inline-block;
-	cursor: pointer;
-	color: #ffffff;
-	font-family: Arial;
-	padding: 9px 17px;
-	text-decoration: none;
-	text-shadow: 0px 1px 0px #5b8a3c;
-	margin-right: 5%;
-	font-size: 1.3rem;
-	margin-bottom: 2%;
-}
-
-.cate_select:hover {
-	background: linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
-	background-color: #72b352;
-}
-
-.cate_select:active {
-	position: relative;
-	top: 1px;
-}
-
-.cate_select2 {
-	box-shadow: 0px 10px 14px -7px #3e7327;
-	background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
-	background-color: #0688fa;
-	border-radius: 28px;
-	border: 1px solid #4b8f29;
-	display: inline-block;
-	cursor: pointer;
-	color: #ffffff;
-	font-family: Arial;
-	font-weight: bold;
-	padding: 9px 17px;
-	text-decoration: none;
-	text-shadow: 0px 1px 0px #5b8a3c;
-	margin-right: 5%;
-	font-size: 1.5rem;
-	margin-bottom: 2%;
-}
-
-.cate_select2:hover {
-	background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
-	background-color: #0688fa;
-}
-
-.cate_select2:active {
-	position: relative;
-	top: 1px;
 }
 
 #datepick {
@@ -271,11 +215,67 @@ select::-ms-expand {
 						<li class="nav-item"><a class="nav-link" href="/goat/member/logout.do">Logout</a></li>
 						<li class="nav-item"><a class="nav-link" href="/goat/admin/admin.do">AdminPage</a></li>						
 					</c:if>
+					<c:if test="${not empty id && empty admin }">
+					<li class="nav-item">
+						<ul class="dropdown">
+							<c:if test="${empty alert}">
+								<img src="/goat/resources/images/notice.png" title="notice" width="40px" height="40px">
+							</c:if>
+							<c:if test="${not empty alert }">
+								<img data-toggle="dropdown" alt="" src="/goat/resources/images/notice2.png"
+									title="notice" width="40px" height="40px">
+								<ul class="dropdown-menu" role="menu" style="margin-top: 20px;">
+									<c:forEach var="list" items="${alert }">
+										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
+											<c:if test="${list.day == 0 }">
+												<li role="presentation">
+													<a role="menuitem" href="${path }/member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+												</li>
+											</c:if>
+											<c:if test="${list.day != 0 }">
+												<li role="presentation">
+													<a role="menuitem" href="${path }//member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+												</li>
+											</c:if>
+										</c:if>
+										<c:if test="${list.temp_num!=0 && list.t_num==0 && list.sch_num==0 && list.cs_num==0}">
+											<li role="presentation">
+												<a role="menuitem" href="${path }/member/alertTp.do?ale_num=${list.ale_num}&temp_num=${list.temp_num }&place_num=${list.place_num}">${list.temp_name }에 대한 ${list.temp_crud } 요청이 
+													<c:if test="${list.del == 'y' }">
+														승인 완료되었습니다
+													</c:if>
+													<c:if test="${list.del == 'd' }">
+														승인 거절되었습니다
+													</c:if>
+												</a>
+											</li>
+										</c:if>
+										<c:if test="${list.cs_num!=0 && list.temp_num==0 && list.t_num==0 && list.sch_num==0}">
+											<li role="presentation">
+												<a role="menuitem" href="${path }/member/alertCs.do?ale_num=${list.ale_num}&cs_num=${list.cs_num}">${list.cs_title }에 답변이 달렸습니다 </a>
+											</li>
+										</c:if>
+										<c:if test="${list.t_num!=0 && list.cs_num==0 && list.temp_num==0 && list.sch_num==0}">
+											<li role="presentation">
+												<c:if test="${list.t_like==1 && list.t_reply==0}">
+													<a role="menuitem" href="${path }/member/alertTr.do?ale_num=${list.ale_num}&t_num=${list.t_num}">${list.t_title }에 좋아요를 눌렀습니다 </a>
+												</c:if>
+												<c:if test="${list.t_reply==1 && list.t_like==0}">
+													<a role="menuitem" href="${path }/member/alertTr.do?ale_num=${list.ale_num}&t_num=${list.t_num}">${list.t_title }에 댓글이 달렸습니다 </a>
+												</c:if>
+											</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</c:if>
+							</ul>
+						</li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<div style="width: 100%; height: 100%; margin-top: 150px;">
+	<div style="width: 100%; height: 100%; margin-top: 100px;">
 		<h2 class="text text-primary" align="center">여행할 장소를 선택해주세요</h2>
 		<!-- 여행 일자 선택 -->
 		<div id="wrapper">
@@ -284,8 +284,8 @@ select::-ms-expand {
 				<div id="navyDiv" style="width: 100%; height: 13%;">
 					<input type="hidden" id="id" name="id" value=""> <input
 						type="hidden" name="place_area" value="${place_area }">
-					<div style="width: 100%; display:flex;align-items: center;justify-content: space-between;">
-						<div style="width: 60%;">
+					<div style="width: 100%;display:flex;align-items: flex-start;justify-content: space-between;flex-direction: column;">
+						<div style="width: 100%;">
 							<img alt="calendar" src="${path }/resources/images/calendar.png"
 								style="width: 60px; height: 70px; padding-bottom: 5px;"> <input
 								type="text" id="datepick" value=""> <input type="hidden"
@@ -293,7 +293,7 @@ select::-ms-expand {
 								name="e_date" id="edate" class="date">
 						</div>
 						<!-- 플레이스 검색 -->
-						<div style="float: right; margin-right: 3%;">
+						<div style="float: right;margin-right: 3%;display:flex;align-items: center;flex-direction: row;width:100%;justify-content: space-between;">
 							<div>
 								<select name="search" id="search">
 									<c:forTokens var="sh" items="place_name,place_tag" delims=","
@@ -311,10 +311,10 @@ select::-ms-expand {
 									value="검색"  style="width: 60px; height: 40px;">
 							</div>
 							<!-- 플레이스 카테고리 선택 -->
-							<div align="center">
-								<div class="cate_select2" id="cate_tour" onclick="show('tour')">관광지</div>
-								<div class="cate_select" id="cate_food" onclick="show('food')">식당</div>
-								<div class="cate_select" id="cate_rest" onclick="show('rest')">숙소</div>
+							<div align="center" style="margin-right: 8%;">
+								<div class="btn btn-success" id="cate_tour" onclick="show('tour')">관광지</div>
+								<div class="btn btn-info" id="cate_food" onclick="show('food')">식당</div>
+								<div class="btn btn-info" id="cate_rest" onclick="show('rest')">숙소</div>
 							</div>
 						</div>
 					</div>
