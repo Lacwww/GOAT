@@ -68,13 +68,18 @@
 }
 
 	.btn1 {
-	background-color: rgb(64,123,37);
-	color: white;
+	  color: #fff;
+	  background-color: #64a19d;
+	  border-color: #64a19d;
 	}
 	.btn1:hover {
-		background-color: rgb(114,201,75);
+		background-color: white;
+		color: black;
 	}
 	#mainNav {position: fixed;}
+	.pagination { font-family: "Roboto", sans-serif; }
+	.pagination li a { border-radius:0 !important; color:#333 !important; }
+	.pagination li.active a { color:#fff !important; background:#444 !important; border-color:#444 !important; }
 </style>
 <script type="text/javascript">
 	$(function() {

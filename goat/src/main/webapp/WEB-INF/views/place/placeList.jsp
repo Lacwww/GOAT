@@ -37,13 +37,11 @@
 	color: #ffffff;
 	border-radius: 7px;
 }
-	.btn1 {
-	background-color: rgb(64,123,37);
-	color: white;
-	}
-	.btn1:hover {
-		background-color: rgb(114,201,75);
-	}
+	#bbtt:hover {
+	 color: #fff;
+	  background-color: #64a19d;
+	  border-color: #64a19d;
+	 }
 #mainNav {position: fixed;}
 </style>
 <meta charset="UTF-8">
@@ -205,9 +203,9 @@
 		style="background: linear-gradient(to bottom, rgba(21, 125, 138, 1) 0%, rgba(255, 255, 255, 0.7) 90%);">
 	<!-- 지역 리스트 -->
 	<div class="container" align="center" style="margin-top: 6%;">
-		<h2 id="sch">플레이스 지역 선택</h2>
-		<div align="center"> 
-			<input type="button" class="btn btn1" value="플레이스 등록" onclick="insertPlace()"> 
+		<h2 id="sch" style="color: white;">Place</h2>
+		<div align="center" style="margin-bottom: 10px;"> 
+			<input type="button" id="bbtt" class="btn btn-light" value="플레이스 등록" onclick="insertPlace()"> 
 		</div>
 		<div class="container" align="center" style="margin-left: 1%;">
 			<c:forEach var="area" items="${list }">

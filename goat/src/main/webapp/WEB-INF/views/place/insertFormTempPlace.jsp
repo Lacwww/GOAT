@@ -35,17 +35,18 @@
 <style type="text/css">
 	#imgpreview { float: left; }
 	.bgcolor{	
-		background-color: rgb(64,123,37);
-		color: white; 
+	  color: #fff;
+	  background-color: #64a19d;
 		border-radius: 5px;
 	}		
 	
 	.btn1 {
-	background-color: rgb(64,123,37);
-	color: white;
+	  color: #fff;
+	  background-color: #64a19d;
 	}
 	.btn1:hover {
-		background-color: rgb(114,201,75);
+		background-color: white;
+		color: black;
 	}
 		
 	td { border-bottom: 1px solid white; height: 40px;}

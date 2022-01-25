@@ -10,8 +10,8 @@
 <style type="text/css">
 	.top {float: left; }
 	.bgcolor{	
-		background-color: rgb(64,123,37);
-		color: white; 
+	  color: #fff;
+	  background-color: #64a19d;
 		border-radius: 5px;
 	}
 	.textTh {text-align:center; width: 20%; border-bottom: 1px solid white; }
