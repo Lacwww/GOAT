@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../tool.jsp"%>
+<%@ include file="../tool3.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,6 +92,9 @@ td #lat, td #lng {
 	outline: none;
 	padding-left: 10px;
 	background-color: rgb(233, 233, 233);
+}
+.group {
+	margin-right: 1.5%;
 }
 </style>
 <script type="text/javascript"
@@ -373,8 +377,6 @@ td #lat, td #lng {
 						<div id="pdesc" style="height: 140px;">
 							<div style="width: 100%;">
 								<span style="font-weight: bold;" id="p_name${p.place_num }">${p.place_name }</span>
-								<img alt="자세히 보기" src="${path }/resources/images/info.png"
-									width="20px;" height="20px;" onclick="modal(${p.place_num})">
 							</div>
 							<br> <span>주소</span><br> <span class="p_addr"
 								id="p_addr${p.place_num }">${p.place_addr }</span><br> <span>선택
@@ -394,7 +396,7 @@ td #lat, td #lng {
 				<input type="button" style="float: left;" id="group0" class="group btn btn-primary"
 					onclick="disp(0)" value="전체 일정">
 				<c:forEach var="d" begin="1" end="${days }">
-					<input type="button" style="float: left;" id="group${d }" class="group btn btn-light"
+					<input type="button" style="float: left;" id="group${d }" class="group btn btn-primary"
 						onclick="disp(${d})" value="${d }일차">
 				</c:forEach>
 			</div>
