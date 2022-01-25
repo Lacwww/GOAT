@@ -85,6 +85,7 @@
 	#noticeTable td {width:0 auto; height: 70px; font-size: 15px; cursor: pointer; }
 	.mainBody {margin-top: 150px; width: 60%; }
 	thead, tbody, tfoot, tr, td, th { padding: 15px 0; }
+	.about-section { padding-top:0px; padding-bottom: 30px; }
 </style>
 </head>
 <body id="page-top">
@@ -182,8 +183,8 @@
 	
 	<section class="about-section text-center" style="display: flex; justify-content: center;">
 	<div class="mainBody" align="center">
-		<h1 style="margin-bottom:35px;">공지 사항 상세 조회</h1>
-		<table id="noticeTable" style="width: 80%; margin-bottom: 20px;">
+		<h1 style="margin-bottom:35px; background-image:url('${path}/resources/tripPhoto/1.png'); width:30%;">공지 사항 상세 조회</h1>
+		<table id="noticeTable" style="width: 80%;">
 			<tr>
 				<th style="width:15%;">제목</th>
 				<td style="width:50%;">${notice.no_title}</td>
@@ -204,22 +205,29 @@
 				<td colspan="4">
 					<input type="button" class="btn btn-primary" onclick="location.href='noticeList.do?pageNum=${pageNum }'" value="게시글 목록">
 				<c:if test="${not empty admin}">
-					<input type="button" onclick="location.href='noticeUpdateForm.do?no_num=${notice.no_num}&pageNum=${pageNum }'" value="수정">
-					<input type="button" onclick="delCs()" value="삭제">
+					<input type="button" class="btn btn-danger" onclick="location.href='noticeUpdateForm.do?no_num=${notice.no_num}&pageNum=${pageNum }'" value="수정">
+					<input type="button" class="btn btn-warning" onclick="delCs()" value="삭제">
 				</c:if>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<div id="nrListDisp"></div>
-	<!-- submit할 때 action이 없는 경우에는 자신(여기서는 view)를 한번 더 실행한다 -->
+	</section>
+	
+	<section style="width: 67%; display: flex; justify-content: center;">
+		<div id="nrListDisp"></div>
+	</section>
+	
+	<section style="display: flex; justify-content: center; margin: 30px 0;">;
 	<div>
+		<!-- submit할 때 action이 없는 경우에는 자신(여기서는 view)를 한번 더 실행한다 -->
 		<form action="" id="frm1" name="frm1">
 			<input type="hidden" name="no_num" value="${notice.no_num }">
 		<table class="table table-hover">
 		<!-- 회원 게시판의 경우에는 회원이름 또는 회원별명 또는 회원 id -->
-			<tr><th>댓글</th><td><textarea rows="3" cols="100" name="nor_content"></textarea></td>
-				<td><input type="button" value="댓글입력" onclick="sessionChk()" id="rInsert"></td></tr>
+			<tr><th style="vertical-align : middle;">댓글</th><td><textarea rows="3" cols="100" name="nor_content"></textarea></td>
+				<td style="vertical-align : middle;">
+					<input type="button" style="background:#CEE3E6;" class="btn btn-outline-light" value="댓글입력" onclick="sessionChk()" id="rInsert"></td></tr>
 		</table>	
 		</form>
 	</div>
