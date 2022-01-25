@@ -41,10 +41,6 @@ public class MemberController {
 	// 비밀번호 암호화
 	@Autowired
 	private BCryptPasswordEncoder bpPass;
-	@RequestMapping("main/main")
-	public String main() {
-		return "main/main";
-	}
 	@RequestMapping("main/home")
 	public String home(HttpSession session, Model model) {
 		List<Alert> alert = (List<Alert>) session.getAttribute("alert");

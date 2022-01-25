@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../tool.jsp"%>
+<%@ include file="../tool2.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -361,12 +361,12 @@
 										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
 											<c:if test="${list.day == 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+													<a role="menuitem" href="${path }/member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
 												</li>
 											</c:if>
 											<c:if test="${list.day != 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+													<a role="menuitem" href="${path }//member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
 												</li>
 											</c:if>
 										</c:if>
@@ -501,35 +501,35 @@
 	<text x="120" y="100" class="text1">Where We Go On A Trip?</text>
 	<text id="LCD11" class="TEXT" x="152" y="294"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=서울'">서울</text>
-	<text id="LCD26" class="TEXT" x="360" y="565"
+	<text id="LCD26" class="TEXT" x="351" y="565"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=부산'">부산</text>
-	<text id="LCD27" class="TEXT" x="301" y="498"
+	<text id="LCD27" class="TEXT" x="302" y="498"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=대구'">대구</text>
-	<text id="LCD28" class="TEXT" x="123" y="294"
+	<text id="LCD28" class="TEXT" x="124" y="294"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=인천'">인천</text>
 	<text id="LCD29" class="TEXT" x="139" y="571"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=광주'">광주</text>
-	<text id="LCD30" class="TEXT" x="211" y="435"
+	<text id="LCD30" class="TEXT" x="191" y="435"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=대전'">대전</text>
-	<text id="LCD31" class="TEXT" x="370" y="529"
+	<text id="LCD31" class="TEXT" x="362" y="529"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=울산'">울산</text>
-	<text id="LCD36" class="TEXT" x="186" y="416"
+	<text id="LCD36" class="TEXT" x="176" y="416"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=세종'">세종</text>
-	<text id="LCD41" class="TEXT" x="170" y="262"
+	<text id="LCD41" class="TEXT" x="165" y="262"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경기도'">경기도</text>
 	<text id="LCD42" class="TEXT" x="280" y="270"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=강원도'">강원도</text>
-	<text id="LCD43" class="TEXT" x="217" y="400"
+	<text id="LCD43" class="TEXT" x="218" y="384"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=충북'">충청북도</text>
-	<text id="LCD44" class="TEXT" x="152" y="420"
+	<text id="LCD44" class="TEXT" x="141" y="412"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=충남'">충청남도</text>
 	<text id="LCD45" class="TEXT" x="170" y="505"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=전북'">전라북도</text>
-	<text id="LCD46" class="TEXT" x="160" y="590"
+	<text id="LCD46" class="TEXT" x="155" y="590"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=전남'">전라남도</text>
 	<text id="LCD47" class="TEXT" x="325" y="435"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경북'">경상북도</text>
-	<text id="LCD48" class="TEXT" x="295" y="550"
+	<text id="LCD48" class="TEXT" x="281" y="548"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=경남'">경상남도</text>
 	<text id="LCD50" class="TEXT" x="111" y="772"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=제주도'">제주도</text>
