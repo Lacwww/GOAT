@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GOAT</title>
 <script type="text/javascript">
 	function chk() {
 			if (frm.m_pass.value != frm.m_pass2.value) {
