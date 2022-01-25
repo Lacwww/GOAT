@@ -43,7 +43,7 @@
 <link href="${path }/resources/css/styles.css" rel="stylesheet" />
 <style type="text/css">
 #myPage a {
-	text-decoration: underline;
+	text-decoration: none;
 	color: #2F9D27;
 }
 
@@ -64,7 +64,6 @@
 	width: 11.1%;
 	height: 70px;
 	font-size: 15px;
-	cursor: pointer;
 }
 </style>
 </head>
