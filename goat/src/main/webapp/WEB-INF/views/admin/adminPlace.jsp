@@ -52,7 +52,7 @@ $(window).scroll(function(event) {
 a {
 	color: rgb(64, 123, 37);
 	text-decoration: none;
-	font-famliy:'NanumSquare',san-serif;
+	font-famliy:'NanumSquare',san-serif !important;
 }
 
 .search {
@@ -144,11 +144,11 @@ $(function() {
 			</div>
 		</div>
 	</nav>
-	<div style="padding-top: 10%; padding-left: 20%; width: 80%">
+	<div style="padding-top: 10%; padding-left: 15%; width: 85%">
 		<br> <br>
 		<div align="center" style="width: 100%;">
 			<h1>
-				<a href="adminPlace.do">플레이스 목록</a>
+				<a style="font-size: 3rem;" href="adminPlace.do">플레이스 목록</a>
 			</h1>
 			<button id="graybutton" class="btn pull-right" style="font-size: 1.2rem; font-weight: bold; color: white;"
 				onclick="location.href='admin.do'">돌아가기</button>
@@ -156,7 +156,7 @@ $(function() {
 		<br> <br>
 		<div style="padding-top: 5%;">
 
-			<select name="카테고리명" onchange="onChange(this.value)">
+			<select style="font-size: 1.2rem; height: 30px; width: 80px;" name="카테고리명" onchange="onChange(this.value)">
 				<option value="adminPlace.do">전체</option>
 				<c:forEach var="cate" items="${cateList }">
 					<option value="adminPlace.do?cate=${cate.place_cate }">${cate.place_cate }</option>
@@ -182,9 +182,9 @@ $(function() {
 					<!-- <table class="table table-hover table-striped"> -->
 					<thead>
 						<tr>
-							<th style="width: 5%;">번호</th>
+							<th style="width: 5%; text-align:center;">번호</th>
 							<th style="width: 15%">플레이스명</th>
-							<th style="width: 10%">카테고리</th>
+							<th style="width: 10%; text-align:center;">카테고리</th>
 							<th style="width: 25%">주소</th>
 							<th style="width: 25%">상세주소</th>
 							<th>등록일</th>
@@ -193,9 +193,9 @@ $(function() {
 					<tbody>
 						<c:forEach var="place" items="${list }">
 							<tr style="cursor: pointer;" onclick="opn(${place.place_num})">
-								<td style="width: 5%;" class="align-middle">${place.place_num }</td>
+								<td style="width: 5%; text-align:center;" class="align-middle">${place.place_num }</td>
 								<td style="width: 15%" class="align-middle">${place.place_name }</td>
-								<td style="width: 10%" class="align-middle">${place.place_cate }</td>
+								<td style="width: 10%; text-align:center;" class="align-middle">${place.place_cate }</td>
 								<td class="align-middle">${place.place_addr }</td>
 								<td class="align-middle">${place.place_addrd }</td>
 								<td class="align-middle">${place.reg_date }</td>

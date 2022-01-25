@@ -117,31 +117,31 @@ $(function() {
 			</div>
 		</div>
 	</nav>
-	<div style="padding-top: 10%; padding-left: 20%; width: 80%">
+	<div style="padding-top: 10%; padding-left: 15%; width: 85%">
 		<br> <br>
 		<div align="center" style="width: 100%;">
 			<h1>
-				<a href="adminSchedule.do">스케쥴 목록</a>
+				<a style="font-size: 3rem;" href="adminSchedule.do">스케쥴 목록</a>
 			</h1>
 			<button id="graybutton" class="btn pull-right" style="font-size: 1.2rem; font-weight: bold; color: white;"
 				onclick="location.href='admin.do'">돌아가기</button>
 		</div>
 		<br> <br>
 		<div style="padding-top: 5%;">
-			<table class="table table-hover table-striped">
+			<table style=""class="table table-hover table-striped">
 				<thead>
 					<tr>
-						<th>번호</th>
-						<th>스케쥴명</th>
-						<th>출발일</th>
-						<th>도착일</th>
-						<th>회원명</th>
+						<th style="width: 7%; text-align: center;">번호</th>
+						<th style="width: 40%">스케쥴명</th>
+						<th style="width: 10%">출발일</th>
+						<th style="width: 10%">도착일</th>
+						<th style="width: 10%">회원명</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="schedule" items="${list }">
 						<tr>
-							<td>${schedule.sch_num }</td>
+							<td style="text-align: center;">${schedule.sch_num }</td>
 							<td>${schedule.sch_name }</td>
 							<td>${schedule.s_date }</td>
 							<td>${schedule.e_date }</td>
