@@ -44,9 +44,9 @@
 		$('#td_'+tre_num).html("<textarea rows='3' cols='100' id='rt_"+tre_num+"'>" + 
 				txt + "</textarea>");
 //		현재의 버튼을 수정하고 난 후에 확인, 취소로 변경
-		$('#btn_'+tre_num).html("<input type='button' onclick='up("+t_num+","+tre_num+")'"+
+		$('#btn_'+tre_num).html("<input type='button' class='btn btn-outline-primary' onclick='up("+t_num+","+tre_num+")'"+
 				" value='확인'> "+
-				"<input type='button' onclick='lst("+t_num+")' "+
+				"<input type='button' class='btn btn-outline-warning' onclick='lst("+t_num+")' "+
 				" value='취소'>");
 	}
 	function lst(t_num) {
@@ -87,15 +87,15 @@
 			"<input type='hidden' name='tre_num' value='"+tre_num+"'>"+
 			"<table> &nbsp;&nbsp;&nbsp;"+
 			"<tr><td><textarea rows='3' cols='100' name='tre_content'></textarea> &nbsp;&nbsp;"+ 
-			"<input type='button' onclick='rr("+tre_num+","+t_num+")' value='등록'>"+
-			"<input type='button' onclick='lst("+t_num+")' value='취소'></td></tr></table>");
+			"<input type='button' class='btn btn-outline-primary' onclick='rr("+tre_num+","+t_num+")' value='등록'>"+
+			"<input type='button' class='btn btn-outline-warning' onclick='lst("+t_num+")' value='취소'></td></tr></table>");
 	}
 </script>
 </head><body>
 <div style="margin: auto;">
 	<c:if test="${empty trList }">댓글이 없습니다. 여러분의 소중한 댓글을 입력해주세요</c:if>
 	<c:if test="${not empty trList}">
-		<h3 class="text-primary" align="left">댓 글 목 록</h3>
+		<h3 class="text-primary" align="left">댓 글 목 록</h3><br>
 	
 		<c:forEach var="tr" items="${trList }">
 			<c:if test="${tr.del == 'y' }">
@@ -106,7 +106,7 @@
 
 			<c:if test="${tr.del != 'y' }">
 			
-				<div style="float: left;">
+				<div style="float: left; margin-right: 1.5%;">
 				<c:if test="${tr.tre_re_level > 0 }">
 					<!-- 답변글 레벨당 10px들여 쓰기 -->
 					<img alt="" src="${path}/resources/csImages/level.gif"
@@ -117,15 +117,15 @@
 				</div>
 			<table style="width:50%; margin-top: 0;">
 					
-				<tr><td>${tr.m_name }</td>
-					<td><fmt:formatDate value="${tr.reg_date }" pattern="yyyy/MM/dd HH:mm:ss"/></td></tr>
+				<tr><td style="font-weight: bold;">${tr.m_name }</td>
+					<td style="font-size: 13px;"><fmt:formatDate value="${tr.reg_date }" pattern="yyyy/MM/dd HH:mm:ss"/></td></tr>
 				<tr><td style="white-space:pre; overflow:auto;" id="td_${tr.tre_num }">${tr.tre_content }</td>
 				
 				<td id="btn_${tr.tre_num }">
 					<c:if test="${m_num == tr.m_num }">
-						<input type="button" value="답글쓰기" onclick="rpInsert(${tr.tre_num},${tr.t_num})">
-						<input type="button" value="수정" onclick="rUpdate(${tr.tre_num},${tr.t_num})">
-						<input type="button" value="삭제" onclick="rDelete(${tr.tre_num},${tr.t_num})">
+						<input type="button" class="btn btn-outline-primary" value="답글쓰기" onclick="rpInsert(${tr.tre_num},${tr.t_num})">
+						<input type="button" class="btn btn-outline-danger" value="수정" onclick="rUpdate(${tr.tre_num},${tr.t_num})">
+						<input type="button" class="btn btn-outline-warning" value="삭제" onclick="rDelete(${tr.tre_num},${tr.t_num})">
 						<tr><td colspan="2" class="reply_${tr.tre_num }" style="height:0px; border-bottom: 1px dashed;"></td></tr>
 					</c:if>
 					<c:if test="${m_num != tr.m_num }">

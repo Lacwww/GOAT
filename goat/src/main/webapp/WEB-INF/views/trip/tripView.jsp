@@ -231,7 +231,7 @@
 				<th style="width: 10%;">작성자</th>
 				<td style="width: 30%;">${trip.m_name}</td>
 			</tr>
-			<tr style="height: 3em; ">
+			<tr style="height: 3em; border-bottom: 1px solid #BDBDBD;">
 				<th>조회수</th>
 				<td>${trip.t_view}</td>
 				<th>작성일</th>
@@ -282,7 +282,7 @@
 			<span style="font-size: 20px;">공감</span><span id="likeSpan"></span>
 		</c:if>
 		<c:if test="${tripLikeCnt != 0}">
-			<span style="font-size: 20px;">공감</span><span id="likeSpan">:${tripLikeCnt}</span>
+			<span style="font-size: 20px;">공감</span><span id="likeSpan" style="font-size: 20px;">:${tripLikeCnt}</span>
 		</c:if>
 	</div>
 	
@@ -293,8 +293,9 @@
 			<input type="hidden" name="t_num" value="${trip.t_num }">
 		<table class="table table-hover">
 		<!-- 회원 게시판의 경우에는 회원이름 또는 회원별명 또는 회원 id -->
-			<tr><th>댓글</th><td><textarea rows="3" cols="100" name="tre_content"></textarea></td>
-				<td><input type="button" value="댓글입력" onclick="sessionChk()" id="trInsert"></td></tr>
+			<tr><th style="vertical-align : middle;">댓글</th><td><textarea rows="3" cols="100" name="tre_content"></textarea></td>
+				<td style="vertical-align : middle;"><input type="button" value="댓글입력" onclick="sessionChk()" id="trInsert"
+					style="background:#CEE3E6;" class="btn btn-outline-light"></td></tr>
 		</table>	
 		</form>
 	</div>
