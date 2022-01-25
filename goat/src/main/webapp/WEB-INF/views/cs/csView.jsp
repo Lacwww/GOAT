@@ -22,7 +22,9 @@
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <style type="text/css">
 	#mainNav {position: fixed;}
-	.mainBody {margin-top: 70px; }
+	.mainBody {margin-top: 70px; width: 60%; }
+	
+	td, th { padding: 15px 0; }
 </style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -98,12 +100,12 @@
 										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
 											<c:if test="${list.day == 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+													<a role="menuitem" href="${path }/member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
 												</li>
 											</c:if>
 											<c:if test="${list.day != 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+													<a role="menuitem" href="${path }//member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
 												</li>
 											</c:if>
 										</c:if>
@@ -145,45 +147,44 @@
 		</div>
 	</nav>
 	
-	<section class="about-section text-center">
+	<section class="about-section text-center" style="display: flex; justify-content: center;">
 	<div class="mainBody" align="center">
-		<h2>고객 문의 상세 조회</h2>
-		<table>
+		<h1 style="margin-bottom:35px;">고객 문의 상세 조회</h1>
+		<table style="width: 80%; margin-bottom: 20px;">
 			<tr>
-				<th>제목</th>
-				<td>${cs.cs_title}</td>
-				<th>작성자</th>
-				<td>${member.m_name}</td>
-			</tr>
-			<tr>
-				<th>조회수</th>
-				<td>${cs.cs_view}</td>
-				<th>작성일</th>
+				<th style="width:15%;">제목</th>
+				<td style="width:50%;">${cs.cs_title}</td>
+				<th style="width:15%;">작성일</th>
 				<td>${cs.reg_date}</td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<td colspan="3" style="white-space:pre; overflow:auto;">${cs.cs_content}</td>
+				<th>작성자</th>
+				<td>${member.m_name}</td>
+				<th>조회수</th>
+				<td>${cs.cs_view}</td>
 			</tr>
-			<tr align="center">
-				<td colspan="4">
-					<c:if test="${prevUrl == 'member' }">
-						<input type="button" onclick="location.href='${path }/member/myCsList.do?m_num=${m_num }'" value="게시글 목록">
-					</c:if>
-					<c:if test="${prevUrl != 'member' }">
-						<input type="button" onclick="location.href='csList.do?pageNum=${pageNum }'" value="게시글 목록">
-					</c:if>
+			<tr style="height:30em; vertical-align: top;">
+				<th>내용</th>
+				<td colspan="3" style="white-space:pre; overflow:auto; height: 50%;">${cs.cs_content}</td>
+			</tr>
+			</table>
+			
+			<div align="center" style="font-size: 15px;">
+				<c:if test="${prevUrl == 'member' }">
+					<input type="button" class="btn btn-primary" onclick="location.href='${path }/member/myCsList.do?m_num=${m_num }'" value="게시글 목록">
+				</c:if>
+				<c:if test="${prevUrl != 'member' }">
+					<input type="button" class="btn btn-primary" onclick="location.href='csList.do?pageNum=${pageNum }'" value="게시글 목록">
+				</c:if>
 				<c:if test="${not empty admin}">
 					<c:if test="${cs.cs_re_step == 0 }">
 						<c:if test="${cs.con == 'n' }">
-							<input type="button" onclick="location.href='csInsertForm.do?cs_num=${cs.cs_num}&pageNum=${pageNum }'" value="답변등록">
+							<input type="button" class="btn btn-danger" onclick="location.href='csInsertForm.do?cs_num=${cs.cs_num}&pageNum=${pageNum }'" value="답변등록">
 						</c:if>
 					</c:if>
-					<input type="button" onclick="delCs()" value="삭제">
+					<input type="button" class="btn btn-warning" onclick="delCs()" value="삭제">
 				</c:if>
-				</td>
-			</tr>
-		</table>
+			</div>
 	</div>
 	</section>
 </body>

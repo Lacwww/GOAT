@@ -22,7 +22,8 @@
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <style type="text/css">
 	#mainNav {position: fixed;}
-	.mainBody {margin-top: 70px; }
+	.mainBody {margin-top: 70px; width: 60%; }
+	thead, tbody, tfoot, tr, td, th { padding: 8px 0; }
 </style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -95,12 +96,12 @@
 										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
 											<c:if test="${list.day == 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+													<a role="menuitem" href="${path }/member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
 												</li>
 											</c:if>
 											<c:if test="${list.day != 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+													<a role="menuitem" href="${path }//member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
 												</li>
 											</c:if>
 										</c:if>
@@ -142,18 +143,19 @@
 		</div>
 	</nav>
         </div>
-	<section class="about-section text-center">
+	<section class="about-section text-center" style="display: flex; justify-content: center;">
 	<div class="mainBody" align="center">
 	
 		<c:if test="${not empty id && empty admin }">
-			<h3>고객문의 등록</h3><hr>
-			<i style="color:red;">* 한번 작성된 고객문의는 삭제 불가능합니다.<br>
+			<h1 style="margin-bottom:35px;">고객문의 등록</h1>
+			<i style="color:red; font-size: 12px;">* 한번 작성된 고객문의는 삭제 불가능합니다.<br>
 								게시판 특성과 맞지 않는 게시물 또는 관련성 없는 비방성 글은
 								사전 통보없이 관리자의 임의적인 판단으로 삭제됩니다.</i>
 		</c:if>
 		<c:if test="${empty id && not empty admin }">
-			<h3>고객문의 답변</h3><hr>
+			<h1 style="margin-bottom:35px;">고객문의 답변</h1>
 		</c:if>
+		
 		<form action="csInsert.do?cs_num=${cs_num}" method="post" name="frm">
 			<input type="hidden" name="cs_num" value="${cs_num }"> 
 			<input type="hidden" name="pageNum" value="${pageNum}"> 
@@ -166,19 +168,19 @@
 		<c:if test="${empty id && not empty admin }">
 			<input type="hidden" name="m_num" value="${adminInfo.m_num }">
 		</c:if>		
-			<table>
+			<table style="margin-bottom: 30px;">
 				<c:if test="${cs_num == 0 }">
 					<tr>
-						<th>제목</th>
+						<th style="width:15%;">제목</th>
 						<td><input type="text" name="cs_title" required="required"
-							autofocus="autofocus"></td>
+							autofocus="autofocus" size="50"></td>
 					</tr>
 				</c:if>
 				<c:if test="${cs_num != 0 }">
 						<tr>
-							<th>제목</th>
+							<th style="width:15%;">제목</th>
 							<td><input type="text" name="cs_title" required="required"
-								autofocus="autofocus" value="✔ )  답변등록"></td>
+								autofocus="autofocus" value="✔ )  답변등록" size="50"></td>
 						</tr>
 				</c:if>
 				<tr>
@@ -186,35 +188,34 @@
 					<td><c:if test="${not empty id && empty admin}">${member.m_name }</c:if>
 						<c:if test="${not empty admin && empty id}">${adminInfo.m_name }</c:if></td>
 				</tr>
-				<tr>
+				<tr style="vertical-align: top;">
 					<th>내용</th>
 					<td>
 					<c:if test="${empty content }">
-					<textarea rows="10" cols="80" name="cs_content"
+					<textarea rows="20" cols="80" name="cs_content"
 							required="required" id="cs_content"></textarea></c:if>
 					<c:if test="${not empty content }">
-					<textarea rows="10" cols="80" name="cs_content"
+					<textarea rows="20" cols="80" name="cs_content"
 							required="required" id="cs_content">제목)${title }&#10;내용)${content }&#10;---------------------------------------------------&#10;😃답변내용😃&#10;&#10;&#10;&#10;추가 문의사항은 새로운 게시글을 통해 해주세요^^</textarea>
 					</c:if>		
 					</td>
 				</tr>
-				<tr>
-					<td align="center" colspan="2">
-						<c:if test="${not empty id && empty admin }">
-							<input type="submit" value="문의하기">
-						</c:if>
-						<c:if test="${empty id && not empty admin }">
-							<input type="submit" value="답변하기">
-						</c:if>
-						<c:if test="${cs_num == 0 }">
-							<input type="button" onclick="location.href='csList.do?pageNum=${pageNum}'" value="취소">
-						</c:if>
-						<c:if test="${cs_num != 0 }">
-							<input type="button" onclick="location.href='csView.do?cs_num=${cs_num }&pageNum=${pageNum}'" value="취소">
-						</c:if>
-					</td>
-				</tr>
-			</table>
+				</table>
+				
+				<div align="center" style="font-size: 15px;">
+					<c:if test="${not empty id && empty admin }">
+						<input type="submit" class="btn btn-primary" value="문의하기">
+					</c:if>
+					<c:if test="${empty id && not empty admin }">
+						<input type="submit" class="btn btn-primary" value="답변하기">
+					</c:if>
+					<c:if test="${cs_num == 0 }">
+						<input type="button" class="btn btn-warning" onclick="location.href='csList.do?pageNum=${pageNum}'" value="취소">
+					</c:if>
+					<c:if test="${cs_num != 0 }">
+						<input type="button" class="btn btn-warning" onclick="location.href='csView.do?cs_num=${cs_num }&pageNum=${pageNum}'" value="취소">
+					</c:if>
+				</div>
 		</form>
 	</div>
 	</section>

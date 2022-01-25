@@ -83,7 +83,8 @@
 	.nav-link { tlist-style-type: none; }
 	#mainNav {position: fixed;}
 	#noticeTable td {width:0 auto; height: 70px; font-size: 15px; cursor: pointer; }
-	.mainBody {margin-top: 150px;}
+	.mainBody {margin-top: 150px; width: 60%; }
+	thead, tbody, tfoot, tr, td, th { padding: 15px 0; }
 </style>
 </head>
 <body id="page-top">
@@ -132,12 +133,12 @@
 										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
 											<c:if test="${list.day == 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+													<a role="menuitem" href="${path }/member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
 												</li>
 											</c:if>
 											<c:if test="${list.day != 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+													<a role="menuitem" href="${path }//member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
 												</li>
 											</c:if>
 										</c:if>
@@ -178,29 +179,30 @@
 			</div>
 		</div>
 	</nav>
-
+	
+	<section class="about-section text-center" style="display: flex; justify-content: center;">
 	<div class="mainBody" align="center">
-		<h2>공지 사항 상세 조회</h2>
-		<table id="noticeTable">
+		<h1 style="margin-bottom:35px;">공지 사항 상세 조회</h1>
+		<table id="noticeTable" style="width: 80%; margin-bottom: 20px;">
 			<tr>
-				<th>제목</th>
-				<td>${notice.no_title}</td>
-				<th>작성자</th>
-				<td>${notice.m_nick}</td>
-			</tr>
-			<tr>
-				<th>조회수</th>
-				<td>${notice.no_view}</td>
-				<th>작성일</th>
+				<th style="width:15%;">제목</th>
+				<td style="width:50%;">${notice.no_title}</td>
+				<th style="width:15%;">작성일</th>
 				<td>${notice.reg_date}</td>
 			</tr>
 			<tr>
+				<th>작성자</th>
+				<td>${notice.m_nick}</td>
+				<th>조회수</th>
+				<td>${notice.no_view}</td>
+			</tr>
+			<tr style="height:30em; vertical-align: top;">
 				<th>내용</th>
-				<td colspan="3" style="white-space:pre; overflow:auto;">${notice.no_content}</td>
+				<td colspan="3" style="white-space:pre; overflow:auto; height: 50%;">${notice.no_content}</td>
 			</tr>
 			<tr align="center">
 				<td colspan="4">
-					<input type="button" onclick="location.href='noticeList.do?pageNum=${pageNum }'" value="게시글 목록">
+					<input type="button" class="btn btn-primary" onclick="location.href='noticeList.do?pageNum=${pageNum }'" value="게시글 목록">
 				<c:if test="${not empty admin}">
 					<input type="button" onclick="location.href='noticeUpdateForm.do?no_num=${notice.no_num}&pageNum=${pageNum }'" value="수정">
 					<input type="button" onclick="delCs()" value="삭제">
@@ -221,6 +223,6 @@
 		</table>	
 		</form>
 	</div>
-	
+	</section>
 </body>
 </html>

@@ -24,11 +24,18 @@
 	.tl { border-bottom: 1px solid black; }
 	.td1, .td2, .td3, .td4, .td5 { height: 30px; }
 	#mainNav {position: fixed;}
-	.mainBody {margin-top: 70px; }
+	.mainBody { margin-top: 70px; width: 60%; }
 	
 	.pagination { font-family: "Roboto", sans-serif; }
 	.pagination li a { border-radius:0 !important; color:#333 !important; }
 	.pagination li.active a { color:#fff !important; background:#444 !important; border-color:#444 !important; }
+	
+	.table > thead > tr > th, 
+	.table > tbody > tr > th, 
+	.table > tfoot > tr > th, 
+	.table > thead > tr > td, 
+	.table > tbody > tr > td, 
+	.table > tfoot > tr > td { padding: 8px 0;}
 </style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -106,12 +113,12 @@
 										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
 											<c:if test="${list.day == 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+													<a role="menuitem" href="${path }/member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
 												</li>
 											</c:if>
 											<c:if test="${list.day != 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+													<a role="menuitem" href="${path }//member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
 												</li>
 											</c:if>
 										</c:if>
@@ -153,19 +160,19 @@
 		</div>
 	</nav>
         </div>
-	<section class="about-section text-center">
+	<section class="about-section text-center" style="display: flex; justify-content: center;">
 	<div class="mainBody" align="center">
 	
-		<h2>Customer Service</h2>
+		<h1 style="margin-bottom:35px;">Customer Service</h1>
 		
-		<table class="table">
+		<table class="table table-hover" style="margin-bottom:30px;">
 			<thead>
-				<tr>
-					<th class="tl">번호</th>
-					<th class="tl">제목</th>
-					<th class="tl">작성자</th>
-					<th class="tl">조회수</th>
-					<th class="tl">작성일</th>
+				<tr style="background: #CEE3E6;">
+					<th class="tl" style="width:8%; text-align: center;">번호</th>
+					<th class="tl" style="width:40%;">제목</th>
+					<th class="tl" style="width:8%; text-align:center;">작성자</th>
+					<th class="tl" style="width:8%; text-align: center;">조회수</th>
+					<th class="tl" style="width:13%; text-align: center;">작성일</th>
 				</tr>
 				<c:if test="${empty list}">
 					<tr>
@@ -176,8 +183,13 @@
 			<tbody>
 				<c:if test="${not empty list}">
 					<c:forEach var="cs2" items="${list }">
+					<c:if test="${cs2.del != 'y' }">
+						<tr onclick="location.href='csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}'">
+					</c:if>
+					<c:if test="${cs2.del == 'y' }">
 						<tr>
-							<td class="td1">${no}<c:set var="no" value="${no - 1}"></c:set></td>
+					</c:if>
+							<td class="td1" style="text-align: center;">${no}<c:set var="no" value="${no - 1}"></c:set></td>
 							<c:if test="${cs2.del != 'y' }">
 								<td class="td2"><c:if test="${cs2.cs_re_level > 0 }">
 										<!-- 답변글 레벨당 10px들여 쓰기 -->
@@ -185,27 +197,26 @@
 											height="5" width="${cs2.cs_re_level * 10 }">
 										<img alt="" src="${path}/resources/csImages/reply.png"
 											height="12" width="15">
-									</c:if> <a
-									href="csView.do?cs_num=${cs2.cs_num}&pageNum=${pb.currentPage}">${cs2.cs_title}</a>
+									</c:if>${cs2.cs_title}
 								</td>
 								<c:if test="${cs2.admin != 'y' }">
-									<td class="td3">${cs2.m_name }</td>
+									<td class="td3" style="text-align: center;">${cs2.m_name }</td>
 								</c:if>
 								<c:if test="${cs2.admin == 'y' }">
-									<td class="td3">${cs2.m_nick }</td>
+									<td class="td3" style="text-align: center;">${cs2.m_nick }</td>
 								</c:if>
-								<td class="td4">${cs2.cs_view }</td>
-								<td class="td5">${cs2.reg_date }</td>
+								<td class="td4" style="text-align: center;">${cs2.cs_view }</td>
+								<td class="td5" style="text-align: center;">${cs2.reg_date }</td>
 							</c:if>
 							<c:if test="${cs2.del == 'y' }">
-								<td colspan="4" class="td2">관리자에 의해 삭제된 게시글입니다.</td>
+								<td colspan="4" class="td2"><b>관리자에 의해 삭제된 게시글입니다.</b></td>
 							</c:if>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>
-		<div style="display: flex; justify-content: center;">
+		<div style="display: flex; justify-content: center; margin-bottom:15px; font-size: 15px;" >
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
@@ -235,10 +246,12 @@
 				</c:if>
 			</ul>
 		</div>
-		<div align="center">
+		<div align="center" style="font-size: 15px;">
 			<input type="button" class="btn btn-primary" onclick="sessionChk()" value="문의하기">
 		</div>
-		
+		</div>
+	</section>
+	
 		<div>
 			<button type="button" class="btn btn-primary">Primary</button>
 					<button type="button" class="btn btn-secondary">Secondary</button>
@@ -266,7 +279,5 @@
 		<p><button type="button" class="btn btn-success btn-sm">Button Small</button></p>
 		<p><button type="button" class="btn btn-danger btn-block">Button Block</button></p>
 		</div>
-	</div>
-	</section>
 </body>
 </html>

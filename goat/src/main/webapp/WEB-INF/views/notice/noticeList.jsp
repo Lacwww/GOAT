@@ -26,11 +26,18 @@
 	.tl {border-bottom: 1px solid black;}
 	.td1, .td2, .td3, .td4, .td5 {height: 30px;	}
 	#mainNav {position: fixed;}
-	.mainBody {margin-top: 70px; }
+	.mainBody {margin-top: 70px; width: 60%; }
 	
 	.pagination { font-family: "Roboto", sans-serif; }
 	.pagination li a { border-radius:0 !important; color:#333 !important; }
 	.pagination li.active a { color:#fff !important; background:#444 !important; border-color:#444 !important; }
+	
+	.table > thead > tr > th, 
+	.table > tbody > tr > th, 
+	.table > tfoot > tr > th, 
+	.table > thead > tr > td, 
+	.table > tbody > tr > td, 
+	.table > tfoot > tr > td { padding: 8px 0;}
 </style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -104,12 +111,12 @@
 										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
 											<c:if test="${list.day == 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+													<a role="menuitem" href="${path }/member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
 												</li>
 											</c:if>
 											<c:if test="${list.day != 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+													<a role="menuitem" href="${path }//member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
 												</li>
 											</c:if>
 										</c:if>
@@ -151,17 +158,18 @@
 		</div>
 	</nav>
         </div>
-	<section class="about-section text-center">
+	<section class="about-section text-center" style="display: flex; justify-content: center;">
 	<div class="mainBody" align="center">
-		<h2>Notice</h2>
-		<table class="table">
+		<h1 style="margin-bottom:35px;">Notice</h1>
+		
+		<table class="table table-hover" style="margin-bottom:30px;">
 			<thead>
-				<tr>
-					<th class="tl">번호</th>
-					<th class="tl">제목</th>
-					<th class="tl">작성자</th>
-					<th class="tl">조회수</th>
-					<th class="tl">작성일</th>
+				<tr style="background: #CEE3E6;">
+					<th class="tl" style="width:8%; text-align: center;">번호</th>
+					<th class="tl" style="width:40%;">제목</th>
+					<th class="tl" style="width:8%; text-align: center;">작성자</th>
+					<th class="tl" style="width:8%; text-align: center;">조회수</th>
+					<th class="tl" style="width:13%; text-align: center;">작성일</th>
 				</tr>
 				<c:if test="${empty list}">
 					<tr>
@@ -173,20 +181,19 @@
 				<c:if test="${not empty list}">
 					<c:forEach var="notice2" items="${list }">
 						<c:if test="${notice2.del != 'y' }">
-							<tr>
-								<td class="td1">${no}<c:set var="no" value="${no - 1}"></c:set></td>
-								<td class="td2"><a
-									href="noticeView.do?no_num=${notice2.no_num}&pageNum=${pb.currentPage}">${notice2.no_title}</a></td>
-								<td class="td3">${notice2.m_nick }</td>
-								<td class="td4">${notice2.no_view }</td>
-								<td class="td5">${notice2.reg_date }</td>
+							<tr onclick="location.href='noticeView.do?no_num=${notice2.no_num}&pageNum=${pb.currentPage}'">
+								<td class="td1" style="text-align: center;">${no}<c:set var="no" value="${no - 1}"></c:set></td>
+								<td class="td2">${notice2.no_title}</td>
+								<td class="td3" style="text-align: center;">${notice2.m_nick }</td>
+								<td class="td4" style="text-align: center;">${notice2.no_view }</td>
+								<td class="td5" style="text-align: center;">${notice2.reg_date }</td>
 							</tr>
 						</c:if>
 					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>
-		<div style="display: flex; justify-content: center;">
+		<div style="display: flex; justify-content: center; margin-bottom: 15px; font-size: 15px;">
 			<ul class="pagination">
 				<!-- 시작 페이지가 pagePerBlock보다 크면 앞에 보여줄 것이 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
@@ -216,9 +223,9 @@
 				</c:if>
 			</ul>
 		</div>
-		<div align="center">
+		<div align="center" style="font-size: 15px;">
 			<c:if test="${not empty admin }">
-				<input type="button" value="게시글 입력"
+				<input type="button" value="게시글 입력" class="btn btn-primary"
 					onclick="location.href='noticeInsertForm.do?pageNum=1'">
 			</c:if>
 		</div>
