@@ -43,7 +43,7 @@
 	</insert>
 	<!-- 알림 불러오기 -->
 	<select id="alertCon" parameterType="integer" resultType="alert">
-		 select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title from alert where m_num=#{m_num} 
+		 select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title, t_like, t_reply from alert where m_num=#{m_num} and s_date-sysdate+1 <![CDATA[ < ]]> 8 
 	</select>
 	<!-- 스케줄 조회 -->
 	<select id="selectSch" parameterType="integer" resultType="sc">

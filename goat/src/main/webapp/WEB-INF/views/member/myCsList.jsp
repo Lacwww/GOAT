@@ -134,10 +134,10 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container" align="center" style="width: 100%; height: 100%; padding-top: 200px;">
+	<div class="container" align="center" style="width: 60%; height: 100%; padding-top: 200px;">
 		<h1 style="margin-bottom: 50px;">Customer Service</h1>
 		<table class="table" id="csList">
-			<tr style="width: 100%;">
+			<tr style="width: 77%; background: #CEE3E6;">
 				<td align="center">
 					번호
 				</td>

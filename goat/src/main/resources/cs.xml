@@ -47,6 +47,6 @@
 		insert into alert (ale_num, cs_num, cs_title, m_num) values ((SELECT NVL(MAX(ale_num),0)+1 FROM alert), #{cs_num},#{cs_title},#{m_num})
 	</insert>
 	<select id="alertCon" parameterType="integer" resultType="alert">
-		select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title, t_like, t_reply from alert where m_num=#{m_num}
+		select ale_num, m_num, sch_num, sch_name, s_date-sysdate+1 as day, temp_num, temp_name, temp_crud, place_num, del, cs_num, cs_title, t_num, t_title, t_like, t_reply from alert where m_num=#{m_num} and s_date-sysdate+1 <![CDATA[ < ]]> 8
 	</select>
 </mapper>

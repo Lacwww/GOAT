@@ -505,7 +505,7 @@
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=부산'">부산</text>
 	<text id="LCD27" class="TEXT" x="302" y="498"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=대구'">대구</text>
-	<text id="LCD28" class="TEXT" x="124" y="294"
+	<text id="LCD28" class="TEXT" x="122" y="294"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=인천'">인천</text>
 	<text id="LCD29" class="TEXT" x="139" y="571"
 							onclick="location.href='/goat/schedule/makeScheduleForm.do?place_area=광주'">광주</text>
