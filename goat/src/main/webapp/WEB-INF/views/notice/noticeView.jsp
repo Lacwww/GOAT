@@ -181,9 +181,9 @@
 		</div>
 	</nav>
 	
-	<section class="about-section text-center" style="display: flex; justify-content: center;">
-	<div class="mainBody" align="center">
-		<h1 style="margin-bottom:35px; background-image:url('${path}/resources/tripPhoto/1.png'); width:30%;">공지 사항 상세 조회</h1>
+	<section class="about-section text-center mainBody" style="width: 65%; margin: auto; margin-top: 8%;">
+	<div class="mainBody2" align="center">
+		<h1 style="margin-bottom:35px; width:30%;">공지 사항 상세 조회</h1>
 		<table id="noticeTable" style="width: 80%;">
 			<tr>
 				<th style="width:15%;">제목</th>
@@ -212,20 +212,16 @@
 			</tr>
 		</table>
 	</div>
-	</section>
 	
-	<section style="width: 67%; display: flex; justify-content: center;">
 		<div id="nrListDisp"></div>
-	</section>
 	
-	<section style="display: flex; justify-content: center; margin: 30px 0;">;
-	<div>
+	<div style="padding-top: 30px;">
 		<!-- submit할 때 action이 없는 경우에는 자신(여기서는 view)를 한번 더 실행한다 -->
 		<form action="" id="frm1" name="frm1">
 			<input type="hidden" name="no_num" value="${notice.no_num }">
 		<table class="table table-hover">
 		<!-- 회원 게시판의 경우에는 회원이름 또는 회원별명 또는 회원 id -->
-			<tr><th style="vertical-align : middle;">댓글</th><td><textarea rows="3" cols="100" name="nor_content"></textarea></td>
+			<tr style="padding: 5px 0;"><th style="vertical-align : middle;">댓글</th><td><textarea rows="3" cols="100" name="nor_content"></textarea></td>
 				<td style="vertical-align : middle;">
 					<input type="button" style="background:#CEE3E6;" class="btn btn-outline-light" value="댓글입력" onclick="sessionChk()" id="rInsert"></td></tr>
 		</table>	
