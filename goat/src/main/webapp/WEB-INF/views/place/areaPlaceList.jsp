@@ -109,8 +109,8 @@
 </script>
 </head>
 <body id="page-top">
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="margin-bottom: 0px;">
+	<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav" style="margin-bottom: 0px;">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T LOGO</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,12 +153,12 @@
 										<c:if test="${list.sch_num!=0 && list.day >= 0 && list.day < 8 && list.cs_num==0 && list.temp_num==0 && list.t_num==0}">
 											<c:if test="${list.day == 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
+													<a role="menuitem" href="${path }/member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name } 출발일입니다.</a>
 												</li>
 											</c:if>
 											<c:if test="${list.day != 0 }">
 												<li role="presentation">
-													<a role="menuitem" href="/member/alertSch.do?ale_num${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
+													<a role="menuitem" href="${path }//member/alertSch.do?ale_num=${list.ale_num }&sch_num=${list.sch_num}">${list.sch_name }이 ${list.day}일 남았습니다.</a>
 												</li>
 											</c:if>
 										</c:if>
@@ -199,7 +199,6 @@
 			</div>
 		</div>
 	</nav>
-	
 <div align="center" style="margin-top: 10%;"><h2><b>${place.place_area }</b></h2></div>
 <c:if test="${not empty place.place_areadetail }">
 	<div align="center"><h3><b>- ${place.place_areadetail } -</b></h3></div>

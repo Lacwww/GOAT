@@ -15,7 +15,7 @@
 // 	location.href="place/placeList.do";
 	
 	//메인
-	location.href="main/main.do";
+	location.href="main/home.do";
 </script>
 </body>
 </html>
