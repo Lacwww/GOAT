@@ -71,8 +71,7 @@ $(function() {
 		class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink"
 		id="mainNav">
 		<div class="container px-4 px-lg-5">
-			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T
-				LOGO</a>
+			<a class="navbar-brand" href="/goat/main/home.do#page-top">G.O.A.T</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
