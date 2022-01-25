@@ -390,9 +390,9 @@ td #lat, td #lng {
 		<input type="hidden" name="e_date" value="${e_date }">
 		<div id="wrapper">
 			<div style="display:flex;align-items: flex-start;flex-direction: column;">
-				<input type="text" id="sch_name" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요" value="${sch.sch_name }">
 				<p id="sch_date"><img src="${path }/resources/images/calendar.png" style="width: 60px; height: 70px; padding-bottom: 5px;">
 				${s_date } ~ ${e_date }</p>
+				<input type="text" id="sch_name" name="sch_name" placeholder="나만의 스케줄 이름을 입력해주세요" value="${sch.sch_name }" style="margin-bottom: 1%;">
 			</div>
 			<!-- 지도 -->
 			<div id="map" style="width: 65%; height: 60%; float: left;"></div>

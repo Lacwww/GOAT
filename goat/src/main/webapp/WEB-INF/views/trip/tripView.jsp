@@ -22,7 +22,10 @@
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <style type="text/css">
 	#mainNav {position: fixed;}
-	.mainBody {margin-top: 70px; }
+	.mainBody {margin-top: 70px; width: 60%; margin: auto;}
+	table { width: 100%; margin-top: 3%;}
+	tr { width: 100%;}
+	.about-section p { margin-bottom: 0px;}
 </style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -218,25 +221,25 @@
 		</div>
 	</nav>
         </div>
-	<section class="about-section text-center">
-	<div class="mainBody" align="center">
+	<section class="about-section text-center mainBody" style="margin-top: 80px;">
+	<div class="mainBody2" align="center">
 	
-		<h2>여행 이야기 조회</h2>
+		<h1>여행 이야기 조회</h1>
 		<table>
-			<tr>
-				<th>제목</th>
-				<td>${trip.t_title}</td>
-				<th>작성자</th>
-				<td>${trip.m_name}</td>
+			<tr style="height: 3em;">
+				<th style="width: 10%;">제목</th>
+				<td style="width: 50%;">${trip.t_title}</td>
+				<th style="width: 10%;">작성자</th>
+				<td style="width: 30%;">${trip.m_name}</td>
 			</tr>
-			<tr>
+			<tr style="height: 3em;">
 				<th>조회수</th>
 				<td>${trip.t_view}</td>
 				<th>작성일</th>
 				<td>${trip.reg_date}</td>
 			</tr>
 			<tr>
-				<th>내용</th>
+				<th style="vertical-align : top;">내용</th>
 				<td colspan="3" style="white-space:pre; overflow:auto;">${trip.t_content}</td>
 			</tr>
 			<tr align="center">
@@ -263,7 +266,7 @@
 				</c:if>
 					
 				<c:if test="${m_num == trip.m_num || not empty admin}">
-					<input type="button" class="btn btn-outline-warning"
+					<input type="button" class="btn btn-warning"
 						onclick="location.href='tripUpdateForm.do?t_num=${trip.t_num}&pageNum=${pageNum }'" value="수정">
 					<input type="button" class="btn btn-danger"	onclick="delTrip()" value="삭제">
 				</c:if>
@@ -271,10 +274,10 @@
 			</tr>
 		</table>
 	</div>
-	</section>
+
 	<!-- 좋아요(추천수) -->
 	<div style="text-align: center; margin: 20px;">
-		<img style="border-radius:10px; width: 40px;" class="tlChk" 
+		<img style="border-radius : 10px; width: 40px;" class="tlChk" 
 			onclick="tripLike(${trip.t_num})" src="${tripLikeImgSrc}">
 		<c:if test="${tripLikeCnt == 0}">
 			<span style="font-size: 20px;">공감</span><span id="likeSpan"></span>
@@ -296,6 +299,6 @@
 		</table>	
 		</form>
 	</div>
-	
+	</section>	
 </body>
 </html>
