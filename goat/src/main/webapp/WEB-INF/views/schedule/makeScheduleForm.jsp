@@ -22,9 +22,7 @@
 </script>
 
 <script type="text/javascript">
-	document.cookie = "safeCookie1=foo; SameSite=Lax";
-	document.cookie = "safeCookie2=foo";
-	document.cookie = "crossCookie=bar; SameSite=None; Secure";
+
 	var id = [];
 	document.addEventListener('keydown', function(event) {
 		if (event.keyCode === 13) {
