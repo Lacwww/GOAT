@@ -10,6 +10,9 @@
 <html>
 <head>
 <script type="text/javascript">
+document.cookie = "safeCookie1=foo; SameSite=Lax";
+document.cookie = "safeCookie2=foo";
+document.cookie = "crossCookie=bar; SameSite=None; Secure";
 	// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수
 	var markers = [];
 	function setMarkers(map) {

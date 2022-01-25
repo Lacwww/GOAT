@@ -267,7 +267,7 @@ select::-ms-expand {
 			onsubmit="return chk();">
 			<input type="hidden" name="sch_num" value="${sch.sch_num }">
 			<div id="navyDiv" style="width: 100%; height: 13%;">
-				<input type="hidden" id="id" name="id" value=""> 
+				<input type="hidden" id="id" name="id" value="${places_numS}"> 
 				<input type="hidden" name="place_area" value="${place_area }">
 				<div style="width: 100%;display:flex;align-items: flex-start;justify-content: space-between;flex-direction: column;">
 				<div style="width: 100%;">
