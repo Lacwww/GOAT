@@ -15,7 +15,7 @@
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
-	.area_img {
+	.area_img2 {
 		width: 100%;
 		height: 100%;
 		padding-right: 2px;
@@ -23,8 +23,8 @@
 	
 	.area_photo {
 		float: left;
-		width: 30%;
-		height: 30%;
+		width: 50%;
+		height: 100%;
 	}
 	
 	.area_text {
@@ -65,10 +65,10 @@
 			<h3>${area.place_area }</h3>
 		</div>
 		<div class="modal-body">
-			<div class="container" id="inner_content">
+			<div class="container" id="inner_content" style="display:flex;flex-direction: row;justify-content: center;align-items: center;">
 				<div class="area_photo">
 					<img alt="${area.place_area }"
-						src="${path }/resources/areaImages/${area.area_photo }" class="area_img">
+						src="${path }/resources/areaImages/${area.area_photo }" class="area_img2">
 				</div>
 				<div class="area_text">
 					<h4>${area.place_area }</h4>

@@ -34,7 +34,7 @@
 
 	$(document).ready(
 			function() {
-				if(${m_num==null}) {
+				if(${m_num==null}) { 
 					alert("로그인 후 이용해주세요");
 					location.href='${path}/member/loginForm.do';
 				}
@@ -113,9 +113,8 @@
 	function show(cate) {
 		$('.place_box').hide();
 		$('#' + cate).show();
-		$('.btn btn-success').removeClass('btn btn-success');
-		$('#cate_'+cate).addClass('btn btn-success');
-		$('#cate_' + cate).removeClass('btn btn-info');
+		$('.btn-success').removeClass('btn-success').addClass('btn-info');
+		$('#cate_'+cate).removeClass('btn-info').addClass('btn-success');
 	}
 </script>
 <style type="text/css">
@@ -364,7 +363,7 @@ select::-ms-expand {
 				<div id="pick_place" style="align-items: center;">
 					<table class="table table-bordered table-striped" id="Ppick"
 						style="align-content: center;">
-						<caption>내가 고른 플레이스 목록</caption>
+						<caption style="caption-side: top;">내가 고른 플레이스 목록</caption>
 						<thead>
 							<tr>
 								<th>사진</th>
