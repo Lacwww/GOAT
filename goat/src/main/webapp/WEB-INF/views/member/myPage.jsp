@@ -21,7 +21,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <style type="text/css">
-	#myPage a { text-decoration: none; color: #2F9D27; }
+	#myPage a { text-decoration: none; color: #2F9D27; font-size: 17px; }
 	#myPage a:active { text-decoration: none; }
 	#myPage a:hover { text-decoration: none; color: #FFCD12; }
 	#myPage a:visited { text-decoration: none; }
