@@ -18,7 +18,7 @@
 		location.href = '${path}/member/scheduleList.do?m_num=${m_num}';
 	</script>
 </c:if>
-<c:if test="${result >0 }">
+<c:if test="${result >0 }"> 
 	<script type="text/javascript">
 		alert("스케줄 삭제에 실패하였습니다");
 		history.back();
