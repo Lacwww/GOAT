@@ -77,12 +77,6 @@
 				}				
 			}
 	
- 	$(function() {
-		$('#MoaModal .modal-content').load("placeModal.do?place_num=1");
-		$('#MoaModal').modal();
-		$('.modal-footer').hide();
-	});
- 	
  	/* 플레이스 상세정보 */
 	function modal(place) {
 		$('#MoaModal .modal-content').load("placeModal.do?place_num=" + place);
