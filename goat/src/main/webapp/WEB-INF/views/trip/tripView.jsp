@@ -25,7 +25,6 @@
 	.mainBody {margin-top: 70px; width: 60%; margin: auto;}
 	table { width: 100%; margin-top: 3%;}
 	tr { width: 100%;}
-	.about-section p { margin-bottom: 0px;}
 </style>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -232,7 +231,7 @@
 				<th style="width: 10%;">작성자</th>
 				<td style="width: 30%;">${trip.m_name}</td>
 			</tr>
-			<tr style="height: 3em;">
+			<tr style="height: 3em; ">
 				<th>조회수</th>
 				<td>${trip.t_view}</td>
 				<th>작성일</th>
