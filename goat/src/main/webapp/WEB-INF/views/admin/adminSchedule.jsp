@@ -53,6 +53,10 @@ a {
 	text-decoration: none;
 	font-famliy:'NanumSquare',san-serif;
 }
+#graybutton {
+	background-color: rgb(166,166,166, 0.3);
+
+}
 </style>
 <script type="text/javascript">
 $(function() {
@@ -115,11 +119,11 @@ $(function() {
 	</nav>
 	<div style="padding-top: 10%; padding-left: 20%; width: 80%">
 		<br> <br>
-		<div style="width: 100%;">
-			<h1 style="display: inline;">
+		<div align="center" style="width: 100%;">
+			<h1>
 				<a href="adminSchedule.do">스케쥴 목록</a>
 			</h1>
-			<button class="btn pull-right" style="height: 30px;"
+			<button id="graybutton" class="btn pull-right" style="height: 30px;"
 				onclick="location.href='admin.do'">돌아가기</button>
 		</div>
 		<br> <br>

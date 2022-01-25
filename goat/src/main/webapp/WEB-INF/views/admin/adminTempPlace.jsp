@@ -51,6 +51,10 @@ a {
 .pagination>li>a {
 	float: none;
 }
+#graybutton {
+	background-color: rgb(166,166,166, 0.3);
+
+}
 </style>
 <script type="text/javascript">
 $(function() {
@@ -116,11 +120,11 @@ $(function() {
 	</nav>
 	<div style="padding-top: 10%; padding-left: 20%; width: 80%">
 		<br> <br>
-		<div style="width: 100%;">
-			<h1 style="display: inline;">
+		<div align="center" style="width: 100%;">
+			<h1>
 				<a href="adminTempPlace.do">플레이스 등록 요청 목록</a>
 			</h1>
-			<button class="btn pull-right" style="height: 30px;"
+			<button id="graybutton" class="btn pull-right" style="height: 30px;"
 				onclick="location.href='admin.do'">돌아가기</button>
 		</div>
 		<br> <br>
@@ -134,21 +138,21 @@ $(function() {
 						<th>주소</th>
 						<th>상세주소</th>
 						<th>요청일</th>
-						<th>요청유형</th>
-						<th>처리상태</th>
+						<th style="text-align: center;" >요청유형</th>
+						<th style="text-align: center;" >처리상태</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="temp" items="${list }">
-						<tr style="cursor: pointer;">
+						<tr style="cursor: pointer;" onclick="opn(${temp.temp_num},${temp.place_num })">
 							<td>${temp.temp_num }</td>
-							<td><span onclick="opn(${temp.temp_num},${temp.place_num })">${temp.temp_name }</span></td>
+							<td>${temp.temp_name }</td>
 							<td>${temp.temp_cate }</td>
 							<td>${temp.temp_addr }</td>
 							<td>${temp.temp_addrd }</td>
 							<td>${temp.reg_date }</td>
-							<td>${temp.temp_crud }</td>
-							<td>${temp.del }</td>
+							<td style="text-align: center;" >${temp.temp_crud }</td>
+							<td style="text-align: center;" >${temp.del }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
