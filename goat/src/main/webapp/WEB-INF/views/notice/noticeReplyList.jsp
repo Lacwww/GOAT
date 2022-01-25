@@ -68,8 +68,8 @@
 		$('.reply_'+nor_num).html("<form action='' id='frm2' name='frm2'>"+
 			"<input type='hidden' name='nor_num' value='"+nor_num+"'>"+
 			"<table> &nbsp;&nbsp;&nbsp;"+
-			"<tr><td><textarea rows='3' cols='80' name='nor_content'></textarea> &nbsp;&nbsp;"+ 
-			"<input type='button' class='btn btn-outline-primary' onclick='rr("+nor_num+","+no_num+")' value='등록'>&nbsp;"+
+			"<tr><td><textarea rows='3' cols='80' name='nor_content'></textarea></td>"+ 
+			"<td>&nbsp;&nbsp;<input type='button' class='btn btn-outline-primary' onclick='rr("+nor_num+","+no_num+")' value='등록'>&nbsp;"+
 			"<input type='button' class='btn btn-outline-warning' onclick='lst("+no_num+")' value='취소'></td></tr></table>");
 	}
 </script>
