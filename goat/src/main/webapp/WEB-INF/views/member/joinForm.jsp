@@ -106,7 +106,7 @@
 	                frm.idchk.value="unChk";
 	             }
 	 		 	else {
-	 		r		$('#idChk_result').html("사용 가능한 아이디입니다");
+	 				$('#idChk_result').html("사용 가능한 아이디입니다");
 	             	$('#idChk_result').css("color","blue");
 	             	frm.idchk.value="chk";
 	            }
