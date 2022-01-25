@@ -57,7 +57,7 @@ a {
 	text-align: middle !important;
 }
 #graybutton {
-	background-color: rgb(166,166,166, 0.3);
+	background-color: rgb(166,166,166, 0.5);
 
 }
 </style>
@@ -133,7 +133,7 @@ a {
 			<h1>
 				<a href="adminMember.do">회원 목록</a>
 			</h1>
-			<button id="graybutton" class="btn pull-right" style="height: 30px;"
+			<button id="graybutton" class="btn pull-right" style="font-size: 1.2rem; font-weight: bold; color: white;"
 				onclick="location.href='admin.do'">돌아가기</button>
 		</div>
 		<br> <br>
@@ -187,10 +187,10 @@ a {
 				</c:if>
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
 					<c:if test="${currentPage==i }">
-						<li class="active"><a href="adminMember.do?pageNum=${i}">${i}</a></li>
+						<li style="font-size: 1.5rem; font-weight: bold;" class="active"><a href="adminMember.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${currentPage!=i }">
-						<li><a href="adminMember.do?pageNum=${i}">${i}</a></li>
+						<li style="font-size: 1.5rem; font-weight: bold;"><a href="adminMember.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 것이 남아있는 경우에는 endPage보다 totalPage가 큰경우 -->

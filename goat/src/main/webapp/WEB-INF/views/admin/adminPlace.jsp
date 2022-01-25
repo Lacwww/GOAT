@@ -59,7 +59,7 @@ a {
 	float: right;
 }
 #graybutton {
-	background-color: rgb(166,166,166, 0.3);
+	background-color: rgb(166,166,166, 0.5);
 
 }
 </style>
@@ -150,7 +150,7 @@ $(function() {
 			<h1>
 				<a href="adminPlace.do">플레이스 목록</a>
 			</h1>
-			<button id="graybutton" class="btn pull-right" style="height: 30px;"
+			<button id="graybutton" class="btn pull-right" style="font-size: 1.2rem; font-weight: bold; color: white;"
 				onclick="location.href='admin.do'">돌아가기</button>
 		</div>
 		<br> <br>
@@ -163,13 +163,13 @@ $(function() {
 				</c:forEach>
 			</select>
 
-			<button class="btn btn-primary" onclick="location.href='../place/adminInsertPlaceForm.do'">장소등록</button>
+			<button style="font-size: 1.2rem; font-weight: bold;" class="btn btn-primary" onclick="location.href='../place/adminInsertPlaceForm.do'">장소등록</button>
 			<form class="search">
 				<table>
 					<tr>
 						<td style="padding-right: 5px;"><input type="text" placeholder="카페, 갈치, 전복..."
 							id="search" maxlength="100"></td>
-						<td><input type="button" value="검색" onclick="searchFunc()"
+						<td><input type="button" style="font-size: 1.2rem; font-weight: bold;" value="검색" onclick="searchFunc()"
 							class="btn btn-success"></td>
 				</table>
 			</form>
@@ -220,11 +220,11 @@ $(function() {
 					</c:if>
 					<c:forEach var="i" begin="${startPage }" end="${endPage }">
 						<c:if test="${currentPage==i }">
-							<li class="active"><a
+							<li style="font-size: 1.5rem; font-weight: bold;" class="active"><a
 								href="adminPlace.do?cate=${cate }&search=${search }&pageNum=${i}">${i}</a></li>
 						</c:if>
 						<c:if test="${currentPage!=i }">
-							<li><a
+							<li style="font-size: 1.5rem; font-weight: bold;"><a
 								href="adminPlace.do?cate=${cate }&search=${search }&pageNum=${i}">${i}</a></li>
 						</c:if>
 					</c:forEach>
