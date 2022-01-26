@@ -210,7 +210,7 @@ public class MemberController {
             msg2 += "<i>숫자를 정확하게 입력해주세요</i>";
 
 			try {
-				String myEmail = "wzk1201@naver.com";
+				String myEmail = "user email";
                 mail.setFrom(new InternetAddress(myEmail));
 			    mail.setSubject("[G.O.A.T] 비밀번호 찾기 인증 이메일", "utf-8");
 			    mail.setText(msg2, "utf-8", "html");
