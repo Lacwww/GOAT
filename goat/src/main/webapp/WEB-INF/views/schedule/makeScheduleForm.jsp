@@ -14,19 +14,6 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript">
-	$(function() {
-		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
-			console.log(alert);
-		});
-	});
-	$(function() {
-		$('#MoaModal .modal-content').load("placeModal.do?place_num=1");
-		$('#MoaModal').modal();
-		$('.modal-footer').hide();
-	});
-</script>
-
-<script type="text/javascript">
 
 	var id = [];
 	document.addEventListener('keydown', function(event) {
@@ -120,6 +107,18 @@
 		$('#cate_'+cate).removeClass('btn-info').addClass('btn-success');
 	}
 </script>
+<script type="text/javascript">
+	$(function() {
+		$.post('/goat/member/chkAlert.do', "m_num=${m_num}", function(alert) {
+			console.log(alert);
+		});
+	});
+	$(function() {
+		$('#MoaModal .modal-content').load("placeModal.do?place_num=1");
+		$('#MoaModal').modal();
+		$('.modal-footer').hide();
+	});
+</script>
 <style type="text/css">
 body {	font-size: 15px;}
 div #map {
@@ -183,6 +182,7 @@ select::-ms-expand {
 	padding-left: 10px;
 	background-color: rgb(233, 233, 233);
 }
+#mainNav {position: fixed;}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
